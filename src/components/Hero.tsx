@@ -1,5 +1,6 @@
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "./ui/button";
+import { Link } from "react-router-dom";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const Hero = () => {
@@ -43,20 +44,24 @@ const Hero = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-in-right">
-            <Button
-              size="lg"
-              className="bg-accent hover:bg-accent/90 text-primary shadow-lg hover:shadow-xl transition-all text-base sm:text-lg px-8 py-6 group"
-            >
-              Start Your Project
-              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-2 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 backdrop-blur-sm text-base sm:text-lg px-8 py-6"
-            >
-              View Portfolio
-            </Button>
+            <Link to="/contact">
+              <Button
+                size="lg"
+                className="bg-accent hover:bg-accent/90 text-primary shadow-lg hover:shadow-xl transition-all text-base sm:text-lg px-8 py-6 group"
+              >
+                Start Your Project
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </Link>
+            <Link to="/projects">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-2 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 backdrop-blur-sm text-base sm:text-lg px-8 py-6"
+              >
+                View Portfolio
+              </Button>
+            </Link>
           </div>
 
           {/* Stats */}

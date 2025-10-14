@@ -6,6 +6,9 @@ import Awards from "@/components/Awards";
 import Testimonials from "@/components/Testimonials";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
+import ProjectsShowcase from "@/components/ProjectsShowcase";
+import ClientLogos from "@/components/ClientLogos";
+import { Newsletter } from "@/components/Newsletter";
 
 const Index = () => {
   return (
@@ -13,9 +16,12 @@ const Index = () => {
       <Navbar />
       <Hero />
       <Services />
+      <ProjectsShowcase />
       <TechStack />
+      <ClientLogos />
       <Awards />
       <Testimonials />
+      <Newsletter />
       <CTA />
       <Footer />
     </div>
