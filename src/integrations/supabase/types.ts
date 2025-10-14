@@ -14,7 +14,450 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      blog_comments: {
+        Row: {
+          author_email: string
+          author_name: string
+          content: string
+          created_at: string | null
+          id: string
+          is_approved: boolean | null
+          post_id: string
+        }
+        Insert: {
+          author_email: string
+          author_name: string
+          content: string
+          created_at?: string | null
+          id?: string
+          is_approved?: boolean | null
+          post_id: string
+        }
+        Update: {
+          author_email?: string
+          author_name?: string
+          content?: string
+          created_at?: string | null
+          id?: string
+          is_approved?: boolean | null
+          post_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "blog_comments_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "blog_posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      blog_posts: {
+        Row: {
+          author_id: string | null
+          category: string
+          content: string
+          created_at: string | null
+          excerpt: string
+          featured_image: string | null
+          id: string
+          is_published: boolean | null
+          published_at: string | null
+          read_time: number | null
+          slug: string
+          tags: string[] | null
+          title: string
+          updated_at: string | null
+          views: number | null
+        }
+        Insert: {
+          author_id?: string | null
+          category: string
+          content: string
+          created_at?: string | null
+          excerpt: string
+          featured_image?: string | null
+          id?: string
+          is_published?: boolean | null
+          published_at?: string | null
+          read_time?: number | null
+          slug: string
+          tags?: string[] | null
+          title: string
+          updated_at?: string | null
+          views?: number | null
+        }
+        Update: {
+          author_id?: string | null
+          category?: string
+          content?: string
+          created_at?: string | null
+          excerpt?: string
+          featured_image?: string | null
+          id?: string
+          is_published?: boolean | null
+          published_at?: string | null
+          read_time?: number | null
+          slug?: string
+          tags?: string[] | null
+          title?: string
+          updated_at?: string | null
+          views?: number | null
+        }
+        Relationships: []
+      }
+      chat_conversations: {
+        Row: {
+          created_at: string | null
+          ended_at: string | null
+          id: string
+          session_id: string
+          status: string | null
+          visitor_email: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          ended_at?: string | null
+          id?: string
+          session_id: string
+          status?: string | null
+          visitor_email?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          ended_at?: string | null
+          id?: string
+          session_id?: string
+          status?: string | null
+          visitor_email?: string | null
+        }
+        Relationships: []
+      }
+      chat_messages: {
+        Row: {
+          content: string
+          conversation_id: string
+          created_at: string | null
+          id: string
+          role: string
+        }
+        Insert: {
+          content: string
+          conversation_id: string
+          created_at?: string | null
+          id?: string
+          role: string
+        }
+        Update: {
+          content?: string
+          conversation_id?: string
+          created_at?: string | null
+          id?: string
+          role?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "chat_messages_conversation_id_fkey"
+            columns: ["conversation_id"]
+            isOneToOne: false
+            referencedRelation: "chat_conversations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      clients: {
+        Row: {
+          created_at: string | null
+          display_order: number | null
+          id: string
+          is_active: boolean | null
+          logo_url: string
+          name: string
+          website_url: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          display_order?: number | null
+          id?: string
+          is_active?: boolean | null
+          logo_url: string
+          name: string
+          website_url?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          display_order?: number | null
+          id?: string
+          is_active?: boolean | null
+          logo_url?: string
+          name?: string
+          website_url?: string | null
+        }
+        Relationships: []
+      }
+      contact_submissions: {
+        Row: {
+          budget_range: string | null
+          company: string | null
+          created_at: string | null
+          email: string
+          id: string
+          message: string
+          name: string
+          phone: string | null
+          project_type: string | null
+          status: string | null
+        }
+        Insert: {
+          budget_range?: string | null
+          company?: string | null
+          created_at?: string | null
+          email: string
+          id?: string
+          message: string
+          name: string
+          phone?: string | null
+          project_type?: string | null
+          status?: string | null
+        }
+        Update: {
+          budget_range?: string | null
+          company?: string | null
+          created_at?: string | null
+          email?: string
+          id?: string
+          message?: string
+          name?: string
+          phone?: string | null
+          project_type?: string | null
+          status?: string | null
+        }
+        Relationships: []
+      }
+      newsletter_subscribers: {
+        Row: {
+          email: string
+          id: string
+          name: string | null
+          status: string | null
+          subscribed_at: string | null
+          unsubscribed_at: string | null
+        }
+        Insert: {
+          email: string
+          id?: string
+          name?: string | null
+          status?: string | null
+          subscribed_at?: string | null
+          unsubscribed_at?: string | null
+        }
+        Update: {
+          email?: string
+          id?: string
+          name?: string | null
+          status?: string | null
+          subscribed_at?: string | null
+          unsubscribed_at?: string | null
+        }
+        Relationships: []
+      }
+      page_views: {
+        Row: {
+          created_at: string | null
+          id: string
+          ip_address: string | null
+          page_path: string
+          referrer: string | null
+          session_id: string | null
+          user_agent: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          ip_address?: string | null
+          page_path: string
+          referrer?: string | null
+          session_id?: string | null
+          user_agent?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          ip_address?: string | null
+          page_path?: string
+          referrer?: string | null
+          session_id?: string | null
+          user_agent?: string | null
+        }
+        Relationships: []
+      }
+      project_images: {
+        Row: {
+          caption: string | null
+          created_at: string | null
+          display_order: number | null
+          id: string
+          image_url: string
+          project_id: string
+        }
+        Insert: {
+          caption?: string | null
+          created_at?: string | null
+          display_order?: number | null
+          id?: string
+          image_url: string
+          project_id: string
+        }
+        Update: {
+          caption?: string | null
+          created_at?: string | null
+          display_order?: number | null
+          id?: string
+          image_url?: string
+          project_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "project_images_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      projects: {
+        Row: {
+          case_study_content: string | null
+          category: string
+          client_name: string | null
+          created_at: string | null
+          description: string
+          display_order: number | null
+          featured_image: string | null
+          github_url: string | null
+          id: string
+          is_featured: boolean | null
+          live_url: string | null
+          metrics: Json | null
+          project_duration: string | null
+          slug: string
+          status: string | null
+          tags: string[] | null
+          tech_stack: string[] | null
+          title: string
+          updated_at: string | null
+          year: number | null
+        }
+        Insert: {
+          case_study_content?: string | null
+          category: string
+          client_name?: string | null
+          created_at?: string | null
+          description: string
+          display_order?: number | null
+          featured_image?: string | null
+          github_url?: string | null
+          id?: string
+          is_featured?: boolean | null
+          live_url?: string | null
+          metrics?: Json | null
+          project_duration?: string | null
+          slug: string
+          status?: string | null
+          tags?: string[] | null
+          tech_stack?: string[] | null
+          title: string
+          updated_at?: string | null
+          year?: number | null
+        }
+        Update: {
+          case_study_content?: string | null
+          category?: string
+          client_name?: string | null
+          created_at?: string | null
+          description?: string
+          display_order?: number | null
+          featured_image?: string | null
+          github_url?: string | null
+          id?: string
+          is_featured?: boolean | null
+          live_url?: string | null
+          metrics?: Json | null
+          project_duration?: string | null
+          slug?: string
+          status?: string | null
+          tags?: string[] | null
+          tech_stack?: string[] | null
+          title?: string
+          updated_at?: string | null
+          year?: number | null
+        }
+        Relationships: []
+      }
+      resume_downloads: {
+        Row: {
+          created_at: string | null
+          id: string
+          ip_address: string | null
+          user_agent: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          ip_address?: string | null
+          user_agent?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          ip_address?: string | null
+          user_agent?: string | null
+        }
+        Relationships: []
+      }
+      video_testimonials: {
+        Row: {
+          client_company: string | null
+          client_name: string
+          client_title: string | null
+          created_at: string | null
+          display_order: number | null
+          id: string
+          is_featured: boolean | null
+          quote: string | null
+          rating: number | null
+          thumbnail_url: string | null
+          video_url: string
+        }
+        Insert: {
+          client_company?: string | null
+          client_name: string
+          client_title?: string | null
+          created_at?: string | null
+          display_order?: number | null
+          id?: string
+          is_featured?: boolean | null
+          quote?: string | null
+          rating?: number | null
+          thumbnail_url?: string | null
+          video_url: string
+        }
+        Update: {
+          client_company?: string | null
+          client_name?: string
+          client_title?: string | null
+          created_at?: string | null
+          display_order?: number | null
+          id?: string
+          is_featured?: boolean | null
+          quote?: string | null
+          rating?: number | null
+          thumbnail_url?: string | null
+          video_url?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
