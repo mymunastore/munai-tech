@@ -16,7 +16,7 @@ const Footer = () => {
               <span className="font-bold text-xl">Kingsley.</span>
             </div>
             <p className="text-primary-foreground/70 text-sm leading-relaxed">
-              Crafting AI-powered digital solutions that transform businesses and drive growth.
+              AI Web App Designer & Full-Stack Developer specializing in TypeScript, React, and AI-powered solutions.
             </p>
           </div>
 
@@ -42,14 +42,16 @@ const Footer = () => {
             <h3 className="font-bold mb-4">Connect</h3>
             <div className="flex gap-4">
               {[
-                { icon: Mail, href: "mailto:contact@kingsley.dev", label: "Email" },
-                { icon: Github, href: "https://github.com", label: "GitHub" },
-                { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-                { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
+                { icon: Mail, href: "mailto:kingsley.munachi@example.com", label: "Email" },
+                { icon: Github, href: "https://github.com/mymunastore", label: "GitHub" },
+                { icon: Linkedin, href: "https://www.linkedin.com/in/kingsley-munachi-843591244", label: "LinkedIn" },
+                { icon: Twitter, href: "https://twitter.com/mymunastore", label: "Twitter" },
               ].map((social) => (
                 <a
                   key={social.label}
                   href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={social.label}
                   className="w-10 h-10 rounded-lg bg-primary-foreground/10 hover:bg-accent/20 flex items-center justify-center transition-colors group"
                 >

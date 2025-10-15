@@ -35,20 +35,24 @@ const CTA = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-            <Button
-              size="lg"
-              className="bg-accent hover:bg-accent/90 text-primary shadow-lg hover:shadow-xl transition-all text-base sm:text-lg px-8 py-6 group"
-            >
-              Start Your Project Today
-              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-2 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 backdrop-blur-sm text-base sm:text-lg px-8 py-6"
-            >
-              Get Free Estimate
-            </Button>
+            <a href="/contact">
+              <Button
+                size="lg"
+                className="bg-accent hover:bg-accent/90 text-primary shadow-lg hover:shadow-xl transition-all text-base sm:text-lg px-8 py-6 group"
+              >
+                Start Your Project Today
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </a>
+            <a href="/calculator">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-2 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 backdrop-blur-sm text-base sm:text-lg px-8 py-6"
+              >
+                Get Free Estimate
+              </Button>
+            </a>
           </div>
 
           {/* Trust Badges */}

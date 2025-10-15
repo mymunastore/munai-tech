@@ -6,23 +6,23 @@ const services = [
   {
     icon: Code2,
     title: "Full-Stack Development",
-    metric: "40+ Projects",
-    description: "End-to-end web applications with modern architecture, cloud deployment, and scalable solutions that grow with your business.",
-    skills: ["React/Next.js", "Node.js/Python", "Database Design", "API Development"],
+    metric: "18+ Projects",
+    description: "End-to-end web applications with modern architecture, TypeScript, React, and cloud deployment. Specialized in rapid MVP development and scalable SaaS solutions.",
+    skills: ["React/TypeScript", "Supabase", "Tailwind CSS", "API Development"],
   },
   {
     icon: Palette,
-    title: "UI/UX Design",
-    metric: "95% Satisfaction",
-    description: "User-centered design with conversion optimization, accessibility compliance, and brand consistency that drives results.",
-    skills: ["User Research", "Prototyping", "Design Systems", "A/B Testing"],
+    title: "AI Web App Design",
+    metric: "AI-Powered",
+    description: "Designing intelligent web applications that combine beautiful UX with AI capabilities. Creating interfaces that are both user-friendly and cutting-edge.",
+    skills: ["UI/UX Design", "Design Systems", "Responsive Design", "User Research"],
   },
   {
     icon: Bot,
     title: "AI Integration",
-    metric: "300% ROI",
-    description: "Custom AI solutions, intelligent chatbots, automation, and machine learning implementations for competitive advantage.",
-    skills: ["LLM Integration", "Automation", "Data Analysis", "Custom Models"],
+    metric: "Smart Solutions",
+    description: "Custom AI solutions using OpenAI, Google Gemini, and advanced prompt engineering. From chatbots to automated note-taking and content generation.",
+    skills: ["OpenAI API", "Prompt Engineering", "AI Automation", "RAG Systems"],
   },
 ];
 
