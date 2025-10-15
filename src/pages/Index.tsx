@@ -9,6 +9,7 @@ import Footer from "@/components/Footer";
 import ProjectsShowcase from "@/components/ProjectsShowcase";
 import ClientLogos from "@/components/ClientLogos";
 import { Newsletter } from "@/components/Newsletter";
+import FAQ from "@/components/FAQ";
 
 const Index = () => {
   return (
@@ -22,6 +23,7 @@ const Index = () => {
       <Awards />
       <Testimonials />
       <Newsletter />
+      <FAQ />
       <CTA />
       <Footer />
     </div>
