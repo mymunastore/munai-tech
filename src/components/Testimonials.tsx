@@ -1,24 +1,27 @@
 import { Card, CardContent } from "./ui/card";
 import { Quote } from "lucide-react";
+import sarahJohnson from "@/assets/testimonials/sarah-johnson.jpg";
+import michaelChen from "@/assets/testimonials/michael-chen.jpg";
+import emilyDavis from "@/assets/testimonials/emily-davis.jpg";
 
 const testimonials = [
   {
     quote: "Kingsley's expertise in AI integration transformed our operations completely. The custom solution he built increased our efficiency by 300% and gave us a significant competitive edge in our market.",
     author: "Sarah Johnson",
     role: "CEO, TechStart Inc.",
-    image: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=120&h=120&dpr=1",
+    image: sarahJohnson,
   },
   {
     quote: "Outstanding technical expertise and innovative approach. Kingsley delivered a full-stack solution that exceeded our expectations and was completed ahead of schedule. Highly recommend his services.",
     author: "Michael Chen",
     role: "Founder, E-commerce Pro",
-    image: "https://images.pexels.com/photos/837358/pexels-photo-837358.jpeg?auto=compress&cs=tinysrgb&w=120&h=120&dpr=1",
+    image: michaelChen,
   },
   {
     quote: "Professional, reliable, and incredibly skilled. Kingsley's AI-powered web application revolutionized our customer service process and the results speak for themselves - 250% increase in efficiency.",
     author: "Emily Davis",
     role: "CTO, InnovateCorp",
-    image: "https://images.pexels.com/photos/1065084/pexels-photo-1065084.jpeg?auto=compress&cs=tinysrgb&w=120&h=120&dpr=1",
+    image: emilyDavis,
   },
 ];
 
