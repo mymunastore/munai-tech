@@ -2,7 +2,6 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
 import TechStack from "@/components/TechStack";
-import Awards from "@/components/Awards";
 import Testimonials from "@/components/Testimonials";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
@@ -20,7 +19,6 @@ const Index = () => {
       <ProjectsShowcase />
       <TechStack />
       <ClientLogos />
-      <Awards />
       <Testimonials />
       <Newsletter />
       <FAQ />
