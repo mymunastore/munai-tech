@@ -10,10 +10,29 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { format } from "date-fns";
 import { Helmet } from "react-helmet";
+import aiInsightsImg from "@/assets/blog/ai-insights.jpg";
+import developmentImg from "@/assets/blog/development.jpg";
+import designImg from "@/assets/blog/design.jpg";
+import insightsImg from "@/assets/blog/insights.jpg";
 
 const Blog = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState<string>("");
+
+  const getCategoryImage = (category: string) => {
+    switch (category.toLowerCase()) {
+      case "ai":
+        return aiInsightsImg;
+      case "development":
+        return developmentImg;
+      case "design":
+        return designImg;
+      case "insights":
+        return insightsImg;
+      default:
+        return insightsImg;
+    }
+  };
 
   const { data: posts, isLoading } = useQuery({
     queryKey: ["blog-posts", selectedCategory, searchQuery],
@@ -136,7 +155,7 @@ const Blog = () => {
                 >
                   <div className="relative overflow-hidden">
                     <img
-                      src={post.featured_image || "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&h=600&fit=crop"}
+                      src={post.featured_image || getCategoryImage(post.category)}
                       alt={post.title}
                       className="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-300"
                     />
