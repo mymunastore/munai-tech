@@ -350,46 +350,73 @@ export type Database = {
       }
       payment_receipts: {
         Row: {
+          authorized_signature: string | null
           created_at: string
           customer_address: string | null
           customer_email: string
           customer_name: string
+          discount_amount: number | null
           id: string
+          invoice_reference: string | null
+          line_items: Json | null
           notes: string | null
           payment_amount: number
           payment_date: string
           payment_method: string | null
+          payment_terms: string | null
           project_description: string
           receipt_number: string
           status: string | null
+          subtotal: number | null
+          tax_amount: number | null
+          tax_id: string | null
+          verification_hash: string | null
         }
         Insert: {
+          authorized_signature?: string | null
           created_at?: string
           customer_address?: string | null
           customer_email: string
           customer_name: string
+          discount_amount?: number | null
           id?: string
+          invoice_reference?: string | null
+          line_items?: Json | null
           notes?: string | null
           payment_amount: number
           payment_date?: string
           payment_method?: string | null
+          payment_terms?: string | null
           project_description: string
           receipt_number: string
           status?: string | null
+          subtotal?: number | null
+          tax_amount?: number | null
+          tax_id?: string | null
+          verification_hash?: string | null
         }
         Update: {
+          authorized_signature?: string | null
           created_at?: string
           customer_address?: string | null
           customer_email?: string
           customer_name?: string
+          discount_amount?: number | null
           id?: string
+          invoice_reference?: string | null
+          line_items?: Json | null
           notes?: string | null
           payment_amount?: number
           payment_date?: string
           payment_method?: string | null
+          payment_terms?: string | null
           project_description?: string
           receipt_number?: string
           status?: string | null
+          subtotal?: number | null
+          tax_amount?: number | null
+          tax_id?: string | null
+          verification_hash?: string | null
         }
         Relationships: []
       }
