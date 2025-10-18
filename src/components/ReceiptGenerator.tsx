@@ -24,6 +24,13 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { FileText } from "lucide-react";
 
+const lineItemSchema = z.object({
+  description: z.string().min(1, "Description required"),
+  quantity: z.number().min(1, "Quantity must be at least 1"),
+  unit_price: z.number().min(0, "Price must be positive"),
+  total: z.number().min(0, "Total must be positive"),
+});
+
 const receiptSchema = z.object({
   customer_name: z.string().min(2, "Name must be at least 2 characters").max(100, "Name too long"),
   customer_email: z.string().email("Invalid email address").max(255, "Email too long"),
@@ -33,12 +40,22 @@ const receiptSchema = z.object({
   project_description: z.string().min(10, "Description must be at least 10 characters").max(1000, "Description too long"),
   notes: z.string().max(500, "Notes too long").optional(),
   status: z.enum(["paid", "pending"]).default("paid"),
+  tax_id: z.string().max(100).optional(),
+  invoice_reference: z.string().max(100).optional(),
+  authorized_signature: z.string().max(100).optional(),
+  payment_terms: z.string().max(500).optional(),
+  line_items: z.array(lineItemSchema).optional(),
+  subtotal: z.string().optional(),
+  tax_amount: z.string().optional(),
+  discount_amount: z.string().optional(),
 });
 
 type ReceiptFormData = z.infer<typeof receiptSchema>;
 
 export const ReceiptGenerator = () => {
   const [isGenerating, setIsGenerating] = useState(false);
+  const [showAdvanced, setShowAdvanced] = useState(false);
+  const [lineItems, setLineItems] = useState<Array<{description: string; quantity: number; unit_price: number; total: number}>>([]);
   const { toast } = useToast();
 
   const form = useForm<ReceiptFormData>({
@@ -52,8 +69,45 @@ export const ReceiptGenerator = () => {
       project_description: "",
       notes: "",
       status: "paid",
+      tax_id: "",
+      invoice_reference: "",
+      authorized_signature: "",
+      payment_terms: "Payment is non-refundable. For any disputes, please contact us within 30 days.",
+      subtotal: "",
+      tax_amount: "0",
+      discount_amount: "0",
     },
   });
+
+  const addLineItem = () => {
+    setLineItems([...lineItems, { description: "", quantity: 1, unit_price: 0, total: 0 }]);
+  };
+
+  const updateLineItem = (index: number, field: string, value: any) => {
+    const updated = [...lineItems];
+    updated[index] = { ...updated[index], [field]: value };
+    if (field === "quantity" || field === "unit_price") {
+      updated[index].total = updated[index].quantity * updated[index].unit_price;
+    }
+    setLineItems(updated);
+    calculateTotals(updated);
+  };
+
+  const removeLineItem = (index: number) => {
+    const updated = lineItems.filter((_, i) => i !== index);
+    setLineItems(updated);
+    calculateTotals(updated);
+  };
+
+  const calculateTotals = (items: typeof lineItems) => {
+    const subtotal = items.reduce((sum, item) => sum + item.total, 0);
+    form.setValue("subtotal", subtotal.toString());
+    
+    const discount = parseFloat(form.getValues("discount_amount") || "0");
+    const tax = parseFloat(form.getValues("tax_amount") || "0");
+    const total = subtotal - discount + tax;
+    form.setValue("payment_amount", total.toFixed(2));
+  };
 
   const onSubmit = async (data: ReceiptFormData) => {
     setIsGenerating(true);
@@ -61,36 +115,36 @@ export const ReceiptGenerator = () => {
       // Generate receipt number
       const receiptNumber = `MUN-${Date.now()}-${Math.random().toString(36).substr(2, 9).toUpperCase()}`;
 
+      const receiptData = {
+        receipt_number: receiptNumber,
+        customer_name: data.customer_name,
+        customer_email: data.customer_email,
+        customer_address: data.customer_address,
+        payment_amount: parseFloat(data.payment_amount),
+        payment_method: data.payment_method,
+        project_description: data.project_description,
+        notes: data.notes,
+        status: data.status,
+        tax_id: data.tax_id,
+        invoice_reference: data.invoice_reference,
+        authorized_signature: data.authorized_signature,
+        payment_terms: data.payment_terms,
+        line_items: lineItems.length > 0 ? lineItems : null,
+        subtotal: data.subtotal ? parseFloat(data.subtotal) : null,
+        tax_amount: data.tax_amount ? parseFloat(data.tax_amount) : 0,
+        discount_amount: data.discount_amount ? parseFloat(data.discount_amount) : 0,
+      };
+
       // Save to database
       const { error: dbError } = await supabase
         .from("payment_receipts")
-        .insert([{
-          receipt_number: receiptNumber,
-          customer_name: data.customer_name,
-          customer_email: data.customer_email,
-          customer_address: data.customer_address,
-          payment_amount: parseFloat(data.payment_amount),
-          payment_method: data.payment_method,
-          project_description: data.project_description,
-          notes: data.notes,
-          status: data.status,
-        }]);
+        .insert([receiptData]);
 
       if (dbError) throw dbError;
 
       // Generate and send receipt via email
       const { error: functionError } = await supabase.functions.invoke("generate-receipt", {
-        body: {
-          receipt_number: receiptNumber,
-          customer_name: data.customer_name,
-          customer_email: data.customer_email,
-          customer_address: data.customer_address,
-          payment_amount: parseFloat(data.payment_amount),
-          payment_method: data.payment_method,
-          project_description: data.project_description,
-          notes: data.notes,
-          status: data.status,
-        },
+        body: receiptData,
       });
 
       if (functionError) throw functionError;
@@ -101,6 +155,7 @@ export const ReceiptGenerator = () => {
       });
 
       form.reset();
+      setLineItems([]);
     } catch (error) {
       console.error("Error generating receipt:", error);
       toast({
@@ -283,6 +338,190 @@ export const ReceiptGenerator = () => {
             </FormItem>
           )}
         />
+
+        {/* Advanced Options Toggle */}
+        <div className="border-t pt-4">
+          <Button
+            type="button"
+            variant="outline"
+            onClick={() => setShowAdvanced(!showAdvanced)}
+            className="w-full"
+          >
+            {showAdvanced ? "Hide" : "Show"} Advanced Options
+          </Button>
+        </div>
+
+        {showAdvanced && (
+          <div className="space-y-6 border rounded-lg p-4 bg-muted/30">
+            <h4 className="font-semibold text-sm">Advanced Receipt Details</h4>
+
+            {/* Line Items Section */}
+            <div className="space-y-3">
+              <div className="flex justify-between items-center">
+                <label className="text-sm font-medium">Line Items (Optional)</label>
+                <Button type="button" onClick={addLineItem} size="sm" variant="outline">
+                  Add Item
+                </Button>
+              </div>
+              
+              {lineItems.map((item, index) => (
+                <div key={index} className="grid grid-cols-12 gap-2 items-start p-3 border rounded-lg bg-background">
+                  <Input
+                    placeholder="Description"
+                    value={item.description}
+                    onChange={(e) => updateLineItem(index, "description", e.target.value)}
+                    className="col-span-5"
+                  />
+                  <Input
+                    type="number"
+                    placeholder="Qty"
+                    value={item.quantity}
+                    onChange={(e) => updateLineItem(index, "quantity", parseInt(e.target.value) || 0)}
+                    className="col-span-2"
+                  />
+                  <Input
+                    type="number"
+                    placeholder="Price"
+                    value={item.unit_price}
+                    onChange={(e) => updateLineItem(index, "unit_price", parseFloat(e.target.value) || 0)}
+                    className="col-span-2"
+                  />
+                  <Input
+                    placeholder="Total"
+                    value={item.total.toFixed(2)}
+                    disabled
+                    className="col-span-2"
+                  />
+                  <Button
+                    type="button"
+                    variant="destructive"
+                    size="sm"
+                    onClick={() => removeLineItem(index)}
+                    className="col-span-1"
+                  >
+                    ×
+                  </Button>
+                </div>
+              ))}
+            </div>
+
+            {/* Totals Section */}
+            {lineItems.length > 0 && (
+              <div className="grid md:grid-cols-3 gap-4">
+                <FormField
+                  control={form.control}
+                  name="subtotal"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Subtotal (₦)</FormLabel>
+                      <FormControl>
+                        <Input {...field} disabled />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="discount_amount"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Discount (₦)</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="number"
+                          placeholder="0"
+                          {...field}
+                          onChange={(e) => {
+                            field.onChange(e);
+                            calculateTotals(lineItems);
+                          }}
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="tax_amount"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Tax (₦)</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="number"
+                          placeholder="0"
+                          {...field}
+                          onChange={(e) => {
+                            field.onChange(e);
+                            calculateTotals(lineItems);
+                          }}
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+              </div>
+            )}
+
+            {/* Additional Fields */}
+            <div className="grid md:grid-cols-2 gap-4">
+              <FormField
+                control={form.control}
+                name="tax_id"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Tax ID / Business Number</FormLabel>
+                    <FormControl>
+                      <Input placeholder="LLC-15071995-KY" {...field} />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="invoice_reference"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Invoice Reference</FormLabel>
+                    <FormControl>
+                      <Input placeholder="INV-2024-001" {...field} />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+            </div>
+
+            <FormField
+              control={form.control}
+              name="authorized_signature"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Authorized Signature Name</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Your Name" {...field} />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="payment_terms"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Payment Terms</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      placeholder="Payment terms, refund policy, warranty..."
+                      className="min-h-[80px]"
+                      {...field}
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+          </div>
+        )}
 
         <Button type="submit" disabled={isGenerating} className="w-full">
           {isGenerating ? "Generating..." : "Generate & Send Receipt"}

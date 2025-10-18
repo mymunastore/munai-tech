@@ -25,6 +25,7 @@ const About = lazy(() => import("./pages/About"));
 const Admin = lazy(() => import("./pages/Admin"));
 const Auth = lazy(() => import("./pages/Auth"));
 const ReceiptPreview = lazy(() => import("./pages/ReceiptPreview"));
+const VerifyReceipt = lazy(() => import("./pages/VerifyReceipt"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const LoadingFallback = () => (
@@ -63,6 +64,7 @@ const AppContent = () => {
           <Route path="/auth" element={<Auth />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/receipt-preview" element={<ReceiptPreview />} />
+          <Route path="/verify-receipt/:hash?" element={<VerifyReceipt />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
