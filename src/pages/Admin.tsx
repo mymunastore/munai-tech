@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
-import { Loader2, Eye, Mail, Download, Users } from "lucide-react";
+import { Loader2, Eye, Mail, Download, Users, Keyboard } from "lucide-react";
 import { useContactSubmissions, useNewsletterSubscribers, usePageViews, useAnalyticsStats } from "@/hooks/useAdminData";
 import { StatsCard } from "@/components/admin/StatsCard";
 import { DataTable, formatDate } from "@/components/admin/DataTable";
@@ -16,6 +16,9 @@ import { AnalyticsChart } from "@/components/admin/AnalyticsChart";
 import { SearchBar } from "@/components/admin/SearchBar";
 import { StatusBadge } from "@/components/admin/StatusBadge";
 import { useAnalyticsCharts } from "@/hooks/useAnalyticsCharts";
+import { useKeyboardShortcuts } from "@/hooks/useKeyboardShortcuts";
+import { ContactDetailsModal } from "@/components/admin/ContactDetailsModal";
+import { BatchActions } from "@/components/admin/BatchActions";
 
 const Admin = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -35,6 +38,53 @@ const Admin = () => {
 
   const [contactSearch, setContactSearch] = useState("");
   const [subscriberSearch, setSubscriberSearch] = useState("");
+  const [selectedTab, setSelectedTab] = useState("overview");
+  const [selectedContact, setSelectedContact] = useState<any>(null);
+  const [detailsOpen, setDetailsOpen] = useState(false);
+  const [selectedContactIds, setSelectedContactIds] = useState<string[]>([]);
+  const [selectedSubscriberIds, setSelectedSubscriberIds] = useState<string[]>([]);
+
+  // Keyboard shortcuts
+  const { showShortcutsHelp } = useKeyboardShortcuts([
+    {
+      key: "k",
+      ctrl: true,
+      description: "Search contacts",
+      action: () => {
+        setSelectedTab("contacts");
+        setTimeout(() => document.querySelector<HTMLInputElement>('input[type="search"]')?.focus(), 100);
+      },
+    },
+    {
+      key: "n",
+      ctrl: true,
+      description: "Go to newsletter tab",
+      action: () => setSelectedTab("newsletter"),
+    },
+    {
+      key: "a",
+      ctrl: true,
+      description: "Go to analytics tab",
+      action: () => setSelectedTab("analytics"),
+    },
+    {
+      key: "h",
+      ctrl: true,
+      description: "Go to overview",
+      action: () => setSelectedTab("overview"),
+    },
+    {
+      key: "?",
+      shift: true,
+      description: "Show keyboard shortcuts",
+      action: () => {
+        toast({
+          title: "Keyboard Shortcuts",
+          description: "Ctrl+K: Search | Ctrl+H: Overview | Ctrl+N: Newsletter | Ctrl+A: Analytics",
+        });
+      },
+    },
+  ]);
 
   // Filter contacts by search
   const filteredContacts = useMemo(() => {
@@ -229,12 +279,25 @@ const Admin = () => {
       <div className="max-w-6xl mx-auto">
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-4xl font-bold">Admin Dashboard</h1>
-          <Button onClick={handleSignOut} variant="outline">
-            Sign Out
-          </Button>
+          <div className="flex gap-2">
+            <Button 
+              onClick={() => toast({
+                title: "Keyboard Shortcuts",
+                description: "Ctrl+K: Search | Ctrl+H: Overview | Ctrl+N: Newsletter | Ctrl+A: Analytics",
+              })} 
+              variant="outline" 
+              size="sm"
+            >
+              <Keyboard className="mr-2 h-4 w-4" />
+              Shortcuts (?)
+            </Button>
+            <Button onClick={handleSignOut} variant="outline">
+              Sign Out
+            </Button>
+          </div>
         </div>
 
-        <Tabs defaultValue="overview" className="space-y-4">
+        <Tabs value={selectedTab} onValueChange={setSelectedTab} className="space-y-4">
           <TabsList>
             <TabsTrigger value="overview">Overview</TabsTrigger>
             <TabsTrigger value="contacts">Contacts</TabsTrigger>
@@ -324,11 +387,20 @@ const Admin = () => {
                 </div>
               </CardHeader>
               <CardContent className="space-y-4">
-                <SearchBar 
-                  value={contactSearch}
-                  onChange={setContactSearch}
-                  placeholder="Search contacts by name, email, or company..."
+                <div className="flex items-center justify-between">
+                  <SearchBar 
+                    value={contactSearch}
+                    onChange={setContactSearch}
+                    placeholder="Search contacts by name, email, or company..."
+                  />
+                </div>
+                
+                <BatchActions
+                  selectedIds={selectedContactIds}
+                  onClear={() => setSelectedContactIds([])}
+                  table="contact_submissions"
                 />
+                
                 <DataTable
                   data={filteredContacts}
                   isLoading={contactsLoading}
@@ -370,11 +442,20 @@ const Admin = () => {
                 </div>
               </CardHeader>
               <CardContent className="space-y-4">
-                <SearchBar 
-                  value={subscriberSearch}
-                  onChange={setSubscriberSearch}
-                  placeholder="Search subscribers by name or email..."
+                <div className="flex items-center justify-between">
+                  <SearchBar 
+                    value={subscriberSearch}
+                    onChange={setSubscriberSearch}
+                    placeholder="Search subscribers by name or email..."
+                  />
+                </div>
+                
+                <BatchActions
+                  selectedIds={selectedSubscriberIds}
+                  onClear={() => setSelectedSubscriberIds([])}
+                  table="newsletter_subscribers"
                 />
+                
                 <DataTable
                   data={filteredSubscribers}
                   isLoading={subscribersLoading}
@@ -436,6 +517,12 @@ const Admin = () => {
             </Card>
           </TabsContent>
         </Tabs>
+        
+        <ContactDetailsModal
+          open={detailsOpen}
+          onOpenChange={setDetailsOpen}
+          contact={selectedContact}
+        />
       </div>
     </div>
   );

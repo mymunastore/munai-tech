@@ -1,0 +1,73 @@
+@media print {
+  /* Hide non-essential elements */
+  nav,
+  footer,
+  .print\\:hidden,
+  button:not(.print\\:block),
+  .no-print {
+    display: none !important;
+  }
+
+  /* Optimize layout */
+  body {
+    margin: 0;
+    padding: 20px;
+    font-size: 12pt;
+    line-height: 1.5;
+    color: #000;
+    background: #fff;
+  }
+
+  /* Page breaks */
+  h1, h2, h3 {
+    page-break-after: avoid;
+  }
+
+  p, li {
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* Links */
+  a {
+    color: #000;
+    text-decoration: underline;
+  }
+
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+
+  /* Cards and containers */
+  .card, section {
+    page-break-inside: avoid;
+  }
+
+  /* Headers */
+  header {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #000;
+  }
+
+  /* Skills and experience sections */
+  .skills-grid,
+  .experience-list {
+    display: block;
+  }
+
+  /* Responsive to single column */
+  .grid {
+    display: block !important;
+  }
+
+  .grid > * {
+    width: 100% !important;
+    margin-bottom: 10px;
+  }
+}
+
+@page {
+  margin: 2cm;
+  size: A4;
+}
