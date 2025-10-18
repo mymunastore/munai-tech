@@ -38,175 +38,320 @@ const generateReceiptHTML = (data: ReceiptData): string => {
     <html>
     <head>
       <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <style>
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
         body { 
-          font-family: 'Helvetica Neue', Arial, sans-serif; 
+          font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; 
           line-height: 1.6; 
-          color: #333; 
-          max-width: 800px; 
-          margin: 0 auto; 
-          padding: 20px;
+          color: #1e293b; 
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          padding: 40px 20px;
+          min-height: 100vh;
         }
-        .receipt-container {
-          border: 2px solid #2563eb;
-          border-radius: 12px;
+        .receipt-wrapper {
+          max-width: 800px;
+          margin: 0 auto;
+          background: white;
+          border-radius: 16px;
+          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+          overflow: hidden;
+        }
+        .receipt-header {
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          color: white;
           padding: 40px;
-          background: #ffffff;
-        }
-        .header {
           text-align: center;
-          border-bottom: 3px solid #2563eb;
-          padding-bottom: 20px;
-          margin-bottom: 30px;
+          position: relative;
         }
-        .logo {
-          font-size: 32px;
-          font-weight: bold;
-          color: #2563eb;
-          margin-bottom: 5px;
+        .receipt-header::after {
+          content: '';
+          position: absolute;
+          bottom: -20px;
+          left: 0;
+          right: 0;
+          height: 20px;
+          background: white;
+          border-radius: 50% 50% 0 0 / 100% 100% 0 0;
         }
-        .tagline {
-          color: #64748b;
+        .company-logo {
+          font-size: 36px;
+          font-weight: 800;
+          letter-spacing: -1px;
+          margin-bottom: 8px;
+          text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        .company-tagline {
           font-size: 14px;
+          opacity: 0.95;
+          font-weight: 300;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+        }
+        .receipt-body {
+          padding: 40px;
         }
         .receipt-title {
-          background: #2563eb;
-          color: white;
-          padding: 15px;
           text-align: center;
-          font-size: 24px;
-          font-weight: bold;
-          border-radius: 8px;
-          margin-bottom: 30px;
+          margin-bottom: 40px;
         }
-        .info-section {
-          margin-bottom: 25px;
+        .receipt-title h1 {
+          font-size: 28px;
+          color: #667eea;
+          font-weight: 700;
+          letter-spacing: 2px;
+          margin-bottom: 8px;
         }
-        .info-row {
+        .receipt-number {
+          font-size: 14px;
+          color: #64748b;
+          font-weight: 500;
+        }
+        .info-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 30px;
+          margin-bottom: 40px;
+        }
+        .info-card {
+          background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+          padding: 24px;
+          border-radius: 12px;
+          border: 1px solid #e2e8f0;
+        }
+        .info-card h3 {
+          color: #667eea;
+          font-size: 14px;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          margin-bottom: 16px;
+          padding-bottom: 12px;
+          border-bottom: 2px solid #667eea;
+        }
+        .info-item {
           display: flex;
           justify-content: space-between;
-          padding: 12px 0;
+          padding: 10px 0;
           border-bottom: 1px solid #e2e8f0;
+        }
+        .info-item:last-child {
+          border-bottom: none;
         }
         .info-label {
           font-weight: 600;
           color: #475569;
+          font-size: 13px;
         }
         .info-value {
           color: #1e293b;
-        }
-        .amount-section {
-          background: #f1f5f9;
-          padding: 20px;
-          border-radius: 8px;
-          margin: 30px 0;
-        }
-        .amount-row {
-          display: flex;
-          justify-content: space-between;
-          font-size: 24px;
-          font-weight: bold;
-          color: #2563eb;
-        }
-        .footer {
-          margin-top: 40px;
-          padding-top: 20px;
-          border-top: 2px solid #e2e8f0;
-          text-align: center;
-          color: #64748b;
-          font-size: 12px;
-        }
-        .contact-info {
-          margin-top: 15px;
+          font-weight: 500;
+          text-align: right;
           font-size: 13px;
         }
-        .stamp {
-          text-align: right;
-          margin-top: 30px;
-          font-style: italic;
+        .service-details {
+          background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+          padding: 24px;
+          border-radius: 12px;
+          margin-bottom: 30px;
+          border-left: 4px solid #667eea;
+        }
+        .service-details h3 {
+          color: #667eea;
+          font-size: 14px;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          margin-bottom: 12px;
+        }
+        .service-details p {
+          color: #475569;
+          line-height: 1.8;
+        }
+        .amount-section {
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          color: white;
+          padding: 32px;
+          border-radius: 12px;
+          margin: 40px 0;
+          box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+        .amount-label {
+          font-size: 14px;
+          opacity: 0.9;
+          margin-bottom: 8px;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          font-weight: 500;
+        }
+        .amount-value {
+          font-size: 48px;
+          font-weight: 800;
+          letter-spacing: -1px;
+          text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        .payment-status {
+          display: inline-block;
+          background: #10b981;
+          color: white;
+          padding: 8px 20px;
+          border-radius: 50px;
+          font-weight: 700;
+          font-size: 12px;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+          margin-top: 16px;
+          box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+        .thank-you {
+          text-align: center;
+          padding: 30px;
+          background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+          border-radius: 12px;
+          margin: 30px 0;
+        }
+        .thank-you h2 {
+          color: #92400e;
+          font-size: 24px;
+          font-weight: 700;
+          margin-bottom: 8px;
+        }
+        .thank-you p {
+          color: #78350f;
+          font-size: 14px;
+        }
+        .receipt-footer {
+          background: #f8fafc;
+          padding: 32px;
+          text-align: center;
+          border-top: 2px solid #e2e8f0;
+        }
+        .company-info {
+          margin-bottom: 20px;
+        }
+        .company-info h4 {
+          color: #1e293b;
+          font-size: 16px;
+          font-weight: 700;
+          margin-bottom: 12px;
+        }
+        .contact-details {
           color: #64748b;
+          font-size: 13px;
+          line-height: 2;
+        }
+        .contact-details a {
+          color: #667eea;
+          text-decoration: none;
+          font-weight: 600;
+        }
+        .footer-note {
+          color: #94a3b8;
+          font-size: 11px;
+          margin-top: 20px;
+          padding-top: 20px;
+          border-top: 1px solid #e2e8f0;
+        }
+        @media (max-width: 768px) {
+          .info-grid {
+            grid-template-columns: 1fr;
+          }
+          .amount-value {
+            font-size: 36px;
+          }
         }
       </style>
     </head>
     <body>
-      <div class="receipt-container">
-        <div class="header">
-          <div class="logo">MunAiTech</div>
-          <div class="tagline">Professional Digital Solutions</div>
+      <div class="receipt-wrapper">
+        <div class="receipt-header">
+          <div class="company-logo">MunAiTech</div>
+          <div class="company-tagline">Professional Digital Solutions</div>
         </div>
 
-        <div class="receipt-title">PAYMENT RECEIPT</div>
+        <div class="receipt-body">
+          <div class="receipt-title">
+            <h1>PAYMENT RECEIPT</h1>
+            <div class="receipt-number">#${data.receipt_number}</div>
+          </div>
 
-        <div class="info-section">
-          <div class="info-row">
-            <span class="info-label">Receipt Number:</span>
-            <span class="info-value">${data.receipt_number}</span>
-          </div>
-          <div class="info-row">
-            <span class="info-label">Date:</span>
-            <span class="info-value">${formatDate(currentDate)}</span>
-          </div>
-          <div class="info-row">
-            <span class="info-label">Payment Method:</span>
-            <span class="info-value">${data.payment_method.replace('_', ' ').toUpperCase()}</span>
-          </div>
-        </div>
+          <div class="info-grid">
+            <div class="info-card">
+              <h3>Receipt Details</h3>
+              <div class="info-item">
+                <span class="info-label">Date Issued</span>
+                <span class="info-value">${formatDate(currentDate)}</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">Payment Method</span>
+                <span class="info-value">${data.payment_method.replace('_', ' ').toUpperCase()}</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">Status</span>
+                <span class="info-value" style="color: #10b981; font-weight: 700;">PAID</span>
+              </div>
+            </div>
 
-        <div class="info-section">
-          <h3 style="color: #2563eb; margin-bottom: 15px;">Customer Information</h3>
-          <div class="info-row">
-            <span class="info-label">Name:</span>
-            <span class="info-value">${data.customer_name}</span>
+            <div class="info-card">
+              <h3>Customer Information</h3>
+              <div class="info-item">
+                <span class="info-label">Name</span>
+                <span class="info-value">${data.customer_name}</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">Email</span>
+                <span class="info-value">${data.customer_email}</span>
+              </div>
+              ${data.customer_address ? `
+              <div class="info-item">
+                <span class="info-label">Address</span>
+                <span class="info-value">${data.customer_address}</span>
+              </div>
+              ` : ''}
+            </div>
           </div>
-          <div class="info-row">
-            <span class="info-label">Email:</span>
-            <span class="info-value">${data.customer_email}</span>
+
+          <div class="service-details">
+            <h3>Service Description</h3>
+            <p>${data.project_description}</p>
           </div>
-          ${data.customer_address ? `
-          <div class="info-row">
-            <span class="info-label">Address:</span>
-            <span class="info-value">${data.customer_address}</span>
+
+          ${data.notes ? `
+          <div class="service-details">
+            <h3>Additional Notes</h3>
+            <p>${data.notes}</p>
           </div>
           ` : ''}
-        </div>
 
-        <div class="info-section">
-          <h3 style="color: #2563eb; margin-bottom: 15px;">Service Details</h3>
-          <p style="padding: 15px; background: #f8fafc; border-radius: 6px; margin: 0;">
-            ${data.project_description}
-          </p>
-        </div>
+          <div class="amount-section">
+            <div class="amount-label">Total Amount Paid</div>
+            <div class="amount-value">${formatCurrency(data.payment_amount)}</div>
+            <div class="payment-status">✓ Payment Received</div>
+          </div>
 
-        ${data.notes ? `
-        <div class="info-section">
-          <h3 style="color: #2563eb; margin-bottom: 15px;">Additional Notes</h3>
-          <p style="padding: 15px; background: #f8fafc; border-radius: 6px; margin: 0;">
-            ${data.notes}
-          </p>
-        </div>
-        ` : ''}
-
-        <div class="amount-section">
-          <div class="amount-row">
-            <span>Total Amount Paid:</span>
-            <span>${formatCurrency(data.payment_amount)}</span>
+          <div class="thank-you">
+            <h2>Thank You!</h2>
+            <p>We appreciate your business and look forward to working with you again.</p>
           </div>
         </div>
 
-        <div class="stamp">
-          <p style="margin: 5px 0;"><strong>Status: PAID</strong></p>
-          <p style="margin: 5px 0;">Thank you for your business!</p>
-        </div>
-
-        <div class="footer">
-          <p><strong>MunAiTech</strong> - Professional Digital Solutions</p>
-          <div class="contact-info">
-            <p>Email: info@mymuna.store | WhatsApp: +234 706 237 2521</p>
-            <p>Lagos, Nigeria | Available for Remote Work</p>
+        <div class="receipt-footer">
+          <div class="company-info">
+            <h4>MunAiTech</h4>
+            <div class="contact-details">
+              Email: <a href="mailto:info@mymuna.store">info@mymuna.store</a><br>
+              WhatsApp: <a href="https://wa.me/2347062372521">+234 706 237 2521</a><br>
+              Location: Lagos, Nigeria | Remote Services Available
+            </div>
           </div>
-          <p style="margin-top: 15px; font-size: 11px;">
-            This is an official receipt from MunAiTech. For any queries, please contact us at info@mymuna.store
-          </p>
+          <div class="footer-note">
+            This is an official receipt from MunAiTech. Please retain this for your records.<br>
+            For any inquiries regarding this receipt, please contact us at info@mymuna.store
+          </div>
         </div>
       </div>
     </body>
