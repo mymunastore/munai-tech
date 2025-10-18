@@ -31,18 +31,18 @@ const Hero = () => {
             </div>
 
             {/* Main Heading */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary-foreground animate-fade-in leading-tight">
-              Building Intelligent
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-primary-foreground animate-fade-in leading-tight">
+              Senior AI Engineer
               <br />
               <span className="bg-gradient-to-r from-accent via-blue-400 to-accent bg-clip-text text-transparent animate-gradient-shift bg-[length:200%_auto]">
-                Digital Experiences
+                Architecting Intelligence
               </span>
             </h1>
 
             {/* Subtitle */}
             <p className="text-lg sm:text-xl text-primary-foreground/90 animate-fade-in font-light leading-relaxed">
-              I craft AI-powered digital solutions that transform businesses, drive growth,
-              and create lasting competitive advantages.
+              Specializing in AI-driven full-stack solutions, machine learning integration, 
+              and scalable cloud architectures that deliver measurable business impact.
             </p>
 
             {/* CTA Buttons */}
@@ -68,22 +68,22 @@ const Hero = () => {
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-4 sm:gap-6">
             {[
-              { number: "50+", label: "Projects Delivered" },
-              { number: "100+", label: "Happy Clients" },
-              { number: "5+", label: "Years Experience" },
-              { number: "99%", label: "Client Satisfaction" },
+              { number: "50+", label: "AI Projects Delivered" },
+              { number: "100+", label: "Enterprise Clients" },
+              { number: "5+", label: "Years of Expertise" },
+              { number: "99%", label: "Success Rate" },
             ].map((stat, index) => (
                 <div
                   key={index}
-                  className="backdrop-blur-sm bg-primary-foreground/10 rounded-lg p-4 border border-primary-foreground/20 hover:border-accent/50 transition-all"
+                  className="group backdrop-blur-sm bg-primary-foreground/10 rounded-xl p-5 border border-primary-foreground/20 hover:border-accent/60 hover:bg-primary-foreground/15 transition-all duration-300 cursor-default"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  <div className="text-2xl font-bold text-accent mb-1">
+                  <div className="text-3xl sm:text-4xl font-bold text-accent mb-2 group-hover:scale-110 transition-transform">
                     {stat.number}
                   </div>
-                  <div className="text-xs text-primary-foreground/80">
+                  <div className="text-xs sm:text-sm text-primary-foreground/90 font-medium">
                     {stat.label}
                   </div>
                 </div>
@@ -94,14 +94,24 @@ const Hero = () => {
           {/* Right Column - Profile Image */}
           <div className="relative hidden md:block animate-fade-in">
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-accent/30 to-accent/10 rounded-3xl transform rotate-6 blur-xl"></div>
+              {/* Animated gradient background */}
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/40 via-blue-500/30 to-accent/20 rounded-3xl transform rotate-6 blur-2xl animate-pulse"></div>
+              <div className="absolute inset-0 bg-gradient-to-tl from-accent/20 to-transparent rounded-3xl transform -rotate-3 blur-xl"></div>
+              
               <img 
                 src={profileImage}
-                alt="Kingsley - Full Stack Developer"
-                className="relative rounded-3xl shadow-2xl w-full h-auto object-cover border-4 border-primary-foreground/20"
+                alt="MunAiTech - Senior AI Engineer & Full Stack Developer"
+                className="relative rounded-3xl shadow-2xl w-full h-auto object-cover border-4 border-primary-foreground/30 hover:border-accent/50 transition-all duration-500"
               />
-              <div className="absolute -bottom-6 -right-6 bg-accent text-primary px-6 py-3 rounded-2xl shadow-xl">
-                <div className="text-sm font-medium">Available for hire</div>
+              
+              {/* Availability badge */}
+              <div className="absolute -bottom-8 -right-8 bg-gradient-to-r from-accent to-blue-500 text-primary px-8 py-4 rounded-2xl shadow-2xl animate-pulse">
+                <div className="text-base font-semibold">Open to Opportunities</div>
+              </div>
+              
+              {/* Tech stack floating badges */}
+              <div className="absolute -top-4 -left-4 bg-background/90 backdrop-blur-sm border border-accent/30 px-4 py-2 rounded-xl shadow-lg">
+                <div className="text-xs font-semibold text-accent">AI/ML Expert</div>
               </div>
             </div>
           </div>
