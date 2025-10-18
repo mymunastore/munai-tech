@@ -17,13 +17,9 @@ import Timeline from "@/components/Timeline";
 import Certifications from "@/components/Certifications";
 import AIRecommendations from "@/components/AIRecommendations";
 import GitHubRepositories from "@/components/GitHubRepositories";
-
-
 const Index = () => {
   usePageTracking();
-  
-  return (
-    <>
+  return <>
       <SEO />
       <Helmet>
         <title>MunAiTech - AI Web App Designer & Full-Stack Development | 15071995 LLC</title>
@@ -45,35 +41,31 @@ const Index = () => {
         {/* Structured Data */}
         <script type="application/ld+json">
           {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            "name": "MunAiTech",
-            "legalName": "15071995 LLC",
-            "description": "AI-powered web development and digital solutions",
-            "url": "https://yourdomain.com",
-            "logo": "https://yourdomain.com/logo.png",
-            "address": {
-              "@type": "PostalAddress",
-              "addressLocality": "Lagos",
-              "addressCountry": "Nigeria"
-            },
-            "contactPoint": {
-              "@type": "ContactPoint",
-              "contactType": "Business",
-              "availableLanguage": ["English"]
-            },
-            "sameAs": [
-              "https://github.com/mymunastore",
-              "https://www.linkedin.com/in/kingsley-munachi-843591244",
-              "https://twitter.com/mymunastore"
-            ],
-            "aggregateRating": {
-              "@type": "AggregateRating",
-              "ratingValue": "4.9",
-              "reviewCount": "100",
-              "bestRating": "5"
-            }
-          })}
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "MunAiTech",
+          "legalName": "15071995 LLC",
+          "description": "AI-powered web development and digital solutions",
+          "url": "https://yourdomain.com",
+          "logo": "https://yourdomain.com/logo.png",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Lagos",
+            "addressCountry": "Nigeria"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "Business",
+            "availableLanguage": ["English"]
+          },
+          "sameAs": ["https://github.com/mymunastore", "https://www.linkedin.com/in/kingsley-munachi-843591244", "https://twitter.com/mymunastore"],
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "100",
+            "bestRating": "5"
+          }
+        })}
         </script>
       </Helmet>
       
@@ -85,11 +77,7 @@ const Index = () => {
         <ProjectsShowcase />
         
         {/* GitHub Repositories Section */}
-        <section className="py-20 bg-gradient-to-br from-black via-gray-900 to-black border-y border-cyan-500/20">
-          <div className="container px-4">
-            <GitHubRepositories limit={6} showHeader={true} />
-          </div>
-        </section>
+        
         
         <TechStack />
         <Skills />
@@ -103,8 +91,6 @@ const Index = () => {
         <CTA />
         <Footer />
       </main>
-    </>
-  );
+    </>;
 };
-
 export default Index;
