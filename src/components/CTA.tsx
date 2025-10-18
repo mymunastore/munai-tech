@@ -20,7 +20,7 @@ const CTA = () => {
 
           {/* Heading */}
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6">
-            Let's Build Something
+            Let&apos;s Build Something
             <br />
             <span className="bg-gradient-to-r from-accent via-blue-400 to-accent bg-clip-text text-transparent animate-gradient-shift bg-[length:200%_auto]">
               Extraordinary

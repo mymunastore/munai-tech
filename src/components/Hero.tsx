@@ -35,7 +35,7 @@ const Hero = () => {
               Welcome to my digital workspace.
               <br />
               <span className="bg-gradient-to-r from-accent via-blue-400 to-accent bg-clip-text text-transparent animate-gradient-shift bg-[length:200%_auto]">
-                I'm Kingsley Munachi
+                I&apos;m Kingsley Munachi
               </span>
             </h1>
 
@@ -43,7 +43,7 @@ const Hero = () => {
             <p className="text-lg sm:text-xl text-primary-foreground/90 animate-fade-in font-light leading-relaxed">
               A senior web designer and AI full-stack app developer. I specialize in crafting intelligent, 
               scalable solutions that blend design precision with cutting-edge technology. 
-              Let's build something extraordinary together.
+              Let&apos;s build something extraordinary together.
             </p>
 
             {/* CTA Buttons */}
