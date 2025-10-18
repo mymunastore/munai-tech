@@ -19,13 +19,15 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
 const testimonialSchema = z.object({
-  client_name: z.string().min(2, "Name must be at least 2 characters"),
-  client_email: z.string().email("Invalid email address"),
-  client_company: z.string().optional(),
-  client_title: z.string().optional(),
-  project_name: z.string().optional(),
-  rating: z.number().min(1).max(5),
-  testimonial_text: z.string().min(10, "Testimonial must be at least 10 characters"),
+  client_name: z.string().min(2, "Name must be at least 2 characters").max(100, "Name too long"),
+  client_email: z.string().email("Invalid email address").max(255, "Email too long"),
+  client_company: z.string().max(100, "Company name too long").optional(),
+  client_title: z.string().max(100, "Title too long").optional(),
+  project_name: z.string().max(200, "Project name too long").optional(),
+  rating: z.number().min(1, "Please select a rating").max(5),
+  testimonial_text: z.string()
+    .min(20, "Please provide at least 20 characters")
+    .max(1000, "Testimonial is too long (max 1000 characters)"),
   would_recommend: z.boolean().default(true),
 });
 
@@ -68,8 +70,8 @@ export const TestimonialForm = () => {
       if (error) throw error;
 
       toast({
-        title: "Thank you for your review!",
-        description: "Your testimonial has been submitted and will be reviewed shortly.",
+        title: "Thank You! 🎉",
+        description: "Your testimonial has been submitted successfully. I'll review it soon and may feature it on the website!",
       });
 
       form.reset();
@@ -86,22 +88,33 @@ export const TestimonialForm = () => {
   };
 
   const renderStars = (rating: number, onClick: (value: number) => void) => {
+    const labels = ["Poor", "Fair", "Good", "Very Good", "Excellent"];
     return (
-      <div className="flex gap-1">
-        {[1, 2, 3, 4, 5].map((star) => (
-          <button
-            key={star}
-            type="button"
-            onClick={() => onClick(star)}
-            className="transition-colors"
-          >
-            <Star
-              className={`h-6 w-6 ${
-                star <= rating ? "fill-accent text-accent" : "text-muted-foreground"
-              }`}
-            />
-          </button>
-        ))}
+      <div className="space-y-2">
+        <div className="flex gap-1">
+          {[1, 2, 3, 4, 5].map((star) => (
+            <button
+              key={star}
+              type="button"
+              onClick={() => onClick(star)}
+              className="transition-all hover:scale-110"
+              aria-label={`Rate ${star} star${star > 1 ? 's' : ''}`}
+            >
+              <Star
+                className={`h-7 w-7 transition-colors ${
+                  star <= rating 
+                    ? "fill-accent text-accent" 
+                    : "text-muted-foreground hover:text-accent/50"
+                }`}
+              />
+            </button>
+          ))}
+        </div>
+        {rating > 0 && (
+          <p className="text-sm text-muted-foreground">
+            {labels[rating - 1]}
+          </p>
+        )}
       </div>
     );
   };
@@ -204,11 +217,22 @@ export const TestimonialForm = () => {
             <FormItem>
               <FormLabel>Your Testimonial *</FormLabel>
               <FormControl>
-                <Textarea
-                  placeholder="Share your experience working with me..."
-                  className="min-h-[120px]"
-                  {...field}
-                />
+                <div className="relative">
+                  <Textarea
+                    placeholder="Share your experience working with me... What did you appreciate most? How did the project meet your expectations?"
+                    className="min-h-[140px]"
+                    {...field}
+                  />
+                  <div className="absolute bottom-2 right-2 flex items-center gap-2">
+                    <span className={`text-xs ${
+                      (field.value?.length || 0) < 20 
+                        ? "text-destructive" 
+                        : "text-muted-foreground"
+                    }`}>
+                      {field.value?.length || 0}/1000
+                    </span>
+                  </div>
+                </div>
               </FormControl>
               <FormMessage />
             </FormItem>
