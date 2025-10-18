@@ -3,6 +3,12 @@ import { supabase } from "@/integrations/supabase/client";
 import { Card } from "./ui/card";
 import Autoplay from "embla-carousel-autoplay";
 import { Carousel, CarouselContent, CarouselItem } from "./ui/carousel";
+import rorkLogo from "@/assets/clients/rork-technologies.png";
+import aretLogo from "@/assets/clients/aret-uyo.png";
+import ibomLogo from "@/assets/clients/ibom-air.png";
+import petalzLogo from "@/assets/clients/petalz-luxe.png";
+import foodieLogo from "@/assets/clients/foodie-connect.png";
+import mercuriaLogo from "@/assets/clients/mercuria-chops.png";
 
 const ClientLogos = () => {
   const { data: clients } = useQuery({
@@ -18,6 +24,15 @@ const ClientLogos = () => {
       return data;
     },
   });
+
+  const logoMap: Record<string, string> = {
+    "Rork Technologies": rorkLogo,
+    "Aret Uyo": aretLogo,
+    "Ibom Air": ibomLogo,
+    "Petalz Luxe": petalzLogo,
+    "FoodieConnect": foodieLogo,
+    "Mercuria Chops": mercuriaLogo,
+  };
 
   if (!clients || clients.length === 0) return null;
 
@@ -50,8 +65,8 @@ const ClientLogos = () => {
               <CarouselItem key={client.id} className="md:basis-1/3 lg:basis-1/5">
                 <Card className="p-6 flex items-center justify-center h-24 hover:shadow-lg transition-shadow">
                   <img
-                    src={client.logo_url}
-                    alt={client.name}
+                    src={logoMap[client.name] || client.logo_url}
+                    alt={`${client.name} logo`}
                     className="max-h-12 max-w-full object-contain grayscale hover:grayscale-0 transition-all"
                   />
                 </Card>
