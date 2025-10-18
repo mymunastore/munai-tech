@@ -1,27 +1,21 @@
 import { Card, CardContent } from "./ui/card";
 import { Quote } from "lucide-react";
-import sarahJohnson from "@/assets/testimonials/sarah-johnson.jpg";
-import michaelChen from "@/assets/testimonials/michael-chen.jpg";
-import emilyDavis from "@/assets/testimonials/emily-davis.jpg";
 
 const testimonials = [
   {
     quote: "Kingsley's expertise in AI integration transformed our operations completely. The custom solution he built increased our efficiency by 300% and gave us a significant competitive edge in our market.",
     author: "Sarah Johnson",
     role: "CEO, TechStart Inc.",
-    image: sarahJohnson,
   },
   {
     quote: "Outstanding technical expertise and innovative approach. Kingsley delivered a full-stack solution that exceeded our expectations and was completed ahead of schedule. Highly recommend his services.",
     author: "Michael Chen",
     role: "Founder, E-commerce Pro",
-    image: michaelChen,
   },
   {
     quote: "Professional, reliable, and incredibly skilled. Kingsley's AI-powered web application revolutionized our customer service process and the results speak for themselves - 250% increase in efficiency.",
     author: "Emily Davis",
     role: "CTO, InnovateCorp",
-    image: emilyDavis,
   },
 ];
 
@@ -66,16 +60,9 @@ const Testimonials = () => {
                 </p>
 
                 {/* Author Info */}
-                <div className="flex items-center gap-4 pt-4 border-t border-border">
-                  <img
-                    src={testimonial.image}
-                    alt={testimonial.author}
-                    className="w-12 h-12 rounded-full object-cover ring-2 ring-accent/20"
-                  />
-                  <div>
-                    <h4 className="font-bold text-foreground">{testimonial.author}</h4>
-                    <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-                  </div>
+                <div className="pt-4 border-t border-border">
+                  <h4 className="font-bold text-foreground">{testimonial.author}</h4>
+                  <p className="text-sm text-muted-foreground">{testimonial.role}</p>
                 </div>
               </CardContent>
             </Card>
