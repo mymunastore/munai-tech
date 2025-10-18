@@ -1,4 +1,4 @@
-import { Mail, Github, Linkedin, Twitter } from "lucide-react";
+import { Mail, Github, Linkedin, Twitter, MessageCircle } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -43,6 +43,7 @@ const Footer = () => {
             <div className="flex gap-4">
               {[
                 { icon: Mail, href: "mailto:kingsley.munachi@example.com", label: "Email" },
+                { icon: MessageCircle, href: "https://wa.me/1234567890", label: "WhatsApp" },
                 { icon: Github, href: "https://github.com/mymunastore", label: "GitHub" },
                 { icon: Linkedin, href: "https://www.linkedin.com/in/kingsley-munachi-843591244", label: "LinkedIn" },
                 { icon: Twitter, href: "https://twitter.com/mymunastore", label: "Twitter" },

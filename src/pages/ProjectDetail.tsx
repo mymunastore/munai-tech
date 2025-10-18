@@ -8,6 +8,9 @@ import { ArrowLeft, ExternalLink, Github, Calendar, User, Clock } from "lucide-r
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
+import SocialShare from "@/components/SocialShare";
+import RelatedProjects from "@/components/RelatedProjects";
+import { Helmet } from "react-helmet";
 
 const ProjectDetail = () => {
   const { slug } = useParams();
@@ -82,9 +85,34 @@ const ProjectDetail = () => {
     );
   }
 
+  const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
+
   return (
-    <div className="min-h-screen">
-      <Navbar />
+    <>
+      <Helmet>
+        <title>{project.title} - Kingsley Munachi Portfolio</title>
+        <meta name="description" content={project.description} />
+        <meta property="og:title" content={project.title} />
+        <meta property="og:description" content={project.description} />
+        {project.featured_image && <meta property="og:image" content={project.featured_image} />}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "CreativeWork",
+            "name": project.title,
+            "description": project.description,
+            "author": {
+              "@type": "Person",
+              "name": "Kingsley Munachi"
+            },
+            "datePublished": project.created_at,
+            "keywords": project.tech_stack?.join(", ")
+          })}
+        </script>
+      </Helmet>
+      
+      <div className="min-h-screen">
+        <Navbar />
       
       {/* Hero Section */}
       <section className="pt-32 pb-16 bg-gradient-to-br from-primary/5 to-accent/5">
@@ -114,23 +142,32 @@ const ProjectDetail = () => {
               {project.description}
             </p>
 
-            <div className="flex flex-wrap gap-4 mb-8">
-              {project.live_url && (
-                <a href={project.live_url} target="_blank" rel="noopener noreferrer">
-                  <Button>
-                    <ExternalLink className="mr-2 h-4 w-4" />
-                    Visit Live Site
-                  </Button>
-                </a>
-              )}
-              {project.github_url && (
-                <a href={project.github_url} target="_blank" rel="noopener noreferrer">
-                  <Button variant="outline">
-                    <Github className="mr-2 h-4 w-4" />
-                    View Code
-                  </Button>
-                </a>
-              )}
+            <div className="flex flex-wrap gap-4 mb-8 items-center">
+              <div className="flex gap-4">
+                {project.live_url && (
+                  <a href={project.live_url} target="_blank" rel="noopener noreferrer">
+                    <Button>
+                      <ExternalLink className="mr-2 h-4 w-4" />
+                      Visit Live Site
+                    </Button>
+                  </a>
+                )}
+                {project.github_url && (
+                  <a href={project.github_url} target="_blank" rel="noopener noreferrer">
+                    <Button variant="outline">
+                      <Github className="mr-2 h-4 w-4" />
+                      View Code
+                    </Button>
+                  </a>
+                )}
+              </div>
+              <div className="ml-auto">
+                <SocialShare 
+                  url={currentUrl}
+                  title={project.title}
+                  description={project.description}
+                />
+              </div>
             </div>
 
             {/* Project Meta */}
@@ -282,8 +319,16 @@ const ProjectDetail = () => {
         </section>
       )}
 
+      {/* Related Projects */}
+      <RelatedProjects 
+        currentProjectId={project.id}
+        category={project.category}
+        tags={project.tags || []}
+      />
+
       <Footer />
-    </div>
+      </div>
+    </>
   );
 };
 

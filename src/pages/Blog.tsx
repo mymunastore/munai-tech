@@ -4,16 +4,19 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Calendar, Clock, Tag } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { ArrowRight, Calendar, Clock, Tag, Search } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { format } from "date-fns";
+import { Helmet } from "react-helmet";
 
 const Blog = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
   const { data: posts, isLoading } = useQuery({
-    queryKey: ["blog-posts", selectedCategory],
+    queryKey: ["blog-posts", selectedCategory, searchQuery],
     queryFn: async () => {
       let query = supabase
         .from("blog_posts")
@@ -25,6 +28,10 @@ const Blog = () => {
         query = query.eq("category", selectedCategory);
       }
 
+      if (searchQuery) {
+        query = query.or(`title.ilike.%${searchQuery}%,excerpt.ilike.%${searchQuery}%,content.ilike.%${searchQuery}%`);
+      }
+
       const { data, error } = await query;
       if (error) throw error;
       return data;
@@ -34,8 +41,14 @@ const Blog = () => {
   const categories = ["all", "ai", "development", "design", "insights"];
 
   return (
-    <div className="min-h-screen">
-      <Navbar />
+    <>
+      <Helmet>
+        <title>Blog & Insights - Kingsley Munachi</title>
+        <meta name="description" content="Thoughts on AI, development, and digital innovation from a full-stack developer specializing in TypeScript, React, and AI-powered solutions." />
+      </Helmet>
+      
+      <div className="min-h-screen">
+        <Navbar />
       
       {/* Hero Section */}
       <section className="pt-32 pb-16 bg-gradient-to-br from-primary/5 to-accent/5">
@@ -51,10 +64,23 @@ const Blog = () => {
         </div>
       </section>
 
-      {/* Filter Section */}
+      {/* Search & Filter Section */}
       <section className="py-8 border-b">
         <div className="container px-4">
-          <div className="flex items-center gap-4 flex-wrap">
+          <div className="max-w-xl mx-auto mb-6">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+              <Input
+                type="text"
+                placeholder="Search blog posts..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-10"
+              />
+            </div>
+          </div>
+          
+          <div className="flex items-center gap-4 flex-wrap justify-center">
             <Tag className="h-5 w-5 text-muted-foreground" />
             {categories.map((category) => (
               <Button
@@ -151,7 +177,8 @@ const Blog = () => {
       </section>
 
       <Footer />
-    </div>
+      </div>
+    </>
   );
 };
 

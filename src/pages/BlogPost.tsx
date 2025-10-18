@@ -10,6 +10,8 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { format } from "date-fns";
 import { useEffect } from "react";
+import SocialShare from "@/components/SocialShare";
+import { Helmet } from "react-helmet";
 
 const BlogPost = () => {
   const { slug } = useParams();
@@ -78,9 +80,35 @@ const BlogPost = () => {
     );
   }
 
+  const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
+
   return (
-    <div className="min-h-screen">
-      <Navbar />
+    <>
+      <Helmet>
+        <title>{post.title} - Kingsley Munachi Blog</title>
+        <meta name="description" content={post.excerpt} />
+        <meta property="og:title" content={post.title} />
+        <meta property="og:description" content={post.excerpt} />
+        {post.featured_image && <meta property="og:image" content={post.featured_image} />}
+        <meta property="og:type" content="article" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "headline": post.title,
+            "description": post.excerpt,
+            "author": {
+              "@type": "Person",
+              "name": "Kingsley Munachi"
+            },
+            "datePublished": post.published_at,
+            "keywords": post.tags?.join(", ")
+          })}
+        </script>
+      </Helmet>
+      
+      <div className="min-h-screen">
+        <Navbar />
       
       {/* Hero Section */}
       <section className="pt-32 pb-16 bg-gradient-to-br from-primary/5 to-accent/5">
@@ -118,19 +146,26 @@ const BlogPost = () => {
               )}
             </div>
 
-            {post.tags && post.tags.length > 0 && (
-              <div className="flex items-center gap-2 flex-wrap">
-                <Tag className="h-4 w-4 text-muted-foreground" />
-                {post.tags.map((tag, idx) => (
-                  <span
-                    key={idx}
-                    className="px-3 py-1 rounded-full bg-secondary text-secondary-foreground text-sm"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            )}
+            <div className="flex items-center justify-between flex-wrap gap-4">
+              {post.tags && post.tags.length > 0 && (
+                <div className="flex items-center gap-2 flex-wrap">
+                  <Tag className="h-4 w-4 text-muted-foreground" />
+                  {post.tags.map((tag, idx) => (
+                    <span
+                      key={idx}
+                      className="px-3 py-1 rounded-full bg-secondary text-secondary-foreground text-sm"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+              <SocialShare 
+                url={currentUrl}
+                title={post.title}
+                description={post.excerpt}
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -182,7 +217,8 @@ const BlogPost = () => {
       </section>
 
       <Footer />
-    </div>
+      </div>
+    </>
   );
 };
 
