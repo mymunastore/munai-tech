@@ -1,5 +1,6 @@
 import "https://deno.land/x/xhr@0.1.0/mod.ts";
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.39.3";
 import { z } from "https://deno.land/x/zod@v3.22.4/mod.ts";
 
 const corsHeaders = {
@@ -7,15 +8,46 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
-// Simple in-memory rate limiter
-const rateLimiter = new Map<string, number[]>();
-function checkRateLimit(ip: string, maxRequests: number, windowMs: number): boolean {
-  const now = Date.now();
-  const requests = rateLimiter.get(ip) || [];
-  const recent = requests.filter(t => now - t < windowMs);
-  if (recent.length >= maxRequests) return false;
-  recent.push(now);
-  rateLimiter.set(ip, recent);
+// Database-backed rate limiter
+async function checkRateLimit(
+  supabase: any,
+  ip: string,
+  functionName: string,
+  maxRequests: number,
+  windowMinutes: number
+): Promise<boolean> {
+  const windowStart = new Date(Date.now() - windowMinutes * 60 * 1000).toISOString();
+
+  const { data: existing, error: fetchError } = await supabase
+    .from('edge_function_rate_limits')
+    .select('id, request_count')
+    .eq('ip_address', ip)
+    .eq('function_name', functionName)
+    .gte('window_start', windowStart)
+    .single();
+
+  if (fetchError && fetchError.code !== 'PGRST116') {
+    return true; // Fail open on error
+  }
+
+  if (!existing) {
+    await supabase.from('edge_function_rate_limits').insert({
+      ip_address: ip,
+      function_name: functionName,
+      request_count: 1,
+      window_start: new Date().toISOString()
+    });
+    return true;
+  }
+
+  if (existing.request_count >= maxRequests) {
+    return false;
+  }
+
+  await supabase.from('edge_function_rate_limits')
+    .update({ request_count: existing.request_count + 1 })
+    .eq('id', existing.id);
+
   return true;
 }
 
@@ -32,13 +64,23 @@ serve(async (req) => {
     return new Response(null, { headers: corsHeaders });
   }
 
+  const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
+  const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
+  const supabase = createClient(supabaseUrl, supabaseServiceKey);
+
   // Rate limiting: 10 requests per 5 minutes per IP
   const ip = req.headers.get("x-forwarded-for") || req.headers.get("x-real-ip") || "unknown";
-  if (!checkRateLimit(ip, 10, 5 * 60 * 1000)) {
+  const canProceed = await checkRateLimit(supabase, ip, 'ai-contact-analyzer', 10, 5);
+  if (!canProceed) {
     return new Response(
       JSON.stringify({ error: "Too many requests. Please try again later." }),
       { status: 429, headers: { "Content-Type": "application/json", ...corsHeaders } }
     );
+  }
+
+  // Cleanup old rate limit entries (1% chance)
+  if (Math.random() < 0.01) {
+    await supabase.rpc('cleanup_rate_limits');
   }
 
   try {

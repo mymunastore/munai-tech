@@ -291,6 +291,33 @@ export type Database = {
         }
         Relationships: []
       }
+      edge_function_rate_limits: {
+        Row: {
+          created_at: string | null
+          function_name: string
+          id: string
+          ip_address: string
+          request_count: number | null
+          window_start: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          function_name: string
+          id?: string
+          ip_address: string
+          request_count?: number | null
+          window_start?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          function_name?: string
+          id?: string
+          ip_address?: string
+          request_count?: number | null
+          window_start?: string | null
+        }
+        Relationships: []
+      }
       github_activity: {
         Row: {
           action: string | null
@@ -778,6 +805,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      cleanup_rate_limits: {
+        Args: Record<PropertyKey, never>
+        Returns: undefined
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
