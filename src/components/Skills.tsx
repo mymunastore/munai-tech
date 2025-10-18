@@ -48,7 +48,8 @@ const Skills = () => {
           {skillCategories.map((category, idx) => (
             <div
               key={idx}
-              className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 transition-all hover:shadow-xl hover:shadow-primary/5"
+              className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 transition-all hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1 animate-fade-in"
+              style={{ animationDelay: `${idx * 100}ms` }}
             >
               <div className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-0 group-hover:opacity-100 transition-opacity`} />
               

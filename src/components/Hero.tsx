@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 import heroBg from "@/assets/hero-bg.jpg";
 import profileImage from "@/assets/profile.png";
 
-const Hero = () => {
+import { memo } from "react";
+
+const Hero = memo(() => {
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
@@ -126,6 +128,8 @@ const Hero = () => {
       <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent z-10" />
     </section>
   );
-};
+});
+
+Hero.displayName = "Hero";
 
 export default Hero;

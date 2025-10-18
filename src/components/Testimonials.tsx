@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Card, CardContent } from "./ui/card";
 import { Quote } from "lucide-react";
 
@@ -19,7 +20,7 @@ const testimonials = [
   },
 ];
 
-const Testimonials = () => {
+const Testimonials = memo(() => {
   return (
     <section id="testimonials" className="py-20 md:py-32 bg-secondary/30">
       <div className="container px-4 sm:px-6 lg:px-8">
@@ -71,6 +72,8 @@ const Testimonials = () => {
       </div>
     </section>
   );
-};
+});
+
+Testimonials.displayName = "Testimonials";
 
 export default Testimonials;

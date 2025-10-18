@@ -1,5 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import { SEO } from "@/components/SEO";
+import { usePageTracking } from "@/hooks/usePageTracking";
 import Services from "@/components/Services";
 import TechStack from "@/components/TechStack";
 import Testimonials from "@/components/Testimonials";
@@ -17,8 +19,11 @@ import AIRecommendations from "@/components/AIRecommendations";
 
 
 const Index = () => {
+  usePageTracking();
+  
   return (
     <>
+      <SEO />
       <Helmet>
         <title>MunAiTech - AI Web App Designer & Full-Stack Development | 15071995 LLC</title>
         <meta name="description" content="MunAiTech delivers cutting-edge AI-powered web solutions. Expert TypeScript, React & AI development for modern businesses. 30+ projects, 30+ satisfied clients." />

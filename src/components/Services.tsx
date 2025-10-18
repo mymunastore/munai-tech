@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Code2, Palette, Bot, ArrowRight } from "lucide-react";
 import { Card, CardContent } from "./ui/card";
 import { Button } from "./ui/button";
@@ -27,7 +28,7 @@ const services = [
   },
 ];
 
-const Services = () => {
+const Services = memo(() => {
   return (
     <section id="services" className="py-20 md:py-32 bg-background">
       <div className="container px-4 sm:px-6 lg:px-8">
@@ -106,6 +107,8 @@ const Services = () => {
       </div>
     </section>
   );
-};
+});
+
+Services.displayName = "Services";
 
 export default Services;

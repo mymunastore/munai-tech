@@ -63,7 +63,7 @@ const ClientLogos = () => {
           <CarouselContent>
             {clients.map((client) => (
               <CarouselItem key={client.id} className="md:basis-1/3 lg:basis-1/5">
-                <Card className="p-6 flex items-center justify-center h-24 hover:shadow-lg transition-shadow">
+                <Card className="p-6 flex items-center justify-center h-24 hover:shadow-lg transition-all hover:scale-105 animate-fade-in">
                   <img
                     src={logoMap[client.name] || client.logo_url}
                     alt={`${client.name} logo`}

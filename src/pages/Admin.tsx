@@ -7,7 +7,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
-import { Loader2 } from "lucide-react";
+import { Loader2, Eye, Mail, Download, Users } from "lucide-react";
+import { useContactSubmissions, useNewsletterSubscribers, usePageViews, useAnalyticsStats } from "@/hooks/useAdminData";
+import { StatsCard } from "@/components/admin/StatsCard";
+import { DataTable, formatDate } from "@/components/admin/DataTable";
 
 const Admin = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -18,6 +21,11 @@ const Admin = () => {
   const [isSigningIn, setIsSigningIn] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
+
+  const { data: contacts, isLoading: contactsLoading } = useContactSubmissions();
+  const { data: subscribers, isLoading: subscribersLoading } = useNewsletterSubscribers();
+  const { data: pageViews, isLoading: pageViewsLoading } = usePageViews();
+  const { data: stats } = useAnalyticsStats();
 
   useEffect(() => {
     checkAuth();
@@ -200,7 +208,34 @@ const Admin = () => {
             <TabsTrigger value="analytics">Analytics</TabsTrigger>
           </TabsList>
 
-          <TabsContent value="overview">
+          <TabsContent value="overview" className="space-y-4">
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+              <StatsCard
+                title="Total Page Views"
+                value={stats?.totalPageViews || 0}
+                icon={Eye}
+                description="Lifetime page views"
+              />
+              <StatsCard
+                title="Contact Submissions"
+                value={stats?.totalContacts || 0}
+                icon={Mail}
+                description="Total inquiries received"
+              />
+              <StatsCard
+                title="Resume Downloads"
+                value={stats?.totalDownloads || 0}
+                icon={Download}
+                description="Total CV downloads"
+              />
+              <StatsCard
+                title="Newsletter Subscribers"
+                value={stats?.totalSubscribers || 0}
+                icon={Users}
+                description="Active subscribers"
+              />
+            </div>
+            
             <Card>
               <CardHeader>
                 <CardTitle>Welcome to Admin Dashboard</CardTitle>
@@ -223,7 +258,28 @@ const Admin = () => {
                 <CardDescription>View and manage contact form submissions</CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground">Contact submissions will be displayed here.</p>
+                <DataTable
+                  data={contacts || []}
+                  isLoading={contactsLoading}
+                  columns={[
+                    { key: "name", label: "Name" },
+                    { key: "email", label: "Email" },
+                    { key: "company", label: "Company" },
+                    { key: "project_type", label: "Project Type" },
+                    { 
+                      key: "message", 
+                      label: "Message",
+                      render: (value) => (
+                        <div className="max-w-xs truncate">{value}</div>
+                      )
+                    },
+                    { 
+                      key: "created_at", 
+                      label: "Date",
+                      render: (value) => formatDate(value)
+                    },
+                  ]}
+                />
               </CardContent>
             </Card>
           </TabsContent>
@@ -235,7 +291,20 @@ const Admin = () => {
                 <CardDescription>Manage your newsletter subscriber list</CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground">Newsletter subscribers will be displayed here.</p>
+                <DataTable
+                  data={subscribers || []}
+                  isLoading={subscribersLoading}
+                  columns={[
+                    { key: "name", label: "Name" },
+                    { key: "email", label: "Email" },
+                    { key: "status", label: "Status" },
+                    { 
+                      key: "subscribed_at", 
+                      label: "Subscribed",
+                      render: (value) => formatDate(value)
+                    },
+                  ]}
+                />
               </CardContent>
             </Card>
           </TabsContent>
@@ -243,11 +312,30 @@ const Admin = () => {
           <TabsContent value="analytics">
             <Card>
               <CardHeader>
-                <CardTitle>Site Analytics</CardTitle>
-                <CardDescription>View page views and download statistics</CardDescription>
+                <CardTitle>Recent Page Views</CardTitle>
+                <CardDescription>Latest 100 page views across your site</CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground">Analytics data will be displayed here.</p>
+                <DataTable
+                  data={pageViews || []}
+                  isLoading={pageViewsLoading}
+                  columns={[
+                    { key: "page_path", label: "Page" },
+                    { key: "referrer", label: "Referrer" },
+                    { 
+                      key: "user_agent", 
+                      label: "Device",
+                      render: (value) => (
+                        <div className="max-w-xs truncate text-xs">{value}</div>
+                      )
+                    },
+                    { 
+                      key: "created_at", 
+                      label: "Timestamp",
+                      render: (value) => formatDate(value)
+                    },
+                  ]}
+                />
               </CardContent>
             </Card>
           </TabsContent>
