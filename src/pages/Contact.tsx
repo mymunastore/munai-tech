@@ -42,8 +42,8 @@ const Contact = () => {
                     <Mail className="h-6 w-6 text-accent mt-1" />
                     <div>
                       <h4 className="font-semibold mb-1">Email</h4>
-                      <a href="mailto:hello@example.com" className="text-muted-foreground hover:text-accent transition-colors">
-                        hello@example.com
+                      <a href="mailto:info@mymuna.store" className="text-muted-foreground hover:text-accent transition-colors">
+                        info@mymuna.store
                       </a>
                     </div>
                   </div>
@@ -51,9 +51,9 @@ const Contact = () => {
                   <div className="flex items-start gap-4">
                     <Phone className="h-6 w-6 text-accent mt-1" />
                     <div>
-                      <h4 className="font-semibold mb-1">Phone</h4>
-                      <a href="tel:+1234567890" className="text-muted-foreground hover:text-accent transition-colors">
-                        +1 (234) 567-890
+                      <h4 className="font-semibold mb-1">WhatsApp</h4>
+                      <a href="https://wa.me/2347062372521" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-accent transition-colors">
+                        +234 706 237 2521 (WhatsApp only)
                       </a>
                     </div>
                   </div>

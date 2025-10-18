@@ -42,8 +42,8 @@ const Footer = () => {
             <h3 className="font-bold mb-4">Connect</h3>
             <div className="flex gap-4">
               {[
-                { icon: Mail, href: "mailto:kingsley.munachi@example.com", label: "Email" },
-                { icon: MessageCircle, href: "https://wa.me/1234567890", label: "WhatsApp" },
+                { icon: Mail, href: "mailto:info@mymuna.store", label: "Email" },
+                { icon: MessageCircle, href: "https://wa.me/2347062372521", label: "WhatsApp" },
                 { icon: Github, href: "https://github.com/mymunastore", label: "GitHub" },
                 { icon: Linkedin, href: "https://www.linkedin.com/in/kingsley-munachi-843591244", label: "LinkedIn" },
                 { icon: Twitter, href: "https://twitter.com/mymunastore", label: "Twitter" },
