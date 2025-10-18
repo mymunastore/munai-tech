@@ -7,6 +7,18 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
+// Simple in-memory rate limiter
+const rateLimiter = new Map<string, number[]>();
+function checkRateLimit(ip: string, maxRequests: number, windowMs: number): boolean {
+  const now = Date.now();
+  const requests = rateLimiter.get(ip) || [];
+  const recent = requests.filter(t => now - t < windowMs);
+  if (recent.length >= maxRequests) return false;
+  recent.push(now);
+  rateLimiter.set(ip, recent);
+  return true;
+}
+
 const messageSchema = z.object({
   role: z.enum(["user", "assistant", "system"]),
   content: z.string().trim().min(1).max(10000),
@@ -20,6 +32,15 @@ const aiChatRequestSchema = z.object({
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
+  }
+
+  // Rate limiting: 20 requests per minute per IP
+  const ip = req.headers.get("x-forwarded-for") || req.headers.get("x-real-ip") || "unknown";
+  if (!checkRateLimit(ip, 20, 60 * 1000)) {
+    return new Response(
+      JSON.stringify({ error: "Too many requests. Please try again later." }),
+      { status: 429, headers: { "Content-Type": "application/json", ...corsHeaders } }
+    );
   }
 
   try {
