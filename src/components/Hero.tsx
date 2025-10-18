@@ -32,17 +32,18 @@ const Hero = () => {
 
             {/* Main Heading */}
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-primary-foreground animate-fade-in leading-tight">
-              Senior AI Engineer
+              Welcome to my digital workspace.
               <br />
               <span className="bg-gradient-to-r from-accent via-blue-400 to-accent bg-clip-text text-transparent animate-gradient-shift bg-[length:200%_auto]">
-                Architecting Intelligence
+                I'm Kingsley Munachi
               </span>
             </h1>
 
             {/* Subtitle */}
             <p className="text-lg sm:text-xl text-primary-foreground/90 animate-fade-in font-light leading-relaxed">
-              Specializing in AI-driven full-stack solutions, machine learning integration, 
-              and scalable cloud architectures that deliver measurable business impact.
+              A senior web designer and AI full-stack app developer. I specialize in crafting intelligent, 
+              scalable solutions that blend design precision with cutting-edge technology. 
+              Let's build something extraordinary together.
             </p>
 
             {/* CTA Buttons */}
@@ -100,7 +101,7 @@ const Hero = () => {
               
               <img 
                 src={profileImage}
-                alt="MunAiTech - Senior AI Engineer & Full Stack Developer"
+                alt="Kingsley Munachi - Senior Web Designer & AI Full-Stack Developer"
                 className="relative rounded-3xl shadow-2xl w-full h-auto object-cover border-4 border-primary-foreground/30 hover:border-accent/50 transition-all duration-500"
               />
               
@@ -111,7 +112,10 @@ const Hero = () => {
               
               {/* Tech stack floating badges */}
               <div className="absolute -top-4 -left-4 bg-background/90 backdrop-blur-sm border border-accent/30 px-4 py-2 rounded-xl shadow-lg">
-                <div className="text-xs font-semibold text-accent">AI/ML Expert</div>
+                <div className="text-xs font-semibold text-accent">Senior Web Designer</div>
+              </div>
+              <div className="absolute top-1/4 -right-4 bg-background/90 backdrop-blur-sm border border-accent/30 px-4 py-2 rounded-xl shadow-lg">
+                <div className="text-xs font-semibold text-accent">AI Full-Stack Dev</div>
               </div>
             </div>
           </div>

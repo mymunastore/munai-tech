@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Award, Briefcase, Code2, GraduationCap, Heart, Lightbulb, Rocket, Target, Users, Zap } from "lucide-react";
+import profileImage from "@/assets/profile.png";
 
 const About = () => {
   const values = [
@@ -37,36 +38,38 @@ const About = () => {
   ];
 
   const expertise = [
+    "Web Design & UI/UX",
     "AI Integration & Machine Learning",
     "Full-Stack Web Development",
     "React & Next.js Ecosystems",
+    "Responsive Design Systems",
     "Cloud Architecture (AWS, Azure, GCP)",
     "Database Design & Optimization",
     "API Development & Integration",
-    "DevOps & CI/CD Pipelines",
-    "UI/UX Design & Prototyping",
+    "Design Prototyping & Wireframing",
     "Mobile-First Development",
     "E-commerce Solutions",
     "SaaS Platform Development",
-    "Performance Optimization"
+    "Performance Optimization",
+    "Brand Identity Design"
   ];
 
   return (
     <>
       <Helmet>
-        <title>About MunAiTech | Senior AI Engineer & Full-Stack Developer</title>
-        <meta name="description" content="Learn about MunAiTech (A 15071995 LLC Company), a senior AI engineer and full-stack developer with 5+ years of experience delivering innovative web solutions and AI-powered applications." />
-        <meta name="keywords" content="about munaitech, ai engineer, full-stack developer, web development expert, software engineer, ai integration specialist" />
+        <title>About Kingsley Munachi | Senior Web Designer & AI Full-Stack Developer</title>
+        <meta name="description" content="Learn about Kingsley Munachi, a senior web designer and AI full-stack app developer with 5+ years of experience crafting intelligent, scalable solutions that blend design precision with cutting-edge technology." />
+        <meta name="keywords" content="Kingsley Munachi, web designer, ai developer, full-stack developer, web development expert, software engineer, ai integration specialist" />
         <link rel="canonical" href="https://munaitech.com/about" />
         
-        <meta property="og:title" content="About MunAiTech | Senior AI Engineer & Full-Stack Developer" />
-        <meta property="og:description" content="Learn about MunAiTech, a senior AI engineer with 5+ years of experience delivering innovative solutions." />
+        <meta property="og:title" content="About Kingsley Munachi | Senior Web Designer & AI Full-Stack Developer" />
+        <meta property="og:description" content="Learn about Kingsley Munachi, a senior web designer and AI developer with 5+ years of experience delivering innovative solutions." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://munaitech.com/about" />
         
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="About MunAiTech | Senior AI Engineer & Full-Stack Developer" />
-        <meta name="twitter:description" content="Learn about MunAiTech, a senior AI engineer with 5+ years of experience." />
+        <meta name="twitter:title" content="About Kingsley Munachi | Senior Web Designer & AI Full-Stack Developer" />
+        <meta name="twitter:description" content="Learn about Kingsley Munachi, a senior web designer and AI developer with 5+ years of experience." />
       </Helmet>
 
       <div className="min-h-screen bg-background">
@@ -78,32 +81,48 @@ const About = () => {
             <div className="text-center mb-12">
               <Badge className="mb-4 bg-gradient-to-r from-accent to-primary text-primary-foreground">
                 <Rocket className="w-4 h-4 mr-2" />
-                About MunAiTech
+                Meet the Creator
               </Badge>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
-                Building the Future with AI & Code
+                Kingsley Munachi
               </h1>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                A 15071995 LLC Company dedicated to transforming businesses through innovative AI solutions and world-class web development.
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-2">
+                Senior Web Designer & AI Full-Stack App Developer
+              </p>
+              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                Crafting intelligent, scalable solutions that blend design precision with cutting-edge technology
               </p>
             </div>
           </div>
         </section>
 
-        {/* Story Section */}
+        {/* Story Section with Profile Image */}
         <section className="py-16 px-4 bg-muted/30">
-          <div className="container mx-auto max-w-4xl">
-            <h2 className="text-3xl font-bold mb-8 text-center">My Journey</h2>
-            <div className="prose prose-lg dark:prose-invert max-w-none">
-              <p className="text-muted-foreground leading-relaxed mb-6">
-                With over 5 years of professional experience in software development and AI engineering, I've had the privilege of working with startups, enterprises, and everything in between. My journey began with a fascination for how technology could solve real-world problems, and that passion has only grown stronger.
-              </p>
-              <p className="text-muted-foreground leading-relaxed mb-6">
-                As the founder of MunAiTech (A 15071995 LLC Company), I specialize in creating intelligent, scalable solutions that combine the power of artificial intelligence with robust full-stack development. From AI-powered chatbots to complex SaaS platforms, I've delivered over 50 successful projects for clients worldwide.
-              </p>
-              <p className="text-muted-foreground leading-relaxed">
-                Based in Lagos, Nigeria, with remote availability globally, I work with clients across different time zones, delivering excellence regardless of location. My approach combines technical expertise with business acumen, ensuring that every solution not only works flawlessly but also drives measurable results.
-              </p>
+          <div className="container mx-auto max-w-6xl">
+            <h2 className="text-3xl font-bold mb-12 text-center">My Journey</h2>
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              {/* Profile Image */}
+              <div className="relative order-2 md:order-1">
+                <div className="absolute inset-0 bg-gradient-to-br from-accent/40 via-blue-500/30 to-accent/20 rounded-3xl transform rotate-6 blur-2xl"></div>
+                <img 
+                  src={profileImage}
+                  alt="Kingsley Munachi - Senior Web Designer & AI Full-Stack Developer"
+                  className="relative rounded-3xl shadow-2xl w-full h-auto object-cover border-4 border-accent/30 hover:border-accent/50 transition-all duration-500"
+                />
+              </div>
+              
+              {/* Story Content */}
+              <div className="prose prose-lg dark:prose-invert max-w-none order-1 md:order-2">
+                <p className="text-muted-foreground leading-relaxed mb-6">
+                  With over 5 years of professional experience in web design and AI full-stack development, I've had the privilege of working with startups, enterprises, and everything in between. My journey began with a fascination for how beautiful design and powerful technology could solve real-world problems together.
+                </p>
+                <p className="text-muted-foreground leading-relaxed mb-6">
+                  I specialize in creating intelligent, scalable solutions that combine the elegance of pixel-perfect design with the power of artificial intelligence and robust full-stack development. From AI-powered applications to complex web platforms, I've delivered over 50 successful projects for clients worldwide.
+                </p>
+                <p className="text-muted-foreground leading-relaxed">
+                  Based in Lagos, Nigeria, with remote availability globally, I work with clients across different time zones, delivering excellence regardless of location. My approach combines design thinking, technical expertise, and business acumen, ensuring that every solution is not just beautiful and functional, but drives measurable results.
+                </p>
+              </div>
             </div>
           </div>
         </section>
