@@ -69,12 +69,12 @@ const Hero = () => {
 
             {/* Stats */}
             <div className="grid grid-cols-2 gap-4">
-              {[
-                { number: "40+", label: "Projects Delivered" },
-                { number: "50+", label: "Happy Clients" },
-                { number: "8+", label: "Years Experience" },
-                { number: "99%", label: "Satisfaction" },
-              ].map((stat, index) => (
+            {[
+              { number: "40+", label: "Projects Delivered" },
+              { number: "50+", label: "Happy Clients" },
+              { number: "5+", label: "Years Experience" },
+              { number: "99%", label: "Satisfaction" },
+            ].map((stat, index) => (
                 <div
                   key={index}
                   className="backdrop-blur-sm bg-primary-foreground/10 rounded-lg p-4 border border-primary-foreground/20 hover:border-accent/50 transition-all"
