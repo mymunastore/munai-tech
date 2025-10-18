@@ -63,8 +63,8 @@ const Contact = () => {
                     <div>
                       <h4 className="font-semibold mb-1">Location</h4>
                       <p className="text-muted-foreground">
-                        San Francisco, CA<br />
-                        United States
+                        Lagos, Nigeria<br />
+                        <span className="text-accent font-medium">Available for Remote Work</span>
                       </p>
                     </div>
                   </div>

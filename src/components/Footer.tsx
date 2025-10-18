@@ -9,11 +9,14 @@ const Footer = () => {
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-accent to-primary/80 flex items-center justify-center text-primary-foreground font-bold text-lg">
-                K
+            <div className="flex flex-col gap-2 mb-4">
+              <div className="flex items-center gap-2">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-accent to-primary/80 flex items-center justify-center text-primary-foreground font-bold text-lg">
+                  M
+                </div>
+                <span className="font-bold text-xl">MunAiTech</span>
               </div>
-              <span className="font-bold text-xl">Kingsley.</span>
+              <span className="text-xs text-primary-foreground/60">A 15071995 LLC Company • Kentucky, USA</span>
             </div>
             <p className="text-primary-foreground/70 text-sm leading-relaxed">
               AI Web App Designer & Full-Stack Developer specializing in TypeScript, React, and AI-powered solutions.
@@ -65,7 +68,7 @@ const Footer = () => {
 
         {/* Bottom */}
         <div className="pt-8 border-t border-primary-foreground/10 text-center text-sm text-primary-foreground/60">
-          <p>© {currentYear} Kingsley Munachi. All rights reserved.</p>
+          <p>© {currentYear} MunAiTech (15071995 LLC). All rights reserved.</p>
         </div>
       </div>
     </footer>

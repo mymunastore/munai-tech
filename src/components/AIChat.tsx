@@ -17,7 +17,7 @@ export const AIChat = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'assistant',
-      content: "Hi! I'm Kingsley's AI assistant. Ask me anything about his experience, skills, or projects!"
+      content: "Hi! I'm MunAiTech's AI assistant. Ask me anything about our services, experience, skills, or projects. I'm also here to collect your feedback!"
     }
   ]);
   const [input, setInput] = useState("");
@@ -90,7 +90,7 @@ export const AIChat = () => {
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4 border-b">
             <CardTitle className="text-lg font-semibold flex items-center gap-2">
               <Sparkles className="h-5 w-5 text-primary" />
-              AI Assistant
+              MunAiTech Assistant
             </CardTitle>
             <Button
               variant="ghost"
@@ -140,7 +140,7 @@ export const AIChat = () => {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyPress={handleKeyPress}
-                  placeholder="Ask about skills, projects..."
+                  placeholder="Ask questions or share feedback..."
                   disabled={isLoading}
                   className="flex-1"
                 />
