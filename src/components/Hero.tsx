@@ -25,9 +25,9 @@ const Hero = memo(() => {
           {/* Left Column - Text Content */}
           <div className="text-center md:text-left space-y-8">
             {/* Availability Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/20 border border-green-400/40 backdrop-blur-sm animate-fade-in">
-              <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse shadow-[0_0_10px_rgba(34,197,94,0.8)]" />
-              <span className="text-sm font-medium text-green-400">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/20 border border-cyan-400/40 backdrop-blur-sm animate-fade-in">
+              <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_10px_rgba(34,211,238,0.8)]" />
+              <span className="text-sm font-medium text-cyan-400">
                 Available for New Projects
               </span>
             </div>
@@ -36,7 +36,7 @@ const Hero = memo(() => {
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white animate-fade-in leading-tight">
               Welcome to my digital workspace.
               <br />
-              <span className="bg-gradient-to-r from-green-400 via-emerald-400 to-green-300 bg-clip-text text-transparent animate-gradient-shift bg-[length:200%_auto] drop-shadow-[0_0_30px_rgba(34,197,94,0.5)]">
+              <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-300 bg-clip-text text-transparent animate-gradient-shift bg-[length:200%_auto] drop-shadow-[0_0_30px_rgba(34,211,238,0.5)]">
                 I&apos;m Kingsley Munachi
               </span>
             </h1>
@@ -53,7 +53,7 @@ const Hero = memo(() => {
               <Link to="/contact">
                 <Button
                   size="lg"
-                  className="bg-green-500 hover:bg-green-600 text-black shadow-lg shadow-green-500/50 hover:shadow-green-500/70 transition-all text-base px-8 py-6 group font-semibold"
+                  className="bg-cyan-500 hover:bg-cyan-600 text-black shadow-lg shadow-cyan-500/50 hover:shadow-cyan-500/70 transition-all text-base px-8 py-6 group font-semibold"
                 >
                   Start Your Project
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -63,7 +63,7 @@ const Hero = memo(() => {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-2 border-green-500/50 text-green-400 hover:bg-green-500/10 hover:border-green-400 backdrop-blur-sm text-base px-8 py-6"
+                  className="border-2 border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 hover:border-cyan-400 backdrop-blur-sm text-base px-8 py-6"
                 >
                   View Portfolio
                 </Button>
@@ -80,10 +80,10 @@ const Hero = memo(() => {
             ].map((stat, index) => (
                 <div
                   key={index}
-                  className="group backdrop-blur-sm bg-black/40 rounded-xl p-5 border border-green-500/30 hover:border-green-400/60 hover:bg-black/60 transition-all duration-300 cursor-default shadow-[0_0_20px_rgba(34,197,94,0.1)] hover:shadow-[0_0_30px_rgba(34,197,94,0.3)]"
+                  className="group backdrop-blur-sm bg-black/40 rounded-xl p-5 border border-cyan-500/30 hover:border-cyan-400/60 hover:bg-black/60 transition-all duration-300 cursor-default shadow-[0_0_20px_rgba(34,211,238,0.1)] hover:shadow-[0_0_30px_rgba(34,211,238,0.3)]"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  <div className="text-3xl sm:text-4xl font-bold text-green-400 mb-2 group-hover:scale-110 transition-transform drop-shadow-[0_0_10px_rgba(34,197,94,0.8)]">
+                  <div className="text-3xl sm:text-4xl font-bold text-cyan-400 mb-2 group-hover:scale-110 transition-transform drop-shadow-[0_0_10px_rgba(34,211,238,0.8)]">
                     {stat.number}
                   </div>
                   <div className="text-xs sm:text-sm text-gray-300 font-medium">
@@ -98,26 +98,26 @@ const Hero = memo(() => {
           <div className="relative hidden md:block animate-fade-in">
             <div className="relative">
               {/* Animated gradient background */}
-              <div className="absolute inset-0 bg-gradient-to-br from-green-500/30 via-emerald-500/20 to-green-400/10 rounded-3xl transform rotate-6 blur-2xl animate-pulse"></div>
-              <div className="absolute inset-0 bg-gradient-to-tl from-green-400/15 to-transparent rounded-3xl transform -rotate-3 blur-xl"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/30 via-blue-500/20 to-cyan-400/10 rounded-3xl transform rotate-6 blur-2xl animate-pulse"></div>
+              <div className="absolute inset-0 bg-gradient-to-tl from-cyan-400/15 to-transparent rounded-3xl transform -rotate-3 blur-xl"></div>
               
               <img 
                 src={profileImage}
                 alt="Kingsley Munachi - Senior Web Designer & AI Full-Stack Developer"
-                className="relative rounded-3xl shadow-2xl shadow-green-500/20 w-full h-auto object-cover border-4 border-green-500/30 hover:border-green-400/60 transition-all duration-500"
+                className="relative rounded-3xl shadow-2xl shadow-cyan-500/20 w-full h-auto object-cover border-4 border-cyan-500/30 hover:border-cyan-400/60 transition-all duration-500"
               />
               
               {/* Availability badge */}
-              <div className="absolute -bottom-8 -right-8 bg-gradient-to-r from-green-500 to-emerald-500 text-black px-8 py-4 rounded-2xl shadow-2xl shadow-green-500/50 animate-pulse">
+              <div className="absolute -bottom-8 -right-8 bg-gradient-to-r from-cyan-500 to-blue-500 text-black px-8 py-4 rounded-2xl shadow-2xl shadow-cyan-500/50 animate-pulse">
                 <div className="text-base font-semibold">Open to Opportunities</div>
               </div>
               
               {/* Tech stack floating badges */}
-              <div className="absolute -top-4 -left-4 bg-black/90 backdrop-blur-sm border border-green-400/50 px-4 py-2 rounded-xl shadow-lg shadow-green-500/30">
-                <div className="text-xs font-semibold text-green-400">Senior Web Designer</div>
+              <div className="absolute -top-4 -left-4 bg-black/90 backdrop-blur-sm border border-cyan-400/50 px-4 py-2 rounded-xl shadow-lg shadow-cyan-500/30">
+                <div className="text-xs font-semibold text-cyan-400">Senior Web Designer</div>
               </div>
-              <div className="absolute top-1/4 -right-4 bg-black/90 backdrop-blur-sm border border-green-400/50 px-4 py-2 rounded-xl shadow-lg shadow-green-500/30">
-                <div className="text-xs font-semibold text-green-400">AI Full-Stack Dev</div>
+              <div className="absolute top-1/4 -right-4 bg-black/90 backdrop-blur-sm border border-cyan-400/50 px-4 py-2 rounded-xl shadow-lg shadow-cyan-500/30">
+                <div className="text-xs font-semibold text-cyan-400">AI Full-Stack Dev</div>
               </div>
             </div>
           </div>
