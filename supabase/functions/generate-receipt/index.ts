@@ -685,7 +685,6 @@ const generateReceiptHTML = (data: ReceiptData): string => {
             <div class="contact-details">
               <strong>Company Name:</strong> 15071995 LLC<br>
               <strong>Registered Agent:</strong> Northwest Registered Agent LLC<br>
-              <strong>Jurisdiction:</strong> Kentucky<br>
               <strong>Address:</strong> 212 N. 2nd St., STE 100, Richmond, KY, 40475, United States<br>
               <br>
               Email: <a href="mailto:info@mymuna.store">info@mymuna.store</a><br>
