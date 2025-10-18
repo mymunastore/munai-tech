@@ -9,6 +9,7 @@ import ProjectsShowcase from "@/components/ProjectsShowcase";
 import ClientLogos from "@/components/ClientLogos";
 import { Newsletter } from "@/components/Newsletter";
 import FAQ from "@/components/FAQ";
+import { AIChat } from "@/components/AIChat";
 
 const Index = () => {
   return (
@@ -24,6 +25,7 @@ const Index = () => {
       <FAQ />
       <CTA />
       <Footer />
+      <AIChat />
     </div>
   );
 };

@@ -42,6 +42,20 @@ export const ContactForm = () => {
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
     try {
+      // AI Analysis of the submission
+      const { data: analysisData } = await supabase.functions.invoke('ai-contact-analyzer', {
+        body: {
+          name: data.name,
+          email: data.email,
+          message: data.message,
+          projectType: data.project_type,
+          budget: data.budget_range,
+        },
+      });
+
+      const aiAnalysis = analysisData || {};
+      console.log('AI Analysis:', aiAnalysis);
+
       const submissionData = {
         name: data.name,
         email: data.email,
@@ -50,6 +64,9 @@ export const ContactForm = () => {
         project_type: data.project_type || null,
         budget_range: data.budget_range || null,
         message: data.message,
+        ai_priority: aiAnalysis.priority || 'medium',
+        ai_category: aiAnalysis.category || data.project_type,
+        ai_sentiment: aiAnalysis.sentiment || 'neutral',
       };
       
       const { error: dbError } = await supabase
@@ -59,7 +76,7 @@ export const ContactForm = () => {
       if (dbError) throw dbError;
 
       const { error: emailError } = await supabase.functions.invoke("send-contact-email", {
-        body: data,
+        body: { ...data, aiAnalysis },
       });
 
       if (emailError) console.error("Email send error:", emailError);

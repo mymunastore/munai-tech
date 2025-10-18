@@ -197,6 +197,10 @@ export type Database = {
       }
       contact_submissions: {
         Row: {
+          ai_category: string | null
+          ai_insights: Json | null
+          ai_priority: string | null
+          ai_sentiment: string | null
           budget_range: string | null
           company: string | null
           created_at: string | null
@@ -209,6 +213,10 @@ export type Database = {
           status: string | null
         }
         Insert: {
+          ai_category?: string | null
+          ai_insights?: Json | null
+          ai_priority?: string | null
+          ai_sentiment?: string | null
           budget_range?: string | null
           company?: string | null
           created_at?: string | null
@@ -221,6 +229,10 @@ export type Database = {
           status?: string | null
         }
         Update: {
+          ai_category?: string | null
+          ai_insights?: Json | null
+          ai_priority?: string | null
+          ai_sentiment?: string | null
           budget_range?: string | null
           company?: string | null
           created_at?: string | null
