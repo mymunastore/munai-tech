@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { supabase } from "@/integrations/supabase/client";
+import { SEO } from "@/components/SEO";
 
 const Resume = () => {
   const handleDownload = async () => {
@@ -23,29 +24,34 @@ const Resume = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black">
+      <SEO 
+        title="Resume - Kingsley Munachi | AI Full-Stack Developer"
+        description="Download the resume of Kingsley Munachi, Senior Web Designer & AI Full-Stack App Developer with 5+ years of experience in TypeScript, React, AI integration, and modern web technologies."
+        keywords="resume, CV, full-stack developer, AI developer, web designer, TypeScript, React, hire developer"
+      />
       <Navbar />
       <div className="container mx-auto px-4 py-24">
         <div className="max-w-4xl mx-auto">
           {/* Action Buttons - Hidden when printing */}
           <div className="flex gap-4 mb-8 print:hidden">
-            <Button onClick={handleDownload} size="lg">
+            <Button onClick={handleDownload} size="lg" className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white border-0">
               <Download className="mr-2 h-5 w-5" />
               Download PDF
             </Button>
-            <Button onClick={handlePrint} variant="outline" size="lg">
+            <Button onClick={handlePrint} variant="outline" size="lg" className="border-cyan-500/30 text-cyan-400 hover:bg-cyan-500/10">
               <Printer className="mr-2 h-5 w-5" />
               Print
             </Button>
           </div>
 
           {/* Resume Content */}
-          <Card className="print:shadow-none print:border-0">
+          <Card className="print:shadow-none print:border-0 bg-black/40 border-cyan-500/20">
             <CardContent className="p-8 md:p-12">
               {/* Header */}
-              <div className="mb-8 pb-8 border-b">
-                <h1 className="text-4xl font-bold mb-2">Kingsley Munachi</h1>
-                <p className="text-xl text-muted-foreground mb-4">Senior Web Designer & AI Full-Stack App Developer</p>
+              <div className="mb-8 pb-8 border-b border-cyan-500/20">
+                <h1 className="text-4xl font-bold mb-2 text-white">Kingsley Munachi</h1>
+                <p className="text-xl text-cyan-400 mb-4">Senior Web Designer & AI Full-Stack App Developer</p>
                 <div className="flex flex-wrap gap-4 text-sm">
                   <div className="flex items-center gap-2">
                      <Mail className="h-4 w-4" />
@@ -72,8 +78,8 @@ const Resume = () => {
 
               {/* Summary */}
               <section className="mb-8">
-                <h2 className="text-2xl font-bold mb-4">Professional Summary</h2>
-                <p className="text-muted-foreground leading-relaxed">
+                <h2 className="text-2xl font-bold mb-4 text-white">Professional Summary</h2>
+                <p className="text-gray-300 leading-relaxed">
                   Innovative Senior Web Designer and AI Full-Stack App Developer specializing in building intelligent, scalable web applications 
                   with cutting-edge technologies. Expert in TypeScript, React, modern design systems, and AI integration with proven success 
                   in delivering 30+ production-grade applications across SaaS, fintech, e-commerce, and enterprise sectors. Passionate about 
@@ -83,8 +89,8 @@ const Resume = () => {
 
               {/* Experience */}
               <section className="mb-8">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                  <Briefcase className="h-6 w-6" />
+                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-white">
+                  <Briefcase className="h-6 w-6 text-cyan-400" />
                   Work Experience & Projects
                 </h2>
                 <div className="space-y-6">
@@ -128,8 +134,8 @@ const Resume = () => {
 
               {/* Education */}
               <section className="mb-8">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                  <GraduationCap className="h-6 w-6" />
+                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-white">
+                  <GraduationCap className="h-6 w-6 text-cyan-400" />
                   Education & Training
                 </h2>
                 <div className="space-y-4">
@@ -153,7 +159,7 @@ const Resume = () => {
 
               {/* Skills */}
               <section className="mb-8">
-                <h2 className="text-2xl font-bold mb-4">Technical Skills</h2>
+                <h2 className="text-2xl font-bold mb-4 text-white">Technical Skills</h2>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                   <div>
                     <h4 className="font-semibold mb-2">Design</h4>
@@ -192,8 +198,8 @@ const Resume = () => {
 
               {/* Certifications */}
               <section>
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                  <Award className="h-6 w-6" />
+                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-white">
+                  <Award className="h-6 w-6 text-cyan-400" />
                   Achievements & Highlights
                 </h2>
                 <ul className="space-y-2 text-muted-foreground">

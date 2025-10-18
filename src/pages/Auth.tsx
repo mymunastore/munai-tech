@@ -13,6 +13,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { LogIn, UserPlus, Loader2 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { SEO } from "@/components/SEO";
 
 const authSchema = z.object({
   email: z.string().email("Invalid email address").max(255, "Email too long"),
@@ -137,12 +138,17 @@ const Auth = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-black via-gray-900 to-black">
+      <SEO 
+        title="Admin Login | MunAiTech"
+        description="Secure admin access to manage MunAiTech portfolio, projects, and client testimonials."
+        keywords="admin login, dashboard access, authentication"
+      />
       <Navbar />
-      <main className="flex-1 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-background via-background to-primary/5">
-        <Card className="w-full max-w-md shadow-xl">
+      <main className="flex-1 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <Card className="w-full max-w-md shadow-xl bg-black/40 border-cyan-500/20">
           <CardHeader className="space-y-1">
-            <CardTitle className="text-2xl font-bold text-center">Admin Access</CardTitle>
+            <CardTitle className="text-2xl font-bold text-center text-white">Admin Access</CardTitle>
             <CardDescription className="text-center">
               Login or create an account to access the admin dashboard
             </CardDescription>

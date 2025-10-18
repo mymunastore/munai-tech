@@ -18,13 +18,13 @@ const Contact = () => {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-primary/5 to-accent/5">
+      <section className="pt-32 pb-16 bg-gradient-to-br from-black via-gray-900 to-black border-b border-cyan-500/20">
         <div className="container px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-              Let&apos;s Work Together
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              Let&apos;s Work <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Together</span>
             </h1>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-lg text-gray-300">
               Have a project in mind? Let&apos;s discuss how we can create something amazing together.
             </p>
           </div>
@@ -32,19 +32,19 @@ const Contact = () => {
       </section>
 
       {/* Contact Section */}
-      <section className="py-16">
+      <section className="py-16 bg-black">
         <div className="container px-4">
           <div className="grid lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
             {/* Contact Info */}
             <div className="space-y-8">
               <div>
-                <h3 className="text-2xl font-bold mb-6">Get in Touch</h3>
-                <p className="text-muted-foreground mb-8">
+                <h3 className="text-2xl font-bold mb-6 text-white">Get in Touch</h3>
+                <p className="text-gray-300 mb-8">
                   I&apos;m always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
                 </p>
               </div>
 
-              <Card>
+              <Card className="bg-black/40 border-cyan-500/20">
                 <CardContent className="p-6 space-y-6">
                   <div className="flex items-start gap-4">
                     <Mail className="h-6 w-6 text-accent mt-1" />
@@ -80,8 +80,8 @@ const Contact = () => {
               </Card>
 
               <div>
-                <h4 className="font-semibold mb-4">Response Time</h4>
-                <p className="text-muted-foreground text-sm">
+                <h4 className="font-semibold mb-4 text-white">Response Time</h4>
+                <p className="text-gray-300 text-sm">
                   I typically respond within 24 hours on business days. For urgent matters, please mention it in your message.
                 </p>
               </div>
@@ -89,7 +89,7 @@ const Contact = () => {
 
             {/* Contact Form with Tabs */}
             <div className="lg:col-span-2">
-              <Card>
+              <Card className="bg-black/40 border-cyan-500/20">
                 <CardContent className="p-8">
                   <Tabs defaultValue="contact" className="w-full">
                     <TabsList className="grid w-full grid-cols-2 mb-6">
@@ -104,13 +104,13 @@ const Contact = () => {
                     </TabsList>
 
                     <TabsContent value="contact">
-                      <h3 className="text-2xl font-bold mb-6">Send a Message</h3>
+                      <h3 className="text-2xl font-bold mb-6 text-white">Send a Message</h3>
                       <ContactForm />
                     </TabsContent>
 
                     <TabsContent value="review">
-                      <h3 className="text-2xl font-bold mb-2">Share Your Experience</h3>
-                      <p className="text-muted-foreground mb-6">
+                      <h3 className="text-2xl font-bold mb-2 text-white">Share Your Experience</h3>
+                      <p className="text-gray-300 mb-6">
                         Worked with me? I&apos;d love to hear your feedback!
                       </p>
                       <TestimonialForm />

@@ -8,6 +8,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Slider } from "@/components/ui/slider";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { SEO } from "@/components/SEO";
 
 interface ProjectSpecs {
   type: string;
@@ -88,19 +89,24 @@ const Calculator = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black">
+      <SEO 
+        title="Project Cost Calculator | MunAiTech"
+        description="Get an instant estimate for your web development project. Calculate costs for websites, web apps, e-commerce platforms, and mobile applications with AI features."
+        keywords="project calculator, cost estimate, web development pricing, app development cost, project budget"
+      />
       <Navbar />
       <div className="container mx-auto px-4 py-24">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full mb-4">
+            <div className="inline-flex items-center gap-2 bg-cyan-500/10 text-cyan-400 px-4 py-2 rounded-full mb-4 border border-cyan-500/20">
               <CalcIcon className="h-5 w-5" />
               <span className="text-sm font-medium">Project Cost Estimator</span>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Get an Instant Project <span className="text-primary">Estimate</span>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+              Get an Instant Project <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Estimate</span>
             </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg text-gray-300 max-w-2xl mx-auto">
               Answer a few questions about your project to receive a detailed cost estimate
             </p>
           </div>
@@ -109,9 +115,9 @@ const Calculator = () => {
             {/* Form */}
             <div className="md:col-span-2 space-y-6">
               {/* Project Type */}
-              <Card>
+              <Card className="bg-black/40 border-cyan-500/20">
                 <CardHeader>
-                  <CardTitle>Project Type</CardTitle>
+                  <CardTitle className="text-white">Project Type</CardTitle>
                   <CardDescription>What type of project are you looking to build?</CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -129,9 +135,9 @@ const Calculator = () => {
               </Card>
 
               {/* Complexity */}
-              <Card>
+              <Card className="bg-black/40 border-cyan-500/20">
                 <CardHeader>
-                  <CardTitle>Complexity Level</CardTitle>
+                  <CardTitle className="text-white">Complexity Level</CardTitle>
                   <CardDescription>How complex is your project?</CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -152,9 +158,9 @@ const Calculator = () => {
               </Card>
 
               {/* Timeline */}
-              <Card>
+              <Card className="bg-black/40 border-cyan-500/20">
                 <CardHeader>
-                  <CardTitle>Project Timeline</CardTitle>
+                  <CardTitle className="text-white">Project Timeline</CardTitle>
                   <CardDescription>When do you need it completed? ({specs.timeline} weeks)</CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -174,9 +180,9 @@ const Calculator = () => {
               </Card>
 
               {/* Number of Pages */}
-              <Card>
+              <Card className="bg-black/40 border-cyan-500/20">
                 <CardHeader>
-                  <CardTitle>Number of Pages/Screens</CardTitle>
+                  <CardTitle className="text-white">Number of Pages/Screens</CardTitle>
                   <CardDescription>Approximately how many pages? ({specs.pages})</CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -196,9 +202,9 @@ const Calculator = () => {
               </Card>
 
               {/* Features */}
-              <Card>
+              <Card className="bg-black/40 border-cyan-500/20">
                 <CardHeader>
-                  <CardTitle>Additional Features</CardTitle>
+                  <CardTitle className="text-white">Additional Features</CardTitle>
                   <CardDescription>Select any additional features you need</CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -220,7 +226,7 @@ const Calculator = () => {
                 </CardContent>
               </Card>
 
-              <Button onClick={calculateEstimate} size="lg" className="w-full">
+              <Button onClick={calculateEstimate} size="lg" className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white border-0">
                 <Sparkles className="mr-2 h-5 w-5" />
                 Calculate Estimate
               </Button>
@@ -228,9 +234,9 @@ const Calculator = () => {
 
             {/* Estimate Display */}
             <div className="md:col-span-1">
-              <Card className="sticky top-24">
+              <Card className="sticky top-24 bg-black/40 border-cyan-500/20">
                 <CardHeader>
-                  <CardTitle>Your Estimate</CardTitle>
+                  <CardTitle className="text-white">Your Estimate</CardTitle>
                   <CardDescription>Based on your selections</CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -242,10 +248,10 @@ const Calculator = () => {
                   ) : (
                     <div>
                       <div className="text-center mb-6">
-                        <div className="text-4xl font-bold text-primary mb-2">
+                        <div className="text-4xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent mb-2">
                           ${estimate.toLocaleString()}
                         </div>
-                        <p className="text-sm text-muted-foreground">Estimated project cost</p>
+                        <p className="text-sm text-gray-400">Estimated project cost</p>
                       </div>
                       <div className="space-y-2 text-sm mb-6">
                         <div className="flex justify-between">
