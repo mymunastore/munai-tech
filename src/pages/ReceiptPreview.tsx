@@ -92,9 +92,16 @@ const ReceiptPreview = () => {
                 fontSize: '38px',
                 fontWeight: 800,
                 letterSpacing: '-1px',
-                marginBottom: '8px',
+                marginBottom: '4px',
                 textShadow: '0 2px 10px rgba(0, 0, 0, 0.2)'
-              }}>15071995 LLC</div>
+              }}>MunAITech</div>
+              <div style={{
+                fontSize: '12px',
+                opacity: 0.85,
+                fontWeight: 400,
+                letterSpacing: '0.5px',
+                marginBottom: '8px'
+              }}>Operating under 15071995 LLC</div>
               <div style={{
                 fontSize: '14px',
                 opacity: 0.95,
@@ -510,12 +517,13 @@ const ReceiptPreview = () => {
                   fontSize: '15px',
                   fontWeight: 700,
                   marginBottom: '10px'
-                }}>15071995 LLC</h4>
+                }}>MunAITech</h4>
                 <div style={{
                   color: '#64748b',
                   fontSize: '12px',
                   lineHeight: 1.8
                 }}>
+                  <strong>Company Name:</strong> 15071995 LLC<br />
                   <strong>Registered Agent:</strong> Northwest Registered Agent LLC<br />
                   <strong>Jurisdiction:</strong> Kentucky<br />
                   <strong>Address:</strong> 212 N. 2nd St., STE 100, Richmond, KY, 40475, United States<br />
@@ -531,7 +539,7 @@ const ReceiptPreview = () => {
                 paddingTop: '18px',
                 borderTop: '1px solid #e2e8f0'
               }}>
-                This is an official receipt from 15071995 LLC. Please retain this for your records.<br />
+                This is an official receipt from MunAITech (15071995 LLC). Please retain this for your records.<br />
                 For any inquiries regarding this receipt, please contact us at info@mymuna.store
               </div>
             </div>
