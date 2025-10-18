@@ -76,7 +76,7 @@ const Index = () => {
         </script>
       </Helmet>
       
-      <div className="min-h-screen">
+      <main id="main-content" className="min-h-screen">
         <Navbar />
         <Hero />
         
@@ -93,7 +93,7 @@ const Index = () => {
         <FAQ />
         <CTA />
         <Footer />
-      </div>
+      </main>
     </>
   );
 };

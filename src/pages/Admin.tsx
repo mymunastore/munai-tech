@@ -11,6 +11,7 @@ import { Loader2, Eye, Mail, Download, Users } from "lucide-react";
 import { useContactSubmissions, useNewsletterSubscribers, usePageViews, useAnalyticsStats } from "@/hooks/useAdminData";
 import { StatsCard } from "@/components/admin/StatsCard";
 import { DataTable, formatDate } from "@/components/admin/DataTable";
+import { ExportButton } from "@/components/admin/ExportButton";
 
 const Admin = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -254,8 +255,16 @@ const Admin = () => {
           <TabsContent value="contacts">
             <Card>
               <CardHeader>
-                <CardTitle>Contact Submissions</CardTitle>
-                <CardDescription>View and manage contact form submissions</CardDescription>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <CardTitle>Contact Submissions</CardTitle>
+                    <CardDescription>View and manage contact form submissions</CardDescription>
+                  </div>
+                  <ExportButton 
+                    data={contacts || []} 
+                    filename="contact-submissions"
+                  />
+                </div>
               </CardHeader>
               <CardContent>
                 <DataTable
@@ -287,8 +296,16 @@ const Admin = () => {
           <TabsContent value="newsletter">
             <Card>
               <CardHeader>
-                <CardTitle>Newsletter Subscribers</CardTitle>
-                <CardDescription>Manage your newsletter subscriber list</CardDescription>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <CardTitle>Newsletter Subscribers</CardTitle>
+                    <CardDescription>Manage your newsletter subscriber list</CardDescription>
+                  </div>
+                  <ExportButton 
+                    data={subscribers || []} 
+                    filename="newsletter-subscribers"
+                  />
+                </div>
               </CardHeader>
               <CardContent>
                 <DataTable
@@ -312,8 +329,16 @@ const Admin = () => {
           <TabsContent value="analytics">
             <Card>
               <CardHeader>
-                <CardTitle>Recent Page Views</CardTitle>
-                <CardDescription>Latest 100 page views across your site</CardDescription>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <CardTitle>Recent Page Views</CardTitle>
+                    <CardDescription>Latest 100 page views across your site</CardDescription>
+                  </div>
+                  <ExportButton 
+                    data={pageViews || []} 
+                    filename="page-views"
+                  />
+                </div>
               </CardHeader>
               <CardContent>
                 <DataTable
