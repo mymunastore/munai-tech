@@ -1,12 +1,33 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, LogIn, LogOut } from "lucide-react";
 import { Button } from "./ui/button";
 import { ThemeToggle } from "./ThemeToggle";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { useToast } from "@/hooks/use-toast";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { user, signOut } = useAuth();
+  const navigate = useNavigate();
+  const { toast } = useToast();
+
+  const handleSignOut = async () => {
+    await signOut();
+    toast({
+      title: "Logged out",
+      description: "You've been successfully logged out.",
+    });
+    navigate("/");
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -58,11 +79,38 @@ const Navbar = () => {
               </Link>
             ))}
             <ThemeToggle />
-            <Link to="/contact">
-              <Button size="sm" className="bg-gradient-to-r from-accent to-primary hover:opacity-90">
-                Contact Me
-              </Button>
-            </Link>
+            
+            {user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="relative h-9 w-9 rounded-full">
+                    <Avatar className="h-9 w-9">
+                      <AvatarFallback className="bg-gradient-to-br from-accent to-primary text-primary-foreground">
+                        {user.email?.charAt(0).toUpperCase()}
+                      </AvatarFallback>
+                    </Avatar>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-56">
+                  <DropdownMenuItem asChild>
+                    <Link to="/admin" className="cursor-pointer">
+                      Admin Dashboard
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={handleSignOut} className="cursor-pointer">
+                    <LogOut className="mr-2 h-4 w-4" />
+                    Logout
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Link to="/auth">
+                <Button size="sm" variant="outline" className="gap-2">
+                  <LogIn className="h-4 w-4" />
+                  Admin Login
+                </Button>
+              </Link>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -91,11 +139,25 @@ const Navbar = () => {
               ))}
               <div className="flex items-center gap-2 px-2">
                 <ThemeToggle />
-                <Link to="/contact" className="flex-1">
-                  <Button size="sm" className="bg-gradient-to-r from-accent to-primary hover:opacity-90 w-full">
-                    Contact Me
-                  </Button>
-                </Link>
+                {user ? (
+                  <>
+                    <Link to="/admin" className="flex-1" onClick={() => setIsMobileMenuOpen(false)}>
+                      <Button size="sm" variant="outline" className="w-full">
+                        Admin
+                      </Button>
+                    </Link>
+                    <Button size="sm" variant="outline" onClick={handleSignOut}>
+                      <LogOut className="h-4 w-4" />
+                    </Button>
+                  </>
+                ) : (
+                  <Link to="/auth" className="flex-1" onClick={() => setIsMobileMenuOpen(false)}>
+                    <Button size="sm" variant="outline" className="gap-2 w-full">
+                      <LogIn className="h-4 w-4" />
+                      Login
+                    </Button>
+                  </Link>
+                )}
               </div>
             </div>
           </div>

@@ -24,14 +24,13 @@ import { ReceiptsTable } from "@/components/admin/ReceiptsTable";
 import { ReceiptGenerator } from "@/components/ReceiptGenerator";
 import { useTestimonials } from "@/hooks/useTestimonialsData";
 import { useReceipts, useReceiptsStats } from "@/hooks/useReceiptsData";
+import { useAuth } from "@/hooks/useAuth";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const Admin = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const { user, isLoading: authLoading, signOut } = useAuth();
   const [isAdmin, setIsAdmin] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [isSigningIn, setIsSigningIn] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -131,165 +130,57 @@ const Admin = () => {
     );
   }, [subscribers, subscriberSearch]);
 
+  // Check authentication and admin status
   useEffect(() => {
-    checkAuth();
-
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
-      if (session) {
-        await checkAdminStatus(session.user.id);
-      } else {
-        setIsAuthenticated(false);
-        setIsAdmin(false);
+    if (!authLoading) {
+      if (!user) {
+        // Redirect to auth page if not logged in
+        navigate("/auth");
+        return;
       }
-    });
+      
+      // Check if user has admin role
+      const checkAdminStatus = async () => {
+        try {
+          const { data, error } = await supabase
+            .from("user_roles")
+            .select("role")
+            .eq("user_id", user.id)
+            .eq("role", "admin")
+            .maybeSingle();
 
-    return () => subscription.unsubscribe();
-  }, []);
+          if (error && error.code !== "PGRST116") throw error;
+          
+          if (!data) {
+            toast({
+              title: "Access Denied",
+              description: "You don't have admin privileges.",
+              variant: "destructive",
+            });
+            navigate("/");
+            return;
+          }
+          
+          setIsAdmin(true);
+        } catch (error) {
+          console.error("Admin check failed:", error);
+          toast({
+            title: "Error",
+            description: "Failed to verify admin status",
+            variant: "destructive",
+          });
+          navigate("/");
+        }
+      };
 
-  const checkAuth = async () => {
-    try {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (session) {
-        setIsAuthenticated(true);
-        await checkAdminStatus(session.user.id);
-      }
-    } catch (error) {
-      console.error("Auth check failed:", error);
-    } finally {
-      setIsLoading(false);
+      checkAdminStatus();
     }
-  };
+  }, [user, authLoading, navigate, toast]);
 
-  const checkAdminStatus = async (userId: string) => {
-    try {
-      const { data, error } = await supabase
-        .from("user_roles")
-        .select("role")
-        .eq("user_id", userId)
-        .eq("role", "admin")
-        .single();
-
-      if (error && error.code !== "PGRST116") throw error;
-      setIsAdmin(!!data);
-    } catch (error) {
-      console.error("Admin check failed:", error);
-      setIsAdmin(false);
-    }
-  };
-
-  const handleSignIn = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSigningIn(true);
-
-    try {
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-
-      if (error) throw error;
-
-      toast({
-        title: "Success",
-        description: "Signed in successfully",
-      });
-    } catch (error: any) {
-      toast({
-        variant: "destructive",
-        title: "Error",
-        description: error.message || "Failed to sign in",
-      });
-    } finally {
-      setIsSigningIn(false);
-    }
-  };
-
-  const handleSignOut = async () => {
-    try {
-      await supabase.auth.signOut();
-      toast({
-        title: "Success",
-        description: "Signed out successfully",
-      });
-      navigate("/");
-    } catch (error: any) {
-      toast({
-        variant: "destructive",
-        title: "Error",
-        description: error.message || "Failed to sign out",
-      });
-    }
-  };
-
-  if (isLoading) {
+  if (authLoading || !isAdmin) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <Loader2 className="h-8 w-8 animate-spin" />
-      </div>
-    );
-  }
-
-  if (!isAuthenticated) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-background p-4">
-        <Card className="w-full max-w-md">
-          <CardHeader>
-            <CardTitle>Admin Login</CardTitle>
-            <CardDescription>Sign in to access the admin dashboard</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleSignIn} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
-                <Input
-                  id="password"
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-              </div>
-              <Button type="submit" className="w-full" disabled={isSigningIn}>
-                {isSigningIn ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Signing in...
-                  </>
-                ) : (
-                  "Sign In"
-                )}
-              </Button>
-            </form>
-          </CardContent>
-        </Card>
-      </div>
-    );
-  }
-
-  if (!isAdmin) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-background p-4">
-        <Card className="w-full max-w-md">
-          <CardHeader>
-            <CardTitle>Access Denied</CardTitle>
-            <CardDescription>You do not have admin privileges</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Button onClick={handleSignOut} variant="outline" className="w-full">
-              Sign Out
-            </Button>
-          </CardContent>
-        </Card>
       </div>
     );
   }
@@ -311,7 +202,10 @@ const Admin = () => {
               <Keyboard className="mr-2 h-4 w-4" />
               Shortcuts (?)
             </Button>
-            <Button onClick={handleSignOut} variant="outline">
+            <Button onClick={async () => {
+              await signOut();
+              navigate("/");
+            }} variant="outline">
               Sign Out
             </Button>
           </div>
