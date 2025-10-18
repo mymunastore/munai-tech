@@ -76,7 +76,7 @@ const Resume = () => {
                 <p className="text-muted-foreground leading-relaxed">
                   Innovative Senior Web Designer and AI Full-Stack App Developer specializing in building intelligent, scalable web applications 
                   with cutting-edge technologies. Expert in TypeScript, React, modern design systems, and AI integration with proven success 
-                  in delivering 50+ production-grade applications across SaaS, fintech, e-commerce, and enterprise sectors. Passionate about 
+                  in delivering 30+ production-grade applications across SaaS, fintech, e-commerce, and enterprise sectors. Passionate about 
                   blending design precision with powerful technology to create transformative digital experiences that solve real-world problems.
                 </p>
               </section>
@@ -92,14 +92,14 @@ const Resume = () => {
                     <h3 className="text-xl font-semibold">Independent Full Stack Developer & AI Solutions Architect</h3>
                     <p className="text-muted-foreground">Freelance • 2020 - Present</p>
                     <ul className="mt-2 space-y-2 list-disc list-inside text-muted-foreground">
-                      <li>Developed 50+ production-ready applications using TypeScript, React, and AI technologies</li>
+                      <li>Developed 30+ production-ready applications using TypeScript, React, and AI technologies</li>
                       <li>Designed pixel-perfect UI/UX for enterprise clients with 99% client satisfaction rate</li>
                       <li>Built consulting SaaS platform with client management, booking systems, and analytics</li>
                       <li>Created AI-powered meeting notes app with automatic transcription and action item extraction</li>
                       <li>Designed luxury accommodation booking platform with virtual tours and payment integration</li>
                       <li>Developed financial management suite with expense tracking and budget optimization</li>
                       <li>Architected enterprise audit and compliance management system for regulatory tracking</li>
-                      <li>Led complete brand identity and web design projects for 50+ clients worldwide</li>
+                      <li>Led complete brand identity and web design projects for 30+ clients worldwide</li>
                     </ul>
                   </div>
                   <div>
@@ -107,7 +107,7 @@ const Resume = () => {
                     <p className="text-muted-foreground">Rork Technologies • 2019 - 2020</p>
                     <ul className="mt-2 space-y-2 list-disc list-inside text-muted-foreground">
                       <li>Led UI/UX design and development of airline booking and management system</li>
-                      <li>Built food delivery marketplace connecting 50+ restaurants with 500+ customers</li>
+                      <li>Built food delivery marketplace connecting 30+ restaurants with 500+ customers</li>
                       <li>Created comprehensive design systems and component libraries</li>
                       <li>Implemented secure account recovery system with multi-factor authentication</li>
                       <li>Optimized mobile app performance increasing user retention by 35%</li>
@@ -197,8 +197,8 @@ const Resume = () => {
                   Achievements & Highlights
                 </h2>
                 <ul className="space-y-2 text-muted-foreground">
-                  <li>• Successfully delivered 50+ production-ready applications across multiple industries</li>
-                  <li>• 50+ satisfied clients worldwide with 99% success rate</li>
+                  <li>• Successfully delivered 30+ production-ready applications across multiple industries</li>
+                  <li>• 30+ satisfied clients worldwide with 99% success rate</li>
                   <li>• Expert in blending beautiful design with powerful AI and full-stack technology</li>
                   <li>• All GitHub repositories demonstrate high code quality and practical utility</li>
                   <li>• Specialized in rapid prototyping and MVP development (30-day launch cycles)</li>

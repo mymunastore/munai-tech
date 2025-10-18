@@ -21,14 +21,14 @@ const Index = () => {
     <>
       <Helmet>
         <title>MunAiTech - AI Web App Designer & Full-Stack Development | 15071995 LLC</title>
-        <meta name="description" content="MunAiTech delivers cutting-edge AI-powered web solutions. Expert TypeScript, React & AI development for modern businesses. 50+ projects, 50+ satisfied clients." />
+        <meta name="description" content="MunAiTech delivers cutting-edge AI-powered web solutions. Expert TypeScript, React & AI development for modern businesses. 30+ projects, 30+ satisfied clients." />
         <meta name="keywords" content="MunAiTech, AI Development, Full-Stack Developer, TypeScript Expert, React Development, AI Integration, Web Applications, 15071995 LLC" />
         <link rel="canonical" href="https://yourdomain.com" />
         
         {/* Open Graph */}
         <meta property="og:type" content="website" />
         <meta property="og:title" content="MunAiTech - AI Web App Design & Full-Stack Development" />
-        <meta property="og:description" content="Transform your business with AI-powered solutions. 50+ projects delivered with 99% client satisfaction." />
+        <meta property="og:description" content="Transform your business with AI-powered solutions. 30+ projects delivered with 99% client satisfaction." />
         <meta property="og:url" content="https://yourdomain.com" />
         
         {/* Twitter Card */}
