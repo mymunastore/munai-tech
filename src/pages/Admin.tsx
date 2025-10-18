@@ -21,6 +21,7 @@ import { ContactDetailsModal } from "@/components/admin/ContactDetailsModal";
 import { BatchActions } from "@/components/admin/BatchActions";
 import { TestimonialsTable } from "@/components/admin/TestimonialsTable";
 import { ReceiptsTable } from "@/components/admin/ReceiptsTable";
+import { ReceiptGenerator } from "@/components/ReceiptGenerator";
 import { useTestimonials } from "@/hooks/useTestimonialsData";
 import { useReceipts, useReceiptsStats } from "@/hooks/useReceiptsData";
 
@@ -578,7 +579,21 @@ const Admin = () => {
                     <p className="text-2xl font-bold">{receiptsStats?.pendingCount || 0}</p>
                   </div>
                 </div>
-                <ReceiptsTable />
+
+                <Tabs defaultValue="history" className="w-full">
+                  <TabsList className="mb-4">
+                    <TabsTrigger value="history">Receipt History</TabsTrigger>
+                    <TabsTrigger value="generate">Generate New Receipt</TabsTrigger>
+                  </TabsList>
+
+                  <TabsContent value="history">
+                    <ReceiptsTable />
+                  </TabsContent>
+
+                  <TabsContent value="generate">
+                    <ReceiptGenerator />
+                  </TabsContent>
+                </Tabs>
               </CardContent>
             </Card>
           </TabsContent>
