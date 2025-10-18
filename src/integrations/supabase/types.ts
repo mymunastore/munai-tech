@@ -165,6 +165,51 @@ export type Database = {
           },
         ]
       }
+      client_testimonials: {
+        Row: {
+          approved_at: string | null
+          client_company: string | null
+          client_email: string
+          client_name: string
+          client_title: string | null
+          created_at: string
+          id: string
+          project_name: string | null
+          rating: number | null
+          status: string | null
+          testimonial_text: string
+          would_recommend: boolean | null
+        }
+        Insert: {
+          approved_at?: string | null
+          client_company?: string | null
+          client_email: string
+          client_name: string
+          client_title?: string | null
+          created_at?: string
+          id?: string
+          project_name?: string | null
+          rating?: number | null
+          status?: string | null
+          testimonial_text: string
+          would_recommend?: boolean | null
+        }
+        Update: {
+          approved_at?: string | null
+          client_company?: string | null
+          client_email?: string
+          client_name?: string
+          client_title?: string | null
+          created_at?: string
+          id?: string
+          project_name?: string | null
+          rating?: number | null
+          status?: string | null
+          testimonial_text?: string
+          would_recommend?: boolean | null
+        }
+        Relationships: []
+      }
       clients: {
         Row: {
           created_at: string | null
@@ -300,6 +345,51 @@ export type Database = {
           referrer?: string | null
           session_id?: string | null
           user_agent?: string | null
+        }
+        Relationships: []
+      }
+      payment_receipts: {
+        Row: {
+          created_at: string
+          customer_address: string | null
+          customer_email: string
+          customer_name: string
+          id: string
+          notes: string | null
+          payment_amount: number
+          payment_date: string
+          payment_method: string | null
+          project_description: string
+          receipt_number: string
+          status: string | null
+        }
+        Insert: {
+          created_at?: string
+          customer_address?: string | null
+          customer_email: string
+          customer_name: string
+          id?: string
+          notes?: string | null
+          payment_amount: number
+          payment_date?: string
+          payment_method?: string | null
+          project_description: string
+          receipt_number: string
+          status?: string | null
+        }
+        Update: {
+          created_at?: string
+          customer_address?: string | null
+          customer_email?: string
+          customer_name?: string
+          id?: string
+          notes?: string | null
+          payment_amount?: number
+          payment_date?: string
+          payment_method?: string | null
+          project_description?: string
+          receipt_number?: string
+          status?: string | null
         }
         Relationships: []
       }

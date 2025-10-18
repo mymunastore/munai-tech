@@ -1,8 +1,11 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ContactForm } from "@/components/ContactForm";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { TestimonialForm } from "@/components/TestimonialForm";
+import { ReceiptGenerator } from "@/components/ReceiptGenerator";
+import { Mail, MapPin, Phone, Star, FileText } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const Contact = () => {
   return (
@@ -79,12 +82,46 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* Contact Form */}
+            {/* Contact Form with Tabs */}
             <div className="lg:col-span-2">
               <Card>
                 <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold mb-6">Send a Message</h3>
-                  <ContactForm />
+                  <Tabs defaultValue="contact" className="w-full">
+                    <TabsList className="grid w-full grid-cols-3 mb-6">
+                      <TabsTrigger value="contact" className="flex items-center gap-2">
+                        <Mail className="h-4 w-4" />
+                        Contact
+                      </TabsTrigger>
+                      <TabsTrigger value="review" className="flex items-center gap-2">
+                        <Star className="h-4 w-4" />
+                        Leave Review
+                      </TabsTrigger>
+                      <TabsTrigger value="receipt" className="flex items-center gap-2">
+                        <FileText className="h-4 w-4" />
+                        Receipt
+                      </TabsTrigger>
+                    </TabsList>
+
+                    <TabsContent value="contact">
+                      <h3 className="text-2xl font-bold mb-6">Send a Message</h3>
+                      <ContactForm />
+                    </TabsContent>
+
+                    <TabsContent value="review">
+                      <h3 className="text-2xl font-bold mb-2">Share Your Experience</h3>
+                      <p className="text-muted-foreground mb-6">
+                        Worked with me? I&apos;d love to hear your feedback!
+                      </p>
+                      <TestimonialForm />
+                    </TabsContent>
+
+                    <TabsContent value="receipt">
+                      <p className="text-muted-foreground mb-6">
+                        Generate a branded payment receipt for your transaction.
+                      </p>
+                      <ReceiptGenerator />
+                    </TabsContent>
+                  </Tabs>
                 </CardContent>
               </Card>
             </div>
