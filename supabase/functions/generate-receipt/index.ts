@@ -226,7 +226,8 @@ const handler = async (req: Request): Promise<Response> => {
 
     const receiptHTML = generateReceiptHTML(data);
 
-    // Send receipt to customer
+    // Send receipt to test email (Resend test mode restriction)
+    // In test mode, can only send to verified email: adigwekingsley8@gmail.com
     const emailResponse = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
@@ -235,28 +236,14 @@ const handler = async (req: Request): Promise<Response> => {
       },
       body: JSON.stringify({
         from: "MunAiTech <onboarding@resend.dev>",
-        to: [data.customer_email],
-        subject: `Payment Receipt - ${data.receipt_number}`,
+        to: ["adigwekingsley8@gmail.com"],
+        subject: `Payment Receipt - ${data.receipt_number} (for: ${data.customer_name})`,
         html: receiptHTML,
       }),
     });
 
-    console.log("Receipt sent successfully:", await emailResponse.json());
-
-    // Also send a copy to yourself
-    await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${RESEND_API_KEY}`,
-      },
-      body: JSON.stringify({
-        from: "MunAiTech <onboarding@resend.dev>",
-        to: ["info@mymuna.store"],
-        subject: `[Copy] Payment Receipt - ${data.receipt_number}`,
-        html: receiptHTML,
-      }),
-    });
+    const emailResult = await emailResponse.json();
+    console.log("Receipt sent successfully to test email:", emailResult);
 
     return new Response(
       JSON.stringify({ 
