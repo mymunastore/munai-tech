@@ -24,6 +24,7 @@ const Calculator = lazy(() => import("./pages/Calculator"));
 const About = lazy(() => import("./pages/About"));
 const Admin = lazy(() => import("./pages/Admin"));
 const Auth = lazy(() => import("./pages/Auth"));
+const ReceiptPreview = lazy(() => import("./pages/ReceiptPreview"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const LoadingFallback = () => (
@@ -61,6 +62,7 @@ const AppContent = () => {
           <Route path="/about" element={<About />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/receipt-preview" element={<ReceiptPreview />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
