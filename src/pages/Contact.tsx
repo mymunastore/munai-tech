@@ -14,10 +14,10 @@ const Contact = () => {
         <div className="container px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-              Let's Work Together
+              Let&apos;s Work Together
             </h1>
             <p className="text-lg text-muted-foreground">
-              Have a project in mind? Let's discuss how we can create something amazing together.
+              Have a project in mind? Let&apos;s discuss how we can create something amazing together.
             </p>
           </div>
         </div>
@@ -32,7 +32,7 @@ const Contact = () => {
               <div>
                 <h3 className="text-2xl font-bold mb-6">Get in Touch</h3>
                 <p className="text-muted-foreground mb-8">
-                  I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
+                  I&apos;m always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
                 </p>
               </div>
 

@@ -249,7 +249,7 @@ const About = () => {
         {/* CTA */}
         <section className="py-20 px-4">
           <div className="container mx-auto max-w-4xl text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Let's Build Something Amazing Together</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Let&apos;s Build Something Amazing Together</h2>
             <p className="text-xl text-muted-foreground mb-8">
               Ready to transform your ideas into reality with cutting-edge AI and web solutions?
             </p>
