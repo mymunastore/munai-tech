@@ -72,7 +72,7 @@ const Hero = () => {
             <div className="grid grid-cols-2 gap-4 sm:gap-6">
             {[
               { number: "50+", label: "AI Projects Delivered" },
-              { number: "100+", label: "Enterprise Clients" },
+              { number: "50+", label: "Enterprise Clients" },
               { number: "5+", label: "Years of Expertise" },
               { number: "99%", label: "Success Rate" },
             ].map((stat, index) => (

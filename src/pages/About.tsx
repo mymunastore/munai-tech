@@ -33,7 +33,7 @@ const About = () => {
   const achievements = [
     { icon: <Award />, label: "5+ Years Experience", value: "Senior Level" },
     { icon: <Briefcase />, label: "50+ Projects", value: "Delivered" },
-    { icon: <Users />, label: "100+ Clients", value: "Worldwide" },
+    { icon: <Users />, label: "50+ Clients", value: "Worldwide" },
     { icon: <Code2 />, label: "15+ Technologies", value: "Mastered" }
   ];
 

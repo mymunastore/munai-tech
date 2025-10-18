@@ -99,7 +99,7 @@ const Resume = () => {
                       <li>Designed luxury accommodation booking platform with virtual tours and payment integration</li>
                       <li>Developed financial management suite with expense tracking and budget optimization</li>
                       <li>Architected enterprise audit and compliance management system for regulatory tracking</li>
-                      <li>Led complete brand identity and web design projects for 100+ clients worldwide</li>
+                      <li>Led complete brand identity and web design projects for 50+ clients worldwide</li>
                     </ul>
                   </div>
                   <div>
@@ -198,7 +198,7 @@ const Resume = () => {
                 </h2>
                 <ul className="space-y-2 text-muted-foreground">
                   <li>• Successfully delivered 50+ production-ready applications across multiple industries</li>
-                  <li>• 100+ satisfied clients worldwide with 99% success rate</li>
+                  <li>• 50+ satisfied clients worldwide with 99% success rate</li>
                   <li>• Expert in blending beautiful design with powerful AI and full-stack technology</li>
                   <li>• All GitHub repositories demonstrate high code quality and practical utility</li>
                   <li>• Specialized in rapid prototyping and MVP development (30-day launch cycles)</li>

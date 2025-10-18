@@ -21,7 +21,7 @@ const Index = () => {
     <>
       <Helmet>
         <title>MunAiTech - AI Web App Designer & Full-Stack Development | 15071995 LLC</title>
-        <meta name="description" content="MunAiTech delivers cutting-edge AI-powered web solutions. Expert TypeScript, React & AI development for modern businesses. 50+ projects, 100+ satisfied clients." />
+        <meta name="description" content="MunAiTech delivers cutting-edge AI-powered web solutions. Expert TypeScript, React & AI development for modern businesses. 50+ projects, 50+ satisfied clients." />
         <meta name="keywords" content="MunAiTech, AI Development, Full-Stack Developer, TypeScript Expert, React Development, AI Integration, Web Applications, 15071995 LLC" />
         <link rel="canonical" href="https://yourdomain.com" />
         
