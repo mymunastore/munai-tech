@@ -54,7 +54,9 @@ export const ContactForm = () => {
       });
 
       const aiAnalysis = analysisData || {};
-      console.log('AI Analysis:', aiAnalysis);
+      if (import.meta.env.DEV) {
+        console.log('AI Analysis:', aiAnalysis);
+      }
 
       const submissionData = {
         name: data.name,
@@ -79,7 +81,9 @@ export const ContactForm = () => {
         body: { ...data, aiAnalysis },
       });
 
-      if (emailError) console.error("Email send error:", emailError);
+      if (emailError && import.meta.env.DEV) {
+        console.error("Email send error:", emailError);
+      }
 
       toast.success("Message sent successfully!", {
         description: "I'll get back to you as soon as possible.",
@@ -87,7 +91,9 @@ export const ContactForm = () => {
       
       form.reset();
     } catch (error) {
-      console.error("Error:", error);
+      if (import.meta.env.DEV) {
+        console.error("Error:", error);
+      }
       toast.error("Failed to send message", {
         description: "Please try again or email me directly.",
       });

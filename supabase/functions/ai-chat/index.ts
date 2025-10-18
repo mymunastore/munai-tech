@@ -1,10 +1,21 @@
 import "https://deno.land/x/xhr@0.1.0/mod.ts";
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { z } from "https://deno.land/x/zod@v3.22.4/mod.ts";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
+
+const messageSchema = z.object({
+  role: z.enum(["user", "assistant", "system"]),
+  content: z.string().trim().min(1).max(10000),
+});
+
+const aiChatRequestSchema = z.object({
+  messages: z.array(messageSchema).min(1).max(50),
+  provider: z.enum(["gemini", "openai"]).default("openai"),
+});
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -12,11 +23,8 @@ serve(async (req) => {
   }
 
   try {
-    const { messages, provider = 'openai' } = await req.json();
-
-    if (!messages || !Array.isArray(messages)) {
-      throw new Error('Messages array is required');
-    }
+    const requestData = await req.json();
+    const { messages, provider } = aiChatRequestSchema.parse(requestData);
 
     const systemPrompt = `You are an AI assistant for Kingsley Munachi's professional portfolio. 
     
@@ -51,10 +59,9 @@ Your role is to:
     if (provider === 'gemini') {
       const GEMINI_API_KEY = Deno.env.get('GEMINI_AI_API_KEY');
       if (!GEMINI_API_KEY) {
-        throw new Error('Gemini API key not configured');
+        throw new Error('AI service not configured');
       }
 
-      // Convert messages to Gemini format
       const geminiMessages = messages.map(msg => ({
         role: msg.role === 'assistant' ? 'model' : 'user',
         parts: [{ text: msg.content }]
@@ -81,8 +88,8 @@ Your role is to:
       const data = await response.json();
       
       if (!response.ok) {
-        console.error('Gemini API error:', data);
-        throw new Error(data.error?.message || 'Gemini API request failed');
+        console.error('[Internal] Gemini API error:', response.status, data.error?.code);
+        throw new Error('AI service unavailable');
       }
 
       const aiResponse = data.candidates?.[0]?.content?.parts?.[0]?.text;
@@ -92,10 +99,9 @@ Your role is to:
         { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     } else {
-      // OpenAI
       const OPENAI_API_KEY = Deno.env.get('OPENAI_API_KEY');
       if (!OPENAI_API_KEY) {
-        throw new Error('OpenAI API key not configured');
+        throw new Error('AI service not configured');
       }
 
       response = await fetch('https://api.openai.com/v1/chat/completions', {
@@ -117,8 +123,8 @@ Your role is to:
       const data = await response.json();
       
       if (!response.ok) {
-        console.error('OpenAI API error:', data);
-        throw new Error(data.error?.message || 'OpenAI API request failed');
+        console.error('[Internal] OpenAI API error:', response.status, data.error?.code);
+        throw new Error('AI service unavailable');
       }
 
       const aiResponse = data.choices?.[0]?.message?.content;
@@ -129,9 +135,20 @@ Your role is to:
       );
     }
   } catch (error) {
-    console.error('Error in ai-chat function:', error);
+    console.error('[Internal] Error in ai-chat:', error);
+    
+    if (error instanceof z.ZodError) {
+      return new Response(
+        JSON.stringify({ error: 'Invalid message format' }),
+        {
+          status: 400,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        }
+      );
+    }
+    
     return new Response(
-      JSON.stringify({ error: error instanceof Error ? error.message : 'Unknown error' }),
+      JSON.stringify({ error: 'Failed to process chat request' }),
       {
         status: 500,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },

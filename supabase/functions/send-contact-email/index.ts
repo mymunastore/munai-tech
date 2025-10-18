@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { z } from "https://deno.land/x/zod@v3.22.4/mod.ts";
 
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
 
@@ -7,14 +8,25 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-interface ContactEmailRequest {
-  name: string;
-  email: string;
-  company?: string;
-  phone?: string;
-  project_type?: string;
-  budget_range?: string;
-  message: string;
+const contactEmailSchema = z.object({
+  name: z.string().trim().min(1).max(100),
+  email: z.string().email().max(255),
+  company: z.string().trim().max(200).optional(),
+  phone: z.string().trim().max(50).optional(),
+  project_type: z.string().trim().max(100).optional(),
+  budget_range: z.string().trim().max(100).optional(),
+  message: z.string().trim().min(10).max(5000),
+});
+
+function escapeHtml(text: string): string {
+  const map: Record<string, string> = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;'
+  };
+  return text.replace(/[&<>"']/g, (m) => map[m]);
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -23,10 +35,10 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    const data: ContactEmailRequest = await req.json();
-    console.log("Processing contact form submission:", { email: data.email, name: data.name });
+    const requestData = await req.json();
+    const data = contactEmailSchema.parse(requestData);
 
-    // Send notification email to yourself
+    // Send notification email to admin
     const adminEmailResponse = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
@@ -35,26 +47,27 @@ const handler = async (req: Request): Promise<Response> => {
       },
       body: JSON.stringify({
         from: "Portfolio Contact <onboarding@resend.dev>",
-        to: ["hello@example.com"], // Replace with your actual email
+        to: ["kingsleymunachi9@gmail.com"],
         reply_to: data.email,
-        subject: `New Contact Form Submission from ${data.name}`,
+        subject: `New Contact Form Submission from ${escapeHtml(data.name)}`,
         html: `
           <h2>New Contact Form Submission</h2>
-          <p><strong>Name:</strong> ${data.name}</p>
-          <p><strong>Email:</strong> ${data.email}</p>
-          ${data.company ? `<p><strong>Company:</strong> ${data.company}</p>` : ""}
-          ${data.phone ? `<p><strong>Phone:</strong> ${data.phone}</p>` : ""}
-          ${data.project_type ? `<p><strong>Project Type:</strong> ${data.project_type}</p>` : ""}
-          ${data.budget_range ? `<p><strong>Budget Range:</strong> ${data.budget_range}</p>` : ""}
+          <p><strong>Name:</strong> ${escapeHtml(data.name)}</p>
+          <p><strong>Email:</strong> ${escapeHtml(data.email)}</p>
+          ${data.company ? `<p><strong>Company:</strong> ${escapeHtml(data.company)}</p>` : ""}
+          ${data.phone ? `<p><strong>Phone:</strong> ${escapeHtml(data.phone)}</p>` : ""}
+          ${data.project_type ? `<p><strong>Project Type:</strong> ${escapeHtml(data.project_type)}</p>` : ""}
+          ${data.budget_range ? `<p><strong>Budget Range:</strong> ${escapeHtml(data.budget_range)}</p>` : ""}
           <p><strong>Message:</strong></p>
-          <p>${data.message.replace(/\n/g, "<br>")}</p>
+          <p>${escapeHtml(data.message).replace(/\n/g, "<br>")}</p>
         `,
       }),
     });
 
     if (!adminEmailResponse.ok) {
       const error = await adminEmailResponse.json();
-      throw new Error(`Failed to send admin email: ${JSON.stringify(error)}`);
+      console.error("[Internal] Failed to send admin email:", error.statusCode);
+      throw new Error("Email service unavailable");
     }
 
     console.log("Admin email sent successfully");
@@ -67,24 +80,23 @@ const handler = async (req: Request): Promise<Response> => {
         Authorization: `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: "Kingsley Portfolio <onboarding@resend.dev>",
+        from: "Kingsley Munachi <onboarding@resend.dev>",
         to: [data.email],
         subject: "Thanks for reaching out!",
         html: `
-          <h2>Hi ${data.name},</h2>
+          <h2>Hi ${escapeHtml(data.name)},</h2>
           <p>Thank you for contacting me! I've received your message and will get back to you as soon as possible, typically within 24 hours.</p>
           <p><strong>Your message:</strong></p>
           <p style="background: #f5f5f5; padding: 15px; border-radius: 5px;">
-            ${data.message.replace(/\n/g, "<br>")}
+            ${escapeHtml(data.message).replace(/\n/g, "<br>")}
           </p>
-          <p>Best regards,<br>Kingsley</p>
+          <p>Best regards,<br>Kingsley Munachi</p>
         `,
       }),
     });
 
     if (!userEmailResponse.ok) {
-      const error = await userEmailResponse.json();
-      console.error("Failed to send user confirmation:", error);
+      console.error("[Internal] Failed to send user confirmation");
     } else {
       console.log("User confirmation email sent successfully");
     }
@@ -97,9 +109,20 @@ const handler = async (req: Request): Promise<Response> => {
       },
     });
   } catch (error: any) {
-    console.error("Error in send-contact-email function:", error);
+    console.error("[Internal] Error in send-contact-email:", error);
+    
+    if (error instanceof z.ZodError) {
+      return new Response(
+        JSON.stringify({ error: "Invalid input data" }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
+    
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ error: "Failed to send email" }),
       {
         status: 500,
         headers: { "Content-Type": "application/json", ...corsHeaders },

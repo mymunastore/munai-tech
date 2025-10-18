@@ -1,9 +1,19 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { z } from "https://deno.land/x/zod@v3.22.4/mod.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
+
+const messageSchema = z.object({
+  role: z.enum(["user", "assistant", "system"]),
+  content: z.string().trim().min(1).max(10000),
+});
+
+const chatRequestSchema = z.object({
+  messages: z.array(messageSchema).min(1).max(50),
+});
 
 serve(async (req) => {
   if (req.method === "OPTIONS") {
@@ -11,7 +21,8 @@ serve(async (req) => {
   }
 
   try {
-    const { messages } = await req.json();
+    const requestData = await req.json();
+    const { messages } = chatRequestSchema.parse(requestData);
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     
     if (!LOVABLE_API_KEY) {
@@ -74,8 +85,7 @@ Keep responses clear, friendly, and professional. If someone wants to hire Kings
           { status: 402, headers: { ...corsHeaders, "Content-Type": "application/json" } }
         );
       }
-      const errorText = await response.text();
-      console.error("AI gateway error:", response.status, errorText);
+      console.error("[Internal] AI gateway error:", response.status);
       return new Response(
         JSON.stringify({ error: "AI service error" }),
         { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
@@ -86,9 +96,17 @@ Keep responses clear, friendly, and professional. If someone wants to hire Kings
       headers: { ...corsHeaders, "Content-Type": "text/event-stream" },
     });
   } catch (error) {
-    console.error("Chat error:", error);
+    console.error("[Internal] Chat error:", error);
+    
+    if (error instanceof z.ZodError) {
+      return new Response(
+        JSON.stringify({ error: "Invalid message format" }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+    
     return new Response(
-      JSON.stringify({ error: error instanceof Error ? error.message : "Unknown error" }),
+      JSON.stringify({ error: "Failed to process chat request" }),
       { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   }

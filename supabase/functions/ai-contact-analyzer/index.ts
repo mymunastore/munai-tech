@@ -1,10 +1,19 @@
 import "https://deno.land/x/xhr@0.1.0/mod.ts";
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { z } from "https://deno.land/x/zod@v3.22.4/mod.ts";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
+
+const contactSchema = z.object({
+  name: z.string().trim().min(1).max(100),
+  email: z.string().email().max(255),
+  message: z.string().trim().min(10).max(5000),
+  projectType: z.string().trim().max(100).optional(),
+  budget: z.string().trim().max(100).optional(),
+});
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -12,7 +21,8 @@ serve(async (req) => {
   }
 
   try {
-    const { name, email, message, projectType, budget } = await req.json();
+    const requestData = await req.json();
+    const { name, email, message, projectType, budget } = contactSchema.parse(requestData);
     
     const OPENAI_API_KEY = Deno.env.get('OPENAI_API_KEY');
     if (!OPENAI_API_KEY) {
@@ -58,8 +68,8 @@ Respond ONLY with valid JSON.`;
     const data = await response.json();
     
     if (!response.ok) {
-      console.error('OpenAI API error:', data);
-      throw new Error(data.error?.message || 'OpenAI API request failed');
+      console.error('[Internal] OpenAI API error:', response.status, data.error?.code);
+      throw new Error('AI analysis service unavailable');
     }
 
     const aiResponse = data.choices?.[0]?.message?.content;
@@ -84,9 +94,20 @@ Respond ONLY with valid JSON.`;
       { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
     );
   } catch (error) {
-    console.error('Error in ai-contact-analyzer:', error);
+    console.error('[Internal] Error in ai-contact-analyzer:', error);
+    
+    if (error instanceof z.ZodError) {
+      return new Response(
+        JSON.stringify({ error: 'Invalid input data' }),
+        {
+          status: 400,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        }
+      );
+    }
+    
     return new Response(
-      JSON.stringify({ error: error instanceof Error ? error.message : 'Unknown error' }),
+      JSON.stringify({ error: 'Failed to process request' }),
       {
         status: 500,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
