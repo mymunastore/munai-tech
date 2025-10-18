@@ -6,7 +6,7 @@ const StatsSection = () => {
   const stats = [
     {
       icon: Code2,
-      value: 50,
+      value: 40,
       suffix: "+",
       label: "Projects Completed",
       color: "from-blue-500 to-cyan-500"
