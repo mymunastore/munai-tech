@@ -4,21 +4,21 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-primary text-primary-foreground py-12 border-t border-border">
+    <footer className="bg-gradient-to-br from-blue-900 via-blue-800 to-cyan-900 text-white py-12 border-t border-cyan-700/30">
       <div className="container px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           {/* Brand */}
           <div>
             <div className="flex flex-col gap-2 mb-4">
               <div className="flex items-center gap-2">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-accent to-primary/80 flex items-center justify-center text-primary-foreground font-bold text-lg">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-cyan-500/50">
                   M
                 </div>
                 <span className="font-bold text-xl">MunAiTech</span>
               </div>
-              <span className="text-xs text-primary-foreground/60">A 15071995 LLC Company • Kentucky, USA</span>
+              <span className="text-xs text-white/60">A 15071995 LLC Company • Kentucky, USA</span>
             </div>
-            <p className="text-primary-foreground/70 text-sm leading-relaxed">
+            <p className="text-white/70 text-sm leading-relaxed">
               AI Web App Designer & Full-Stack Developer specializing in TypeScript, React, and AI-powered solutions.
             </p>
           </div>
@@ -31,7 +31,7 @@ const Footer = () => {
                 <li key={link}>
                   <a
                     href={`#${link.toLowerCase().replace(" ", "")}`}
-                    className="text-primary-foreground/70 hover:text-accent transition-colors"
+                    className="text-white/70 hover:text-cyan-300 transition-colors"
                   >
                     {link}
                   </a>
@@ -57,9 +57,9 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className="w-10 h-10 rounded-lg bg-primary-foreground/10 hover:bg-accent/20 flex items-center justify-center transition-colors group"
+                  className="w-10 h-10 rounded-lg bg-white/10 hover:bg-cyan-500/20 border border-white/10 hover:border-cyan-400/40 flex items-center justify-center transition-colors group"
                 >
-                  <social.icon className="w-5 h-5 text-primary-foreground/70 group-hover:text-accent transition-colors" />
+                  <social.icon className="w-5 h-5 text-white/70 group-hover:text-cyan-300 transition-colors" />
                 </a>
               ))}
             </div>
@@ -67,7 +67,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom */}
-        <div className="pt-8 border-t border-primary-foreground/10 text-center text-sm text-primary-foreground/60">
+        <div className="pt-8 border-t border-white/10 text-center text-sm text-white/60">
           <p>© {currentYear} MunAiTech (15071995 LLC). All rights reserved.</p>
         </div>
       </div>
