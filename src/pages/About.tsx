@@ -200,9 +200,24 @@ const About = () => {
                       <GraduationCap className="w-6 h-6 text-primary" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="font-bold text-lg mb-1">Bachelor of Science in Computer Science</h3>
-                      <p className="text-muted-foreground mb-2">University of Nigeria, Nsukka</p>
-                      <p className="text-sm text-muted-foreground">Specialized in Artificial Intelligence and Software Engineering</p>
+                      <h3 className="font-bold text-lg mb-1">Bachelor of Science (BSc)</h3>
+                      <p className="text-muted-foreground mb-2">University of Calabar</p>
+                      <p className="text-sm text-muted-foreground">Calabar, Cross River State, Nigeria</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardContent className="p-6">
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <GraduationCap className="w-6 h-6 text-primary" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-bold text-lg mb-1">Diploma</h3>
+                      <p className="text-muted-foreground mb-2">Temple Gate Polytechnic</p>
+                      <p className="text-sm text-muted-foreground">Aba, Abia State, Nigeria</p>
                     </div>
                   </div>
                 </CardContent>
@@ -221,6 +236,7 @@ const About = () => {
                         <li>• Google Cloud Professional Developer</li>
                         <li>• Microsoft Azure AI Engineer</li>
                         <li>• Meta React Advanced Certification</li>
+                        <li>• Advanced UI/UX Design Specialization</li>
                       </ul>
                     </div>
                   </div>

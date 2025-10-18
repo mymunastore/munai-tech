@@ -44,8 +44,8 @@ const Resume = () => {
             <CardContent className="p-8 md:p-12">
               {/* Header */}
               <div className="mb-8 pb-8 border-b">
-                <h1 className="text-4xl font-bold mb-2">MunAiTech</h1>
-                <p className="text-xl text-muted-foreground mb-4">AI Web App Designer & Full-Stack Developer | A 15071995 LLC Company</p>
+                <h1 className="text-4xl font-bold mb-2">Kingsley Munachi</h1>
+                <p className="text-xl text-muted-foreground mb-4">Senior Web Designer & AI Full-Stack App Developer</p>
                 <div className="flex flex-wrap gap-4 text-sm">
                   <div className="flex items-center gap-2">
                      <Mail className="h-4 w-4" />
@@ -74,10 +74,10 @@ const Resume = () => {
               <section className="mb-8">
                 <h2 className="text-2xl font-bold mb-4">Professional Summary</h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  Innovative AI Web App Designer and Full-Stack Developer specializing in building intelligent, scalable web applications 
-                  with cutting-edge technologies. Expert in TypeScript, React, and AI integration with proven success in delivering 
-                  18+ production-grade applications across SaaS, fintech, e-commerce, and enterprise sectors. Passionate about 
-                  leveraging AI to create transformative digital experiences that solve real-world problems.
+                  Innovative Senior Web Designer and AI Full-Stack App Developer specializing in building intelligent, scalable web applications 
+                  with cutting-edge technologies. Expert in TypeScript, React, modern design systems, and AI integration with proven success 
+                  in delivering 50+ production-grade applications across SaaS, fintech, e-commerce, and enterprise sectors. Passionate about 
+                  blending design precision with powerful technology to create transformative digital experiences that solve real-world problems.
                 </p>
               </section>
 
@@ -90,22 +90,25 @@ const Resume = () => {
                 <div className="space-y-6">
                   <div>
                     <h3 className="text-xl font-semibold">Independent Full Stack Developer & AI Solutions Architect</h3>
-                    <p className="text-muted-foreground">Freelance • 2023 - Present</p>
+                    <p className="text-muted-foreground">Freelance • 2020 - Present</p>
                     <ul className="mt-2 space-y-2 list-disc list-inside text-muted-foreground">
-                      <li>Developed 18+ production-ready applications using TypeScript, React, and AI technologies</li>
+                      <li>Developed 50+ production-ready applications using TypeScript, React, and AI technologies</li>
+                      <li>Designed pixel-perfect UI/UX for enterprise clients with 99% client satisfaction rate</li>
                       <li>Built consulting SaaS platform with client management, booking systems, and analytics</li>
                       <li>Created AI-powered meeting notes app with automatic transcription and action item extraction</li>
                       <li>Designed luxury accommodation booking platform with virtual tours and payment integration</li>
                       <li>Developed financial management suite with expense tracking and budget optimization</li>
                       <li>Architected enterprise audit and compliance management system for regulatory tracking</li>
+                      <li>Led complete brand identity and web design projects for 100+ clients worldwide</li>
                     </ul>
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold">Web Application Developer</h3>
-                    <p className="text-muted-foreground">Rork Technologies • 2022 - 2023</p>
+                    <h3 className="text-xl font-semibold">Senior Web Designer & Developer</h3>
+                    <p className="text-muted-foreground">Rork Technologies • 2019 - 2020</p>
                     <ul className="mt-2 space-y-2 list-disc list-inside text-muted-foreground">
-                      <li>Led development of airline booking and management system with real-time flight tracking</li>
+                      <li>Led UI/UX design and development of airline booking and management system</li>
                       <li>Built food delivery marketplace connecting 50+ restaurants with 500+ customers</li>
+                      <li>Created comprehensive design systems and component libraries</li>
                       <li>Implemented secure account recovery system with multi-factor authentication</li>
                       <li>Optimized mobile app performance increasing user retention by 35%</li>
                     </ul>
@@ -131,14 +134,19 @@ const Resume = () => {
                 </h2>
                 <div className="space-y-4">
                   <div>
-                    <h3 className="text-xl font-semibold">Bachelor of Science in Computer Science</h3>
-                    <p className="text-muted-foreground">University of Technology • 2016 - 2020</p>
-                    <p className="mt-2 text-muted-foreground">Focus: Software Engineering, AI & Machine Learning</p>
+                    <h3 className="text-xl font-semibold">Bachelor of Science (BSc)</h3>
+                    <p className="text-muted-foreground">University of Calabar • Calabar, Cross River State, Nigeria</p>
+                    <p className="mt-2 text-muted-foreground">Comprehensive foundation in Computer Science and Software Engineering</p>
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold">Advanced AI Development Certification</h3>
-                    <p className="text-muted-foreground">Online Learning Platform • 2023</p>
-                    <p className="mt-2 text-muted-foreground">Specialized in OpenAI API integration and prompt engineering</p>
+                    <h3 className="text-xl font-semibold">Diploma</h3>
+                    <p className="text-muted-foreground">Temple Gate Polytechnic • Aba, Abia State, Nigeria</p>
+                    <p className="mt-2 text-muted-foreground">Technical training in software development and web technologies</p>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold">Professional Certifications</h3>
+                    <p className="text-muted-foreground">Various Platforms • 2020 - 2025</p>
+                    <p className="mt-2 text-muted-foreground">AWS Solutions Architect, Google Cloud Developer, Azure AI Engineer, Meta React Advanced, Advanced UI/UX Design</p>
                   </div>
                 </div>
               </section>
@@ -147,6 +155,10 @@ const Resume = () => {
               <section className="mb-8">
                 <h2 className="text-2xl font-bold mb-4">Technical Skills</h2>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                  <div>
+                    <h4 className="font-semibold mb-2">Design</h4>
+                    <p className="text-sm text-muted-foreground">UI/UX Design, Figma, Adobe XD, Design Systems, Prototyping</p>
+                  </div>
                   <div>
                     <h4 className="font-semibold mb-2">Frontend</h4>
                     <p className="text-sm text-muted-foreground">React, TypeScript, Next.js, Tailwind CSS, HTML5/CSS3</p>
@@ -157,7 +169,7 @@ const Resume = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold mb-2">Database</h4>
-                    <p className="text-sm text-muted-foreground">PostgreSQL, Supabase, Redis, AsyncStorage</p>
+                    <p className="text-sm text-muted-foreground">PostgreSQL, Supabase, MongoDB, Redis</p>
                   </div>
                   <div>
                     <h4 className="font-semibold mb-2">AI & Integration</h4>
@@ -171,6 +183,10 @@ const Resume = () => {
                     <h4 className="font-semibold mb-2">Tools & Platforms</h4>
                     <p className="text-sm text-muted-foreground">Git/GitHub, VS Code, Vercel, Stripe Integration</p>
                   </div>
+                  <div>
+                    <h4 className="font-semibold mb-2">Creative Suite</h4>
+                    <p className="text-sm text-muted-foreground">Photoshop, Illustrator, After Effects</p>
+                  </div>
                 </div>
               </section>
 
@@ -181,12 +197,14 @@ const Resume = () => {
                   Achievements & Highlights
                 </h2>
                 <ul className="space-y-2 text-muted-foreground">
-                  <li>• Successfully delivered 18+ production-ready applications across multiple industries</li>
-                  <li>• All GitHub repositories have at least 1 star, demonstrating code quality and utility</li>
+                  <li>• Successfully delivered 50+ production-ready applications across multiple industries</li>
+                  <li>• 100+ satisfied clients worldwide with 99% success rate</li>
+                  <li>• Expert in blending beautiful design with powerful AI and full-stack technology</li>
+                  <li>• All GitHub repositories demonstrate high code quality and practical utility</li>
                   <li>• Specialized in rapid prototyping and MVP development (30-day launch cycles)</li>
-                  <li>• Expert in AI integration for real-world business applications</li>
-                  <li>• Strong focus on TypeScript and type-safe development practices</li>
-                  <li>• Active contributor to open-source projects on GitHub</li>
+                  <li>• 5+ years of professional experience in web design and AI integration</li>
+                  <li>• Strong focus on TypeScript, design systems, and type-safe development practices</li>
+                  <li>• Active contributor to open-source projects and design communities</li>
                 </ul>
               </section>
             </CardContent>
