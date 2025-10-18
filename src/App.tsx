@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { MunaChat } from "@/components/MunaChat";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { SkipToContent } from "@/components/SkipToContent";
+import { OfflineIndicator } from "@/components/OfflineIndicator";
 import { useWebVitals } from "@/hooks/useWebVitals";
 import { lazy, Suspense } from "react";
 import { Loader2 } from "lucide-react";
@@ -62,6 +63,7 @@ const AppContent = () => {
         </Routes>
       </Suspense>
       <MunaChat />
+      <OfflineIndicator />
     </>
   );
 };

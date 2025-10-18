@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -12,6 +12,10 @@ import { useContactSubmissions, useNewsletterSubscribers, usePageViews, useAnaly
 import { StatsCard } from "@/components/admin/StatsCard";
 import { DataTable, formatDate } from "@/components/admin/DataTable";
 import { ExportButton } from "@/components/admin/ExportButton";
+import { AnalyticsChart } from "@/components/admin/AnalyticsChart";
+import { SearchBar } from "@/components/admin/SearchBar";
+import { StatusBadge } from "@/components/admin/StatusBadge";
+import { useAnalyticsCharts } from "@/hooks/useAnalyticsCharts";
 
 const Admin = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -27,6 +31,35 @@ const Admin = () => {
   const { data: subscribers, isLoading: subscribersLoading } = useNewsletterSubscribers();
   const { data: pageViews, isLoading: pageViewsLoading } = usePageViews();
   const { data: stats } = useAnalyticsStats();
+  const { pageViewsByDay, topPages, contactsByType } = useAnalyticsCharts();
+
+  const [contactSearch, setContactSearch] = useState("");
+  const [subscriberSearch, setSubscriberSearch] = useState("");
+
+  // Filter contacts by search
+  const filteredContacts = useMemo(() => {
+    if (!contacts) return [];
+    if (!contactSearch) return contacts;
+    
+    const search = contactSearch.toLowerCase();
+    return contacts.filter(contact => 
+      contact.name?.toLowerCase().includes(search) ||
+      contact.email?.toLowerCase().includes(search) ||
+      contact.company?.toLowerCase().includes(search)
+    );
+  }, [contacts, contactSearch]);
+
+  // Filter subscribers by search
+  const filteredSubscribers = useMemo(() => {
+    if (!subscribers) return [];
+    if (!subscriberSearch) return subscribers;
+    
+    const search = subscriberSearch.toLowerCase();
+    return subscribers.filter(sub => 
+      sub.name?.toLowerCase().includes(search) ||
+      sub.email?.toLowerCase().includes(search)
+    );
+  }, [subscribers, subscriberSearch]);
 
   useEffect(() => {
     checkAuth();
@@ -237,6 +270,30 @@ const Admin = () => {
               />
             </div>
             
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              <AnalyticsChart 
+                data={pageViewsByDay || []}
+                type="bar"
+                title="Page Views This Week"
+                dataKey="value"
+                nameKey="name"
+              />
+              <AnalyticsChart 
+                data={topPages || []}
+                type="pie"
+                title="Top Pages"
+                dataKey="value"
+                nameKey="name"
+              />
+              <AnalyticsChart 
+                data={contactsByType || []}
+                type="pie"
+                title="Inquiries by Type"
+                dataKey="value"
+                nameKey="name"
+              />
+            </div>
+
             <Card>
               <CardHeader>
                 <CardTitle>Welcome to Admin Dashboard</CardTitle>
@@ -266,9 +323,14 @@ const Admin = () => {
                   />
                 </div>
               </CardHeader>
-              <CardContent>
+              <CardContent className="space-y-4">
+                <SearchBar 
+                  value={contactSearch}
+                  onChange={setContactSearch}
+                  placeholder="Search contacts by name, email, or company..."
+                />
                 <DataTable
-                  data={contacts || []}
+                  data={filteredContacts}
                   isLoading={contactsLoading}
                   columns={[
                     { key: "name", label: "Name" },
@@ -307,14 +369,23 @@ const Admin = () => {
                   />
                 </div>
               </CardHeader>
-              <CardContent>
+              <CardContent className="space-y-4">
+                <SearchBar 
+                  value={subscriberSearch}
+                  onChange={setSubscriberSearch}
+                  placeholder="Search subscribers by name or email..."
+                />
                 <DataTable
-                  data={subscribers || []}
+                  data={filteredSubscribers}
                   isLoading={subscribersLoading}
                   columns={[
                     { key: "name", label: "Name" },
                     { key: "email", label: "Email" },
-                    { key: "status", label: "Status" },
+                    { 
+                      key: "status", 
+                      label: "Status",
+                      render: (value) => <StatusBadge status={value || "active"} />
+                    },
                     { 
                       key: "subscribed_at", 
                       label: "Subscribed",
