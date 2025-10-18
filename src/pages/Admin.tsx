@@ -19,6 +19,10 @@ import { useAnalyticsCharts } from "@/hooks/useAnalyticsCharts";
 import { useKeyboardShortcuts } from "@/hooks/useKeyboardShortcuts";
 import { ContactDetailsModal } from "@/components/admin/ContactDetailsModal";
 import { BatchActions } from "@/components/admin/BatchActions";
+import { TestimonialsTable } from "@/components/admin/TestimonialsTable";
+import { ReceiptsTable } from "@/components/admin/ReceiptsTable";
+import { useTestimonials } from "@/hooks/useTestimonialsData";
+import { useReceipts, useReceiptsStats } from "@/hooks/useReceiptsData";
 
 const Admin = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -35,6 +39,9 @@ const Admin = () => {
   const { data: pageViews, isLoading: pageViewsLoading } = usePageViews();
   const { data: stats } = useAnalyticsStats();
   const { pageViewsByDay, topPages, contactsByType } = useAnalyticsCharts();
+  const { data: testimonials } = useTestimonials();
+  const { data: receipts } = useReceipts();
+  const { data: receiptsStats } = useReceiptsStats();
 
   const [contactSearch, setContactSearch] = useState("");
   const [subscriberSearch, setSubscriberSearch] = useState("");
@@ -62,6 +69,18 @@ const Admin = () => {
       action: () => setSelectedTab("newsletter"),
     },
     {
+      key: "t",
+      ctrl: true,
+      description: "Go to testimonials tab",
+      action: () => setSelectedTab("testimonials"),
+    },
+    {
+      key: "r",
+      ctrl: true,
+      description: "Go to receipts tab",
+      action: () => setSelectedTab("receipts"),
+    },
+    {
       key: "a",
       ctrl: true,
       description: "Go to analytics tab",
@@ -80,7 +99,7 @@ const Admin = () => {
       action: () => {
         toast({
           title: "Keyboard Shortcuts",
-          description: "Ctrl+K: Search | Ctrl+H: Overview | Ctrl+N: Newsletter | Ctrl+A: Analytics",
+          description: "Ctrl+K: Search | Ctrl+H: Overview | Ctrl+N: Newsletter | Ctrl+T: Testimonials | Ctrl+R: Receipts | Ctrl+A: Analytics",
         });
       },
     },
@@ -283,7 +302,7 @@ const Admin = () => {
             <Button 
               onClick={() => toast({
                 title: "Keyboard Shortcuts",
-                description: "Ctrl+K: Search | Ctrl+H: Overview | Ctrl+N: Newsletter | Ctrl+A: Analytics",
+                description: "Ctrl+K: Search | Ctrl+H: Overview | Ctrl+N: Newsletter | Ctrl+T: Testimonials | Ctrl+R: Receipts | Ctrl+A: Analytics",
               })} 
               variant="outline" 
               size="sm"
@@ -302,6 +321,8 @@ const Admin = () => {
             <TabsTrigger value="overview">Overview</TabsTrigger>
             <TabsTrigger value="contacts">Contacts</TabsTrigger>
             <TabsTrigger value="newsletter">Newsletter</TabsTrigger>
+            <TabsTrigger value="testimonials">Testimonials</TabsTrigger>
+            <TabsTrigger value="receipts">Receipts</TabsTrigger>
             <TabsTrigger value="analytics">Analytics</TabsTrigger>
           </TabsList>
 
@@ -330,6 +351,36 @@ const Admin = () => {
                 value={stats?.totalSubscribers || 0}
                 icon={Users}
                 description="Active subscribers"
+              />
+            </div>
+            
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-4">
+              <StatsCard
+                title="Total Testimonials"
+                value={testimonials?.length || 0}
+                icon={Users}
+                description={`${testimonials?.filter(t => t.status === 'pending').length || 0} pending approval`}
+              />
+              <StatsCard
+                title="Total Revenue"
+                value={`₦${receiptsStats?.totalRevenue.toLocaleString() || 0}`}
+                icon={Download}
+                description={`From ${receiptsStats?.paidCount || 0} paid receipts`}
+              />
+              <StatsCard
+                title="Paid Receipts"
+                value={receiptsStats?.paidCount || 0}
+                icon={Eye}
+                description={`${receiptsStats?.pendingCount || 0} pending`}
+              />
+              <StatsCard
+                title="Average Rating"
+                value={testimonials && testimonials.length > 0 
+                  ? (testimonials.reduce((sum, t) => sum + (t.rating || 0), 0) / testimonials.length).toFixed(1)
+                  : "0.0"
+                }
+                icon={Mail}
+                description="Client satisfaction"
               />
             </div>
             
@@ -474,6 +525,60 @@ const Admin = () => {
                     },
                   ]}
                 />
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="testimonials">
+            <Card>
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <CardTitle>Client Testimonials</CardTitle>
+                    <CardDescription>Manage and approve client reviews</CardDescription>
+                  </div>
+                  <ExportButton 
+                    data={testimonials || []} 
+                    filename="client-testimonials"
+                  />
+                </div>
+              </CardHeader>
+              <CardContent>
+                <TestimonialsTable />
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="receipts">
+            <Card>
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <CardTitle>Payment Receipts</CardTitle>
+                    <CardDescription>View and manage generated receipts</CardDescription>
+                  </div>
+                  <ExportButton 
+                    data={receipts || []} 
+                    filename="payment-receipts"
+                  />
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="grid gap-4 md:grid-cols-3 mb-6">
+                  <div className="bg-muted p-4 rounded-lg">
+                    <p className="text-sm text-muted-foreground">Total Revenue</p>
+                    <p className="text-2xl font-bold">₦{receiptsStats?.totalRevenue.toLocaleString() || 0}</p>
+                  </div>
+                  <div className="bg-muted p-4 rounded-lg">
+                    <p className="text-sm text-muted-foreground">Paid</p>
+                    <p className="text-2xl font-bold">{receiptsStats?.paidCount || 0}</p>
+                  </div>
+                  <div className="bg-muted p-4 rounded-lg">
+                    <p className="text-sm text-muted-foreground">Pending</p>
+                    <p className="text-2xl font-bold">{receiptsStats?.pendingCount || 0}</p>
+                  </div>
+                </div>
+                <ReceiptsTable />
               </CardContent>
             </Card>
           </TabsContent>

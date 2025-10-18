@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import { ContactForm } from "@/components/ContactForm";
 import { TestimonialForm } from "@/components/TestimonialForm";
 import { ReceiptGenerator } from "@/components/ReceiptGenerator";
+import { SEO } from "@/components/SEO";
 import { Mail, MapPin, Phone, Star, FileText } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -10,6 +11,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 const Contact = () => {
   return (
     <div className="min-h-screen">
+      <SEO 
+        title="Contact MunAiTech | Submit Review & Generate Receipt"
+        description="Get in touch for project inquiries, submit your client testimonial, or generate a branded payment receipt. Available for remote work worldwide."
+        keywords="contact, get in touch, project inquiry, client review, testimonial, payment receipt, MunAiTech"
+      />
       <Navbar />
       
       {/* Hero Section */}
