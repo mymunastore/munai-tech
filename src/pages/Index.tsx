@@ -13,7 +13,7 @@ import { Helmet } from "react-helmet";
 import Skills from "@/components/Skills";
 import Timeline from "@/components/Timeline";
 import Certifications from "@/components/Certifications";
-import StatsSection from "@/components/StatsSection";
+
 
 const Index = () => {
   return (
@@ -55,7 +55,7 @@ const Index = () => {
       <div className="min-h-screen">
         <Navbar />
         <Hero />
-        <StatsSection />
+        
         <Services />
         <ProjectsShowcase />
         <TechStack />
