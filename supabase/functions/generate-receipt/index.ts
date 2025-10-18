@@ -269,7 +269,7 @@ const generateReceiptHTML = (data: ReceiptData): string => {
     <body>
       <div class="receipt-wrapper">
         <div class="receipt-header">
-          <div class="company-logo">MunAiTech</div>
+          <div class="company-logo">15071995 LLC</div>
           <div class="company-tagline">Professional Digital Solutions</div>
         </div>
 
@@ -341,15 +341,18 @@ const generateReceiptHTML = (data: ReceiptData): string => {
 
         <div class="receipt-footer">
           <div class="company-info">
-            <h4>MunAiTech</h4>
+            <h4>15071995 LLC</h4>
             <div class="contact-details">
+              <strong>Registered Agent:</strong> Northwest Registered Agent LLC<br>
+              <strong>Jurisdiction:</strong> Kentucky<br>
+              <strong>Address:</strong> 212 N. 2nd St., STE 100, Richmond, KY, 40475, United States<br>
+              <br>
               Email: <a href="mailto:info@mymuna.store">info@mymuna.store</a><br>
-              WhatsApp: <a href="https://wa.me/2347062372521">+234 706 237 2521</a><br>
-              Location: Lagos, Nigeria | Remote Services Available
+              WhatsApp: <a href="https://wa.me/2347062372521">+234 706 237 2521</a>
             </div>
           </div>
           <div class="footer-note">
-            This is an official receipt from MunAiTech. Please retain this for your records.<br>
+            This is an official receipt from 15071995 LLC. Please retain this for your records.<br>
             For any inquiries regarding this receipt, please contact us at info@mymuna.store
           </div>
         </div>
@@ -380,7 +383,7 @@ const handler = async (req: Request): Promise<Response> => {
         Authorization: `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: "MunAiTech <onboarding@resend.dev>",
+        from: "15071995 LLC <onboarding@resend.dev>",
         to: ["adigwekingsley8@gmail.com"],
         subject: `Payment Receipt - ${data.receipt_number} (for: ${data.customer_name})`,
         html: receiptHTML,
