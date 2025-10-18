@@ -70,10 +70,10 @@ const Hero = () => {
             {/* Stats */}
             <div className="grid grid-cols-2 gap-4">
             {[
-              { number: "40+", label: "Projects Delivered" },
-              { number: "50+", label: "Happy Clients" },
+              { number: "50+", label: "Projects Delivered" },
+              { number: "100+", label: "Happy Clients" },
               { number: "5+", label: "Years Experience" },
-              { number: "99%", label: "Satisfaction" },
+              { number: "99%", label: "Client Satisfaction" },
             ].map((stat, index) => (
                 <div
                   key={index}

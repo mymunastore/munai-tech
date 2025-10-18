@@ -85,7 +85,7 @@ const BlogPost = () => {
   return (
     <>
       <Helmet>
-        <title>{post.title} - Kingsley Munachi Blog</title>
+        <title>{post.title} - MunAiTech Blog</title>
         <meta name="description" content={post.excerpt} />
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={post.excerpt} />
@@ -98,8 +98,9 @@ const BlogPost = () => {
             "headline": post.title,
             "description": post.excerpt,
             "author": {
-              "@type": "Person",
-              "name": "Kingsley Munachi"
+              "@type": "Organization",
+              "name": "MunAiTech",
+              "legalName": "15071995 LLC"
             },
             "datePublished": post.published_at,
             "keywords": post.tags?.join(", ")

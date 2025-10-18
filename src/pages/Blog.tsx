@@ -43,8 +43,23 @@ const Blog = () => {
   return (
     <>
       <Helmet>
-        <title>Blog & Insights - Kingsley Munachi</title>
-        <meta name="description" content="Thoughts on AI, development, and digital innovation from a full-stack developer specializing in TypeScript, React, and AI-powered solutions." />
+        <title>Blog & Insights - MunAiTech | AI Development Articles</title>
+        <meta name="description" content="Expert insights on AI development, web technologies, and digital innovation. Learn from real-world projects by MunAiTech." />
+        <meta name="keywords" content="AI development, web development, TypeScript, React, AI integration, tech insights" />
+        <link rel="canonical" href="https://yourdomain.com/blog" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Blog",
+            "name": "MunAiTech Blog",
+            "description": "Insights on AI development and web technologies",
+            "publisher": {
+              "@type": "Organization",
+              "name": "MunAiTech",
+              "legalName": "15071995 LLC"
+            }
+          })}
+        </script>
       </Helmet>
       
       <div className="min-h-screen">

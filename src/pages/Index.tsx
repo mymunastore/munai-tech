@@ -13,41 +13,60 @@ import { Helmet } from "react-helmet";
 import Skills from "@/components/Skills";
 import Timeline from "@/components/Timeline";
 import Certifications from "@/components/Certifications";
+import AIRecommendations from "@/components/AIRecommendations";
 
 
 const Index = () => {
   return (
     <>
       <Helmet>
-        <title>Kingsley Munachi - AI Web App Designer & Full-Stack Developer</title>
-        <meta name="description" content="Expert full-stack developer specializing in TypeScript, React, and AI-powered solutions. View my portfolio of innovative web applications." />
-        <meta name="keywords" content="Full-Stack Developer, TypeScript, React, AI Developer, Web Development, Portfolio" />
+        <title>MunAiTech - AI Web App Designer & Full-Stack Development | 15071995 LLC</title>
+        <meta name="description" content="MunAiTech delivers cutting-edge AI-powered web solutions. Expert TypeScript, React & AI development for modern businesses. 50+ projects, 100+ satisfied clients." />
+        <meta name="keywords" content="MunAiTech, AI Development, Full-Stack Developer, TypeScript Expert, React Development, AI Integration, Web Applications, 15071995 LLC" />
         <link rel="canonical" href="https://yourdomain.com" />
         
         {/* Open Graph */}
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Kingsley Munachi - AI Web App Designer & Full-Stack Developer" />
-        <meta property="og:description" content="Expert full-stack developer specializing in TypeScript, React, and AI-powered solutions." />
+        <meta property="og:title" content="MunAiTech - AI Web App Design & Full-Stack Development" />
+        <meta property="og:description" content="Transform your business with AI-powered solutions. 50+ projects delivered with 99% client satisfaction." />
         <meta property="og:url" content="https://yourdomain.com" />
         
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Kingsley Munachi - AI Web App Designer & Full-Stack Developer" />
-        <meta name="twitter:description" content="Expert full-stack developer specializing in TypeScript, React, and AI-powered solutions." />
+        <meta name="twitter:title" content="MunAiTech - AI-Powered Web Development Solutions" />
+        <meta name="twitter:description" content="Expert AI integration, TypeScript & React development. Transform your business with innovative digital solutions." />
         
         {/* Structured Data */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "Person",
-            "name": "Kingsley Munachi",
-            "jobTitle": "AI Web App Designer & Full-Stack Developer",
+            "@type": "Organization",
+            "name": "MunAiTech",
+            "legalName": "15071995 LLC",
+            "description": "AI-powered web development and digital solutions",
             "url": "https://yourdomain.com",
+            "logo": "https://yourdomain.com/logo.png",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Lagos",
+              "addressCountry": "Nigeria"
+            },
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "contactType": "Business",
+              "availableLanguage": ["English"]
+            },
             "sameAs": [
               "https://github.com/mymunastore",
               "https://www.linkedin.com/in/kingsley-munachi-843591244",
               "https://twitter.com/mymunastore"
-            ]
+            ],
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "4.9",
+              "reviewCount": "100",
+              "bestRating": "5"
+            }
           })}
         </script>
       </Helmet>
@@ -64,6 +83,7 @@ const Index = () => {
         <Certifications />
         <ClientLogos />
         <Testimonials />
+        <AIRecommendations />
         <Newsletter />
         <FAQ />
         <CTA />
