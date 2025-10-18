@@ -1,1 +1,4 @@
 project_id = "dyqqcsfoipomlvcxclnq"
+
+[functions.sync-github-data]
+verify_jwt = false

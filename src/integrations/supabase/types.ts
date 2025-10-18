@@ -291,6 +291,171 @@ export type Database = {
         }
         Relationships: []
       }
+      github_activity: {
+        Row: {
+          action: string | null
+          created_at: string | null
+          created_at_github: string
+          event_id: string
+          event_type: string
+          id: string
+          payload: Json | null
+          repo_name: string | null
+          repo_url: string | null
+        }
+        Insert: {
+          action?: string | null
+          created_at?: string | null
+          created_at_github: string
+          event_id: string
+          event_type: string
+          id?: string
+          payload?: Json | null
+          repo_name?: string | null
+          repo_url?: string | null
+        }
+        Update: {
+          action?: string | null
+          created_at?: string | null
+          created_at_github?: string
+          event_id?: string
+          event_type?: string
+          id?: string
+          payload?: Json | null
+          repo_name?: string | null
+          repo_url?: string | null
+        }
+        Relationships: []
+      }
+      github_repositories: {
+        Row: {
+          created_at: string | null
+          created_at_github: string | null
+          description: string | null
+          forks_count: number | null
+          full_name: string
+          homepage: string | null
+          html_url: string
+          id: string
+          is_fork: boolean | null
+          is_private: boolean | null
+          language: string | null
+          name: string
+          open_issues_count: number | null
+          pushed_at: string | null
+          repo_id: number
+          size: number | null
+          stargazers_count: number | null
+          topics: string[] | null
+          updated_at: string | null
+          updated_at_github: string | null
+          watchers_count: number | null
+        }
+        Insert: {
+          created_at?: string | null
+          created_at_github?: string | null
+          description?: string | null
+          forks_count?: number | null
+          full_name: string
+          homepage?: string | null
+          html_url: string
+          id?: string
+          is_fork?: boolean | null
+          is_private?: boolean | null
+          language?: string | null
+          name: string
+          open_issues_count?: number | null
+          pushed_at?: string | null
+          repo_id: number
+          size?: number | null
+          stargazers_count?: number | null
+          topics?: string[] | null
+          updated_at?: string | null
+          updated_at_github?: string | null
+          watchers_count?: number | null
+        }
+        Update: {
+          created_at?: string | null
+          created_at_github?: string | null
+          description?: string | null
+          forks_count?: number | null
+          full_name?: string
+          homepage?: string | null
+          html_url?: string
+          id?: string
+          is_fork?: boolean | null
+          is_private?: boolean | null
+          language?: string | null
+          name?: string
+          open_issues_count?: number | null
+          pushed_at?: string | null
+          repo_id?: number
+          size?: number | null
+          stargazers_count?: number | null
+          topics?: string[] | null
+          updated_at?: string | null
+          updated_at_github?: string | null
+          watchers_count?: number | null
+        }
+        Relationships: []
+      }
+      github_stats: {
+        Row: {
+          avatar_url: string | null
+          bio: string | null
+          blog: string | null
+          company: string | null
+          created_at: string | null
+          followers: number | null
+          following: number | null
+          id: string
+          location: string | null
+          public_gists: number | null
+          total_commits: number | null
+          total_forks: number | null
+          total_repos: number | null
+          total_stars: number | null
+          updated_at: string | null
+          username: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          bio?: string | null
+          blog?: string | null
+          company?: string | null
+          created_at?: string | null
+          followers?: number | null
+          following?: number | null
+          id?: string
+          location?: string | null
+          public_gists?: number | null
+          total_commits?: number | null
+          total_forks?: number | null
+          total_repos?: number | null
+          total_stars?: number | null
+          updated_at?: string | null
+          username: string
+        }
+        Update: {
+          avatar_url?: string | null
+          bio?: string | null
+          blog?: string | null
+          company?: string | null
+          created_at?: string | null
+          followers?: number | null
+          following?: number | null
+          id?: string
+          location?: string | null
+          public_gists?: number | null
+          total_commits?: number | null
+          total_forks?: number | null
+          total_repos?: number | null
+          total_stars?: number | null
+          updated_at?: string | null
+          username?: string
+        }
+        Relationships: []
+      }
       newsletter_subscribers: {
         Row: {
           email: string

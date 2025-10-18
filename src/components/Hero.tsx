@@ -3,10 +3,33 @@ import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
 import heroBg from "@/assets/hero-bg.jpg";
 import profileImage from "@/assets/profile.png";
-
-import { memo } from "react";
+import GitHubStatsDisplay from "./GitHubStatsDisplay";
+import { memo, useEffect } from "react";
+import { syncGitHubData } from "@/hooks/useGitHubData";
+import { useToast } from "./ui/use-toast";
 
 const Hero = memo(() => {
+  const { toast } = useToast();
+
+  // Sync GitHub data on mount
+  useEffect(() => {
+    const syncData = async () => {
+      try {
+        await syncGitHubData();
+        console.log("GitHub data synced successfully");
+      } catch (error) {
+        console.error("Failed to sync GitHub data:", error);
+      }
+    };
+
+    syncData();
+    
+    // Set up periodic sync every 15 minutes
+    const interval = setInterval(syncData, 15 * 60 * 1000);
+    
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
@@ -42,7 +65,7 @@ const Hero = memo(() => {
             </h1>
 
             {/* Subtitle */}
-            <p className="text-lg sm:text-xl text-gray-300 animate-fade-in font-light leading-relaxed">
+            <p className="text-lg sm:text-xl text-gray-300 animate-fade-in font-light leading-relaxed mb-8">
               A senior web designer and AI full-stack app developer. I specialize in crafting intelligent, 
               scalable solutions that blend design precision with cutting-edge technology. 
               Let&apos;s build something extraordinary together.
@@ -70,27 +93,9 @@ const Hero = memo(() => {
               </Link>
             </div>
 
-            {/* Stats */}
-            <div className="grid grid-cols-2 gap-4 sm:gap-6">
-            {[
-              { number: "30+", label: "AI Projects Delivered" },
-              { number: "30+", label: "Enterprise Clients" },
-              { number: "5+", label: "Years of Expertise" },
-              { number: "99%", label: "Success Rate" },
-            ].map((stat, index) => (
-                <div
-                  key={index}
-                  className="group backdrop-blur-sm bg-black/40 rounded-xl p-5 border border-cyan-500/30 hover:border-cyan-400/60 hover:bg-black/60 transition-all duration-300 cursor-default shadow-[0_0_20px_rgba(34,211,238,0.1)] hover:shadow-[0_0_30px_rgba(34,211,238,0.3)]"
-                  style={{ animationDelay: `${index * 100}ms` }}
-                >
-                  <div className="text-3xl sm:text-4xl font-bold text-cyan-400 mb-2 group-hover:scale-110 transition-transform drop-shadow-[0_0_10px_rgba(34,211,238,0.8)]">
-                    {stat.number}
-                  </div>
-                  <div className="text-xs sm:text-sm text-gray-300 font-medium">
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
+            {/* Stats - GitHub Stats */}
+            <div className="space-y-6">
+              <GitHubStatsDisplay />
             </div>
           </div>
 

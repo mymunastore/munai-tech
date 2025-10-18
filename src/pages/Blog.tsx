@@ -14,6 +14,7 @@ import aiInsightsImg from "@/assets/blog/ai-insights.jpg";
 import developmentImg from "@/assets/blog/development.jpg";
 import designImg from "@/assets/blog/design.jpg";
 import insightsImg from "@/assets/blog/insights.jpg";
+import GitHubActivityFeed from "@/components/GitHubActivityFeed";
 
 const Blog = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
@@ -85,15 +86,29 @@ const Blog = () => {
         <Navbar />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-primary/5 to-accent/5">
+      <section className="pt-32 pb-16 bg-gradient-to-br from-black via-gray-900 to-black border-b border-cyan-500/20">
         <div className="container px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-              Blog & Insights
-            </h1>
-            <p className="text-lg text-muted-foreground">
-              Thoughts on AI, development, and digital innovation
-            </p>
+          <div className="max-w-6xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-12">
+              {/* Blog Content */}
+              <div>
+                <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                  Blog & <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-300 bg-clip-text text-transparent">Insights</span>
+                </h1>
+                <p className="text-lg text-gray-300 mb-8">
+                  Thoughts on AI, development, and digital innovation
+                </p>
+              </div>
+
+              {/* GitHub Activity Section */}
+              <div className="backdrop-blur-sm bg-black/40 rounded-xl p-6 border border-cyan-500/30">
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="w-3 h-3 rounded-full bg-cyan-400 animate-pulse" />
+                  <h2 className="text-xl font-bold text-cyan-400">Recent GitHub Activity</h2>
+                </div>
+                <GitHubActivityFeed />
+              </div>
+            </div>
           </div>
         </div>
       </section>
