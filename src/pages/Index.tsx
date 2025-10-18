@@ -16,6 +16,7 @@ import Skills from "@/components/Skills";
 import Timeline from "@/components/Timeline";
 import Certifications from "@/components/Certifications";
 import AIRecommendations from "@/components/AIRecommendations";
+import GitHubRepositories from "@/components/GitHubRepositories";
 
 
 const Index = () => {
@@ -82,6 +83,14 @@ const Index = () => {
         
         <Services />
         <ProjectsShowcase />
+        
+        {/* GitHub Repositories Section */}
+        <section className="py-20 bg-gradient-to-br from-black via-gray-900 to-black border-y border-cyan-500/20">
+          <div className="container px-4">
+            <GitHubRepositories limit={6} showHeader={true} />
+          </div>
+        </section>
+        
         <TechStack />
         <Skills />
         <Timeline />
