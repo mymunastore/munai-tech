@@ -62,7 +62,7 @@ const Testimonials = memo(() => {
 
                 {/* Author Info */}
                 <div className="pt-4 border-t border-border">
-                  <h4 className="font-bold text-foreground">{testimonial.author}</h4>
+                  <h3 className="font-bold text-foreground">{testimonial.author}</h3>
                   <p className="text-sm text-muted-foreground">{testimonial.role}</p>
                 </div>
               </CardContent>
