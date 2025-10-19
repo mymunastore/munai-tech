@@ -9,7 +9,7 @@ interface PerformanceMetric {
 export const usePerformanceMonitoring = () => {
   useEffect(() => {
     // Monitor Core Web Vitals
-    if ('web-vital' in window || typeof window !== 'undefined') {
+    if (typeof window !== 'undefined' && 'PerformanceObserver' in window) {
       const observer = new PerformanceObserver((list) => {
         for (const entry of list.getEntries()) {
           const metric: PerformanceMetric = {
