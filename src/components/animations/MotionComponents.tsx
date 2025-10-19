@@ -14,6 +14,7 @@ export const AnimatedCard = ({ children, delay = 0 }: AnimatedCardProps) => {
       transition={{ duration: 0.4, delay }}
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
+      style={{ willChange: 'transform, opacity' }}
     >
       {children}
     </motion.div>
@@ -26,6 +27,7 @@ export const FadeIn = ({ children, delay = 0 }: AnimatedCardProps) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6, delay }}
+      style={{ willChange: 'opacity' }}
     >
       {children}
     </motion.div>
@@ -45,6 +47,7 @@ export const SlideIn = ({ children, delay = 0, direction = "left" }: AnimatedCar
       initial={{ opacity: 0, ...directionOffset[direction] }}
       animate={{ opacity: 1, x: 0, y: 0 }}
       transition={{ duration: 0.5, delay }}
+      style={{ willChange: 'transform, opacity' }}
     >
       {children}
     </motion.div>
@@ -57,6 +60,7 @@ export const ScaleIn = ({ children, delay = 0 }: AnimatedCardProps) => {
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.4, delay }}
+      style={{ willChange: 'transform, opacity' }}
     >
       {children}
     </motion.div>

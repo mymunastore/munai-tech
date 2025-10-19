@@ -18,7 +18,10 @@ const ScrollReveal = ({ children, className = "", delay = 0 }: ScrollRevealProps
           ? "opacity-100 translate-y-0"
           : "opacity-0 translate-y-10"
       } ${className}`}
-      style={{ transitionDelay: `${delay}ms` }}
+      style={{ 
+        transitionDelay: `${delay}ms`,
+        willChange: isVisible ? 'auto' : 'opacity, transform'
+      }}
     >
       {children}
     </div>
