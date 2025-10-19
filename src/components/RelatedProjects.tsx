@@ -5,6 +5,7 @@ import { Button } from "./ui/button";
 import { ExternalLink, Github } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Skeleton } from "./ui/skeleton";
+import { LazyImage } from "./LazyImage";
 
 interface RelatedProjectsProps {
   currentProjectId: string;
@@ -60,7 +61,7 @@ const RelatedProjects = ({ currentProjectId, category, tags }: RelatedProjectsPr
             <Card key={project.id} className="group overflow-hidden transition-all hover:shadow-xl hover:shadow-primary/5">
               {project.featured_image && (
                 <div className="relative h-48 overflow-hidden">
-                  <img
+                  <LazyImage
                     src={project.featured_image}
                     alt={project.title}
                     className="w-full h-full object-cover transition-transform group-hover:scale-105"

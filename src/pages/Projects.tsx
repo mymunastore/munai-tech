@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, ExternalLink, Github, Filter } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { LazyImage } from "@/components/LazyImage";
 
 const Projects = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
@@ -100,7 +101,7 @@ const Projects = () => {
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
                   <div className="relative overflow-hidden">
-                    <img
+                    <LazyImage
                       src={project.featured_image || "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop"}
                       alt={project.title}
                       className="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-300"

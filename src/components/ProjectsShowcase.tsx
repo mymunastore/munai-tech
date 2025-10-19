@@ -5,6 +5,7 @@ import { Button } from "./ui/button";
 import { ArrowRight, ExternalLink, Github } from "lucide-react";
 import { Link } from "react-router-dom";
 import ScrollReveal from "./ScrollReveal";
+import { LazyImage } from "./LazyImage";
 
 const ProjectsShowcase = () => {
   const { data: projects, isLoading } = useQuery({
@@ -62,7 +63,7 @@ const ProjectsShowcase = () => {
             <ScrollReveal key={project.id} delay={index * 100}>
               <Card className="group hover:shadow-2xl transition-all duration-300 overflow-hidden border-border hover:border-accent/50 hover:-translate-y-2 h-full flex flex-col">
                 <div className="relative overflow-hidden">
-                  <img
+                  <LazyImage
                     src={project.featured_image || "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop"}
                     alt={project.title}
                     className="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-700"
