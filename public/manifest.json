@@ -4,8 +4,8 @@
   "description": "Senior Web Designer & AI Full-Stack Developer Portfolio",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0A0A0A",
-  "theme_color": "#7C3AED",
+  "background_color": "#0A1628",
+  "theme_color": "#06B6D4",
   "orientation": "portrait-primary",
   "icons": [
     {
