@@ -16,7 +16,7 @@ const Footer = () => {
                 </div>
                 <span className="font-bold text-xl">MunAiTech</span>
               </div>
-              <span className="text-xs text-gray-400">A 15071995 LLC Company • Kentucky, USA</span>
+              <span className="text-xs text-gray-300">A 15071995 LLC Company • Kentucky, USA</span>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed">
               AI Web App Designer & Full-Stack Developer specializing in TypeScript, React, and AI-powered solutions.
@@ -67,7 +67,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom */}
-        <div className="pt-8 border-t border-cyan-500/10 text-center text-sm text-gray-500">
+        <div className="pt-8 border-t border-cyan-500/10 text-center text-sm text-gray-400">
           <p>© {currentYear} MunAiTech (15071995 LLC). All rights reserved.</p>
         </div>
       </div>
