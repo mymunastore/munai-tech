@@ -49,6 +49,8 @@ export const LazyImage = ({
       ref={imgRef}
       src={imageSrc}
       alt={alt}
+      width={props.width}
+      height={props.height}
       className={cn(
         "transition-opacity duration-300",
         isLoaded ? "opacity-100" : "opacity-0",
