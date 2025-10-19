@@ -44,6 +44,30 @@ export const LazyImage = ({
     };
   }, [src]);
 
+  const webpSrc = imageSrc.replace(/\.(jpg|jpeg|png)$/i, '.webp');
+  const isWebpSupported = imageSrc !== webpSrc;
+
+  if (isWebpSupported && imageSrc !== placeholderSrc) {
+    return (
+      <picture>
+        <source srcSet={webpSrc} type="image/webp" />
+        <img
+          ref={imgRef}
+          src={imageSrc}
+          alt={alt}
+          className={cn(
+            "transition-opacity duration-300",
+            isLoaded ? "opacity-100" : "opacity-0",
+            className
+          )}
+          onLoad={() => setIsLoaded(true)}
+          loading="lazy"
+          {...props}
+        />
+      </picture>
+    );
+  }
+
   return (
     <img
       ref={imgRef}
