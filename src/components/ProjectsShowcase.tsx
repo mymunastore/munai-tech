@@ -76,15 +76,15 @@ const ProjectsShowcase = memo(() => {
                   {/* Hover Quick Actions */}
                   <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                     {project.live_url && (
-                      <a href={project.live_url} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
-                        <Button size="icon" variant="secondary" className="h-8 w-8 backdrop-blur-sm bg-background/80 hover:bg-primary hover:text-primary-foreground" aria-label="View live project">
+                      <a href={project.live_url} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} aria-label={`View ${project.title} live project`}>
+                        <Button size="icon" variant="secondary" className="h-8 w-8 backdrop-blur-sm bg-background/80 hover:bg-primary hover:text-primary-foreground">
                           <ExternalLink className="h-4 w-4" />
                         </Button>
                       </a>
                     )}
                     {project.github_url && (
-                      <a href={project.github_url} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
-                        <Button size="icon" variant="secondary" className="h-8 w-8 backdrop-blur-sm bg-background/80 hover:bg-primary hover:text-primary-foreground" aria-label="View project on GitHub">
+                      <a href={project.github_url} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} aria-label={`View ${project.title} on GitHub`}>
+                        <Button size="icon" variant="secondary" className="h-8 w-8 backdrop-blur-sm bg-background/80 hover:bg-primary hover:text-primary-foreground">
                           <Github className="h-4 w-4" />
                         </Button>
                       </a>
