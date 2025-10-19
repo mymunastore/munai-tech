@@ -6,24 +6,22 @@ export const usePageTracking = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const trackPageView = async () => {
-      try {
-        // Only track in production
-        if (import.meta.env.DEV) return;
+    // Non-blocking page tracking - fire and forget
+    if (import.meta.env.DEV) return;
 
+    // Use setTimeout to defer tracking after render
+    const timeoutId = setTimeout(async () => {
+      try {
         await supabase.from("page_views").insert({
           page_path: location.pathname,
           referrer: document.referrer || null,
           user_agent: navigator.userAgent,
         });
-      } catch (error) {
+      } catch {
         // Silently fail - don't interrupt user experience
-        if (import.meta.env.DEV) {
-          console.error("Page tracking error:", error);
-        }
       }
-    };
+    }, 0);
 
-    trackPageView();
+    return () => clearTimeout(timeoutId);
   }, [location.pathname]);
 };

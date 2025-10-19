@@ -10,6 +10,7 @@ import { SkipToContent } from "@/components/SkipToContent";
 import { OfflineIndicator } from "@/components/OfflineIndicator";
 import { useWebVitals } from "@/hooks/useWebVitals";
 import { useServiceWorker } from "@/hooks/useServiceWorker";
+import { usePrefetch } from "@/hooks/usePrefetch";
 import { lazy, Suspense } from "react";
 import { Loader2 } from "lucide-react";
 
@@ -29,7 +30,7 @@ const ReceiptPreview = lazy(() => import("./pages/ReceiptPreview"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const LoadingFallback = () => (
-  <div className="min-h-screen flex items-center justify-center bg-background">
+  <div className="loading-spinner min-h-screen flex items-center justify-center bg-background">
     <Loader2 className="h-8 w-8 animate-spin text-primary" />
   </div>
 );
@@ -40,8 +41,9 @@ const queryClient = new QueryClient({
       staleTime: 1000 * 60 * 5, // 5 minutes
       gcTime: 1000 * 60 * 10, // 10 minutes
       refetchOnWindowFocus: false,
-      retry: 2,
-      retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
+      retry: 1, // Reduce retries for faster failure
+      retryDelay: 1000, // Fixed 1s delay for faster recovery
+      networkMode: 'online', // Skip queries when offline
     },
   },
 });
@@ -49,6 +51,7 @@ const queryClient = new QueryClient({
 const AppContent = () => {
   useWebVitals();
   useServiceWorker();
+  usePrefetch();
   
   return (
     <>
