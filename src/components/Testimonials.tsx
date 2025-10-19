@@ -49,7 +49,9 @@ const Testimonials = memo(() => {
           filter: 'status=eq.approved'
         },
         (payload) => {
-          console.log('Testimonial update received:', payload);
+          if (import.meta.env.DEV) {
+            console.log('Testimonial update received:', payload);
+          }
           
           if (payload.eventType === 'INSERT') {
             setTestimonials((prev) => [payload.new as Testimonial, ...prev].slice(0, 6));
@@ -74,9 +76,34 @@ const Testimonials = memo(() => {
       <section id="testimonials" className="py-20 md:py-32 bg-secondary/30">
         <div className="container px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground">
-              Loading testimonials...
-            </h2>
+            <div className="inline-block mb-4">
+              <div className="h-8 w-48 bg-muted rounded-full animate-pulse" />
+            </div>
+            <div className="h-12 w-3/4 mx-auto bg-muted rounded-lg animate-pulse mb-4" />
+            <div className="h-6 w-2/3 mx-auto bg-muted rounded-lg animate-pulse" />
+          </div>
+          <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
+            {[1, 2, 3].map((i) => (
+              <Card key={i} className="animate-pulse">
+                <CardContent className="p-8">
+                  <div className="w-10 h-10 rounded-lg bg-muted mb-6" />
+                  <div className="flex gap-1 mb-4">
+                    {[1, 2, 3, 4, 5].map((j) => (
+                      <div key={j} className="w-4 h-4 bg-muted rounded" />
+                    ))}
+                  </div>
+                  <div className="space-y-2 mb-6">
+                    <div className="h-4 bg-muted rounded w-full" />
+                    <div className="h-4 bg-muted rounded w-full" />
+                    <div className="h-4 bg-muted rounded w-3/4" />
+                  </div>
+                  <div className="pt-4 border-t border-border">
+                    <div className="h-5 bg-muted rounded w-32 mb-2" />
+                    <div className="h-4 bg-muted rounded w-40" />
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>

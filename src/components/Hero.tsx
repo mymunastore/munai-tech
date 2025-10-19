@@ -12,14 +12,22 @@ const Hero = memo(() => {
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
-        <img
-          src={heroBg}
-          alt="AI Technology Background"
-          className="w-full h-full object-cover opacity-20"
-          loading="eager"
-          width="1920"
-          height="1080"
-        />
+        <picture>
+          <source
+            type="image/webp"
+            srcSet={`${heroBg}?format=webp&w=800 800w, ${heroBg}?format=webp&w=1200 1200w, ${heroBg}?format=webp&w=1920 1920w`}
+            sizes="100vw"
+          />
+          <img
+            src={heroBg}
+            alt="AI Technology Background showcasing modern development workspace"
+            className="w-full h-full object-cover opacity-20"
+            loading="eager"
+            fetchPriority="high"
+            width="1920"
+            height="1080"
+          />
+        </picture>
         <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black" />
       </div>
 
@@ -54,20 +62,20 @@ const Hero = memo(() => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start items-center animate-slide-in-right">
-              <Link to="/contact">
+              <Link to="/contact" aria-label="Start your project with Kingsley Munachi">
                 <Button
                   size="lg"
-                  className="bg-cyan-500 hover:bg-cyan-600 text-black shadow-lg shadow-cyan-500/50 hover:shadow-cyan-500/70 transition-all text-base px-8 py-6 group font-semibold"
+                  className="bg-cyan-500 hover:bg-cyan-600 text-black shadow-lg shadow-cyan-500/50 hover:shadow-cyan-500/70 transition-all text-base px-8 py-6 group font-semibold focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2"
                 >
                   Start Your Project
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                 </Button>
               </Link>
-              <Link to="/projects">
+              <Link to="/projects" aria-label="View project portfolio">
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-2 border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 hover:border-cyan-400 backdrop-blur-sm text-base px-8 py-6"
+                  className="border-2 border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 hover:border-cyan-400 backdrop-blur-sm text-base px-8 py-6 focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2"
                 >
                   View Portfolio
                 </Button>
@@ -87,14 +95,22 @@ const Hero = memo(() => {
               <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/30 via-blue-500/20 to-cyan-400/10 rounded-3xl transform rotate-6 blur-2xl animate-pulse"></div>
               <div className="absolute inset-0 bg-gradient-to-tl from-cyan-400/15 to-transparent rounded-3xl transform -rotate-3 blur-xl"></div>
               
-              <img 
-                src={profileImage}
-                alt="Kingsley Munachi - Senior Web Designer & AI Full-Stack Developer"
-                className="relative rounded-3xl shadow-2xl shadow-cyan-500/20 w-full h-auto object-cover border-4 border-cyan-500/30 hover:border-cyan-400/60 transition-all duration-500"
-                loading="eager"
-                width="896"
-                height="1152"
-              />
+              <picture>
+                <source
+                  type="image/webp"
+                  srcSet={`${profileImage}?format=webp&w=400 400w, ${profileImage}?format=webp&w=600 600w, ${profileImage}?format=webp&w=896 896w`}
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+                <img 
+                  src={profileImage}
+                  alt="Kingsley Munachi - Senior Web Designer & AI Full-Stack Developer specializing in modern web applications"
+                  className="relative rounded-3xl shadow-2xl shadow-cyan-500/20 w-full h-auto object-cover border-4 border-cyan-500/30 hover:border-cyan-400/60 transition-all duration-500"
+                  loading="eager"
+                  fetchPriority="high"
+                  width="896"
+                  height="1152"
+                />
+              </picture>
               
               {/* Availability badge */}
               <div className="absolute -bottom-8 -right-8 bg-gradient-to-r from-cyan-500 to-blue-500 text-black px-8 py-4 rounded-2xl shadow-2xl shadow-cyan-500/50 animate-pulse">

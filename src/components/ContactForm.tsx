@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -9,7 +9,8 @@ import { Textarea } from "./ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "./ui/form";
 import { toast } from "sonner";
-import { Send } from "lucide-react";
+import { Send, Loader2 } from "lucide-react";
+import { useDebounce } from "@/hooks/useDebounce";
 
 const contactSchema = z.object({
   name: z.string()
@@ -44,6 +45,7 @@ type ContactFormData = z.infer<typeof contactSchema>;
 
 export const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isValidatingEmail, setIsValidatingEmail] = useState(false);
   
   const form = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
@@ -57,6 +59,28 @@ export const ContactForm = () => {
       message: "",
     },
   });
+
+  // Watch email field for debounced validation
+  const emailValue = form.watch("email");
+  const debouncedEmail = useDebounce(emailValue, 500);
+
+  useEffect(() => {
+    if (debouncedEmail && debouncedEmail.includes('@')) {
+      setIsValidatingEmail(true);
+      // Simulate async email validation
+      const timer = setTimeout(() => {
+        const schema = z.string().email();
+        const result = schema.safeParse(debouncedEmail);
+        if (!result.success) {
+          form.setError("email", { message: "Invalid email format" });
+        } else {
+          form.clearErrors("email");
+        }
+        setIsValidatingEmail(false);
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [debouncedEmail, form]);
 
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
@@ -147,9 +171,19 @@ export const ContactForm = () => {
               <FormItem>
                 <FormLabel>Email *</FormLabel>
                 <FormControl>
-                  <Input type="email" placeholder="john@example.com" {...field} />
+                  <div className="relative">
+                    <Input 
+                      type="email" 
+                      placeholder="john@example.com" 
+                      {...field}
+                      aria-describedby="email-validation"
+                    />
+                    {isValidatingEmail && (
+                      <Loader2 className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 animate-spin text-muted-foreground" />
+                    )}
+                  </div>
                 </FormControl>
-                <FormMessage />
+                <FormMessage id="email-validation" />
               </FormItem>
             )}
           />
@@ -257,11 +291,21 @@ export const ContactForm = () => {
         <Button
           type="submit"
           size="lg"
-          className="w-full md:w-auto"
+          className="w-full md:w-auto focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
           disabled={isSubmitting}
+          aria-label="Submit contact form"
         >
-          {isSubmitting ? "Sending..." : "Send Message"}
-          <Send className="ml-2 h-4 w-4" />
+          {isSubmitting ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" aria-hidden="true" />
+              Sending...
+            </>
+          ) : (
+            <>
+              Send Message
+              <Send className="ml-2 h-4 w-4" aria-hidden="true" />
+            </>
+          )}
         </Button>
       </form>
     </Form>
