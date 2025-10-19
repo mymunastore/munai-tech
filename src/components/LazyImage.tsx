@@ -5,6 +5,8 @@ interface LazyImageProps extends ImgHTMLAttributes<HTMLImageElement> {
   src: string;
   alt: string;
   placeholderSrc?: string;
+  srcSet?: string;
+  sizes?: string;
 }
 
 export const LazyImage = ({ 
@@ -12,6 +14,8 @@ export const LazyImage = ({
   alt, 
   className,
   placeholderSrc = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%23f0f0f0' width='400' height='300'/%3E%3C/svg%3E",
+  srcSet,
+  sizes,
   ...props 
 }: LazyImageProps) => {
   const [imageSrc, setImageSrc] = useState(placeholderSrc);
@@ -48,6 +52,8 @@ export const LazyImage = ({
     <img
       ref={imgRef}
       src={imageSrc}
+      srcSet={srcSet}
+      sizes={sizes}
       alt={alt}
       width={props.width}
       height={props.height}

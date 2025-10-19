@@ -28,6 +28,8 @@ const RelatedProjects = ({ currentProjectId, category, tags }: RelatedProjectsPr
       if (error) throw error;
       return data;
     },
+    staleTime: 1000 * 60 * 15, // 15 minutes - related projects
+    gcTime: 1000 * 60 * 30, // 30 minutes
   });
 
   if (isLoading) {

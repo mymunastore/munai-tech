@@ -6,14 +6,21 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ExternalLink, Github, Calendar, User, Clock } from "lucide-react";
 import ReactMarkdown from "react-markdown";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { lazy, Suspense, useState, useEffect } from "react";
 import SocialShare from "@/components/SocialShare";
 import RelatedProjects from "@/components/RelatedProjects";
 import { Helmet } from "react-helmet";
+import { LazyImage } from "@/components/LazyImage";
+
+// Lazy load syntax highlighter only when needed
+const SyntaxHighlighter = lazy(() =>
+  import("react-syntax-highlighter").then((mod) => ({ default: mod.Prism }))
+);
 
 const ProjectDetail = () => {
   const { slug } = useParams();
+
+  const [syntaxHighlighterLoaded, setSyntaxHighlighterLoaded] = useState(false);
 
   const { data: project, isLoading } = useQuery({
     queryKey: ["project", slug],
@@ -28,7 +35,16 @@ const ProjectDetail = () => {
       if (error) throw error;
       return data;
     },
+    staleTime: 1000 * 60 * 20, // 20 minutes - individual projects
+    gcTime: 1000 * 60 * 60, // 1 hour
   });
+
+  // Only load syntax highlighter if code blocks exist
+  useEffect(() => {
+    if (project?.case_study_content?.includes('```')) {
+      setSyntaxHighlighterLoaded(true);
+    }
+  }, [project]);
 
   const { data: images } = useQuery({
     queryKey: ["project-images", project?.id],
@@ -44,6 +60,8 @@ const ProjectDetail = () => {
       return data;
     },
     enabled: !!project?.id,
+    staleTime: 1000 * 60 * 20, // 20 minutes
+    gcTime: 1000 * 60 * 60, // 1 hour
   });
 
   if (isLoading) {
@@ -95,6 +113,15 @@ const ProjectDetail = () => {
         <meta property="og:title" content={project.title} />
         <meta property="og:description" content={project.description} />
         {project.featured_image && <meta property="og:image" content={project.featured_image} />}
+        {/* Preload featured image for faster LCP */}
+        {project.featured_image && (
+          <link
+            rel="preload"
+            as="image"
+            href={project.featured_image}
+            fetchPriority="high"
+          />
+        )}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -209,10 +236,12 @@ const ProjectDetail = () => {
         <section className="py-8">
           <div className="container px-4">
             <div className="max-w-6xl mx-auto">
-              <img
+              <LazyImage
                 src={project.featured_image}
                 alt={project.title}
                 className="w-full rounded-lg shadow-2xl"
+                width="1200"
+                height="600"
               />
             </div>
           </div>
@@ -245,29 +274,38 @@ const ProjectDetail = () => {
         <section className="py-16">
           <div className="container px-4">
             <div className="max-w-4xl mx-auto prose prose-lg dark:prose-invert">
-              <ReactMarkdown
-                components={{
-                  code({ node, inline, className, children, ...props }: any) {
-                    const match = /language-(\w+)/.exec(className || "");
-                    return !inline && match ? (
-                      <SyntaxHighlighter
-                        style={vscDarkPlus}
-                        language={match[1]}
-                        PreTag="div"
-                        {...props}
-                      >
-                        {String(children).replace(/\n$/, "")}
-                      </SyntaxHighlighter>
-                    ) : (
-                      <code className={className} {...props}>
-                        {children}
-                      </code>
-                    );
-                  },
-                }}
-              >
-                {project.case_study_content}
-              </ReactMarkdown>
+              {syntaxHighlighterLoaded ? (
+                <ReactMarkdown
+                  components={{
+                    code({ node, inline, className, children, ...props }: any) {
+                      const match = /language-(\w+)/.exec(className || "");
+                      return !inline && match ? (
+                        <Suspense fallback={<pre className={className}>{children}</pre>}>
+                          <SyntaxHighlighter
+                            language={match[1]}
+                            PreTag="div"
+                            style={{
+                              'code[class*="language-"]': { color: '#d4d4d4', background: '#1e1e1e' },
+                              'pre[class*="language-"]': { background: '#1e1e1e' },
+                            }}
+                            {...props}
+                          >
+                            {String(children).replace(/\n$/, "")}
+                          </SyntaxHighlighter>
+                        </Suspense>
+                      ) : (
+                        <code className={className} {...props}>
+                          {children}
+                        </code>
+                      );
+                    },
+                  }}
+                >
+                  {project.case_study_content}
+                </ReactMarkdown>
+              ) : (
+                <ReactMarkdown>{project.case_study_content}</ReactMarkdown>
+              )}
             </div>
           </div>
         </section>
@@ -282,10 +320,12 @@ const ProjectDetail = () => {
               <div className="grid md:grid-cols-2 gap-6">
                 {images.map((image) => (
                   <div key={image.id} className="space-y-2">
-                    <img
+                    <LazyImage
                       src={image.image_url}
                       alt={image.caption || project.title}
                       className="w-full rounded-lg shadow-lg"
+                      width="600"
+                      height="400"
                     />
                     {image.caption && (
                       <p className="text-sm text-muted-foreground">{image.caption}</p>

@@ -1,4 +1,5 @@
-const CACHE_NAME = 'munaitech-v1';
+const CACHE_NAME = 'munaitech-v2';
+const IMAGE_CACHE_NAME = 'munaitech-images-v1';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
@@ -22,7 +23,7 @@ self.addEventListener('activate', (event) => {
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames
-          .filter((name) => name !== CACHE_NAME)
+          .filter((name) => name !== CACHE_NAME && name !== IMAGE_CACHE_NAME)
           .map((name) => caches.delete(name))
       );
     })
@@ -34,6 +35,25 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   // Skip cross-origin requests
   if (!event.request.url.startsWith(self.location.origin)) {
+    return;
+  }
+
+  // Special handling for images - use separate cache with stale-while-revalidate
+  if (event.request.destination === 'image') {
+    event.respondWith(
+      caches.open(IMAGE_CACHE_NAME).then((cache) => {
+        return cache.match(event.request).then((cachedResponse) => {
+          const fetchPromise = fetch(event.request).then((networkResponse) => {
+            if (networkResponse && networkResponse.status === 200) {
+              cache.put(event.request, networkResponse.clone());
+            }
+            return networkResponse;
+          }).catch(() => cachedResponse);
+
+          return cachedResponse || fetchPromise;
+        });
+      })
+    );
     return;
   }
 

@@ -22,6 +22,8 @@ const ProjectsShowcase = memo(() => {
       if (error) throw error;
       return data;
     },
+    staleTime: 1000 * 60 * 15, // 15 minutes - featured projects
+    gcTime: 1000 * 60 * 30, // 30 minutes
   });
 
   if (isLoading) {
