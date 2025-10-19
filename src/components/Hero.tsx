@@ -4,30 +4,9 @@ import { Link } from "react-router-dom";
 import heroBg from "@/assets/hero-bg.jpg";
 import profileImage from "@/assets/profile.png";
 import GitHubStatsDisplay from "./GitHubStatsDisplay";
-import { memo, useEffect } from "react";
-import { syncGitHubData } from "@/hooks/useGitHubData";
-import { useToast } from "./ui/use-toast";
+import { memo } from "react";
 
 const Hero = memo(() => {
-  const { toast } = useToast();
-
-  // Sync GitHub data on mount
-  useEffect(() => {
-    const syncData = async () => {
-      try {
-        await syncGitHubData();
-      } catch (error) {
-        console.error("Failed to sync GitHub data:", error);
-      }
-    };
-
-    syncData();
-    
-    // Set up periodic sync every 15 minutes
-    const interval = setInterval(syncData, 15 * 60 * 1000);
-    
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">

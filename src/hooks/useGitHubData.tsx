@@ -53,7 +53,8 @@ export const useGitHubStats = () => {
       if (error) throw error;
       return data as GitHubStats | null;
     },
-    staleTime: 1000 * 60 * 5, // 5 minutes
+    staleTime: 1000 * 60 * 30, // 30 minutes
+    gcTime: 1000 * 60 * 60, // 1 hour
   });
 };
 
@@ -70,7 +71,8 @@ export const useGitHubRepositories = (limit = 10) => {
       if (error) throw error;
       return data as GitHubRepository[];
     },
-    staleTime: 1000 * 60 * 5, // 5 minutes
+    staleTime: 1000 * 60 * 30, // 30 minutes
+    gcTime: 1000 * 60 * 60, // 1 hour
   });
 };
 
@@ -87,7 +89,8 @@ export const useGitHubActivity = (limit = 10) => {
       if (error) throw error;
       return data as GitHubActivity[];
     },
-    staleTime: 1000 * 60 * 5, // 5 minutes
+    staleTime: 1000 * 60 * 30, // 30 minutes
+    gcTime: 1000 * 60 * 60, // 1 hour
   });
 };
 

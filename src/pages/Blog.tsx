@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { format } from "date-fns";
 import { Helmet } from "react-helmet";
+import { LazyImage } from "@/components/LazyImage";
 import aiInsightsImg from "@/assets/blog/ai-insights.jpg";
 import developmentImg from "@/assets/blog/development.jpg";
 import designImg from "@/assets/blog/design.jpg";
@@ -56,6 +57,8 @@ const Blog = () => {
       if (error) throw error;
       return data;
     },
+    staleTime: 1000 * 60 * 5, // 5 minutes
+    gcTime: 1000 * 60 * 15, // 15 minutes
   });
 
   const categories = ["all", "ai", "development", "design", "insights"];
@@ -169,10 +172,12 @@ const Blog = () => {
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
                   <div className="relative overflow-hidden">
-                    <img
+                    <LazyImage
                       src={post.featured_image || getCategoryImage(post.category)}
                       alt={post.title}
                       className="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-300"
+                      width={400}
+                      height={224}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>

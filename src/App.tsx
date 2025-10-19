@@ -9,6 +9,7 @@ import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { SkipToContent } from "@/components/SkipToContent";
 import { OfflineIndicator } from "@/components/OfflineIndicator";
 import { useWebVitals } from "@/hooks/useWebVitals";
+import { useServiceWorker } from "@/hooks/useServiceWorker";
 import { lazy, Suspense } from "react";
 import { Loader2 } from "lucide-react";
 
@@ -39,12 +40,15 @@ const queryClient = new QueryClient({
       staleTime: 1000 * 60 * 5, // 5 minutes
       gcTime: 1000 * 60 * 10, // 10 minutes
       refetchOnWindowFocus: false,
+      retry: 2,
+      retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
     },
   },
 });
 
 const AppContent = () => {
   useWebVitals();
+  useServiceWorker();
   
   return (
     <>
