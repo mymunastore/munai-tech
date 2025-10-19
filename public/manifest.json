@@ -1,29 +1,12 @@
 {
-  "name": "Kingsley Munachi - AI Full-Stack Developer",
-  "short_name": "MunAiTech",
-  "description": "Senior Web Designer & AI Full-Stack App Developer with 5+ years of experience. Specializing in React, TypeScript, AI integration, and custom SaaS development.",
+  "name": "Kingsley Munachi - Portfolio",
+  "short_name": "KM Portfolio",
+  "description": "Senior Web Designer & AI Full-Stack Developer Portfolio",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0A1628",
   "theme_color": "#06B6D4",
   "orientation": "portrait-primary",
-  "categories": ["business", "productivity", "portfolio"],
-  "shortcuts": [
-    {
-      "name": "Projects",
-      "short_name": "Projects",
-      "description": "View my project portfolio",
-      "url": "/projects",
-      "icons": [{ "src": "/placeholder.svg", "sizes": "192x192" }]
-    },
-    {
-      "name": "Contact",
-      "short_name": "Contact",
-      "description": "Get in touch",
-      "url": "/contact",
-      "icons": [{ "src": "/placeholder.svg", "sizes": "192x192" }]
-    }
-  ],
   "icons": [
     {
       "src": "/favicon.ico",

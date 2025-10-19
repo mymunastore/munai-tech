@@ -144,5 +144,3 @@ const Index = () => {
     </>;
 };
 export default Index;
-
-const baseUrl = import.meta.env.VITE_BASE_URL || "https://kingsleymunachi.lovable.app";

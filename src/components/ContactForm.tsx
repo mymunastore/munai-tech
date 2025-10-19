@@ -12,10 +12,6 @@ import { toast } from "sonner";
 import { Send, Loader2 } from "lucide-react";
 import { useDebounce } from "@/hooks/useDebounce";
 
-const RATE_LIMIT_KEY = "contact_form_submissions";
-const RATE_LIMIT_MAX = 5;
-const RATE_LIMIT_WINDOW = 60 * 60 * 1000; // 1 hour
-
 const contactSchema = z.object({
   name: z.string()
     .min(2, "Name must be at least 2 characters")
@@ -87,18 +83,6 @@ export const ContactForm = () => {
   }, [debouncedEmail, form]);
 
   const onSubmit = async (data: ContactFormData) => {
-    // Rate limiting check
-    const submissions = JSON.parse(localStorage.getItem(RATE_LIMIT_KEY) || "[]");
-    const now = Date.now();
-    const recentSubmissions = submissions.filter((time: number) => now - time < RATE_LIMIT_WINDOW);
-    
-    if (recentSubmissions.length >= RATE_LIMIT_MAX) {
-      toast.error("Too many submissions", {
-        description: "Please wait before submitting again. Maximum 5 submissions per hour.",
-      });
-      return;
-    }
-
     setIsSubmitting(true);
     try {
       // AI Analysis of the submission
@@ -144,10 +128,6 @@ export const ContactForm = () => {
       if (emailError && import.meta.env.DEV) {
         console.error("Email send error:", emailError);
       }
-
-      // Update rate limit
-      recentSubmissions.push(now);
-      localStorage.setItem(RATE_LIMIT_KEY, JSON.stringify(recentSubmissions));
 
       toast.success("Message sent successfully!", {
         description: "I'll get back to you as soon as possible.",

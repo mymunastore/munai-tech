@@ -20,12 +20,12 @@ export default defineConfig(({ mode }) => ({
       output: {
         manualChunks: {
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
-          'ui-vendor': ['framer-motion', '@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu', '@radix-ui/react-tabs'],
+          'ui-vendor': ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu', '@radix-ui/react-tabs'],
           'query-vendor': ['@tanstack/react-query'],
           'chart-vendor': ['recharts'],
         },
       },
     },
-    chunkSizeWarningLimit: 1000, // Warn if chunks exceed 1MB
+    chunkSizeWarningLimit: 1000,
   },
 }));
