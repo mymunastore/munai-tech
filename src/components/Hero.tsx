@@ -49,7 +49,7 @@ const Hero = memo(() => {
               Welcome to my digital workspace.
               <br />
               <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-300 bg-clip-text text-transparent animate-gradient-shift bg-[length:200%_auto] drop-shadow-[0_0_30px_rgba(34,211,238,0.5)]">
-                I&apos;m Kingsley Munachi
+                I&apos;m Kingsley
               </span>
             </h1>
 
