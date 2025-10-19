@@ -1,3 +1,4 @@
+import { memo } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -5,7 +6,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-const FAQ = () => {
+const FAQ = memo(() => {
   const faqs = [
     {
       question: "What is your typical project timeline?",
@@ -86,6 +87,8 @@ const FAQ = () => {
       </div>
     </section>
   );
-};
+});
+
+FAQ.displayName = "FAQ";
 
 export default FAQ;

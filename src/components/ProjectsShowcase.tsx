@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent } from "./ui/card";
@@ -7,7 +8,7 @@ import { Link } from "react-router-dom";
 import ScrollReveal from "./ScrollReveal";
 import { LazyImage } from "./LazyImage";
 
-const ProjectsShowcase = () => {
+const ProjectsShowcase = memo(() => {
   const { data: projects, isLoading } = useQuery({
     queryKey: ["featured-projects"],
     queryFn: async () => {
@@ -143,6 +144,8 @@ const ProjectsShowcase = () => {
       </div>
     </section>
   );
-};
+});
+
+ProjectsShowcase.displayName = "ProjectsShowcase";
 
 export default ProjectsShowcase;

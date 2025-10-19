@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Card } from "./ui/card";
@@ -10,7 +11,7 @@ import petalzLogo from "@/assets/clients/petalz-luxe.png";
 import foodieLogo from "@/assets/clients/foodie-connect.png";
 import mercuriaLogo from "@/assets/clients/mercuria-chops.png";
 
-const ClientLogos = () => {
+const ClientLogos = memo(() => {
   const { data: clients } = useQuery({
     queryKey: ["clients"],
     queryFn: async () => {
@@ -77,6 +78,8 @@ const ClientLogos = () => {
       </div>
     </section>
   );
-};
+});
+
+ClientLogos.displayName = "ClientLogos";
 
 export default ClientLogos;

@@ -17,6 +17,7 @@ import Timeline from "@/components/Timeline";
 import Certifications from "@/components/Certifications";
 import AIRecommendations from "@/components/AIRecommendations";
 import GitHubRepositories from "@/components/GitHubRepositories";
+import LazySection from "@/components/LazySection";
 const Index = () => {
   usePageTracking();
   return <>
@@ -74,35 +75,70 @@ const Index = () => {
         <Hero />
         
         <Services />
-        <ProjectsShowcase />
         
-        {/* GitHub Repositories Section */}
-        <section className="py-20 bg-gradient-to-b from-black via-gray-900 to-black border-y border-cyan-500/20">
-          <div className="container px-4">
-            <div className="max-w-6xl mx-auto">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                  Open Source <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Projects</span>
-                </h2>
-                <p className="text-gray-300 max-w-2xl mx-auto">
-                  Explore my latest repositories and contributions on GitHub
-                </p>
+        <LazySection>
+          <ProjectsShowcase />
+        </LazySection>
+        
+        <LazySection>
+          {/* GitHub Repositories Section */}
+          <section className="py-20 bg-gradient-to-b from-black via-gray-900 to-black border-y border-cyan-500/20">
+            <div className="container px-4">
+              <div className="max-w-6xl mx-auto">
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                    Open Source <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Projects</span>
+                  </h2>
+                  <p className="text-gray-300 max-w-2xl mx-auto">
+                    Explore my latest repositories and contributions on GitHub
+                  </p>
+                </div>
+                <GitHubRepositories limit={6} showHeader={false} />
               </div>
-              <GitHubRepositories limit={6} showHeader={false} />
             </div>
-          </div>
-        </section>
+          </section>
+        </LazySection>
         
-        <TechStack />
-        <Skills />
-        <Timeline />
-        <Certifications />
-        <ClientLogos />
-        <Testimonials />
-        <AIRecommendations />
-        <Newsletter />
-        <FAQ />
-        <CTA />
+        <LazySection>
+          <TechStack />
+        </LazySection>
+        
+        <LazySection>
+          <Skills />
+        </LazySection>
+        
+        <LazySection>
+          <Timeline />
+        </LazySection>
+        
+        <LazySection>
+          <Certifications />
+        </LazySection>
+        
+        <LazySection>
+          <ClientLogos />
+        </LazySection>
+        
+        <LazySection>
+          <Testimonials />
+        </LazySection>
+        
+        <LazySection>
+          <AIRecommendations />
+        </LazySection>
+        
+        <LazySection>
+          <Newsletter />
+        </LazySection>
+        
+        <LazySection>
+          <FAQ />
+        </LazySection>
+        
+        <LazySection>
+          <CTA />
+        </LazySection>
+        
         <Footer />
       </main>
     </>;

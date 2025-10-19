@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Progress } from "./ui/progress";
 
 const technologies = [
@@ -9,7 +10,7 @@ const technologies = [
   { name: "AWS", icon: "☁️", level: 85, color: "from-orange-400 to-red-400" },
 ];
 
-const TechStack = () => {
+const TechStack = memo(() => {
   return (
     <section id="tech" className="py-20 md:py-32 bg-secondary/30">
       <div className="container px-4 sm:px-6 lg:px-8">
@@ -56,6 +57,8 @@ const TechStack = () => {
       </div>
     </section>
   );
-};
+});
+
+TechStack.displayName = "TechStack";
 
 export default TechStack;
