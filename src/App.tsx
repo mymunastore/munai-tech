@@ -8,11 +8,14 @@ import { MunaChat } from "@/components/MunaChat";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { SkipToContent } from "@/components/SkipToContent";
 import { OfflineIndicator } from "@/components/OfflineIndicator";
+import { PWAInstallPrompt } from "@/components/PWAInstallPrompt";
 import { useWebVitals } from "@/hooks/useWebVitals";
 import { useServiceWorker } from "@/hooks/useServiceWorker";
 import { usePrefetch } from "@/hooks/usePrefetch";
 import { lazy, Suspense } from "react";
 import { Loader2 } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useLocation } from "react-router-dom";
 
 // Lazy load pages for better performance
 const Index = lazy(() => import("./pages/Index"));
@@ -49,6 +52,7 @@ const queryClient = new QueryClient({
 });
 
 const AppContent = () => {
+  const location = useLocation();
   useWebVitals();
   useServiceWorker();
   usePrefetch();
@@ -56,25 +60,36 @@ const AppContent = () => {
   return (
     <>
       <SkipToContent />
-      <Suspense fallback={<LoadingFallback />}>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/projects/:slug" element={<ProjectDetail />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/:slug" element={<BlogPost />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/leave-review" element={<LeaveReview />} />
-          <Route path="/resume" element={<Resume />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/auth" element={<Auth />} />
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/receipt-preview" element={<ReceiptPreview />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Suspense>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={location.pathname}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.2 }}
+        >
+          <Suspense fallback={<LoadingFallback />}>
+            <Routes location={location}>
+              <Route path="/" element={<Index />} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/projects/:slug" element={<ProjectDetail />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:slug" element={<BlogPost />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/leave-review" element={<LeaveReview />} />
+              <Route path="/resume" element={<Resume />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/auth" element={<Auth />} />
+              <Route path="/admin" element={<Admin />} />
+              <Route path="/receipt-preview" element={<ReceiptPreview />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
+        </motion.div>
+      </AnimatePresence>
       <MunaChat />
       <OfflineIndicator />
+      <PWAInstallPrompt />
     </>
   );
 };

@@ -1,8 +1,8 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
-import heroBg from "@/assets/hero-bg.jpg";
-import profileImage from "@/assets/profile.png";
+import heroBg from "@/assets/hero-bg.webp";
+import profileImage from "@/assets/profile.webp";
 import GitHubStatsDisplay from "./GitHubStatsDisplay";
 import { memo } from "react";
 

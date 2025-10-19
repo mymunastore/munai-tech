@@ -2,13 +2,14 @@ const CACHE_NAME = 'munaitech-v3';
 const IMAGE_CACHE_NAME = 'munaitech-images-v2';
 const API_CACHE_NAME = 'munaitech-api-v1';
 const FONT_CACHE_NAME = 'munaitech-fonts-v1';
+const OFFLINE_PAGE = '/offline.html';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
   '/manifest.json',
   '/favicon.ico',
+  OFFLINE_PAGE,
 ];
-const OFFLINE_PAGE = '/index.html';
 
 // Install event - cache static assets
 self.addEventListener('install', (event) => {
