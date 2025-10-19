@@ -22,7 +22,6 @@ const Blog = lazy(() => import("./pages/Blog"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
 const Contact = lazy(() => import("./pages/Contact"));
 const Resume = lazy(() => import("./pages/Resume"));
-const Calculator = lazy(() => import("./pages/Calculator"));
 const About = lazy(() => import("./pages/About"));
 const Admin = lazy(() => import("./pages/Admin"));
 const Auth = lazy(() => import("./pages/Auth"));
@@ -67,7 +66,6 @@ const AppContent = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/leave-review" element={<LeaveReview />} />
           <Route path="/resume" element={<Resume />} />
-          <Route path="/calculator" element={<Calculator />} />
           <Route path="/about" element={<About />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/admin" element={<Admin />} />

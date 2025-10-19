@@ -43,9 +43,8 @@ const Navbar = () => {
     { name: "Projects", href: "/projects" },
     { name: "Blog", href: "/blog" },
     { name: "Resume", href: "/resume" },
-    { name: "Calculator", href: "/calculator" },
-    { name: "Contact", href: "/contact" },
     { name: "Leave Review", href: "/leave-review" },
+    { name: "Get Quote", href: "/contact" },
   ];
 
   return (

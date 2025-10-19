@@ -17,7 +17,6 @@ export const usePrefetch = () => {
         '/leave-review': () => import('../pages/LeaveReview'),
         '/resume': () => import('../pages/Resume'),
         '/about': () => import('../pages/About'),
-        '/calculator': () => import('../pages/Calculator'),
       };
 
       // Prefetch if route exists
