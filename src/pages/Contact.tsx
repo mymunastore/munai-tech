@@ -1,11 +1,9 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ContactForm } from "@/components/ContactForm";
-import { TestimonialForm } from "@/components/TestimonialForm";
 import { SEO } from "@/components/SEO";
-import { Mail, MapPin, Phone, Star } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const Contact = () => {
   return (
@@ -87,35 +85,12 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* Contact Form with Tabs */}
+            {/* Contact Form */}
             <div className="lg:col-span-2">
               <Card className="bg-black/40 border-cyan-500/20">
                 <CardContent className="p-8">
-                  <Tabs defaultValue="contact" className="w-full">
-                    <TabsList className="grid w-full grid-cols-2 mb-6">
-                      <TabsTrigger value="contact" className="flex items-center gap-2">
-                        <Mail className="h-4 w-4" />
-                        Contact
-                      </TabsTrigger>
-                      <TabsTrigger value="review" className="flex items-center gap-2">
-                        <Star className="h-4 w-4" />
-                        Leave Review
-                      </TabsTrigger>
-                    </TabsList>
-
-                    <TabsContent value="contact">
-                      <h3 className="text-2xl font-bold mb-6 text-white">Send a Message</h3>
-                      <ContactForm />
-                    </TabsContent>
-
-                    <TabsContent value="review">
-                      <h3 className="text-2xl font-bold mb-2 text-white">Share Your Experience</h3>
-                      <p className="text-gray-300 mb-6">
-                        Worked with me? I&apos;d love to hear your feedback!
-                      </p>
-                      <TestimonialForm />
-                    </TabsContent>
-                  </Tabs>
+                  <h3 className="text-2xl font-bold mb-6 text-white">Send a Message</h3>
+                  <ContactForm />
                 </CardContent>
               </Card>
             </div>
