@@ -2,3 +2,6 @@ project_id = "dyqqcsfoipomlvcxclnq"
 
 [functions.sync-github-data]
 verify_jwt = false
+
+[functions.generate-project-images]
+verify_jwt = true

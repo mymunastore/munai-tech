@@ -31,7 +31,7 @@ import Footer from "@/components/Footer";
 
 const Admin = () => {
   const { user, isLoading: authLoading, signOut } = useAuth();
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -135,12 +135,10 @@ const Admin = () => {
   useEffect(() => {
     if (!authLoading) {
       if (!user) {
-        // Redirect to auth page if not logged in
         navigate("/auth");
         return;
       }
       
-      // Check if user has admin role
       const checkAdminStatus = async () => {
         try {
           const { data, error } = await supabase
@@ -153,6 +151,7 @@ const Admin = () => {
           if (error && error.code !== "PGRST116") throw error;
           
           if (!data) {
+            setIsAdmin(false);
             toast({
               title: "Access Denied",
               description: "You don't have admin privileges.",
@@ -165,6 +164,7 @@ const Admin = () => {
           setIsAdmin(true);
         } catch (error) {
           console.error("Admin check failed:", error);
+          setIsAdmin(false);
           toast({
             title: "Error",
             description: "Failed to verify admin status",
@@ -178,12 +178,21 @@ const Admin = () => {
     }
   }, [user, authLoading, navigate, toast]);
 
-  if (authLoading || !isAdmin) {
+  // Show loading state while verifying access
+  if (authLoading || isAdmin === null) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <Loader2 className="h-8 w-8 animate-spin" />
+        <div className="text-center">
+          <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4" />
+          <p className="text-muted-foreground">Verifying access...</p>
+        </div>
       </div>
     );
+  }
+
+  // Prevent rendering if not authorized
+  if (isAdmin === false) {
+    return null;
   }
 
   return (
