@@ -16,7 +16,6 @@ const Hero = memo(() => {
     const syncData = async () => {
       try {
         await syncGitHubData();
-        console.log("GitHub data synced successfully");
       } catch (error) {
         console.error("Failed to sync GitHub data:", error);
       }

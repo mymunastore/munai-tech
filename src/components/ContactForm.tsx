@@ -54,6 +54,7 @@ export const ContactForm = () => {
       });
 
       const aiAnalysis = analysisData || {};
+      
       if (import.meta.env.DEV) {
         console.log('AI Analysis:', aiAnalysis);
       }

@@ -1,5 +1,5 @@
 import { format } from "date-fns";
-import { FileText, Download, Eye, ExternalLink } from "lucide-react";
+import { FileText, Download, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -20,12 +20,10 @@ import {
 } from "@/components/ui/dialog";
 import { useReceipts } from "@/hooks/useReceiptsData";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 export const ReceiptsTable = () => {
   const { data: receipts, isLoading } = useReceipts();
   const [selectedReceipt, setSelectedReceipt] = useState<any>(null);
-  const navigate = useNavigate();
 
   if (isLoading) {
     return <div className="text-center py-8">Loading receipts...</div>;
@@ -46,10 +44,6 @@ export const ReceiptsTable = () => {
       refunded: "destructive",
     };
     return <Badge variant={variants[status] || "default"}>{status}</Badge>;
-  };
-
-  const handleVerify = (verificationHash: string) => {
-    navigate(`/verify-receipt/${verificationHash}`);
   };
 
   return (
@@ -283,16 +277,6 @@ export const ReceiptsTable = () => {
                       )}
                     </DialogContent>
                   </Dialog>
-
-                  {receipt.verification_hash && (
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => handleVerify(receipt.verification_hash)}
-                    >
-                      <ExternalLink className="h-4 w-4" />
-                    </Button>
-                  )}
 
                   <Button variant="ghost" size="sm">
                     <Download className="h-4 w-4" />

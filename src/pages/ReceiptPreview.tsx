@@ -30,7 +30,7 @@ const ReceiptPreview = () => {
     return `₦${amount.toLocaleString('en-NG', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
   };
 
-  const qrCodeUrl = `https://chart.googleapis.com/chart?cht=qr&chs=150x150&chl=${encodeURIComponent(`https://mymuna.store/verify-receipt/${sampleData.verificationHash}`)}`;
+  const qrCodeUrl = `https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=${encodeURIComponent(`Verification: ${sampleData.verificationHash}\nReceipt: ${sampleData.receiptNumber}\nAmount: ${formatCurrency(sampleData.grandTotal)}`)}`;
   const barcodeUrl = `https://barcode.tec-it.com/barcode.ashx?data=${encodeURIComponent(sampleData.receiptNumber)}&code=Code128&translate-esc=on&dpi=96`;
 
   return (
@@ -44,7 +44,7 @@ const ReceiptPreview = () => {
         lineHeight: 1.6,
         color: '#1e293b',
         background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-        padding: '40px 20px',
+        padding: '20px',
         minHeight: '100vh'
       }}>
         <div style={{
@@ -146,7 +146,7 @@ const ReceiptPreview = () => {
               {/* Info Grid */}
               <div style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(2, 1fr)',
+                gridTemplateColumns: window.innerWidth < 768 ? '1fr' : 'repeat(2, 1fr)',
                 gap: '24px',
                 marginBottom: '30px'
               }}>
@@ -437,7 +437,7 @@ const ReceiptPreview = () => {
               {/* Signature and QR Code Section */}
               <div style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(2, 1fr)',
+                gridTemplateColumns: window.innerWidth < 768 ? '1fr' : 'repeat(2, 1fr)',
                 gap: '30px',
                 margin: '30px 0',
                 padding: '24px',
@@ -461,24 +461,39 @@ const ReceiptPreview = () => {
                 <div style={{ textAlign: 'center' }}>
                   <div style={{
                     padding: '20px',
-                    background: '#f8fafc',
-                    borderRadius: '12px'
+                    background: 'white',
+                    borderRadius: '12px',
+                    border: '2px solid #e2e8f0'
                   }}>
                     <h4 style={{
                       fontSize: '12px',
                       color: '#667eea',
                       fontWeight: 700,
-                      marginBottom: '10px',
+                      marginBottom: '12px',
                       textTransform: 'uppercase',
                       letterSpacing: '1px'
-                    }}>Verify Receipt</h4>
-                    <img src={qrCodeUrl} alt="QR Code" width="120" height="120" style={{
-                      border: '4px solid white',
-                      borderRadius: '8px',
-                      boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)'
-                    }} />
-                    <p style={{ fontSize: '10px', color: '#64748b', marginTop: '8px' }}>
-                      Scan to verify authenticity
+                    }}>Verification QR Code</h4>
+                    <div style={{ 
+                      display: 'flex', 
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      minHeight: '200px'
+                    }}>
+                      <img 
+                        src={qrCodeUrl} 
+                        alt="Verification QR Code" 
+                        width="200" 
+                        height="200" 
+                        style={{
+                          border: '4px solid #667eea',
+                          borderRadius: '12px',
+                          boxShadow: '0 4px 12px rgba(102, 126, 234, 0.2)',
+                          background: 'white'
+                        }} 
+                      />
+                    </div>
+                    <p style={{ fontSize: '11px', color: '#64748b', marginTop: '12px', lineHeight: 1.5 }}>
+                      Scan to view receipt details and verify authenticity
                     </p>
                   </div>
                 </div>
