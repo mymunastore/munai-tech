@@ -1,26 +1,88 @@
-import { memo } from "react";
+import { memo, useEffect, useState } from "react";
 import { Card, CardContent } from "./ui/card";
-import { Quote } from "lucide-react";
+import { Quote, Star } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { Button } from "./ui/button";
+import { Link } from "react-router-dom";
 
-const testimonials = [
-  {
-    quote: "Kingsley's expertise in AI integration transformed our operations completely. The custom solution he built increased our efficiency by 300% and gave us a significant competitive edge in our market.",
-    author: "Sarah Johnson",
-    role: "CEO, TechStart Inc.",
-  },
-  {
-    quote: "Outstanding technical expertise and innovative approach. Kingsley delivered a full-stack solution that exceeded our expectations and was completed ahead of schedule. Highly recommend his services.",
-    author: "Michael Chen",
-    role: "Founder, E-commerce Pro",
-  },
-  {
-    quote: "Professional, reliable, and incredibly skilled. Kingsley's AI-powered web application revolutionized our customer service process and the results speak for themselves - 250% increase in efficiency.",
-    author: "Emily Davis",
-    role: "CTO, InnovateCorp",
-  },
-];
+interface Testimonial {
+  id: string;
+  client_name: string;
+  client_title?: string;
+  client_company?: string;
+  testimonial_text: string;
+  rating?: number;
+  created_at: string;
+}
 
 const Testimonials = memo(() => {
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Initial fetch
+    const fetchTestimonials = async () => {
+      const { data, error } = await supabase
+        .from('client_testimonials')
+        .select('*')
+        .eq('status', 'approved')
+        .order('created_at', { ascending: false })
+        .limit(6);
+
+      if (!error && data) {
+        setTestimonials(data);
+      }
+      setIsLoading(false);
+    };
+
+    fetchTestimonials();
+
+    // Subscribe to real-time updates
+    const channel = supabase
+      .channel('testimonials-changes')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'client_testimonials',
+          filter: 'status=eq.approved'
+        },
+        (payload) => {
+          console.log('Testimonial update received:', payload);
+          
+          if (payload.eventType === 'INSERT') {
+            setTestimonials((prev) => [payload.new as Testimonial, ...prev].slice(0, 6));
+          } else if (payload.eventType === 'UPDATE') {
+            setTestimonials((prev) =>
+              prev.map((t) => (t.id === payload.new.id ? payload.new as Testimonial : t))
+            );
+          } else if (payload.eventType === 'DELETE') {
+            setTestimonials((prev) => prev.filter((t) => t.id !== payload.old.id));
+          }
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, []);
+
+  if (isLoading) {
+    return (
+      <section id="testimonials" className="py-20 md:py-32 bg-secondary/30">
+        <div className="container px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground">
+              Loading testimonials...
+            </h2>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section id="testimonials" className="py-20 md:py-32 bg-secondary/30">
       <div className="container px-4 sm:px-6 lg:px-8">
@@ -36,39 +98,72 @@ const Testimonials = memo(() => {
               Working With Me
             </span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
             Real feedback from real clients who have transformed their businesses with my solutions
           </p>
+          
+          {/* Call to Action */}
+          <Link to="/leave-review">
+            <Button size="lg" className="mt-4">
+              <Star className="mr-2 h-5 w-5" />
+              Leave Your Review
+            </Button>
+          </Link>
         </div>
 
         {/* Testimonials Grid */}
-        <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
-          {testimonials.map((testimonial, index) => (
-            <Card
-              key={index}
-              className="group hover:shadow-xl transition-all duration-300 border-border bg-card hover:border-accent/50 relative"
-              style={{ animationDelay: `${index * 150}ms` }}
-            >
-              <CardContent className="p-8">
-                {/* Quote Icon */}
-                <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center mb-6">
-                  <Quote className="w-5 h-5 text-accent" />
-                </div>
+        {testimonials.length > 0 ? (
+          <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
+            {testimonials.map((testimonial, index) => (
+              <Card
+                key={testimonial.id}
+                className="group hover:shadow-xl transition-all duration-300 border-border bg-card hover:border-accent/50 relative"
+                style={{ animationDelay: `${index * 150}ms` }}
+              >
+                <CardContent className="p-8">
+                  {/* Quote Icon */}
+                  <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center mb-6">
+                    <Quote className="w-5 h-5 text-accent" />
+                  </div>
 
-                {/* Testimonial Text */}
-                <p className="text-muted-foreground mb-6 leading-relaxed italic">
-                  "{testimonial.quote}"
-                </p>
+                  {/* Rating */}
+                  {testimonial.rating && (
+                    <div className="flex gap-1 mb-4">
+                      {Array.from({ length: testimonial.rating }).map((_, i) => (
+                        <Star key={i} className="w-4 h-4 fill-accent text-accent" />
+                      ))}
+                    </div>
+                  )}
 
-                {/* Author Info */}
-                <div className="pt-4 border-t border-border">
-                  <h3 className="font-bold text-foreground">{testimonial.author}</h3>
-                  <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+                  {/* Testimonial Text */}
+                  <p className="text-muted-foreground mb-6 leading-relaxed italic line-clamp-6">
+                    "{testimonial.testimonial_text}"
+                  </p>
+
+                  {/* Author Info */}
+                  <div className="pt-4 border-t border-border">
+                    <h3 className="font-bold text-foreground">{testimonial.client_name}</h3>
+                    {testimonial.client_title && testimonial.client_company && (
+                      <p className="text-sm text-muted-foreground">
+                        {testimonial.client_title}, {testimonial.client_company}
+                      </p>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-12">
+            <p className="text-muted-foreground mb-6">No testimonials yet. Be the first to share your experience!</p>
+            <Link to="/leave-review">
+              <Button size="lg">
+                <Star className="mr-2 h-5 w-5" />
+                Leave the First Review
+              </Button>
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );

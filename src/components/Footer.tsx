@@ -1,4 +1,6 @@
-import { Mail, Github, Linkedin, Twitter, MessageCircle } from "lucide-react";
+import { Mail, Github, Linkedin, Twitter, MessageCircle, Star } from "lucide-react";
+import { Button } from "./ui/button";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -6,6 +8,20 @@ const Footer = () => {
   return (
     <footer className="bg-gradient-to-br from-black via-gray-900 to-black text-white py-12 border-t border-cyan-500/20">
       <div className="container px-4 sm:px-6 lg:px-8">
+        {/* CTA Banner */}
+        <div className="mb-12 text-center">
+          <div className="inline-block p-8 rounded-2xl bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/20">
+            <h3 className="text-2xl font-bold mb-3">Worked with me?</h3>
+            <p className="text-gray-400 mb-4">Share your experience and help others discover quality solutions</p>
+            <Link to="/leave-review">
+              <Button size="lg" className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700">
+                <Star className="mr-2 h-5 w-5" />
+                Leave a Review
+              </Button>
+            </Link>
+          </div>
+        </div>
+
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           {/* Brand */}
           <div>

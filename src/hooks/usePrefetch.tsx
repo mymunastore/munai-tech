@@ -14,6 +14,7 @@ export const usePrefetch = () => {
         '/projects': () => import('../pages/Projects'),
         '/blog': () => import('../pages/Blog'),
         '/contact': () => import('../pages/Contact'),
+        '/leave-review': () => import('../pages/LeaveReview'),
         '/resume': () => import('../pages/Resume'),
         '/about': () => import('../pages/About'),
         '/calculator': () => import('../pages/Calculator'),
