@@ -7,35 +7,32 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ExternalLink, Github, Filter } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { LazyImage } from "@/components/LazyImage";
 
 const Projects = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
 
-  // Fetch all projects once - client-side filtering for instant UX
-  const { data: allProjects, isLoading } = useQuery({
-    queryKey: ["projects"],
+  const { data: projects, isLoading } = useQuery({
+    queryKey: ["projects", selectedCategory],
     queryFn: async () => {
-      const { data, error } = await supabase
+      let query = supabase
         .from("projects")
         .select("*")
         .eq("status", "published")
         .order("display_order");
 
+      if (selectedCategory !== "all") {
+        query = query.eq("category", selectedCategory);
+      }
+
+      const { data, error } = await query;
       if (error) throw error;
       return data;
     },
-    staleTime: 1000 * 60 * 10, // 10 minutes
+    staleTime: 1000 * 60 * 10, // 10 minutes - projects rarely change
     gcTime: 1000 * 60 * 30, // 30 minutes
   });
-
-  // Client-side filtering for instant response
-  const projects = useMemo(() => {
-    if (!allProjects) return [];
-    if (selectedCategory === "all") return allProjects;
-    return allProjects.filter(project => project.category === selectedCategory);
-  }, [allProjects, selectedCategory]);
 
   const categories = ["all", "web-development", "ai-integration", "ui-ux-design", "other"];
 

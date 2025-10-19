@@ -2,7 +2,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
-export const useTestimonials = (enabled = true) => {
+export const useTestimonials = () => {
   return useQuery({
     queryKey: ["client-testimonials"],
     queryFn: async () => {
@@ -14,7 +14,6 @@ export const useTestimonials = (enabled = true) => {
       if (error) throw error;
       return data;
     },
-    enabled,
     staleTime: 1000 * 60 * 2, // 2 minutes
     gcTime: 1000 * 60 * 10, // 10 minutes
   });

@@ -35,6 +35,15 @@ const Admin = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
 
+  const { data: contacts, isLoading: contactsLoading } = useContactSubmissions();
+  const { data: subscribers, isLoading: subscribersLoading } = useNewsletterSubscribers();
+  const { data: pageViews, isLoading: pageViewsLoading } = usePageViews();
+  const { data: stats } = useAnalyticsStats();
+  const { pageViewsByDay, topPages, contactsByType } = useAnalyticsCharts();
+  const { data: testimonials } = useTestimonials();
+  const { data: receipts } = useReceipts();
+  const { data: receiptsStats } = useReceiptsStats();
+
   const [contactSearch, setContactSearch] = useState("");
   const [subscriberSearch, setSubscriberSearch] = useState("");
   const [selectedTab, setSelectedTab] = useState("overview");
@@ -42,16 +51,6 @@ const Admin = () => {
   const [detailsOpen, setDetailsOpen] = useState(false);
   const [selectedContactIds, setSelectedContactIds] = useState<string[]>([]);
   const [selectedSubscriberIds, setSelectedSubscriberIds] = useState<string[]>([]);
-
-  // Lazy load data per tab - only fetch when tab is active
-  const { data: contacts, isLoading: contactsLoading } = useContactSubmissions(selectedTab === 'contacts' || selectedTab === 'overview');
-  const { data: subscribers, isLoading: subscribersLoading } = useNewsletterSubscribers(selectedTab === 'newsletter' || selectedTab === 'overview');
-  const { data: pageViews, isLoading: pageViewsLoading } = usePageViews(selectedTab === 'analytics' || selectedTab === 'overview');
-  const { data: stats } = useAnalyticsStats(selectedTab === 'overview');
-  const { pageViewsByDay, topPages, contactsByType } = useAnalyticsCharts(selectedTab === 'overview' || selectedTab === 'analytics');
-  const { data: testimonials } = useTestimonials(selectedTab === 'testimonials' || selectedTab === 'overview');
-  const { data: receipts } = useReceipts(selectedTab === 'receipts' || selectedTab === 'overview');
-  const { data: receiptsStats } = useReceiptsStats(selectedTab === 'receipts' || selectedTab === 'overview');
 
   // Keyboard shortcuts
   const { showShortcutsHelp } = useKeyboardShortcuts([

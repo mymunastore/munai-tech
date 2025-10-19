@@ -1,74 +1,45 @@
 import { useEffect } from 'react';
 
-// Enhanced prefetch routes with multiple strategies
+// Prefetch routes on hover for instant navigation
 export const usePrefetch = () => {
   useEffect(() => {
-    const routeMap: Record<string, () => Promise<any>> = {
-      '/': () => import('../pages/Index'),
-      '/projects': () => import('../pages/Projects'),
-      '/blog': () => import('../pages/Blog'),
-      '/contact': () => import('../pages/Contact'),
-      '/leave-review': () => import('../pages/LeaveReview'),
-      '/resume': () => import('../pages/Resume'),
-      '/about': () => import('../pages/About'),
-    };
+    const prefetchRoute = (href: string) => {
+      // Extract the route path
+      const url = new URL(href, window.location.origin);
+      const path = url.pathname;
 
-    const prefetchedRoutes = new Set<string>();
+      // Map routes to their lazy-loaded chunks
+      const routeMap: Record<string, () => Promise<any>> = {
+        '/': () => import('../pages/Index'),
+        '/projects': () => import('../pages/Projects'),
+        '/blog': () => import('../pages/Blog'),
+        '/contact': () => import('../pages/Contact'),
+        '/leave-review': () => import('../pages/LeaveReview'),
+        '/resume': () => import('../pages/Resume'),
+        '/about': () => import('../pages/About'),
+      };
 
-    const prefetchRoute = (path: string) => {
-      if (prefetchedRoutes.has(path)) return;
+      // Prefetch if route exists
       if (routeMap[path]) {
-        prefetchedRoutes.add(path);
-        routeMap[path]().catch(() => prefetchedRoutes.delete(path));
+        routeMap[path]();
       }
     };
 
-    // Strategy 1: Hover prefetch (high priority)
     const handleMouseOver = (e: MouseEvent) => {
-      const link = (e.target as HTMLElement).closest('a[href^="/"]') as HTMLAnchorElement;
-      if (link) {
-        const url = new URL(link.href, window.location.origin);
-        prefetchRoute(url.pathname);
+      const target = e.target as HTMLElement;
+      const link = target.closest('a[href^="/"]') as HTMLAnchorElement;
+      
+      if (link && !link.hasAttribute('data-prefetched')) {
+        link.setAttribute('data-prefetched', 'true');
+        prefetchRoute(link.href);
       }
     };
 
-    // Strategy 2: Viewport prefetch (medium priority)
-    const observeLinks = () => {
-      const links = document.querySelectorAll('a[href^="/"]');
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const link = entry.target as HTMLAnchorElement;
-            const url = new URL(link.href, window.location.origin);
-            prefetchRoute(url.pathname);
-          }
-        });
-      }, { rootMargin: '50px' });
-
-      links.forEach(link => observer.observe(link));
-      return () => observer.disconnect();
-    };
-
-    // Strategy 3: Idle prefetch for critical routes (low priority)
-    const idlePrefetch = () => {
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(() => {
-          ['/projects', '/contact'].forEach(prefetchRoute);
-        }, { timeout: 2000 });
-      } else {
-        setTimeout(() => {
-          ['/projects', '/contact'].forEach(prefetchRoute);
-        }, 2000);
-      }
-    };
-
+    // Add event listener with passive flag for better scroll performance
     document.addEventListener('mouseover', handleMouseOver, { passive: true });
-    const cleanupObserver = observeLinks();
-    idlePrefetch();
 
     return () => {
       document.removeEventListener('mouseover', handleMouseOver);
-      cleanupObserver();
     };
   }, []);
 };

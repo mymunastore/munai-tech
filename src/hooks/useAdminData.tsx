@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 
-export const useContactSubmissions = (enabled = true) => {
+export const useContactSubmissions = () => {
   return useQuery({
     queryKey: ["contact-submissions"],
     queryFn: async () => {
@@ -13,13 +13,12 @@ export const useContactSubmissions = (enabled = true) => {
       if (error) throw error;
       return data;
     },
-    enabled,
     staleTime: 1000 * 60 * 2, // 2 minutes
     gcTime: 1000 * 60 * 10, // 10 minutes
   });
 };
 
-export const useNewsletterSubscribers = (enabled = true) => {
+export const useNewsletterSubscribers = () => {
   return useQuery({
     queryKey: ["newsletter-subscribers"],
     queryFn: async () => {
@@ -31,13 +30,12 @@ export const useNewsletterSubscribers = (enabled = true) => {
       if (error) throw error;
       return data;
     },
-    enabled,
     staleTime: 1000 * 60 * 2, // 2 minutes
     gcTime: 1000 * 60 * 10, // 10 minutes
   });
 };
 
-export const usePageViews = (enabled = true) => {
+export const usePageViews = () => {
   return useQuery({
     queryKey: ["page-views"],
     queryFn: async () => {
@@ -50,13 +48,12 @@ export const usePageViews = (enabled = true) => {
       if (error) throw error;
       return data;
     },
-    enabled,
     staleTime: 1000 * 60 * 2, // 2 minutes
     gcTime: 1000 * 60 * 10, // 10 minutes
   });
 };
 
-export const useAnalyticsStats = (enabled = true) => {
+export const useAnalyticsStats = () => {
   return useQuery({
     queryKey: ["analytics-stats"],
     queryFn: async () => {
@@ -74,7 +71,6 @@ export const useAnalyticsStats = (enabled = true) => {
         totalSubscribers: subscribersRes.count || 0,
       };
     },
-    enabled,
     staleTime: 1000 * 60 * 2, // 2 minutes
     gcTime: 1000 * 60 * 10, // 10 minutes
   });
