@@ -1,12 +1,26 @@
 import { Mail, Github, Linkedin, Twitter, MessageCircle, Star } from "lucide-react";
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-  return <footer className="bg-gradient-to-br from-black via-gray-900 to-black text-white py-12 border-t border-cyan-500/20">
+
+  return (
+    <footer className="bg-gradient-to-br from-black via-gray-900 to-black text-white py-12 border-t border-cyan-500/20">
       <div className="container px-4 sm:px-6 lg:px-8">
         {/* CTA Banner */}
-        
+        <div className="mb-12 text-center">
+          <div className="inline-block p-8 rounded-2xl bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/20">
+            <h3 className="text-2xl font-bold mb-3">Worked with me?</h3>
+            <p className="text-gray-400 mb-4">Share your experience and help others discover quality solutions</p>
+            <Link to="/leave-review">
+              <Button size="lg" className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700">
+                <Star className="mr-2 h-5 w-5" />
+                Leave a Review
+              </Button>
+            </Link>
+          </div>
+        </div>
 
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           {/* Brand */}
@@ -29,11 +43,16 @@ const Footer = () => {
           <div>
             <h3 className="font-bold mb-4 text-cyan-400">Quick Links</h3>
             <ul className="space-y-2 text-sm">
-              {["Home", "Services", "Tech Stack", "Awards", "Testimonials"].map(link => <li key={link}>
-                  <a href={`#${link.toLowerCase().replace(" ", "")}`} className="text-gray-400 hover:text-cyan-400 transition-colors">
+              {["Home", "Services", "Tech Stack", "Awards", "Testimonials"].map((link) => (
+                <li key={link}>
+                  <a
+                    href={`#${link.toLowerCase().replace(" ", "")}`}
+                    className="text-gray-400 hover:text-cyan-400 transition-colors"
+                  >
                     {link}
                   </a>
-                </li>)}
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -41,29 +60,24 @@ const Footer = () => {
           <div>
             <h3 className="font-bold mb-4 text-cyan-400">Connect</h3>
             <div className="flex gap-4">
-              {[{
-              icon: Mail,
-              href: "mailto:info@mymuna.store",
-              label: "Email"
-            }, {
-              icon: MessageCircle,
-              href: "https://wa.me/2347062372521",
-              label: "WhatsApp"
-            }, {
-              icon: Github,
-              href: "https://github.com/mymunastore",
-              label: "GitHub"
-            }, {
-              icon: Linkedin,
-              href: "https://www.linkedin.com/in/kingsley-munachi-843591244",
-              label: "LinkedIn"
-            }, {
-              icon: Twitter,
-              href: "https://twitter.com/mymunastore",
-              label: "Twitter"
-            }].map(social => <a key={social.label} href={social.href} target="_blank" rel="noopener noreferrer" aria-label={social.label} className="w-10 h-10 rounded-lg bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/20 hover:border-cyan-400/40 flex items-center justify-center transition-colors group">
+              {[
+                { icon: Mail, href: "mailto:info@mymuna.store", label: "Email" },
+                { icon: MessageCircle, href: "https://wa.me/2347062372521", label: "WhatsApp" },
+                { icon: Github, href: "https://github.com/mymunastore", label: "GitHub" },
+                { icon: Linkedin, href: "https://www.linkedin.com/in/kingsley-munachi-843591244", label: "LinkedIn" },
+                { icon: Twitter, href: "https://twitter.com/mymunastore", label: "Twitter" },
+              ].map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.label}
+                  className="w-10 h-10 rounded-lg bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/20 hover:border-cyan-400/40 flex items-center justify-center transition-colors group"
+                >
                   <social.icon className="w-5 h-5 text-gray-400 group-hover:text-cyan-400 transition-colors" />
-                </a>)}
+                </a>
+              ))}
             </div>
           </div>
         </div>
@@ -73,6 +87,8 @@ const Footer = () => {
           <p>© {currentYear} MunAiTech (15071995 LLC). All rights reserved.</p>
         </div>
       </div>
-    </footer>;
+    </footer>
+  );
 };
+
 export default Footer;

@@ -4,6 +4,7 @@ import { Quote, Star } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
+
 interface Testimonial {
   id: string;
   client_name: string;
@@ -13,49 +14,66 @@ interface Testimonial {
   rating?: number;
   created_at: string;
 }
+
 const Testimonials = memo(() => {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     // Initial fetch
     const fetchTestimonials = async () => {
-      const {
-        data,
-        error
-      } = await supabase.from('client_testimonials').select('*').eq('status', 'approved').order('created_at', {
-        ascending: false
-      }).limit(6);
+      const { data, error } = await supabase
+        .from('client_testimonials')
+        .select('*')
+        .eq('status', 'approved')
+        .order('created_at', { ascending: false })
+        .limit(6);
+
       if (!error && data) {
         setTestimonials(data);
       }
       setIsLoading(false);
     };
+
     fetchTestimonials();
 
     // Subscribe to real-time updates
-    const channel = supabase.channel('testimonials-changes').on('postgres_changes', {
-      event: '*',
-      schema: 'public',
-      table: 'client_testimonials',
-      filter: 'status=eq.approved'
-    }, payload => {
-      if (import.meta.env.DEV) {
-        console.log('Testimonial update received:', payload);
-      }
-      if (payload.eventType === 'INSERT') {
-        setTestimonials(prev => [payload.new as Testimonial, ...prev].slice(0, 6));
-      } else if (payload.eventType === 'UPDATE') {
-        setTestimonials(prev => prev.map(t => t.id === payload.new.id ? payload.new as Testimonial : t));
-      } else if (payload.eventType === 'DELETE') {
-        setTestimonials(prev => prev.filter(t => t.id !== payload.old.id));
-      }
-    }).subscribe();
+    const channel = supabase
+      .channel('testimonials-changes')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'client_testimonials',
+          filter: 'status=eq.approved'
+        },
+        (payload) => {
+          if (import.meta.env.DEV) {
+            console.log('Testimonial update received:', payload);
+          }
+          
+          if (payload.eventType === 'INSERT') {
+            setTestimonials((prev) => [payload.new as Testimonial, ...prev].slice(0, 6));
+          } else if (payload.eventType === 'UPDATE') {
+            setTestimonials((prev) =>
+              prev.map((t) => (t.id === payload.new.id ? payload.new as Testimonial : t))
+            );
+          } else if (payload.eventType === 'DELETE') {
+            setTestimonials((prev) => prev.filter((t) => t.id !== payload.old.id));
+          }
+        }
+      )
+      .subscribe();
+
     return () => {
       supabase.removeChannel(channel);
     };
   }, []);
+
   if (isLoading) {
-    return <section id="testimonials" className="py-20 md:py-32 bg-secondary/30">
+    return (
+      <section id="testimonials" className="py-20 md:py-32 bg-secondary/30">
         <div className="container px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="inline-block mb-4">
@@ -64,11 +82,36 @@ const Testimonials = memo(() => {
             <div className="h-12 w-3/4 mx-auto bg-muted rounded-lg animate-pulse mb-4" />
             <div className="h-6 w-2/3 mx-auto bg-muted rounded-lg animate-pulse" />
           </div>
-          
+          <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
+            {[1, 2, 3].map((i) => (
+              <Card key={i} className="animate-pulse">
+                <CardContent className="p-8">
+                  <div className="w-10 h-10 rounded-lg bg-muted mb-6" />
+                  <div className="flex gap-1 mb-4">
+                    {[1, 2, 3, 4, 5].map((j) => (
+                      <div key={j} className="w-4 h-4 bg-muted rounded" />
+                    ))}
+                  </div>
+                  <div className="space-y-2 mb-6">
+                    <div className="h-4 bg-muted rounded w-full" />
+                    <div className="h-4 bg-muted rounded w-full" />
+                    <div className="h-4 bg-muted rounded w-3/4" />
+                  </div>
+                  <div className="pt-4 border-t border-border">
+                    <div className="h-5 bg-muted rounded w-32 mb-2" />
+                    <div className="h-4 bg-muted rounded w-40" />
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
-      </section>;
+      </section>
+    );
   }
-  return <section id="testimonials" className="py-20 md:py-32 bg-secondary/30">
+
+  return (
+    <section id="testimonials" className="py-20 md:py-32 bg-secondary/30">
       <div className="container px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -96,10 +139,14 @@ const Testimonials = memo(() => {
         </div>
 
         {/* Testimonials Grid */}
-        {testimonials.length > 0 ? <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
-            {testimonials.map((testimonial, index) => <Card key={testimonial.id} className="group hover:shadow-xl transition-all duration-300 border-border bg-card hover:border-accent/50 relative" style={{
-          animationDelay: `${index * 150}ms`
-        }}>
+        {testimonials.length > 0 ? (
+          <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
+            {testimonials.map((testimonial, index) => (
+              <Card
+                key={testimonial.id}
+                className="group hover:shadow-xl transition-all duration-300 border-border bg-card hover:border-accent/50 relative"
+                style={{ animationDelay: `${index * 150}ms` }}
+              >
                 <CardContent className="p-8">
                   {/* Quote Icon */}
                   <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center mb-6">
@@ -107,11 +154,13 @@ const Testimonials = memo(() => {
                   </div>
 
                   {/* Rating */}
-                  {testimonial.rating && <div className="flex gap-1 mb-4">
-                      {Array.from({
-                length: testimonial.rating
-              }).map((_, i) => <Star key={i} className="w-4 h-4 fill-accent text-accent" />)}
-                    </div>}
+                  {testimonial.rating && (
+                    <div className="flex gap-1 mb-4">
+                      {Array.from({ length: testimonial.rating }).map((_, i) => (
+                        <Star key={i} className="w-4 h-4 fill-accent text-accent" />
+                      ))}
+                    </div>
+                  )}
 
                   {/* Testimonial Text */}
                   <p className="text-muted-foreground mb-6 leading-relaxed italic line-clamp-6">
@@ -121,13 +170,18 @@ const Testimonials = memo(() => {
                   {/* Author Info */}
                   <div className="pt-4 border-t border-border">
                     <h3 className="font-bold text-foreground">{testimonial.client_name}</h3>
-                    {testimonial.client_title && testimonial.client_company && <p className="text-sm text-muted-foreground">
+                    {testimonial.client_title && testimonial.client_company && (
+                      <p className="text-sm text-muted-foreground">
                         {testimonial.client_title}, {testimonial.client_company}
-                      </p>}
+                      </p>
+                    )}
                   </div>
                 </CardContent>
-              </Card>)}
-          </div> : <div className="text-center py-12">
+              </Card>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-12">
             <p className="text-muted-foreground mb-6">No testimonials yet. Be the first to share your experience!</p>
             <Link to="/leave-review">
               <Button size="lg">
@@ -135,9 +189,13 @@ const Testimonials = memo(() => {
                 Leave the First Review
               </Button>
             </Link>
-          </div>}
+          </div>
+        )}
       </div>
-    </section>;
+    </section>
+  );
 });
+
 Testimonials.displayName = "Testimonials";
+
 export default Testimonials;
