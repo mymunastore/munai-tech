@@ -12,13 +12,32 @@ import { toast } from "sonner";
 import { Send } from "lucide-react";
 
 const contactSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters").max(100),
-  email: z.string().email("Invalid email address").max(255),
-  company: z.string().max(100).optional(),
-  phone: z.string().max(20).optional(),
+  name: z.string()
+    .min(2, "Name must be at least 2 characters")
+    .max(100)
+    .regex(/^[a-zA-Z\s'-]+$/, "Name contains invalid characters")
+    .trim(),
+  email: z.string()
+    .email("Invalid email address")
+    .max(255)
+    .toLowerCase()
+    .trim(),
+  company: z.string()
+    .max(100)
+    .regex(/^[a-zA-Z0-9\s&',.()-]*$/, "Company name contains invalid characters")
+    .trim()
+    .optional(),
+  phone: z.string()
+    .max(20)
+    .regex(/^[0-9+\s()-]*$/, "Phone number contains invalid characters")
+    .trim()
+    .optional(),
   project_type: z.string().optional(),
   budget_range: z.string().optional(),
-  message: z.string().min(10, "Message must be at least 10 characters").max(1000),
+  message: z.string()
+    .min(10, "Message must be at least 10 characters")
+    .max(1000)
+    .trim(),
 });
 
 type ContactFormData = z.infer<typeof contactSchema>;

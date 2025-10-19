@@ -178,6 +178,11 @@ const Blog = () => {
                       className="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-300"
                       width={400}
                       height={224}
+                      srcSet={`
+                        ${post.featured_image || getCategoryImage(post.category)}?w=400 400w,
+                        ${post.featured_image || getCategoryImage(post.category)}?w=800 800w
+                      `}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>

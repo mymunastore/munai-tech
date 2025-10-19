@@ -6,12 +6,15 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calendar, Clock, Tag } from "lucide-react";
 import ReactMarkdown from "react-markdown";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { format } from "date-fns";
-import { useEffect } from "react";
+import { useEffect, lazy, Suspense } from "react";
 import SocialShare from "@/components/SocialShare";
 import { Helmet } from "react-helmet";
+import { LazyImage } from "@/components/LazyImage";
+
+const SyntaxHighlighter = lazy(() => 
+  import("react-syntax-highlighter").then(mod => ({ default: mod.Prism }))
+);
 
 const BlogPost = () => {
   const { slug } = useParams();
@@ -29,6 +32,8 @@ const BlogPost = () => {
       if (error) throw error;
       return data;
     },
+    staleTime: 1000 * 60 * 15, // 15 minutes
+    gcTime: 1000 * 60 * 30, // 30 minutes
   });
 
   useEffect(() => {
@@ -176,10 +181,18 @@ const BlogPost = () => {
         <section className="py-8">
           <div className="container px-4">
             <div className="max-w-4xl mx-auto">
-              <img
+              <LazyImage
                 src={post.featured_image}
                 alt={post.title}
                 className="w-full rounded-lg shadow-2xl"
+                width={1200}
+                height={600}
+                srcSet={`
+                  ${post.featured_image}?w=600 600w,
+                  ${post.featured_image}?w=1200 1200w,
+                  ${post.featured_image}?w=1800 1800w
+                `}
+                sizes="(max-width: 768px) 100vw, 1200px"
               />
             </div>
           </div>
@@ -195,14 +208,30 @@ const BlogPost = () => {
                 code({ node, inline, className, children, ...props }: any) {
                   const match = /language-(\w+)/.exec(className || "");
                   return !inline && match ? (
-                    <SyntaxHighlighter
-                      style={vscDarkPlus}
-                      language={match[1]}
-                      PreTag="div"
-                      {...props}
-                    >
-                      {String(children).replace(/\n$/, "")}
-                    </SyntaxHighlighter>
+                    post.content.includes('```') ? (
+                      <Suspense fallback={<div className="bg-gray-900 p-4 rounded">Loading code...</div>}>
+                        <SyntaxHighlighter
+                          style={{
+                            'code[class*="language-"]': { background: '#1e1e1e', color: '#d4d4d4' },
+                            'pre[class*="language-"]': { background: '#1e1e1e', padding: '1em', borderRadius: '0.5em' },
+                            'comment': { color: '#608b4e' },
+                            'string': { color: '#ce9178' },
+                            'keyword': { color: '#569cd6' },
+                            'function': { color: '#dcdcaa' },
+                            'number': { color: '#b5cea8' },
+                          }}
+                          language={match[1]}
+                          PreTag="div"
+                          {...props}
+                        >
+                          {String(children).replace(/\n$/, "")}
+                        </SyntaxHighlighter>
+                      </Suspense>
+                    ) : (
+                      <code className={className} {...props}>
+                        {children}
+                      </code>
+                    )
                   ) : (
                     <code className={className} {...props}>
                       {children}

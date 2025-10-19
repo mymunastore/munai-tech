@@ -18,8 +18,9 @@ export const usePerformanceMonitoring = () => {
             rating: getRating(entry.name, entry.startTime),
           };
 
-          // Log performance metrics
-          console.log('Performance Metric:', metric);
+          if (import.meta.env.DEV) {
+            console.log('Performance Metric:', metric);
+          }
         }
       });
 
