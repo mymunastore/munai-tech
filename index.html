@@ -14,6 +14,7 @@
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link rel="dns-prefetch" href="https://dyqqcsfoipomlvcxclnq.supabase.co">
+    <link rel="dns-prefetch" href="https://unpkg.com">
     
     <!-- Preconnect for critical resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,13 +24,34 @@
     <!-- Preload critical assets -->
     <link rel="preload" as="image" href="/assets/profile-DdDCnQrp.png" fetchpriority="high">
     <link rel="preload" as="image" href="/assets/hero-bg.jpg" fetchpriority="high">
+    <link rel="preload" as="font" href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hjp-Ek-_EeA.woff2" type="font/woff2" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
     <style>
       /* Critical CSS - inline for faster first paint */
-      body { margin: 0; font-family: system-ui, -apple-system, sans-serif; }
+      * { box-sizing: border-box; }
+      body { 
+        margin: 0; 
+        font-family: Inter, system-ui, -apple-system, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background: #000;
+        color: #fff;
+      }
       #root { min-height: 100vh; }
-      .loading-spinner { display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+      .loading-spinner { 
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        min-height: 100vh;
+        background: linear-gradient(to bottom right, #000, #111, #000);
+      }
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+      .animate-spin {
+        animation: spin 1s linear infinite;
+      }
     </style>
 
     <meta property="og:title" content="Kingsley Munachi - AI-Powered Digital Solutions" />

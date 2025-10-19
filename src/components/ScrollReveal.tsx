@@ -1,5 +1,4 @@
-import { ReactNode } from "react";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { ReactNode, useCallback, useEffect, useRef, useState } from "react";
 
 interface ScrollRevealProps {
   children: ReactNode;
@@ -8,7 +7,35 @@ interface ScrollRevealProps {
 }
 
 const ScrollReveal = ({ children, className = "", delay = 0 }: ScrollRevealProps) => {
-  const { ref, isVisible } = useScrollAnimation();
+  const [isVisible, setIsVisible] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  const handleIntersection = useCallback((entries: IntersectionObserverEntry[]) => {
+    const [entry] = entries;
+    if (entry.isIntersecting && !hasAnimated) {
+      setIsVisible(true);
+      setHasAnimated(true);
+    }
+  }, [hasAnimated]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(handleIntersection, {
+      threshold: 0.1,
+      rootMargin: "50px",
+    });
+
+    const currentRef = ref.current;
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, [handleIntersection]);
 
   return (
     <div
@@ -20,7 +47,7 @@ const ScrollReveal = ({ children, className = "", delay = 0 }: ScrollRevealProps
       } ${className}`}
       style={{ 
         transitionDelay: `${delay}ms`,
-        willChange: isVisible ? 'auto' : 'opacity, transform'
+        willChange: !hasAnimated ? 'opacity, transform' : 'auto'
       }}
     >
       {children}

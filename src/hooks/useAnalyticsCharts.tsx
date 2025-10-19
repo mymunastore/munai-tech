@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { startOfWeek, endOfWeek, eachDayOfInterval, format } from "date-fns";
 
-export const useAnalyticsCharts = () => {
+export const useAnalyticsCharts = (enabled = true) => {
   // Page views by day (last 7 days)
   const { data: pageViewsByDay } = useQuery({
     queryKey: ["analytics-page-views-by-day"],
@@ -31,6 +31,7 @@ export const useAnalyticsCharts = () => {
       
       return grouped;
     },
+    enabled,
   });
 
   // Top pages
@@ -56,6 +57,7 @@ export const useAnalyticsCharts = () => {
         .sort((a, b) => b.value - a.value)
         .slice(0, 5);
     },
+    enabled,
   });
 
   // Contact submissions by type
@@ -77,6 +79,7 @@ export const useAnalyticsCharts = () => {
       return Object.entries(counts)
         .map(([name, value]) => ({ name, value }));
     },
+    enabled,
   });
 
   return {

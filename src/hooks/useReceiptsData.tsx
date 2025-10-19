@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 
-export const useReceipts = () => {
+export const useReceipts = (enabled = true) => {
   return useQuery({
     queryKey: ["payment-receipts"],
     queryFn: async () => {
@@ -13,12 +13,13 @@ export const useReceipts = () => {
       if (error) throw error;
       return data;
     },
+    enabled,
     staleTime: 1000 * 60 * 2, // 2 minutes
     gcTime: 1000 * 60 * 10, // 10 minutes
   });
 };
 
-export const useReceiptsStats = () => {
+export const useReceiptsStats = (enabled = true) => {
   return useQuery({
     queryKey: ["receipts-stats"],
     queryFn: async () => {
@@ -45,6 +46,7 @@ export const useReceiptsStats = () => {
         totalCount: data.length,
       };
     },
+    enabled,
     staleTime: 1000 * 60 * 2, // 2 minutes
     gcTime: 1000 * 60 * 10, // 10 minutes
   });
