@@ -20,4 +20,12 @@ export default defineConfig(({ mode }) => ({
   build: {
     chunkSizeWarningLimit: 1000,
   },
+  optimizeDeps: {
+    include: ["react", "react-dom", "@radix-ui/react-tooltip"],
+    esbuildOptions: {
+      define: {
+        global: "globalThis",
+      },
+    },
+  },
 }));
