@@ -22,6 +22,7 @@ import { BatchActions } from "@/components/admin/BatchActions";
 import { TestimonialsTable } from "@/components/admin/TestimonialsTable";
 import { ReceiptsTable } from "@/components/admin/ReceiptsTable";
 import { ReceiptGenerator } from "@/components/ReceiptGenerator";
+import { GenerateProjectImages } from "@/components/admin/GenerateProjectImages";
 import { useTestimonials } from "@/hooks/useTestimonialsData";
 import { useReceipts, useReceiptsStats } from "@/hooks/useReceiptsData";
 import { useAuth } from "@/hooks/useAuth";
@@ -302,6 +303,8 @@ const Admin = () => {
                 nameKey="name"
               />
             </div>
+
+            <GenerateProjectImages />
 
             <Card>
               <CardHeader>
