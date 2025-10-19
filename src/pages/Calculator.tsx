@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Calculator as CalcIcon, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -276,7 +277,7 @@ const Calculator = () => {
                         </div>
                       </div>
                       <Button asChild className="w-full">
-                        <a href="/contact">Get Started</a>
+                        <Link to="/contact">Get Started</Link>
                       </Button>
                       <p className="text-xs text-muted-foreground text-center mt-4">
                         *This is an estimate. Final pricing may vary based on specific requirements.
