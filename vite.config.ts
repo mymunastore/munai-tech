@@ -14,13 +14,13 @@ export default defineConfig(({ mode }) => ({
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
-    dedupe: ["react", "react-dom", "react/jsx-runtime"],
+    dedupe: ["react", "react-dom"],
   },
   build: {
     chunkSizeWarningLimit: 1000,
   },
   optimizeDeps: {
-    include: ["react", "react-dom", "react/jsx-runtime", "@radix-ui/react-tooltip"],
+    include: ["react", "react-dom", "@radix-ui/react-tooltip"],
     esbuildOptions: {
       define: {
         global: "globalThis",
