@@ -83,7 +83,7 @@ const Navbar = () => {
             {user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="relative h-9 w-9 rounded-full">
+                  <Button variant="ghost" className="relative h-9 w-9 rounded-full" aria-label="User account menu">
                     <Avatar className="h-9 w-9">
                       <AvatarFallback className="bg-gradient-to-br from-accent to-primary text-primary-foreground">
                         {user.email?.charAt(0).toUpperCase()}
@@ -146,7 +146,7 @@ const Navbar = () => {
                         Admin
                       </Button>
                     </Link>
-                    <Button size="sm" variant="outline" onClick={handleSignOut}>
+                    <Button size="sm" variant="outline" onClick={handleSignOut} aria-label="Logout">
                       <LogOut className="h-4 w-4" />
                     </Button>
                   </>

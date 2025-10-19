@@ -87,6 +87,7 @@ export const Newsletter = () => {
                         type="email"
                         placeholder="Enter your email"
                         className="h-12"
+                        aria-label="Email address for newsletter"
                         {...field}
                       />
                     </FormControl>

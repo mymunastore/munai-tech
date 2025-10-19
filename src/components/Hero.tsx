@@ -37,6 +37,9 @@ const Hero = memo(() => {
           src={heroBg}
           alt="AI Technology Background"
           className="w-full h-full object-cover opacity-20"
+          loading="eager"
+          width="1920"
+          height="1080"
         />
         <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black" />
       </div>
@@ -109,6 +112,10 @@ const Hero = memo(() => {
                 src={profileImage}
                 alt="Kingsley Munachi - Senior Web Designer & AI Full-Stack Developer"
                 className="relative rounded-3xl shadow-2xl shadow-cyan-500/20 w-full h-auto object-cover border-4 border-cyan-500/30 hover:border-cyan-400/60 transition-all duration-500"
+                fetchPriority="high"
+                loading="eager"
+                width="896"
+                height="1152"
               />
               
               {/* Availability badge */}

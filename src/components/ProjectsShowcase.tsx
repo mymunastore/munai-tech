@@ -68,6 +68,8 @@ const ProjectsShowcase = memo(() => {
                     src={project.featured_image || "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop"}
                     alt={project.title}
                     className="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-700"
+                    width="402"
+                    height="224"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                   
@@ -75,14 +77,14 @@ const ProjectsShowcase = memo(() => {
                   <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                     {project.live_url && (
                       <a href={project.live_url} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
-                        <Button size="icon" variant="secondary" className="h-8 w-8 backdrop-blur-sm bg-background/80 hover:bg-primary hover:text-primary-foreground">
+                        <Button size="icon" variant="secondary" className="h-8 w-8 backdrop-blur-sm bg-background/80 hover:bg-primary hover:text-primary-foreground" aria-label="View live project">
                           <ExternalLink className="h-4 w-4" />
                         </Button>
                       </a>
                     )}
                     {project.github_url && (
                       <a href={project.github_url} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
-                        <Button size="icon" variant="secondary" className="h-8 w-8 backdrop-blur-sm bg-background/80 hover:bg-primary hover:text-primary-foreground">
+                        <Button size="icon" variant="secondary" className="h-8 w-8 backdrop-blur-sm bg-background/80 hover:bg-primary hover:text-primary-foreground" aria-label="View project on GitHub">
                           <Github className="h-4 w-4" />
                         </Button>
                       </a>

@@ -69,6 +69,9 @@ const ClientLogos = memo(() => {
                     src={logoMap[client.name] || client.logo_url}
                     alt={`${client.name} logo`}
                     className="max-h-12 max-w-full object-contain grayscale hover:grayscale-0 transition-all"
+                    width="96"
+                    height="48"
+                    loading="lazy"
                   />
                 </Card>
               </CarouselItem>

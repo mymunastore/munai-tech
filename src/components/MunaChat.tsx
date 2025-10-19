@@ -185,12 +185,14 @@ export const MunaChat = () => {
               placeholder="Type your message..."
               disabled={isLoading}
               className="flex-1"
+              aria-label="Chat message input"
             />
             <Button
               onClick={handleSend}
               disabled={isLoading || !input.trim()}
               size="icon"
               className="bg-accent hover:bg-accent/90"
+              aria-label="Send message"
             >
               <Send className="h-4 w-4" />
             </Button>
