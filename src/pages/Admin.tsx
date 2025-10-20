@@ -12,7 +12,8 @@ import { useContactSubmissions, useNewsletterSubscribers, usePageViews, useAnaly
 import { StatsCard } from "@/components/admin/StatsCard";
 import { DataTable, formatDate } from "@/components/admin/DataTable";
 import { ExportButton } from "@/components/admin/ExportButton";
-import { AnalyticsChart } from "@/components/admin/AnalyticsChart";
+import { lazy, Suspense } from "react";
+const AnalyticsChart = lazy(() => import("@/components/admin/AnalyticsChart").then(m => ({ default: m.AnalyticsChart })));
 import { SearchBar } from "@/components/admin/SearchBar";
 import { StatusBadge } from "@/components/admin/StatusBadge";
 import { useAnalyticsCharts } from "@/hooks/useAnalyticsCharts";
@@ -290,27 +291,33 @@ const Admin = () => {
             </div>
             
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              <AnalyticsChart 
-                data={pageViewsByDay || []}
-                type="bar"
-                title="Page Views This Week"
-                dataKey="value"
-                nameKey="name"
-              />
-              <AnalyticsChart 
-                data={topPages || []}
-                type="pie"
-                title="Top Pages"
-                dataKey="value"
-                nameKey="name"
-              />
-              <AnalyticsChart 
-                data={contactsByType || []}
-                type="pie"
-                title="Inquiries by Type"
-                dataKey="value"
-                nameKey="name"
-              />
+              <Suspense fallback={<div className="h-72 rounded-lg border bg-muted/30 animate-pulse" />}> 
+                <AnalyticsChart 
+                  data={pageViewsByDay || []}
+                  type="bar"
+                  title="Page Views This Week"
+                  dataKey="value"
+                  nameKey="name"
+                />
+              </Suspense>
+              <Suspense fallback={<div className="h-72 rounded-lg border bg-muted/30 animate-pulse" />}> 
+                <AnalyticsChart 
+                  data={topPages || []}
+                  type="pie"
+                  title="Top Pages"
+                  dataKey="value"
+                  nameKey="name"
+                />
+              </Suspense>
+              <Suspense fallback={<div className="h-72 rounded-lg border bg-muted/30 animate-pulse" />}> 
+                <AnalyticsChart 
+                  data={contactsByType || []}
+                  type="pie"
+                  title="Inquiries by Type"
+                  dataKey="value"
+                  nameKey="name"
+                />
+              </Suspense>
             </div>
 
             <GenerateProjectImages />

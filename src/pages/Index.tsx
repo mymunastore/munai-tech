@@ -1,23 +1,31 @@
+import { lazy, Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import { SEO } from "@/components/SEO";
 import { usePageTracking } from "@/hooks/usePageTracking";
-import Services from "@/components/Services";
-import TechStack from "@/components/TechStack";
-import Testimonials from "@/components/Testimonials";
-import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
-import ProjectsShowcase from "@/components/ProjectsShowcase";
-import ClientLogos from "@/components/ClientLogos";
-import { Newsletter } from "@/components/Newsletter";
-import FAQ from "@/components/FAQ";
+const Services = lazy(() => import("@/components/Services"));
+const TechStack = lazy(() => import("@/components/TechStack"));
+const Testimonials = lazy(() => import("@/components/Testimonials"));
+const CTA = lazy(() => import("@/components/CTA"));
+const ProjectsShowcase = lazy(() => import("@/components/ProjectsShowcase"));
+const ClientLogos = lazy(() => import("@/components/ClientLogos"));
+const Newsletter = lazy(() => import("@/components/Newsletter").then(m => ({ default: m.Newsletter })));
+const FAQ = lazy(() => import("@/components/FAQ"));
 import { Helmet } from "react-helmet";
-import Skills from "@/components/Skills";
-import Timeline from "@/components/Timeline";
-import Certifications from "@/components/Certifications";
-import AIRecommendations from "@/components/AIRecommendations";
-import GitHubRepositories from "@/components/GitHubRepositories";
+const Skills = lazy(() => import("@/components/Skills"));
+const Timeline = lazy(() => import("@/components/Timeline"));
+const Certifications = lazy(() => import("@/components/Certifications"));
+const AIRecommendations = lazy(() => import("@/components/AIRecommendations"));
+const GitHubRepositories = lazy(() => import("@/components/GitHubRepositories"));
 import LazySection from "@/components/LazySection";
+import { Loader2 } from "lucide-react";
+
+const SectionFallback = () => (
+  <div className="py-20 flex justify-center items-center">
+    <Loader2 className="h-6 w-6 animate-spin text-primary" />
+  </div>
+);
 const Index = () => {
   usePageTracking();
   return <>
@@ -74,69 +82,95 @@ const Index = () => {
         <Navbar />
         <Hero />
         
-        <Services />
+        <Suspense fallback={<SectionFallback />}>
+          <Services />
+        </Suspense>
         
         <LazySection>
-          <ProjectsShowcase />
+          <Suspense fallback={<SectionFallback />}>
+            <ProjectsShowcase />
+          </Suspense>
         </LazySection>
         
         <LazySection>
-          {/* GitHub Repositories Section */}
-          <section className="py-20 bg-gradient-to-b from-black via-gray-900 to-black border-y border-cyan-500/20">
-            <div className="container px-4">
-              <div className="max-w-6xl mx-auto">
-                <div className="text-center mb-12">
-                  <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                    Open Source <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Projects</span>
-                  </h2>
-                  <p className="text-gray-300 max-w-2xl mx-auto">
-                    Explore my latest repositories and contributions on GitHub
-                  </p>
+          <Suspense fallback={<SectionFallback />}>
+            {/* GitHub Repositories Section */}
+            <section className="py-20 bg-gradient-to-b from-black via-gray-900 to-black border-y border-cyan-500/20">
+              <div className="container px-4">
+                <div className="max-w-6xl mx-auto">
+                  <div className="text-center mb-12">
+                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                      Open Source <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Projects</span>
+                    </h2>
+                    <p className="text-gray-300 max-w-2xl mx-auto">
+                      Explore my latest repositories and contributions on GitHub
+                    </p>
+                  </div>
+                  <GitHubRepositories limit={6} showHeader={false} />
                 </div>
-                <GitHubRepositories limit={6} showHeader={false} />
               </div>
-            </div>
-          </section>
+            </section>
+          </Suspense>
         </LazySection>
         
         <LazySection>
-          <TechStack />
+          <Suspense fallback={<SectionFallback />}>
+            <TechStack />
+          </Suspense>
         </LazySection>
         
         <LazySection>
-          <Skills />
+          <Suspense fallback={<SectionFallback />}>
+            <Skills />
+          </Suspense>
         </LazySection>
         
         <LazySection>
-          <Timeline />
+          <Suspense fallback={<SectionFallback />}>
+            <Timeline />
+          </Suspense>
         </LazySection>
         
         <LazySection>
-          <Certifications />
+          <Suspense fallback={<SectionFallback />}>
+            <Certifications />
+          </Suspense>
         </LazySection>
         
         <LazySection>
-          <ClientLogos />
+          <Suspense fallback={<SectionFallback />}>
+            <ClientLogos />
+          </Suspense>
         </LazySection>
         
         <LazySection>
-          <Testimonials />
+          <Suspense fallback={<SectionFallback />}>
+            <Testimonials />
+          </Suspense>
         </LazySection>
         
         <LazySection>
-          <AIRecommendations />
+          <Suspense fallback={<SectionFallback />}>
+            <AIRecommendations />
+          </Suspense>
         </LazySection>
         
         <LazySection>
-          <Newsletter />
+          <Suspense fallback={<SectionFallback />}>
+            <Newsletter />
+          </Suspense>
         </LazySection>
         
         <LazySection>
-          <FAQ />
+          <Suspense fallback={<SectionFallback />}>
+            <FAQ />
+          </Suspense>
         </LazySection>
         
         <LazySection>
-          <CTA />
+          <Suspense fallback={<SectionFallback />}>
+            <CTA />
+          </Suspense>
         </LazySection>
         
         <Footer />
