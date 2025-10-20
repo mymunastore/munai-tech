@@ -3,6 +3,7 @@ import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
 import heroBg from "@/assets/hero-bg.jpg";
 import profileImage from "@/assets/profile.png";
+import { LazyImage } from "./LazyImage";
 import GitHubStatsDisplay from "./GitHubStatsDisplay";
 import { memo } from "react";
 
@@ -22,10 +23,9 @@ const Hero = memo(() => {
             src={heroBg}
             alt="AI Technology Background showcasing modern development workspace"
             className="w-full h-full object-cover opacity-20"
-            loading="eager"
-            fetchPriority="high"
-            width="1920"
-            height="1080"
+            loading="lazy"
+            width={1920}
+            height={1080}
           />
         </picture>
         <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black" />
@@ -101,14 +101,13 @@ const Hero = memo(() => {
                   srcSet={`${profileImage}?format=webp&w=400 400w, ${profileImage}?format=webp&w=600 600w, ${profileImage}?format=webp&w=896 896w`}
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
-                <img 
+                <LazyImage
                   src={profileImage}
                   alt="Kingsley Munachi - Senior Web Designer & AI Full-Stack Developer specializing in modern web applications"
                   className="relative rounded-3xl shadow-2xl shadow-cyan-500/20 w-full h-auto object-cover border-4 border-cyan-500/30 hover:border-cyan-400/60 transition-all duration-500"
-                  loading="eager"
-                  fetchPriority="high"
-                  width="896"
-                  height="1152"
+                  width={896}
+                  height={1152}
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </picture>
               

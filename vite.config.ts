@@ -17,13 +17,33 @@ export default defineConfig(({ mode }) => ({
     dedupe: ["react", "react-dom", "react/jsx-runtime"],
   },
   build: {
+    // Drop dev-only statements and compress output
+    minify: "esbuild",
+    sourcemap: false,
+    // Use esbuild to drop console/debugger only in production builds
+    // (Vite passes this directly to esbuild)
+    esbuild: {
+      drop: mode === "production" ? ["console", "debugger"] : [],
+      legalComments: "none",
+    },
     rollupOptions: {
+      treeshake: {
+        moduleSideEffects: false,
+        propertyReadSideEffects: false,
+        tryCatchDeoptimization: false,
+      },
       output: {
-        manualChunks: {
-          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
-          'ui-vendor': ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu', '@radix-ui/react-tabs'],
-          'query-vendor': ['@tanstack/react-query'],
-          'chart-vendor': ['recharts'],
+        manualChunks(id) {
+          if (!id.includes("node_modules")) return undefined;
+          if (/[\\/]node_modules[\\/]recharts[\\/]/.test(id)) return "chart-vendor";
+          if (/[\\/]node_modules[\\/]react-markdown[\\/]/.test(id)) return "markdown-vendor";
+          if (/[\\/]node_modules[\\/]@tanstack[\\/]react-query[\\/]/.test(id)) return "query-vendor";
+          if (/[\\/]node_modules[\\/]lucide-react[\\/]/.test(id)) return "icons-vendor";
+          if (/[\\/]node_modules[\\/](embla-carousel|embla-carousel-react|embla-carousel-autoplay)[\\/]/.test(id)) return "carousel-vendor";
+          if (/[\\/]node_modules[\\/](react-hook-form|@hookform[\\/]resolvers|zod)[\\/]/.test(id)) return "forms-vendor";
+          if (/[\\/]node_modules[\\/]framer-motion[\\/]/.test(id)) return "anim-vendor";
+          if (/[\\/]node_modules[\\/](react|react-dom|react-router-dom)[\\/]/.test(id)) return "react-vendor";
+          return "vendor";
         },
       },
     },

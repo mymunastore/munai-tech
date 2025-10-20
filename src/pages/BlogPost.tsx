@@ -5,9 +5,9 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calendar, Clock, Tag } from "lucide-react";
-import ReactMarkdown from "react-markdown";
 import { format } from "date-fns";
 import { useEffect, lazy, Suspense } from "react";
+const ReactMarkdown = lazy(() => import("react-markdown"));
 import SocialShare from "@/components/SocialShare";
 import { Helmet } from "react-helmet";
 import { LazyImage } from "@/components/LazyImage";
@@ -202,7 +202,8 @@ const BlogPost = () => {
       {/* Post Content */}
       <section className="py-16">
         <div className="container px-4">
-          <div className="max-w-4xl mx-auto prose prose-lg dark:prose-invert">
+            <div className="max-w-4xl mx-auto prose prose-lg dark:prose-invert">
+            <Suspense fallback={<div className="bg-muted h-24 rounded animate-pulse" />}> 
             <ReactMarkdown
               components={{
                 code({ node, inline, className, children, ...props }: any) {
@@ -242,6 +243,7 @@ const BlogPost = () => {
             >
               {post.content}
             </ReactMarkdown>
+            </Suspense>
           </div>
         </div>
       </section>

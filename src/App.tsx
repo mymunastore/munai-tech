@@ -4,7 +4,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/components/ThemeProvider";
-import { MunaChat } from "@/components/MunaChat";
+import { lazy as reactLazy, Suspense } from "react";
+const MunaChat = reactLazy(() => import("@/components/MunaChat").then(m => ({ default: m.MunaChat })));
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { SkipToContent } from "@/components/SkipToContent";
 import { OfflineIndicator } from "@/components/OfflineIndicator";
@@ -73,7 +74,9 @@ const AppContent = () => {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
-      <MunaChat />
+      <Suspense fallback={null}>
+        <MunaChat />
+      </Suspense>
       <OfflineIndicator />
     </>
   );
