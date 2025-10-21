@@ -136,9 +136,12 @@ const Admin = () => {
     if (!authLoading) {
       if (!user) {
         navigate("/auth");
-        return;
+      return;
       }
       
+      // NOTE: This client-side check is for UX purposes only (redirecting users, hiding UI elements).
+      // Actual authorization is enforced server-side via RLS policies using the has_role() function.
+      // All admin operations on sensitive tables are protected by database-level security.
       const checkAdminStatus = async () => {
         try {
           const { data, error } = await supabase

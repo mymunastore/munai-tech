@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
+import { z } from "https://deno.land/x/zod@v3.22.4/mod.ts";
 
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY") as string;
 
@@ -7,32 +8,35 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-interface LineItem {
-  description: string;
-  quantity: number;
-  unit_price: number;
-  total: number;
-}
+// Validation schemas
+const lineItemSchema = z.object({
+  description: z.string().trim().min(1).max(500),
+  quantity: z.number().int().positive().max(999999),
+  unit_price: z.number().positive().max(99999999),
+  total: z.number().positive().max(99999999)
+});
 
-interface ReceiptData {
-  receipt_number: string;
-  customer_name: string;
-  customer_email: string;
-  customer_address?: string;
-  payment_amount: number;
-  payment_method: string;
-  project_description: string;
-  notes?: string;
-  line_items?: LineItem[];
-  tax_id?: string;
-  invoice_reference?: string;
-  verification_hash?: string;
-  authorized_signature?: string;
-  payment_terms?: string;
-  subtotal?: number;
-  tax_amount?: number;
-  discount_amount?: number;
-}
+const receiptSchema = z.object({
+  receipt_number: z.string().trim().min(1).max(50),
+  customer_name: z.string().trim().min(1).max(200),
+  customer_email: z.string().email().max(255),
+  customer_address: z.string().trim().max(500).optional(),
+  payment_amount: z.number().positive().max(99999999),
+  payment_method: z.string().trim().min(1).max(100),
+  project_description: z.string().trim().min(1).max(2000),
+  notes: z.string().trim().max(2000).optional(),
+  line_items: z.array(lineItemSchema).max(50).optional(),
+  tax_id: z.string().trim().max(100).optional(),
+  invoice_reference: z.string().trim().max(100).optional(),
+  verification_hash: z.string().trim().max(100).optional(),
+  authorized_signature: z.string().trim().max(200).optional(),
+  payment_terms: z.string().trim().max(1000).optional(),
+  subtotal: z.number().nonnegative().max(99999999).optional(),
+  tax_amount: z.number().nonnegative().max(99999999).optional(),
+  discount_amount: z.number().nonnegative().max(99999999).optional()
+});
+
+type ReceiptData = z.infer<typeof receiptSchema>;
 
 const formatCurrency = (amount: number): string => {
   return `₦${amount.toLocaleString('en-NG', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
@@ -709,7 +713,10 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    const data: ReceiptData = await req.json();
+    const requestData = await req.json();
+    
+    // Validate incoming receipt data
+    const data = receiptSchema.parse(requestData);
     
     // Generate verification hash if not provided
     if (!data.verification_hash) {
@@ -757,6 +764,21 @@ const handler = async (req: Request): Promise<Response> => {
     );
   } catch (error: any) {
     console.error("Error generating receipt:", error);
+    
+    // Handle validation errors
+    if (error instanceof z.ZodError) {
+      return new Response(
+        JSON.stringify({ 
+          error: "Invalid receipt data",
+          details: error.errors 
+        }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
+    
     return new Response(
       JSON.stringify({ error: error.message }),
       {
