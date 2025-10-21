@@ -27,9 +27,24 @@ export default defineConfig(({ mode }) => ({
           'ui-vendor': ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu', '@radix-ui/react-tabs'],
           'query-vendor': ['@tanstack/react-query'],
           'chart-vendor': ['recharts'],
+          'framer-vendor': ['framer-motion'],
         },
+        // Add hashing for better caching
+        entryFileNames: 'assets/[name]-[hash].js',
+        chunkFileNames: 'assets/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash][extname]',
       },
     },
     chunkSizeWarningLimit: 1000,
+    // Enable CSS code splitting
+    cssCodeSplit: true,
+    // Minify for production
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
+    },
   },
 }));

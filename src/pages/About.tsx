@@ -4,7 +4,7 @@ import { SEO } from "@/components/SEO";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Award, Briefcase, Code2, GraduationCap, Heart, Lightbulb, Rocket, Target, Users, Zap } from "lucide-react";
-import profileImage from "@/assets/profile.png";
+import profileImage from "@/assets/profile-new.jpg";
 
 const About = () => {
   const values = [

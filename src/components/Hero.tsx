@@ -2,7 +2,7 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
 import heroBg from "@/assets/hero-bg.jpg";
-import profileImage from "@/assets/profile.png";
+import profileImage from "@/assets/profile-new.jpg";
 import GitHubStatsDisplay from "./GitHubStatsDisplay";
 import { memo } from "react";
 
@@ -109,6 +109,7 @@ const Hero = memo(() => {
                   fetchPriority="high"
                   width="896"
                   height="1152"
+                  decoding="async"
                 />
               </picture>
               

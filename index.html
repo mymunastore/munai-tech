@@ -21,15 +21,23 @@
     <link rel="preconnect" href="https://dyqqcsfoipomlvcxclnq.supabase.co" crossorigin>
     
     <!-- Preload critical assets -->
-    <link rel="preload" as="image" href="/assets/profile-DdDCnQrp.png" fetchpriority="high">
-    <link rel="preload" as="image" href="/assets/hero-bg.jpg" fetchpriority="high">
+    <link rel="preload" as="image" href="/src/assets/profile-new.jpg" fetchpriority="high">
+    <link rel="preload" as="image" href="/src/assets/hero-bg.jpg" fetchpriority="high">
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
     <style>
       /* Critical CSS - inline for faster first paint */
       body { margin: 0; font-family: system-ui, -apple-system, sans-serif; }
       #root { min-height: 100vh; }
-      .loading-spinner { display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+      .loading-spinner { 
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        min-height: 100vh;
+        background: linear-gradient(135deg, #1a1f2e 0%, #2d3748 100%);
+      }
+      /* Prevent layout shift */
+      img { content-visibility: auto; }
     </style>
 
     <meta property="og:title" content="Kingsley Munachi - AI-Powered Digital Solutions" />

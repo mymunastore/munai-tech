@@ -13,7 +13,7 @@ interface LazySectionProps {
  */
 const LazySection = ({ 
   children, 
-  rootMargin = "200px",
+  rootMargin = "100px",
   className = ""
 }: LazySectionProps) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -45,7 +45,7 @@ const LazySection = ({
 
   return (
     <div ref={ref} className={className}>
-      {isVisible ? children : <div style={{ minHeight: "200px" }} />}
+      {isVisible ? children : <div style={{ minHeight: "100px" }} />}
     </div>
   );
 };

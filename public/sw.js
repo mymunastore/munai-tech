@@ -1,7 +1,7 @@
-const CACHE_NAME = 'munaitech-v4';
-const IMAGE_CACHE_NAME = 'munaitech-images-v3';
-const API_CACHE_NAME = 'munaitech-api-v2';
-const FONT_CACHE_NAME = 'munaitech-fonts-v2';
+const CACHE_NAME = 'munaitech-v5';
+const IMAGE_CACHE_NAME = 'munaitech-images-v4';
+const API_CACHE_NAME = 'munaitech-api-v3';
+const FONT_CACHE_NAME = 'munaitech-fonts-v3';
 const STATIC_ASSETS = [
   '/',
   '/index.html',

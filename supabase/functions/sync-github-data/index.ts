@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.75.0";
+import { z } from "https://deno.land/x/zod@v3.22.4/mod.ts";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -63,8 +64,18 @@ serve(async (req) => {
       );
     }
 
+    // Validate GitHub username parameter
+    const syncRequestSchema = z.object({
+      username: z.string()
+        .trim()
+        .min(1, "Username required")
+        .max(39, "GitHub usernames max 39 chars")
+        .regex(/^[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}$/i, "Invalid GitHub username format")
+    });
+
     // Get GitHub username from request or use default
-    const { username = 'mymunastore' } = await req.json().catch(() => ({ username: 'mymunastore' }));
+    const requestData = await req.json().catch(() => ({ username: 'mymunastore' }));
+    const { username } = syncRequestSchema.parse(requestData);
 
     console.log(`Syncing GitHub data for user: ${username}`);
 
@@ -214,6 +225,22 @@ serve(async (req) => {
 
   } catch (error) {
     console.error('Error in sync-github-data function:', error);
+    
+    // Handle Zod validation errors specifically
+    if (error instanceof z.ZodError) {
+      return new Response(
+        JSON.stringify({
+          success: false,
+          error: 'Invalid username format',
+          details: error.errors.map(e => e.message).join(', ')
+        }),
+        {
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          status: 400,
+        }
+      );
+    }
+    
     const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
     return new Response(
       JSON.stringify({

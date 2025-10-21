@@ -35,7 +35,7 @@ export const LazyImage = ({
             }
           });
         },
-        { rootMargin: "50px" }
+        { rootMargin: "100px" }
       );
 
       observer.observe(imgRef.current);
@@ -64,6 +64,7 @@ export const LazyImage = ({
       )}
       onLoad={() => setIsLoaded(true)}
       loading="lazy"
+      decoding="async"
       {...props}
     />
   );
