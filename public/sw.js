@@ -1,7 +1,7 @@
-const CACHE_NAME = 'munaitech-v3';
-const IMAGE_CACHE_NAME = 'munaitech-images-v2';
-const API_CACHE_NAME = 'munaitech-api-v1';
-const FONT_CACHE_NAME = 'munaitech-fonts-v1';
+const CACHE_NAME = 'munaitech-v4';
+const IMAGE_CACHE_NAME = 'munaitech-images-v3';
+const API_CACHE_NAME = 'munaitech-api-v2';
+const FONT_CACHE_NAME = 'munaitech-fonts-v2';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
@@ -104,20 +104,24 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Cache-First strategy for static assets (JS, CSS)
+  // Network-First strategy for static assets (JS, CSS) to prevent stale code
   if (request.destination === 'script' || request.destination === 'style') {
     event.respondWith(
-      caches.open(CACHE_NAME).then((cache) => {
-        return cache.match(request).then((response) => {
-          if (response) return response;
-          return fetch(request).then((networkResponse) => {
-            if (networkResponse && networkResponse.status === 200) {
-              cache.put(request, networkResponse.clone());
-            }
-            return networkResponse;
+      fetch(request)
+        .then((networkResponse) => {
+          if (networkResponse && networkResponse.status === 200) {
+            const responseClone = networkResponse.clone();
+            caches.open(CACHE_NAME).then((cache) => {
+              cache.put(request, responseClone);
+            });
+          }
+          return networkResponse;
+        })
+        .catch(() => {
+          return caches.match(request).then((cachedResponse) => {
+            return cachedResponse || new Response('Offline - Asset not available');
           });
-        });
-      })
+        })
     );
     return;
   }
