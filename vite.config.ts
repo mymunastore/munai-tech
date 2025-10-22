@@ -24,21 +24,33 @@ export default defineConfig(({ mode }) => ({
       output: {
         manualChunks: {
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
-          'ui-vendor': ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu', '@radix-ui/react-tabs'],
+          'ui-vendor': [
+            '@radix-ui/react-dialog',
+            '@radix-ui/react-dropdown-menu',
+            '@radix-ui/react-toast',
+            '@radix-ui/react-tooltip',
+          ],
           'query-vendor': ['@tanstack/react-query'],
-          'chart-vendor': ['recharts'],
+          'form-vendor': ['react-hook-form', '@hookform/resolvers', 'zod'],
           'framer-vendor': ['framer-motion'],
+          'chart-vendor': ['recharts'],
+          'supabase-vendor': ['@supabase/supabase-js'],
         },
-        // Add hashing for better caching
+        // Add content hash for better caching
         entryFileNames: 'assets/[name]-[hash].js',
         chunkFileNames: 'assets/[name]-[hash].js',
-        assetFileNames: 'assets/[name]-[hash][extname]',
+        assetFileNames: 'assets/[name]-[hash].[ext]',
       },
     },
+    // Set chunk size warning limit
     chunkSizeWarningLimit: 1000,
-    // Enable CSS code splitting
+    // Enable CSS code splitting for better caching
     cssCodeSplit: true,
-    // Use esbuild minification (faster than terser, no extra dependency)
+    // Use esbuild minification (faster, built-in)
     minify: 'esbuild',
+    // Target modern browsers for smaller bundle
+    target: 'esnext',
+    // Source maps for debugging in production
+    sourcemap: false,
   },
 }));

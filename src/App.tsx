@@ -43,9 +43,16 @@ const queryClient = new QueryClient({
       staleTime: 1000 * 60 * 5, // 5 minutes
       gcTime: 1000 * 60 * 10, // 10 minutes
       refetchOnWindowFocus: false,
-      retry: 1, // Reduce retries for faster failure
-      retryDelay: 1000, // Fixed 1s delay for faster recovery
-      networkMode: 'online', // Skip queries when offline
+      retry: 1,
+      retryDelay: 1000,
+      networkMode: 'online',
+      // Enable query persistence
+      refetchOnMount: false,
+      refetchOnReconnect: 'always',
+    },
+    mutations: {
+      retry: 1,
+      networkMode: 'online',
     },
   },
 });
