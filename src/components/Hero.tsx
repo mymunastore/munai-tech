@@ -99,7 +99,7 @@ const Hero = memo(() => {
                 <source
                   type="image/webp"
                   srcSet={`${profileImage}?format=webp&w=400 400w, ${profileImage}?format=webp&w=600 600w, ${profileImage}?format=webp&w=896 896w`}
-                  sizes="(min-width: 768px) 576px, 0px"
+                  sizes="(min-width: 768px) 544px, 0px"
                 />
                 <img 
                   src={profileImage}
