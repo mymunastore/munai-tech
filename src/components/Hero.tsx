@@ -71,7 +71,7 @@ const Hero = memo(() => {
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                 </Button>
               </Link>
-              <Link to="/projects" aria-label="View project portfolio">
+              <Link to="/projects" aria-label="View Portfolio">
                 <Button
                   size="lg"
                   variant="outline"
