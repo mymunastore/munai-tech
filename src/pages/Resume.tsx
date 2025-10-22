@@ -53,9 +53,15 @@ const Resume = () => {
                 <h1 className="text-4xl font-bold mb-2 text-white">Kingsley Munachi</h1>
                 <p className="text-xl text-cyan-400 mb-4">Senior Web Designer & AI Full-Stack App Developer</p>
                 <div className="flex flex-wrap gap-4 text-sm">
-                  <div className="flex items-center gap-2">
+                   <div className="flex items-center gap-2">
                      <Mail className="h-4 w-4" />
                      <span>contact@munaitech.com</span>
+                   </div>
+                   <div className="flex items-center gap-2">
+                     <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                       <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.568 18.005l-1.414-1.415 4.686-4.69-4.686-4.686 1.414-1.414 6.1 6.1-6.1 6.105z"/>
+                     </svg>
+                     <a href="https://munai.tech" target="_blank" rel="noopener noreferrer" className="hover:text-primary">munai.tech</a>
                    </div>
                    <div className="flex items-center gap-2">
                      <MapPin className="h-4 w-4" />

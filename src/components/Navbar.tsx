@@ -4,6 +4,7 @@ import { Button } from "./ui/button";
 import { ThemeToggle } from "./ThemeToggle";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
+import { useAdminCheck } from "@/hooks/useAdminCheck";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,6 +18,7 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { user, signOut } = useAuth();
+  const { isAdmin } = useAdminCheck();
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -80,7 +82,7 @@ const Navbar = () => {
             ))}
             <ThemeToggle />
             
-            {user ? (
+            {user && isAdmin ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" className="relative h-9 w-9 rounded-full" aria-label="User account menu">
@@ -103,14 +105,7 @@ const Navbar = () => {
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
-            ) : (
-              <Link to="/auth">
-                <Button size="sm" variant="outline" className="gap-2">
-                  <LogIn className="h-4 w-4" />
-                  Admin Login
-                </Button>
-              </Link>
-            )}
+            ) : null}
           </div>
 
           {/* Mobile Menu Button */}
@@ -139,7 +134,7 @@ const Navbar = () => {
               ))}
               <div className="flex items-center gap-2 px-2">
                 <ThemeToggle />
-                {user ? (
+                {user && isAdmin && (
                   <>
                     <Link to="/admin" className="flex-1" onClick={() => setIsMobileMenuOpen(false)}>
                       <Button size="sm" variant="outline" className="w-full">
@@ -150,13 +145,6 @@ const Navbar = () => {
                       <LogOut className="h-4 w-4" />
                     </Button>
                   </>
-                ) : (
-                  <Link to="/auth" className="flex-1" onClick={() => setIsMobileMenuOpen(false)}>
-                    <Button size="sm" variant="outline" className="gap-2 w-full">
-                      <LogIn className="h-4 w-4" />
-                      Login
-                    </Button>
-                  </Link>
                 )}
               </div>
             </div>
