@@ -31,14 +31,16 @@ export const MunaChat = () => {
   }, [messages]);
 
   const streamChat = async (userMessage: Message) => {
-    const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/muna-chat`;
+    // Use full URL to edge function
+    const CHAT_URL = `https://dyqqcsfoipomlvcxclnq.supabase.co/functions/v1/muna-chat`;
     
     try {
       const response = await fetch(CHAT_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR5cXFjc2ZvaXBvbWx2Y3hjbG5xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA0NTMwMTgsImV4cCI6MjA3NjAyOTAxOH0.1SLJJ_D_76fUQxF9Pqzl3G8ENOqRBI0aRC5PXd0xa6I`,
+          "apikey": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR5cXFjc2ZvaXBvbWx2Y3hjbG5xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA0NTMwMTgsImV4cCI6MjA3NjAyOTAxOH0.1SLJJ_D_76fUQxF9Pqzl3G8ENOqRBI0aRC5PXd0xa6I`,
         },
         body: JSON.stringify({ messages: [...messages, userMessage] }),
       });
