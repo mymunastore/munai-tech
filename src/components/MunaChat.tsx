@@ -21,6 +21,7 @@ export const MunaChat = () => {
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [cooldownUntil, setCooldownUntil] = useState<number>(0);
   const scrollRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
 
@@ -48,7 +49,21 @@ export const MunaChat = () => {
       if (!response.ok) {
         if (response.status === 429 || response.status === 402) {
           const errorData = await response.json();
-          throw new Error(errorData.error || "Service temporarily unavailable");
+          const errorMessage = errorData.error || "Service temporarily unavailable";
+          
+          // Add assistant error message bubble
+          setMessages(prev => [...prev, { role: "assistant", content: errorMessage }]);
+          
+          // Set 20-second cooldown
+          setCooldownUntil(Date.now() + 20000);
+          setTimeout(() => setCooldownUntil(0), 20000);
+          
+          toast({
+            title: response.status === 402 ? "Credits Exhausted" : "Rate Limited",
+            description: errorMessage,
+            variant: "destructive",
+          });
+          return; // Exit early, don't throw
         }
         throw new Error("Failed to get response");
       }
@@ -101,17 +116,21 @@ export const MunaChat = () => {
       }
     } catch (error) {
       console.error("Chat error:", error);
+      const errorMessage = error instanceof Error ? error.message : "Failed to send message";
+      
+      // Add assistant error message bubble
+      setMessages(prev => [...prev, { role: "assistant", content: `⚠️ ${errorMessage}` }]);
+      
       toast({
         title: "Error",
-        description: error instanceof Error ? error.message : "Failed to send message",
+        description: errorMessage,
         variant: "destructive",
       });
-      setMessages(prev => prev.slice(0, -1));
     }
   };
 
   const handleSend = async () => {
-    if (!input.trim() || isLoading) return;
+    if (!input.trim() || isLoading || Date.now() < cooldownUntil) return;
 
     const userMessage: Message = { role: "user", content: input.trim() };
     setMessages(prev => [...prev, userMessage]);
@@ -191,10 +210,11 @@ export const MunaChat = () => {
             />
             <Button
               onClick={handleSend}
-              disabled={isLoading || !input.trim()}
+              disabled={isLoading || !input.trim() || Date.now() < cooldownUntil}
               size="icon"
               className="bg-accent hover:bg-accent/90"
               aria-label="Send message"
+              title={Date.now() < cooldownUntil ? "Please wait before sending another message" : "Send message"}
             >
               <Send className="h-4 w-4" />
             </Button>

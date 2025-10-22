@@ -144,7 +144,7 @@ Keep responses clear, friendly, and professional. If someone wants to hire Kings
       }
       if (response.status === 402) {
         return new Response(
-          JSON.stringify({ error: "AI service temporarily unavailable." }),
+          JSON.stringify({ error: "AI credits exhausted. Please add credits to your Lovable AI workspace in Settings → Workspace → Usage." }),
           { status: 402, headers: { ...corsHeaders, "Content-Type": "application/json" } }
         );
       }
