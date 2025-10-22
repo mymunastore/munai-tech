@@ -25,8 +25,19 @@
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
     <style>
       /* Critical CSS - inline for faster first paint */
-      body { margin: 0; font-family: system-ui, -apple-system, sans-serif; }
-      #root { min-height: 100vh; }
+      * { box-sizing: border-box; }
+      html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+      body { 
+        margin: 0; 
+        font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+      }
+      #root { 
+        min-height: 100vh; 
+        isolation: isolate;
+      }
       .loading-spinner { 
         display: flex; 
         align-items: center; 
@@ -34,8 +45,17 @@
         min-height: 100vh;
         background: linear-gradient(135deg, #1a1f2e 0%, #2d3748 100%);
       }
-      /* Prevent layout shift */
-      img { content-visibility: auto; }
+      /* Prevent layout shift & improve performance */
+      img { 
+        content-visibility: auto;
+        max-width: 100%;
+        height: auto;
+      }
+      /* Reduce repaints/reflows */
+      a { text-decoration: none; color: inherit; }
+      button { background: none; border: none; padding: 0; font: inherit; cursor: pointer; }
+      /* Focus visible for accessibility */
+      :focus-visible { outline: 2px solid hsl(195 92% 56%); outline-offset: 2px; }
     </style>
 
     <meta property="og:title" content="Kingsley Munachi - AI-Powered Digital Solutions" />
