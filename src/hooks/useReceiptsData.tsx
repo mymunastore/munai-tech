@@ -28,24 +28,21 @@ export const useReceiptsStats = () => {
       
       if (error) throw error;
 
-      const totalRevenue = data.reduce((sum, receipt) => {
+      // Optimize with single pass through data
+      const stats = data.reduce((acc, receipt) => {
         if (receipt.status === 'paid') {
-          return sum + parseFloat(receipt.payment_amount?.toString() || '0');
+          acc.totalRevenue += parseFloat(receipt.payment_amount?.toString() || '0');
+          acc.paidCount++;
+        } else if (receipt.status === 'pending') {
+          acc.pendingCount++;
         }
-        return sum;
-      }, 0);
+        acc.totalCount++;
+        return acc;
+      }, { totalRevenue: 0, paidCount: 0, pendingCount: 0, totalCount: 0 });
 
-      const paidCount = data.filter(r => r.status === 'paid').length;
-      const pendingCount = data.filter(r => r.status === 'pending').length;
-
-      return {
-        totalRevenue,
-        paidCount,
-        pendingCount,
-        totalCount: data.length,
-      };
+      return stats;
     },
-    staleTime: 1000 * 60 * 2, // 2 minutes
-    gcTime: 1000 * 60 * 10, // 10 minutes
+    staleTime: 1000 * 60 * 5, // 5 minutes - increased for better performance
+    gcTime: 1000 * 60 * 30, // 30 minutes
   });
 };

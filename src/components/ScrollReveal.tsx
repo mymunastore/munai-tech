@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, memo } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 interface ScrollRevealProps {
@@ -7,7 +7,7 @@ interface ScrollRevealProps {
   delay?: number;
 }
 
-const ScrollReveal = ({ children, className = "", delay = 0 }: ScrollRevealProps) => {
+const ScrollReveal = memo(({ children, className = "", delay = 0 }: ScrollRevealProps) => {
   const { ref, isVisible } = useScrollAnimation();
 
   return (
@@ -27,6 +27,8 @@ const ScrollReveal = ({ children, className = "", delay = 0 }: ScrollRevealProps
       {children}
     </div>
   );
-};
+});
+
+ScrollReveal.displayName = "ScrollReveal";
 
 export default ScrollReveal;

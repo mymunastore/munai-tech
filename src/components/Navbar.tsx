@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
-import { Menu, X, LogIn, LogOut } from "lucide-react";
+import { useState, useEffect, memo, useCallback, useMemo } from "react";
+import { Menu, X, LogOut } from "lucide-react";
 import { Button } from "./ui/button";
 import { ThemeToggle } from "./ThemeToggle";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { useAdminCheck } from "@/hooks/useAdminCheck";
+import { throttle } from "@/utils/performance";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,7 +15,7 @@ import {
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { useToast } from "@/hooks/use-toast";
 
-const Navbar = () => {
+const Navbar = memo(() => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { user, signOut } = useAuth();
@@ -22,24 +23,27 @@ const Navbar = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
 
-  const handleSignOut = async () => {
+  const handleSignOut = useCallback(async () => {
     await signOut();
     toast({
       title: "Logged out",
       description: "You've been successfully logged out.",
     });
     navigate("/");
-  };
+  }, [signOut, toast, navigate]);
 
+  // Throttle scroll event for better performance
   useEffect(() => {
-    const handleScroll = () => {
+    const handleScroll = throttle(() => {
       setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
+    }, 100);
+    
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
+  // Memoize static nav links to prevent recreation
+  const navLinks = useMemo(() => [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
     { name: "Projects", href: "/projects" },
@@ -47,7 +51,7 @@ const Navbar = () => {
     { name: "Resume", href: "/resume" },
     { name: "Leave Review", href: "/leave-review" },
     { name: "Get Quote", href: "/contact" },
-  ];
+  ], []);
 
   return (
     <nav
@@ -153,6 +157,8 @@ const Navbar = () => {
       </div>
     </nav>
   );
-};
+});
+
+Navbar.displayName = "Navbar";
 
 export default Navbar;

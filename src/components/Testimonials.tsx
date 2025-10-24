@@ -1,9 +1,10 @@
-import { memo, useEffect, useState } from "react";
+import { memo, useMemo } from "react";
 import { Card, CardContent } from "./ui/card";
 import { Quote, Star } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 
 interface Testimonial {
   id: string;
@@ -16,60 +17,26 @@ interface Testimonial {
 }
 
 const Testimonials = memo(() => {
-  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    // Initial fetch
-    const fetchTestimonials = async () => {
+  // Use React Query for optimized caching
+  const { data: testimonials = [], isLoading } = useQuery({
+    queryKey: ["approved-testimonials"],
+    queryFn: async () => {
       const { data, error } = await supabase
-        .from('client_testimonials')
-        .select('*')
-        .eq('status', 'approved')
-        .order('created_at', { ascending: false })
+        .from("client_testimonials")
+        .select("*")
+        .eq("status", "approved")
+        .order("created_at", { ascending: false })
         .limit(6);
+      
+      if (error) throw error;
+      return data as Testimonial[];
+    },
+    staleTime: 1000 * 60 * 5, // 5 minutes - testimonials don't change often
+    gcTime: 1000 * 60 * 30, // 30 minutes
+  });
 
-      if (!error && data) {
-        setTestimonials(data);
-      }
-      setIsLoading(false);
-    };
-
-    fetchTestimonials();
-
-    // Subscribe to real-time updates
-    const channel = supabase
-      .channel('testimonials-changes')
-      .on(
-        'postgres_changes',
-        {
-          event: '*',
-          schema: 'public',
-          table: 'client_testimonials',
-          filter: 'status=eq.approved'
-        },
-        (payload) => {
-          if (import.meta.env.DEV) {
-            console.log('Testimonial update received:', payload);
-          }
-          
-          if (payload.eventType === 'INSERT') {
-            setTestimonials((prev) => [payload.new as Testimonial, ...prev].slice(0, 6));
-          } else if (payload.eventType === 'UPDATE') {
-            setTestimonials((prev) =>
-              prev.map((t) => (t.id === payload.new.id ? payload.new as Testimonial : t))
-            );
-          } else if (payload.eventType === 'DELETE') {
-            setTestimonials((prev) => prev.filter((t) => t.id !== payload.old.id));
-          }
-        }
-      )
-      .subscribe();
-
-    return () => {
-      supabase.removeChannel(channel);
-    };
-  }, []);
+  // Memoize skeleton array to prevent recreation
+  const skeletonArray = useMemo(() => [1, 2, 3], []);
 
   if (isLoading) {
     return (
@@ -83,7 +50,7 @@ const Testimonials = memo(() => {
             <div className="h-6 w-2/3 mx-auto bg-muted rounded-lg animate-pulse" />
           </div>
           <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
-            {[1, 2, 3].map((i) => (
+            {skeletonArray.map((i) => (
               <Card key={i} className="animate-pulse">
                 <CardContent className="p-8">
                   <div className="w-10 h-10 rounded-lg bg-muted mb-6" />
