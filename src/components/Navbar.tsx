@@ -45,10 +45,12 @@ const Navbar = memo(() => {
   // Memoize static nav links to prevent recreation
   const navLinks = useMemo(() => [
     { name: "Home", href: "/" },
-    { name: "Projects", href: "/projects" },
     { name: "About", href: "/about" },
+    { name: "Projects", href: "/projects" },
+    { name: "Blog", href: "/blog" },
     { name: "Resume", href: "/resume" },
-    { name: "Contact", href: "/contact" },
+    { name: "Leave Review", href: "/leave-review" },
+    { name: "Get Quote", href: "/contact" },
   ], []);
 
   return (
@@ -63,8 +65,11 @@ const Navbar = memo(() => {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group">
-            <span className="font-bold text-lg md:text-xl text-foreground">
-              Kingsley Munachi
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center text-primary-foreground font-bold text-lg">
+              M
+            </div>
+            <span className="font-bold text-lg md:text-xl text-foreground hidden sm:inline-block">
+              MunAiTech
             </span>
           </Link>
 
