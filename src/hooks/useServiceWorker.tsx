@@ -11,10 +11,6 @@ export const useServiceWorker = () => {
         navigator.serviceWorker
           .register('/sw.js')
           .then((registration) => {
-            if (import.meta.env.DEV) {
-              console.log('SW registered:', registration);
-            }
-
             // Check for updates periodically
             setInterval(() => {
               registration.update();

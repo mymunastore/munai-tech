@@ -9,25 +9,25 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-interface Column {
+interface Column<T = Record<string, unknown>> {
   key: string;
   label: string;
-  render?: (value: any, row: any) => React.ReactNode;
+  render?: (value: unknown, row: T) => React.ReactNode;
 }
 
-interface VirtualizedDataTableProps {
-  data: any[];
-  columns: Column[];
+interface VirtualizedDataTableProps<T = Record<string, unknown>> {
+  data: T[];
+  columns: Column<T>[];
   isLoading?: boolean;
   estimateSize?: number;
 }
 
-export const VirtualizedDataTable = ({ 
+export function VirtualizedDataTable<T = Record<string, unknown>>({ 
   data, 
   columns, 
   isLoading,
   estimateSize = 60 
-}: VirtualizedDataTableProps) => {
+}: VirtualizedDataTableProps<T>) {
   const parentRef = useRef<HTMLDivElement>(null);
 
   const rowVirtualizer = useVirtualizer({
@@ -84,13 +84,16 @@ export const VirtualizedDataTable = ({
                         transform: `translateY(${virtualRow.start}px)`,
                       }}
                     >
-                      {columns.map((column) => (
-                        <TableCell key={column.key}>
-                          {column.render
-                            ? column.render(row[column.key], row)
-                            : row[column.key]}
-                        </TableCell>
-                      ))}
+                      {columns.map((column) => {
+                        const value = (row as Record<string, unknown>)[column.key];
+                        return (
+                          <TableCell key={column.key}>
+                            {column.render
+                              ? column.render(value, row)
+                              : String(value ?? '')}
+                          </TableCell>
+                        );
+                      })}
                     </TableRow>
                   );
                 })}

@@ -77,8 +77,6 @@ serve(async (req) => {
     const requestData = await req.json().catch(() => ({ username: 'mymunastore' }));
     const { username } = syncRequestSchema.parse(requestData);
 
-    console.log(`Syncing GitHub data for user: ${username}`);
-
     // Fetch user profile
     const userResponse = await fetch(`https://api.github.com/users/${username}`, {
       headers: {
@@ -101,11 +99,14 @@ serve(async (req) => {
       },
     });
 
-    const reposData = await reposResponse.json();
+    const reposData = await reposResponse.json() as Array<{
+      stargazers_count: number;
+      forks_count: number;
+    }>;
 
     // Calculate total stars and forks
-    const totalStars = reposData.reduce((sum: number, repo: any) => sum + repo.stargazers_count, 0);
-    const totalForks = reposData.reduce((sum: number, repo: any) => sum + repo.forks_count, 0);
+    const totalStars = reposData.reduce((sum: number, repo) => sum + repo.stargazers_count, 0);
+    const totalForks = reposData.reduce((sum: number, repo) => sum + repo.forks_count, 0);
 
     // Fetch contribution stats (commits from events)
     const eventsResponse = await fetch(`https://api.github.com/users/${username}/events?per_page=100`, {
@@ -115,12 +116,17 @@ serve(async (req) => {
       },
     });
 
-    const eventsData = await eventsResponse.json();
+    const eventsData = await eventsResponse.json() as Array<{
+      type: string;
+      payload?: {
+        commits?: Array<unknown>;
+      };
+    }>;
 
     // Count commits from push events
     const totalCommits = eventsData
-      .filter((event: any) => event.type === 'PushEvent')
-      .reduce((sum: number, event: any) => sum + (event.payload?.commits?.length || 0), 0);
+      .filter((event) => event.type === 'PushEvent')
+      .reduce((sum: number, event) => sum + (event.payload?.commits?.length || 0), 0);
 
     // Upsert GitHub stats
     const { error: statsError } = await supabase

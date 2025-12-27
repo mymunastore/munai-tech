@@ -98,10 +98,14 @@ export const preloadResource = (href: string, as: string, type?: string) => {
  * Check if device has good network connection
  */
 export const hasGoodConnection = (): boolean => {
-  const connection = (navigator as any).connection;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const connection = (navigator as any).connection as {
+    effectiveType?: string;
+    downlink?: number;
+  } | undefined;
   if (!connection) return true;
   
-  return connection.effectiveType === '4g' || connection.downlink > 1.5;
+  return connection.effectiveType === '4g' || (connection.downlink ?? 0) > 1.5;
 };
 
 /**
@@ -112,7 +116,8 @@ export const measurePerformance = (name: string, startMark: string, endMark: str
     try {
       performance.measure(name, startMark, endMark);
       const measure = performance.getEntriesByName(name)[0];
-      console.log(`[Performance] ${name}: ${measure.duration.toFixed(2)}ms`);
+      // Performance measurement available for analytics
+      void measure;
     } catch (e) {
       // Marks might not exist
     }

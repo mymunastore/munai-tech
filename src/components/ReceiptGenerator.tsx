@@ -83,7 +83,7 @@ export const ReceiptGenerator = () => {
     setLineItems([...lineItems, { description: "", quantity: 1, unit_price: 0, total: 0 }]);
   };
 
-  const updateLineItem = (index: number, field: string, value: any) => {
+  const updateLineItem = (index: number, field: string, value: string | number) => {
     const updated = [...lineItems];
     updated[index] = { ...updated[index], [field]: value };
     if (field === "quantity" || field === "unit_price") {

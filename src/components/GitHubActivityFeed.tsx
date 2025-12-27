@@ -20,7 +20,16 @@ const getEventIcon = (eventType: string) => {
   }
 };
 
-const getEventDescription = (event: any) => {
+interface GitHubEvent {
+  event_type: string;
+  repo_name: string;
+  payload?: {
+    commits?: Array<unknown>;
+    ref_type?: string;
+  };
+}
+
+const getEventDescription = (event: GitHubEvent) => {
   switch (event.event_type) {
     case "PushEvent":
       const commitCount = event.payload?.commits?.length || 0;

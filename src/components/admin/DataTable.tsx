@@ -8,19 +8,19 @@ import {
 } from "@/components/ui/table";
 import { format } from "date-fns";
 
-interface Column {
+interface Column<T = Record<string, unknown>> {
   key: string;
   label: string;
-  render?: (value: any, row: any) => React.ReactNode;
+  render?: (value: unknown, row: T) => React.ReactNode;
 }
 
-interface DataTableProps {
-  data: any[];
-  columns: Column[];
+interface DataTableProps<T = Record<string, unknown>> {
+  data: T[];
+  columns: Column<T>[];
   isLoading?: boolean;
 }
 
-export const DataTable = ({ data, columns, isLoading }: DataTableProps) => {
+export function DataTable<T = Record<string, unknown>>({ data, columns, isLoading }: DataTableProps<T>) {
   if (isLoading) {
     return (
       <div className="text-center py-8 text-muted-foreground">
@@ -50,13 +50,16 @@ export const DataTable = ({ data, columns, isLoading }: DataTableProps) => {
         <TableBody>
           {data.map((row, index) => (
             <TableRow key={index}>
-              {columns.map((column) => (
-                <TableCell key={column.key}>
-                  {column.render
-                    ? column.render(row[column.key], row)
-                    : row[column.key]}
-                </TableCell>
-              ))}
+              {columns.map((column) => {
+                const value = (row as Record<string, unknown>)[column.key];
+                return (
+                  <TableCell key={column.key}>
+                    {column.render
+                      ? column.render(value, row)
+                      : String(value ?? '')}
+                  </TableCell>
+                );
+              })}
             </TableRow>
           ))}
         </TableBody>

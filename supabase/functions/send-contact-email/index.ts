@@ -160,8 +160,6 @@ const handler = async (req: Request): Promise<Response> => {
 
     if (!userEmailResponse.ok) {
       console.error("[Internal] Failed to send user confirmation");
-    } else {
-      console.log("User confirmation email sent successfully");
     }
 
     return new Response(JSON.stringify({ success: true }), {
@@ -171,7 +169,7 @@ const handler = async (req: Request): Promise<Response> => {
         ...corsHeaders,
       },
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("[Internal] Error in send-contact-email:", error);
     
     if (error instanceof z.ZodError) {
@@ -184,8 +182,9 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
     
+    const errorMessage = error instanceof Error ? error.message : "Failed to send email";
     return new Response(
-      JSON.stringify({ error: "Failed to send email" }),
+      JSON.stringify({ error: errorMessage }),
       {
         status: 500,
         headers: { "Content-Type": "application/json", ...corsHeaders },

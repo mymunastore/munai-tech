@@ -34,8 +34,6 @@ serve(async (req) => {
 
     for (const project of projects || []) {
       try {
-        console.log(`Generating image for: ${project.title}`);
-        
         // Generate image prompt based on project
         const imagePrompt = `Create a modern, professional hero image for a ${project.category} project called "${project.title}". ${project.description}. Style: Clean, modern UI design with vibrant colors, professional tech aesthetic. High quality, detailed.`;
 
@@ -108,7 +106,6 @@ serve(async (req) => {
           continue;
         }
 
-        console.log(`Successfully processed ${project.title}`);
         results.push({ 
           project: project.title, 
           status: 'success', 

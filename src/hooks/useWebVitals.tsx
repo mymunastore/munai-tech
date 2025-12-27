@@ -35,8 +35,11 @@ export const useWebVitals = () => {
       // Largest Contentful Paint (LCP)
       const lcpObserver = new PerformanceObserver((list) => {
         const entries = list.getEntries();
-        const lastEntry = entries[entries.length - 1] as any;
-        const value = lastEntry.renderTime || lastEntry.loadTime;
+        const lastEntry = entries[entries.length - 1] as PerformanceEntry & {
+          renderTime?: number;
+          loadTime?: number;
+        };
+        const value = lastEntry.renderTime || lastEntry.loadTime || 0;
         
         reportWebVitals({
           name: "LCP",
@@ -54,12 +57,13 @@ export const useWebVitals = () => {
       // First Input Delay (FID)
       const fidObserver = new PerformanceObserver((list) => {
         const entries = list.getEntries();
-        entries.forEach((entry: any) => {
+        entries.forEach((entry) => {
+          const perfEntry = entry as PerformanceEventTiming;
+          const delay = perfEntry.processingStart - perfEntry.startTime;
           reportWebVitals({
             name: "FID",
-            value: entry.processingStart - entry.startTime,
-            rating: entry.processingStart - entry.startTime <= 100 ? "good" : 
-                    entry.processingStart - entry.startTime <= 300 ? "needs-improvement" : "poor",
+            value: delay,
+            rating: delay <= 100 ? "good" : delay <= 300 ? "needs-improvement" : "poor",
           });
         });
       });
@@ -74,9 +78,10 @@ export const useWebVitals = () => {
       let clsValue = 0;
       const clsObserver = new PerformanceObserver((list) => {
         const entries = list.getEntries();
-        entries.forEach((entry: any) => {
-          if (!entry.hadRecentInput) {
-            clsValue += entry.value;
+        entries.forEach((entry) => {
+          const layoutEntry = entry as LayoutShift;
+          if (!layoutEntry.hadRecentInput) {
+            clsValue += layoutEntry.value;
           }
         });
 

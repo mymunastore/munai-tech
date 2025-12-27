@@ -30,8 +30,12 @@ export const GenerateProjectImages = () => {
 
       setResults(data.results || []);
       
-      const successCount = data.results?.filter((r: any) => r.status === 'success').length || 0;
-      const failCount = data.results?.filter((r: any) => r.status === 'failed').length || 0;
+      interface Result {
+        status: 'success' | 'failed';
+      }
+      const results = (data.results || []) as Result[];
+      const successCount = results.filter((r) => r.status === 'success').length;
+      const failCount = results.filter((r) => r.status === 'failed').length;
 
       toast.success(`Generation complete!`, {
         description: `Success: ${successCount}, Failed: ${failCount}`

@@ -205,6 +205,7 @@ const BlogPost = () => {
           <div className="max-w-4xl mx-auto prose prose-lg dark:prose-invert">
             <ReactMarkdown
               components={{
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 code({ node, inline, className, children, ...props }: any) {
                   const match = /language-(\w+)/.exec(className || "");
                   return !inline && match ? (

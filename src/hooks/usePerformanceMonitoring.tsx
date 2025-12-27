@@ -12,15 +12,14 @@ export const usePerformanceMonitoring = () => {
     if (typeof window !== 'undefined' && 'PerformanceObserver' in window) {
       const observer = new PerformanceObserver((list) => {
         for (const entry of list.getEntries()) {
-          const metric: PerformanceMetric = {
+          // Metric collected for potential analytics integration
+          // Performance metrics can be sent to analytics service here
+          const _metric: PerformanceMetric = {
             name: entry.name,
             value: entry.startTime,
             rating: getRating(entry.name, entry.startTime),
           };
-
-          if (import.meta.env.DEV) {
-            console.log('Performance Metric:', metric);
-          }
+          void _metric;
         }
       });
 

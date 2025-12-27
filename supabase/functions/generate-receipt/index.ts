@@ -722,9 +722,6 @@ const handler = async (req: Request): Promise<Response> => {
     if (!data.verification_hash) {
       data.verification_hash = generateVerificationHash(data.receipt_number);
     }
-    
-    console.log("Generating receipt for:", data.receipt_number);
-    console.log("Verification hash:", data.verification_hash);
 
     const receiptHTML = generateReceiptHTML(data);
 
@@ -744,8 +741,10 @@ const handler = async (req: Request): Promise<Response> => {
       }),
     });
 
-    const emailResult = await emailResponse.json();
-    console.log("Receipt sent successfully to test email:", emailResult);
+    if (!emailResponse.ok) {
+      const error = await emailResponse.json();
+      throw new Error(`Failed to send receipt email: ${error.message || 'Unknown error'}`);
+    }
 
     return new Response(
       JSON.stringify({ 
@@ -762,7 +761,7 @@ const handler = async (req: Request): Promise<Response> => {
         },
       }
     );
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Error generating receipt:", error);
     
     // Handle validation errors
@@ -779,8 +778,9 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
     
+    const errorMessage = error instanceof Error ? error.message : "Failed to generate receipt";
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ error: errorMessage }),
       {
         status: 500,
         headers: { "Content-Type": "application/json", ...corsHeaders },

@@ -12,8 +12,6 @@ import { useServiceWorker } from "@/hooks/useServiceWorker";
 import { usePrefetch } from "@/hooks/usePrefetch";
 import { lazy, Suspense, useEffect } from "react";
 import { Loader2 } from "lucide-react";
-import React from "react";
-import ReactDOM from "react-dom";
 
 // Lazy load pages for better performance
 const Index = lazy(() => import("./pages/Index"));
@@ -64,13 +62,8 @@ const AppContent = () => {
   // Dev-only: Verify single React instance to prevent hook errors
   useEffect(() => {
     if (import.meta.env.DEV) {
-      console.log('[React Check] React version:', React.version);
-      console.log('[React Check] ReactDOM version:', ReactDOM.version);
-      if (React.version !== ReactDOM.version) {
-        console.error('[React Check] ⚠️ Version mismatch detected!');
-      } else {
-        console.log('[React Check] ✓ Versions match');
-      }
+      // React version check removed - not necessary for production
+      // If hook errors occur, they will be caught by ErrorBoundary
     }
   }, []);
   
