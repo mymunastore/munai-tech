@@ -1,138 +1,111 @@
-import { Download, Printer, Mail, Phone, MapPin, Briefcase, GraduationCap, Award } from "lucide-react";
+import { Download, Printer } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { supabase } from "@/integrations/supabase/client";
-import { SEO } from "@/components/SEO";
+import { Helmet } from "react-helmet";
 
 const Resume = () => {
-  const handleDownload = async () => {
-    try {
-      await supabase.from('resume_downloads').insert({
-        user_agent: navigator.userAgent,
-        ip_address: 'client'
-      });
-      window.print();
-    } catch (error) {
-      console.error('Error logging download:', error);
-    }
-  };
-
   const handlePrint = () => {
     window.print();
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black">
-      <SEO 
-        title="Resume - Kingsley Munachi | AI Full-Stack Developer"
-        description="Download the resume of Kingsley Munachi, Senior Web Designer & AI Full-Stack App Developer with 5+ years of experience in TypeScript, React, AI integration, and modern web technologies."
-        keywords="resume, CV, full-stack developer, AI developer, web designer, TypeScript, React, hire developer"
-      />
-      <Navbar />
-      <div className="container mx-auto px-4 py-24">
-        <div className="max-w-4xl mx-auto">
-          {/* Action Buttons - Hidden when printing */}
-          <div className="flex gap-4 mb-8 print:hidden">
-            <Button onClick={handleDownload} size="lg" className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white border-0">
-              <Download className="mr-2 h-5 w-5" />
-              Download PDF
-            </Button>
-            <Button onClick={handlePrint} variant="outline" size="lg" className="border-cyan-500/30 text-cyan-400 hover:bg-cyan-500/10">
-              <Printer className="mr-2 h-5 w-5" />
-              Print
-            </Button>
-          </div>
+    <>
+      <Helmet>
+        <title>Resume | Kingsley Munachi — Web Developer</title>
+        <meta name="description" content="Resume of Kingsley Munachi, Full-Stack Web & AI Developer with 5+ years of experience in React, Next.js, Node.js, TypeScript, and cloud technologies." />
+        <meta name="keywords" content="Resume, CV, Kingsley Munachi, Web Developer, Full-Stack Developer, React, Node.js, TypeScript" />
+        <link rel="canonical" href="https://munai.tech/resume" />
+        
+        <meta property="og:title" content="Resume | Kingsley Munachi" />
+        <meta property="og:description" content="Full-Stack Web & AI Developer Resume" />
+        <meta property="og:url" content="https://munai.tech/resume" />
+      </Helmet>
 
-          {/* Resume Content */}
-          <Card className="print:shadow-none print:border-0 bg-black/40 border-cyan-500/20">
-            <CardContent className="p-8 md:p-12">
+      <div className="min-h-screen bg-background">
+        <Navbar />
+        
+        <div className="container mx-auto px-4 py-24">
+          <div className="max-w-4xl mx-auto">
+            {/* Action Buttons - Hidden when printing */}
+            <div className="flex gap-4 mb-8 print:hidden">
+              <Button onClick={handlePrint} size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                <Download className="mr-2 h-5 w-5" />
+                Download Resume (PDF)
+              </Button>
+              <Button onClick={handlePrint} variant="outline" size="lg">
+                <Printer className="mr-2 h-5 w-5" />
+                Print
+              </Button>
+            </div>
+
+            {/* Resume Content */}
+            <article className="bg-card border border-border rounded-lg p-8 md:p-12 print:shadow-none print:border-0">
               {/* Header */}
-              <div className="mb-8 pb-8 border-b border-cyan-500/20">
-                <h1 className="text-4xl font-bold mb-2 text-white">Kingsley Munachi</h1>
-                <p className="text-xl text-cyan-400 mb-4">Senior Web Designer & AI Full-Stack App Developer</p>
-                <div className="flex flex-wrap gap-4 text-sm">
-                   <div className="flex items-center gap-2">
-                     <Mail className="h-4 w-4" />
-                     <span>contact@munaitech.com</span>
-                   </div>
-                   <div className="flex items-center gap-2">
-                     <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
-                       <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.568 18.005l-1.414-1.415 4.686-4.69-4.686-4.686 1.414-1.414 6.1 6.1-6.1 6.105z"/>
-                     </svg>
-                     <a href="https://munai.tech" target="_blank" rel="noopener noreferrer" className="hover:text-primary">munai.tech</a>
-                   </div>
-                   <div className="flex items-center gap-2">
-                     <MapPin className="h-4 w-4" />
-                     <span>Lagos, Nigeria (Remote Available)</span>
-                   </div>
-                  <div className="flex items-center gap-2">
-                    <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                    </svg>
-                    <a href="https://github.com/mymunastore" target="_blank" rel="noopener noreferrer" className="hover:text-primary">github.com/mymunastore</a>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                    </svg>
-                    <a href="https://www.linkedin.com/in/kingsley-munachi-843591244" target="_blank" rel="noopener noreferrer" className="hover:text-primary">LinkedIn Profile</a>
-                  </div>
+              <header className="mb-8 pb-8 border-b border-border">
+                <h1 className="text-4xl font-bold text-foreground mb-2">Kingsley Munachi</h1>
+                <p className="text-xl text-primary mb-4">Full-Stack Web & AI Developer</p>
+                <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
+                  <span>Email: info@mymuna.store</span>
+                  <span>Phone: +234 706 237 2521</span>
+                  <span>Portfolio: munai.tech</span>
+                  <span>GitHub: github.com/mymunastore</span>
+                  <span>LinkedIn: linkedin.com/in/kingsley-munachi-843591244</span>
                 </div>
-              </div>
+              </header>
 
-              {/* Summary */}
+              {/* Professional Summary */}
               <section className="mb-8">
-                <h2 className="text-2xl font-bold mb-4 text-white">Professional Summary</h2>
-                <p className="text-gray-300 leading-relaxed">
-                  Innovative Senior Web Designer and AI Full-Stack App Developer specializing in building intelligent, scalable web applications 
-                  with cutting-edge technologies. Expert in TypeScript, React, modern design systems, and AI integration with proven success 
-                  in delivering 30+ production-grade applications across SaaS, fintech, e-commerce, and enterprise sectors. Passionate about 
-                  blending design precision with powerful technology to create transformative digital experiences that solve real-world problems.
+                <h2 className="text-2xl font-bold text-foreground mb-4">Professional Summary</h2>
+                <p className="text-muted-foreground leading-relaxed">
+                  Full-Stack Web & AI Developer with 5+ years of experience building scalable, production-ready web applications. Specialized in frontend and backend development using React, Next.js, Node.js, REST APIs, and modern databases. Experienced in integrating AI-powered features to automate workflows and improve efficiency. Proven track record of delivering solutions from concept through deployment with distributed teams globally.
                 </p>
               </section>
 
-              {/* Experience */}
+              {/* Technical Skills */}
               <section className="mb-8">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-white">
-                  <Briefcase className="h-6 w-6 text-cyan-400" />
-                  Work Experience & Projects
-                </h2>
+                <h2 className="text-2xl font-bold text-foreground mb-4">Technical Skills</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <h3 className="font-semibold text-foreground mb-2">Frontend</h3>
+                    <p className="text-sm text-muted-foreground">React, Next.js, TypeScript, HTML5, CSS3, Tailwind CSS</p>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-foreground mb-2">Backend</h3>
+                    <p className="text-sm text-muted-foreground">Node.js, Express.js, REST APIs, Supabase, Firebase</p>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-foreground mb-2">Databases</h3>
+                    <p className="text-sm text-muted-foreground">PostgreSQL, MongoDB</p>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-foreground mb-2">Cloud & DevOps</h3>
+                    <p className="text-sm text-muted-foreground">AWS, Vercel, Docker, Git / GitHub</p>
+                  </div>
+                </div>
+              </section>
+
+              {/* Professional Experience */}
+              <section className="mb-8">
+                <h2 className="text-2xl font-bold text-foreground mb-4">Professional Experience</h2>
                 <div className="space-y-6">
                   <div>
-                    <h3 className="text-xl font-semibold">Independent Full Stack Developer & AI Solutions Architect</h3>
-                    <p className="text-muted-foreground">Freelance • 2020 - Present</p>
-                    <ul className="mt-2 space-y-2 list-disc list-inside text-muted-foreground">
-                      <li>Developed 30+ production-ready applications using TypeScript, React, and AI technologies</li>
-                      <li>Designed pixel-perfect UI/UX for enterprise clients with 99% client satisfaction rate</li>
-                      <li>Built consulting SaaS platform with client management, booking systems, and analytics</li>
-                      <li>Created AI-powered meeting notes app with automatic transcription and action item extraction</li>
-                      <li>Designed luxury accommodation booking platform with virtual tours and payment integration</li>
-                      <li>Developed financial management suite with expense tracking and budget optimization</li>
-                      <li>Architected enterprise audit and compliance management system for regulatory tracking</li>
-                      <li>Led complete brand identity and web design projects for 30+ clients worldwide</li>
+                    <h3 className="text-xl font-semibold text-foreground">Full-Stack Web Developer</h3>
+                    <p className="text-muted-foreground mb-2">Freelance | 2020 - Present</p>
+                    <ul className="list-disc list-inside text-muted-foreground space-y-1">
+                      <li>Built AI-powered job and resume optimization platform using React, Next.js, and OpenAI API</li>
+                      <li>Developed SaaS business management system with dashboards, analytics, and authentication</li>
+                      <li>Created AI content automation tool reducing manual work for clients</li>
+                      <li>Delivered 30+ production-ready applications across various industries</li>
                     </ul>
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold">Senior Web Designer & Developer</h3>
-                    <p className="text-muted-foreground">Rork Technologies • 2019 - 2020</p>
-                    <ul className="mt-2 space-y-2 list-disc list-inside text-muted-foreground">
-                      <li>Led UI/UX design and development of airline booking and management system</li>
-                      <li>Built food delivery marketplace connecting 30+ restaurants with 500+ customers</li>
-                      <li>Created comprehensive design systems and component libraries</li>
-                      <li>Implemented secure account recovery system with multi-factor authentication</li>
-                      <li>Optimized mobile app performance increasing user retention by 35%</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold">Full Stack Developer</h3>
-                    <p className="text-muted-foreground">Various Clients • 2020 - 2022</p>
-                    <ul className="mt-2 space-y-2 list-disc list-inside text-muted-foreground">
-                      <li>Developed responsive web applications using modern JavaScript frameworks</li>
-                      <li>Integrated payment systems (Stripe, PayPal) for e-commerce platforms</li>
-                      <li>Implemented RESTful APIs and real-time features using WebSockets</li>
-                      <li>Collaborated with designers to create stunning user interfaces</li>
+                    <h3 className="text-xl font-semibold text-foreground">Web Developer</h3>
+                    <p className="text-muted-foreground mb-2">Rork Technologies | 2019 - 2020</p>
+                    <ul className="list-disc list-inside text-muted-foreground space-y-1">
+                      <li>Developed responsive web applications using React and Node.js</li>
+                      <li>Integrated payment systems and RESTful APIs</li>
+                      <li>Collaborated with design teams to implement user interfaces</li>
                     </ul>
                   </div>
                 </div>
@@ -140,91 +113,38 @@ const Resume = () => {
 
               {/* Education */}
               <section className="mb-8">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-white">
-                  <GraduationCap className="h-6 w-6 text-cyan-400" />
-                  Education & Training
-                </h2>
+                <h2 className="text-2xl font-bold text-foreground mb-4">Education</h2>
                 <div className="space-y-4">
                   <div>
-                    <h3 className="text-xl font-semibold">Bachelor of Science (BSc)</h3>
-                    <p className="text-muted-foreground">University of Calabar • Calabar, Cross River State, Nigeria</p>
-                    <p className="mt-2 text-muted-foreground">Comprehensive foundation in Computer Science and Software Engineering</p>
+                    <h3 className="text-lg font-semibold text-foreground">Bachelor of Science (BSc)</h3>
+                    <p className="text-muted-foreground">University of Calabar, Nigeria</p>
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold">Diploma</h3>
-                    <p className="text-muted-foreground">Temple Gate Polytechnic • Aba, Abia State, Nigeria</p>
-                    <p className="mt-2 text-muted-foreground">Technical training in software development and web technologies</p>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold">Professional Certifications</h3>
-                    <p className="text-muted-foreground">Various Platforms • 2020 - 2025</p>
-                    <p className="mt-2 text-muted-foreground">AWS Solutions Architect, Google Cloud Developer, Azure AI Engineer, Meta React Advanced, Advanced UI/UX Design</p>
+                    <h3 className="text-lg font-semibold text-foreground">Diploma</h3>
+                    <p className="text-muted-foreground">Temple Gate Polytechnic, Nigeria</p>
                   </div>
                 </div>
               </section>
 
-              {/* Skills */}
-              <section className="mb-8">
-                <h2 className="text-2xl font-bold mb-4 text-white">Technical Skills</h2>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                  <div>
-                    <h4 className="font-semibold mb-2">Design</h4>
-                    <p className="text-sm text-muted-foreground">UI/UX Design, Figma, Adobe XD, Design Systems, Prototyping</p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold mb-2">Frontend</h4>
-                    <p className="text-sm text-muted-foreground">React, TypeScript, Next.js, Tailwind CSS, HTML5/CSS3</p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold mb-2">Backend</h4>
-                    <p className="text-sm text-muted-foreground">Node.js, Supabase, Firebase, RESTful APIs</p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold mb-2">Database</h4>
-                    <p className="text-sm text-muted-foreground">PostgreSQL, Supabase, MongoDB, Redis</p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold mb-2">AI & Integration</h4>
-                    <p className="text-sm text-muted-foreground">OpenAI API, Google Gemini, Prompt Engineering, RAG</p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold mb-2">Mobile</h4>
-                    <p className="text-sm text-muted-foreground">React Native, Expo, Progressive Web Apps</p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold mb-2">Tools & Platforms</h4>
-                    <p className="text-sm text-muted-foreground">Git/GitHub, VS Code, Vercel, Stripe Integration</p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold mb-2">Creative Suite</h4>
-                    <p className="text-sm text-muted-foreground">Photoshop, Illustrator, After Effects</p>
-                  </div>
-                </div>
-              </section>
-
-              {/* Certifications */}
+              {/* Contact Information */}
               <section>
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-white">
-                  <Award className="h-6 w-6 text-cyan-400" />
-                  Achievements & Highlights
-                </h2>
-                <ul className="space-y-2 text-muted-foreground">
-                  <li>• Successfully delivered 30+ production-ready applications across multiple industries</li>
-                  <li>• 30+ satisfied clients worldwide with 99% success rate</li>
-                  <li>• Expert in blending beautiful design with powerful AI and full-stack technology</li>
-                  <li>• All GitHub repositories demonstrate high code quality and practical utility</li>
-                  <li>• Specialized in rapid prototyping and MVP development (30-day launch cycles)</li>
-                  <li>• 5+ years of professional experience in web design and AI integration</li>
-                  <li>• Strong focus on TypeScript, design systems, and type-safe development practices</li>
-                  <li>• Active contributor to open-source projects and design communities</li>
+                <h2 className="text-2xl font-bold text-foreground mb-4">Contact Information</h2>
+                <ul className="text-muted-foreground space-y-2">
+                  <li><strong>Email:</strong> info@mymuna.store</li>
+                  <li><strong>Phone:</strong> +234 706 237 2521</li>
+                  <li><strong>Portfolio:</strong> munai.tech</li>
+                  <li><strong>GitHub:</strong> github.com/mymunastore</li>
+                  <li><strong>LinkedIn:</strong> linkedin.com/in/kingsley-munachi-843591244</li>
+                  <li><strong>Location:</strong> Nigeria | Open to relocation</li>
                 </ul>
               </section>
-            </CardContent>
-          </Card>
+            </article>
+          </div>
         </div>
+        
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </>
   );
 };
 
