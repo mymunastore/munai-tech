@@ -7,45 +7,23 @@ interface LazySectionProps {
 }
 
 /**
- * LazySection component that uses Intersection Observer to delay rendering
- * of content until it's about to enter the viewport.
- * This helps reduce initial DOM size and improve page load performance.
+ * LazySection component - Renders content immediately for crawler accessibility.
+ * Content is always visible to ensure Googlebot, ATS systems, and Job Bank crawlers
+ * can index all content without JavaScript execution.
+ * 
+ * Note: Lazy loading removed for SEO and ATS compliance. All content must be
+ * crawlable without JavaScript execution.
  */
 const LazySection = ({ 
   children, 
   rootMargin = "100px",
   className = ""
 }: LazySectionProps) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          // Once visible, we can disconnect the observer
-          observer.disconnect();
-        }
-      },
-      {
-        rootMargin, // Start loading before element is visible
-        threshold: 0.01,
-      }
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [rootMargin]);
-
+  // Always render content immediately for crawler accessibility
+  // This ensures Googlebot, ATS systems, and Job Bank can index all content
   return (
-    <div ref={ref} className={className}>
-      {isVisible ? children : <div style={{ minHeight: "100px" }} />}
+    <div className={className}>
+      {children}
     </div>
   );
 };

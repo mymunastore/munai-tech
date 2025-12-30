@@ -13,7 +13,7 @@ export const SEO = ({
   description = "Senior Web Designer & AI Full-Stack App Developer with 5+ years of experience. Specializing in React, TypeScript, AI integration, and custom SaaS development.",
   keywords = "web developer, AI developer, full-stack developer, React developer, TypeScript, web design, UI/UX, Kingsley Munachi",
   image = "/og-image.jpg",
-  url = "https://munai.tech",
+  url = typeof window !== "undefined" ? window.location.href : "https://munai.tech",
 }: SEOProps) => {
   return (
     <Helmet>

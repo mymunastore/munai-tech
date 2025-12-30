@@ -2,9 +2,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Award, Briefcase, Code2, GraduationCap, Heart, Lightbulb, Rocket, Target, Users, Zap } from "lucide-react";
-import profileImage from "@/assets/profile-new.jpg";
+import { Award, Briefcase, Code2, GraduationCap, Heart, Lightbulb, Target, Users, Zap } from "lucide-react";
 
 const About = () => {
   const values = [
@@ -65,49 +63,18 @@ const About = () => {
       <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black text-white">
         <Navbar />
         
-        {/* Hero Section */}
-        <section className="pt-32 pb-16 px-4 bg-gradient-to-br from-black via-gray-900 to-black">
-          <div className="container mx-auto max-w-6xl">
-            <div className="text-center mb-12">
-              <Badge className="mb-4 bg-gradient-to-r from-cyan-400 to-blue-600 text-black">
-                <Rocket className="w-4 h-4 mr-2" />
-                Meet the Creator
-              </Badge>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-cyan-400 to-blue-400 bg-clip-text text-transparent">
-                Kingsley Munachi
-              </h1>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-2">
-                Senior Web Designer & AI Full-Stack App Developer
-              </p>
-              <p className="text-lg text-gray-400 max-w-3xl mx-auto">
-                Crafting intelligent, scalable solutions that blend design precision with cutting-edge technology
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Story Section with Profile Image */}
+        {/* Story Section */}
         <section className="py-16 px-4 bg-black/50">
           <div className="container mx-auto max-w-6xl">
             <h2 className="text-3xl font-bold mb-12 text-center text-cyan-400">My Journey</h2>
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              {/* Profile Image */}
-              <div className="relative order-2 md:order-1">
-                <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/40 via-blue-500/30 to-cyan-400/20 rounded-3xl transform rotate-6 blur-2xl"></div>
-                <img 
-                  src={profileImage}
-                  alt="Kingsley Munachi - Senior Web Designer & AI Full-Stack Developer"
-                  className="relative rounded-3xl shadow-2xl w-full h-auto object-cover border-4 border-cyan-500/30 hover:border-cyan-400/50 transition-all duration-500"
-                />
-              </div>
-              
+            <div className="max-w-4xl mx-auto">
               {/* Story Content */}
-              <div className="prose prose-lg prose-invert max-w-none order-1 md:order-2">
+              <div className="prose prose-lg prose-invert max-w-none">
                 <p className="text-gray-300 leading-relaxed mb-6">
                   With over 5 years of professional experience in web design and AI full-stack development, I've had the privilege of working with startups, enterprises, and everything in between. My journey began with a fascination for how beautiful design and powerful technology could solve real-world problems together.
                 </p>
                 <p className="text-gray-300 leading-relaxed mb-6">
-                  I specialize in creating intelligent, scalable solutions that combine the elegance of pixel-perfect design with the power of artificial intelligence and robust full-stack development. From AI-powered applications to complex web platforms, I've delivered over 50 successful projects for clients worldwide.
+                  I specialize in creating intelligent, scalable solutions that combine the elegance of pixel-perfect design with the power of artificial intelligence and robust full-stack development. From AI-powered applications to complex web platforms, I've delivered 30+ successful projects for clients worldwide.
                 </p>
                 <p className="text-gray-300 leading-relaxed">
                   Based in Lagos, Nigeria, with remote availability globally, I work with clients across different time zones, delivering excellence regardless of location. My approach combines design thinking, technical expertise, and business acumen, ensuring that every solution is not just beautiful and functional, but drives measurable results.

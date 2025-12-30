@@ -69,7 +69,7 @@ const Blog = () => {
         <title>Blog & Insights - MunAiTech | AI Development Articles</title>
         <meta name="description" content="Expert insights on AI development, web technologies, and digital innovation. Learn from real-world projects by MunAiTech." />
         <meta name="keywords" content="AI development, web development, TypeScript, React, AI integration, tech insights" />
-        <link rel="canonical" href="https://yourdomain.com/blog" />
+        <link rel="canonical" href="https://munai.tech/blog" />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",

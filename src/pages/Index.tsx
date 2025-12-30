@@ -26,13 +26,13 @@ const Index = () => {
         <title>MunAiTech - AI Web App Designer & Full-Stack Development | 15071995 LLC</title>
         <meta name="description" content="MunAiTech delivers cutting-edge AI-powered web solutions. Expert TypeScript, React & AI development for modern businesses. 30+ projects, 30+ satisfied clients." />
         <meta name="keywords" content="MunAiTech, AI Development, Full-Stack Developer, TypeScript Expert, React Development, AI Integration, Web Applications, 15071995 LLC" />
-        <link rel="canonical" href="https://yourdomain.com" />
+        <link rel="canonical" href="https://munai.tech" />
         
         {/* Open Graph */}
         <meta property="og:type" content="website" />
         <meta property="og:title" content="MunAiTech - AI Web App Design & Full-Stack Development" />
-        <meta property="og:description" content="Transform your business with AI-powered solutions. 30+ projects delivered with 99% client satisfaction." />
-        <meta property="og:url" content="https://yourdomain.com" />
+        <meta property="og:description" content="Transform your business with AI-powered solutions. 30+ projects delivered with proven results." />
+        <meta property="og:url" content="https://munai.tech" />
         
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -47,8 +47,8 @@ const Index = () => {
           "name": "MunAiTech",
           "legalName": "15071995 LLC",
           "description": "AI-powered web development and digital solutions",
-          "url": "https://yourdomain.com",
-          "logo": "https://yourdomain.com/logo.png",
+          "url": "https://munai.tech",
+          "logo": "https://munai.tech/logo.png",
           "address": {
             "@type": "PostalAddress",
             "addressLocality": "Lagos",
@@ -59,13 +59,7 @@ const Index = () => {
             "contactType": "Business",
             "availableLanguage": ["English"]
           },
-          "sameAs": ["https://github.com/mymunastore", "https://www.linkedin.com/in/kingsley-munachi-843591244", "https://twitter.com/mymunastore"],
-          "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.9",
-            "reviewCount": "100",
-            "bestRating": "5"
-          }
+          "sameAs": ["https://github.com/mymunastore", "https://www.linkedin.com/in/kingsley-munachi-843591244", "https://twitter.com/mymunastore"]
         })}
         </script>
       </Helmet>

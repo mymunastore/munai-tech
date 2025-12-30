@@ -49,7 +49,7 @@ const Resume = () => {
           <Card className="print:shadow-none print:border-0 bg-black/40 border-cyan-500/20">
             <CardContent className="p-8 md:p-12">
               {/* Header */}
-              <div className="mb-8 pb-8 border-b border-cyan-500/20">
+              <header className="mb-8 pb-8 border-b border-cyan-500/20">
                 <h1 className="text-4xl font-bold mb-2 text-white">Kingsley Munachi</h1>
                 <p className="text-xl text-cyan-400 mb-4">Senior Web Designer & AI Full-Stack App Developer</p>
                 <div className="flex flex-wrap gap-4 text-sm">
@@ -80,10 +80,10 @@ const Resume = () => {
                     <a href="https://www.linkedin.com/in/kingsley-munachi-843591244" target="_blank" rel="noopener noreferrer" className="hover:text-primary">LinkedIn Profile</a>
                   </div>
                 </div>
-              </div>
+              </header>
 
-              {/* Summary */}
-              <section className="mb-8">
+              {/* Summary - Plain text for ATS parsing */}
+              <section className="mb-8" itemScope itemType="https://schema.org/Person">
                 <h2 className="text-2xl font-bold mb-4 text-white">Professional Summary</h2>
                 <p className="text-gray-300 leading-relaxed">
                   Innovative Senior Web Designer and AI Full-Stack App Developer specializing in building intelligent, scalable web applications 
@@ -93,19 +93,24 @@ const Resume = () => {
                 </p>
               </section>
 
-              {/* Experience */}
-              <section className="mb-8">
+              {/* Experience - Chronological, ATS-friendly format */}
+              <section className="mb-8" itemScope itemType="https://schema.org/ItemList">
                 <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-white">
                   <Briefcase className="h-6 w-6 text-cyan-400" />
                   Work Experience & Projects
                 </h2>
                 <div className="space-y-6">
-                  <div>
-                    <h3 className="text-xl font-semibold">Independent Full Stack Developer & AI Solutions Architect</h3>
-                    <p className="text-muted-foreground">Freelance • 2020 - Present</p>
+                  <article itemScope itemType="https://schema.org/OrganizationRole">
+                    <h3 className="text-xl font-semibold" itemProp="roleName">Independent Full Stack Developer & AI Solutions Architect</h3>
+                    <p className="text-muted-foreground">
+                      <span itemProp="worksFor">Freelance</span> • 
+                      <span itemProp="startDate"> 2020</span> - 
+                      <span itemProp="endDate"> Present</span> • 
+                      <span itemProp="jobLocation"> Remote (Lagos, Nigeria)</span>
+                    </p>
                     <ul className="mt-2 space-y-2 list-disc list-inside text-muted-foreground">
                       <li>Developed 30+ production-ready applications using TypeScript, React, and AI technologies</li>
-                      <li>Designed pixel-perfect UI/UX for enterprise clients with 99% client satisfaction rate</li>
+                      <li>Designed pixel-perfect UI/UX for enterprise clients with high client satisfaction</li>
                       <li>Built consulting SaaS platform with client management, booking systems, and analytics</li>
                       <li>Created AI-powered meeting notes app with automatic transcription and action item extraction</li>
                       <li>Designed luxury accommodation booking platform with virtual tours and payment integration</li>
@@ -113,10 +118,15 @@ const Resume = () => {
                       <li>Architected enterprise audit and compliance management system for regulatory tracking</li>
                       <li>Led complete brand identity and web design projects for 30+ clients worldwide</li>
                     </ul>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold">Senior Web Designer & Developer</h3>
-                    <p className="text-muted-foreground">Rork Technologies • 2019 - 2020</p>
+                  </article>
+                  <article itemScope itemType="https://schema.org/OrganizationRole">
+                    <h3 className="text-xl font-semibold" itemProp="roleName">Senior Web Designer & Developer</h3>
+                    <p className="text-muted-foreground">
+                      <span itemProp="worksFor">Rork Technologies</span> • 
+                      <span itemProp="startDate"> 2019</span> - 
+                      <span itemProp="endDate"> 2020</span> • 
+                      <span itemProp="jobLocation"> Lagos, Nigeria</span>
+                    </p>
                     <ul className="mt-2 space-y-2 list-disc list-inside text-muted-foreground">
                       <li>Led UI/UX design and development of airline booking and management system</li>
                       <li>Built food delivery marketplace connecting 30+ restaurants with 500+ customers</li>
@@ -124,17 +134,22 @@ const Resume = () => {
                       <li>Implemented secure account recovery system with multi-factor authentication</li>
                       <li>Optimized mobile app performance increasing user retention by 35%</li>
                     </ul>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold">Full Stack Developer</h3>
-                    <p className="text-muted-foreground">Various Clients • 2020 - 2022</p>
+                  </article>
+                  <article itemScope itemType="https://schema.org/OrganizationRole">
+                    <h3 className="text-xl font-semibold" itemProp="roleName">Full Stack Developer</h3>
+                    <p className="text-muted-foreground">
+                      <span itemProp="worksFor">Various Clients</span> • 
+                      <span itemProp="startDate"> 2020</span> - 
+                      <span itemProp="endDate"> 2022</span> • 
+                      <span itemProp="jobLocation"> Remote</span>
+                    </p>
                     <ul className="mt-2 space-y-2 list-disc list-inside text-muted-foreground">
                       <li>Developed responsive web applications using modern JavaScript frameworks</li>
                       <li>Integrated payment systems (Stripe, PayPal) for e-commerce platforms</li>
                       <li>Implemented RESTful APIs and real-time features using WebSockets</li>
                       <li>Collaborated with designers to create stunning user interfaces</li>
                     </ul>
-                  </div>
+                  </article>
                 </div>
               </section>
 
@@ -163,10 +178,38 @@ const Resume = () => {
                 </div>
               </section>
 
-              {/* Skills */}
+              {/* Skills - Plain text format for ATS parsing */}
               <section className="mb-8">
                 <h2 className="text-2xl font-bold mb-4 text-white">Technical Skills</h2>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                {/* Plain text skills list for ATS systems */}
+                <div className="mb-4">
+                  <p className="text-sm text-muted-foreground">
+                    <strong>Design:</strong> UI/UX Design, Figma, Adobe XD, Design Systems, Prototyping
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    <strong>Frontend:</strong> React, TypeScript, Next.js, Tailwind CSS, HTML5, CSS3
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    <strong>Backend:</strong> Node.js, Supabase, Firebase, RESTful APIs
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    <strong>Database:</strong> PostgreSQL, Supabase, MongoDB, Redis
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    <strong>AI & Integration:</strong> OpenAI API, Google Gemini, Prompt Engineering, RAG Systems
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    <strong>Mobile:</strong> React Native, Expo, Progressive Web Apps
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    <strong>Tools & Platforms:</strong> Git, GitHub, VS Code, Vercel, Stripe Integration
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    <strong>Creative Suite:</strong> Photoshop, Illustrator, After Effects
+                  </p>
+                </div>
+                {/* Visual grid for display (progressive enhancement) */}
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 print:hidden">
                   <div>
                     <h4 className="font-semibold mb-2">Design</h4>
                     <p className="text-sm text-muted-foreground">UI/UX Design, Figma, Adobe XD, Design Systems, Prototyping</p>
@@ -210,7 +253,7 @@ const Resume = () => {
                 </h2>
                 <ul className="space-y-2 text-muted-foreground">
                   <li>• Successfully delivered 30+ production-ready applications across multiple industries</li>
-                  <li>• 30+ satisfied clients worldwide with 99% success rate</li>
+                  <li>• 30+ satisfied clients worldwide with successful project delivery</li>
                   <li>• Expert in blending beautiful design with powerful AI and full-stack technology</li>
                   <li>• All GitHub repositories demonstrate high code quality and practical utility</li>
                   <li>• Specialized in rapid prototyping and MVP development (30-day launch cycles)</li>

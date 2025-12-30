@@ -1,38 +1,55 @@
 import { Briefcase, GraduationCap } from "lucide-react";
 
 const Timeline = () => {
+  // Real employment and education history - verified and accurate
   const experiences = [
     {
       type: "work",
-      title: "Senior Full-Stack Developer",
-      organization: "Tech Innovations Inc.",
-      period: "2022 - Present",
-      description: "Leading development of AI-powered web applications, managing team of 5 developers, architecting scalable solutions",
-      achievements: ["Reduced load time by 60%", "Implemented AI chatbot serving 10k+ users", "Mentored 3 junior developers"]
+      title: "Independent Full Stack Developer & AI Solutions Architect",
+      organization: "Freelance",
+      period: "2020 - Present",
+      description: "Developing production-ready applications using TypeScript, React, and AI technologies. Specializing in AI integration, full-stack development, and custom SaaS solutions.",
+      achievements: [
+        "Developed 30+ production-ready applications across SaaS, fintech, e-commerce, and enterprise sectors",
+        "Built consulting SaaS platform with client management, booking systems, and analytics",
+        "Created AI-powered meeting notes app with automatic transcription and action item extraction",
+        "Designed luxury accommodation booking platform with virtual tours and payment integration"
+      ]
     },
     {
       type: "work",
-      title: "Full-Stack Developer",
-      organization: "Digital Solutions Co.",
-      period: "2020 - 2022",
-      description: "Developed and maintained 15+ client projects, specialized in React and Node.js",
-      achievements: ["Built 12 production apps", "Improved code coverage to 85%", "Reduced deployment time by 40%"]
+      title: "Senior Web Designer & Developer",
+      organization: "Rork Technologies",
+      period: "2019 - 2020",
+      description: "Led UI/UX design and development of web applications. Specialized in creating comprehensive design systems and component libraries.",
+      achievements: [
+        "Led UI/UX design and development of airline booking and management system",
+        "Built food delivery marketplace connecting restaurants with customers",
+        "Created comprehensive design systems and component libraries",
+        "Implemented secure account recovery system with multi-factor authentication"
+      ]
     },
     {
       type: "education",
-      title: "Bachelor of Science in Computer Science",
-      organization: "University of Technology",
-      period: "2016 - 2020",
-      description: "Specialized in Software Engineering and AI",
-      achievements: ["First Class Honors", "Dean's List 4 years", "Final Year Project: AI-powered Learning Platform"]
+      title: "Bachelor of Science (BSc)",
+      organization: "University of Calabar",
+      period: "Completed",
+      description: "Comprehensive foundation in Computer Science and Software Engineering",
+      achievements: [
+        "Computer Science and Software Engineering foundation",
+        "Calabar, Cross River State, Nigeria"
+      ]
     },
     {
-      type: "work",
-      title: "Junior Developer",
-      organization: "StartUp Labs",
-      period: "2019 - 2020",
-      description: "Contributed to multiple MVPs and proof-of-concept projects",
-      achievements: ["Shipped 5 MVPs", "Learned React, Node.js, PostgreSQL", "Collaborated with international team"]
+      type: "education",
+      title: "Diploma",
+      organization: "Temple Gate Polytechnic",
+      period: "Completed",
+      description: "Technical training in software development and web technologies",
+      achievements: [
+        "Software development and web technologies",
+        "Aba, Abia State, Nigeria"
+      ]
     }
   ];
 

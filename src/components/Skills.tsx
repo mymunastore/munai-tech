@@ -34,6 +34,9 @@ const Skills = () => {
     }
   ];
 
+  // Plain text skills list for ATS systems and crawlers
+  const allSkillsPlainText = skillCategories.flatMap(cat => cat.skills).join(", ");
+
   return (
     <section id="skills" className="py-20 bg-background">
       <div className="container px-4 sm:px-6 lg:px-8">
@@ -41,6 +44,10 @@ const Skills = () => {
           <h2 className="text-4xl font-bold mb-4">Technical Expertise</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             A comprehensive skillset spanning modern web technologies, AI integration, and full-stack development
+          </p>
+          {/* Plain text skills for ATS parsing - hidden visually but accessible to crawlers */}
+          <p className="sr-only" aria-hidden="false">
+            Technical Skills: {allSkillsPlainText}
           </p>
         </div>
 

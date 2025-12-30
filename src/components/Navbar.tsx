@@ -47,10 +47,7 @@ const Navbar = memo(() => {
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
     { name: "Projects", href: "/projects" },
-    { name: "Blog", href: "/blog" },
     { name: "Resume", href: "/resume" },
-    { name: "Leave Review", href: "/leave-review" },
-    { name: "Get Quote", href: "/contact" },
   ], []);
 
   return (

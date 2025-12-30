@@ -25,7 +25,6 @@ const About = lazy(() => import("./pages/About"));
 const Admin = lazy(() => import("./pages/Admin"));
 const Auth = lazy(() => import("./pages/Auth"));
 const ReceiptPreview = lazy(() => import("./pages/ReceiptPreview"));
-const LeaveReview = lazy(() => import("./pages/LeaveReview"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const LoadingFallback = () => (
@@ -78,7 +77,6 @@ const AppContent = () => {
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/leave-review" element={<LeaveReview />} />
           <Route path="/resume" element={<Resume />} />
           <Route path="/about" element={<About />} />
           <Route path="/auth" element={<Auth />} />
