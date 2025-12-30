@@ -25,6 +25,7 @@ const ProjectDetail = () => {
   const { data: project, isLoading } = useQuery({
     queryKey: ["project", slug],
     queryFn: async () => {
+      if (!slug) throw new Error("Slug is required");
       const { data, error } = await supabase
         .from("projects")
         .select("*")
@@ -35,6 +36,7 @@ const ProjectDetail = () => {
       if (error) throw error;
       return data;
     },
+    enabled: !!slug,
     staleTime: 1000 * 60 * 20, // 20 minutes - individual projects
     gcTime: 1000 * 60 * 60, // 1 hour
   });

@@ -22,9 +22,10 @@ export const useAnalyticsCharts = () => {
       const days = eachDayOfInterval({ start, end });
       const grouped = days.map(day => {
         const dayStr = format(day, "EEE");
-        const count = data.filter(view => 
-          format(new Date(view.created_at), "yyyy-MM-dd") === format(day, "yyyy-MM-dd")
-        ).length;
+        const count = data.filter(view => {
+          if (!view.created_at) return false;
+          return format(new Date(view.created_at), "yyyy-MM-dd") === format(day, "yyyy-MM-dd");
+        }).length;
         
         return { name: dayStr, value: count };
       });

@@ -79,9 +79,9 @@ export const useWebVitals = () => {
       const clsObserver = new PerformanceObserver((list) => {
         const entries = list.getEntries();
         entries.forEach((entry) => {
-          const layoutEntry = entry as LayoutShift;
+          const layoutEntry = entry as PerformanceEntry & { hadRecentInput?: boolean; value?: number };
           if (!layoutEntry.hadRecentInput) {
-            clsValue += layoutEntry.value;
+            clsValue += layoutEntry.value || 0;
           }
         });
 

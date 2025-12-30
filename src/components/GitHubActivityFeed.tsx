@@ -22,28 +22,33 @@ const getEventIcon = (eventType: string) => {
 
 interface GitHubEvent {
   event_type: string;
-  repo_name: string;
+  repo_name: string | null;
+  repo_url: string | null;
+  created_at_github: string;
+  action?: string | null;
   payload?: {
     commits?: Array<unknown>;
     ref_type?: string;
-  };
+    action?: string;
+  } | null;
 }
 
 const getEventDescription = (event: GitHubEvent) => {
+  const repoName = event.repo_name || "unknown repository";
   switch (event.event_type) {
     case "PushEvent":
       const commitCount = event.payload?.commits?.length || 0;
-      return `Pushed ${commitCount} commit${commitCount !== 1 ? "s" : ""} to ${event.repo_name}`;
+      return `Pushed ${commitCount} commit${commitCount !== 1 ? "s" : ""} to ${repoName}`;
     case "CreateEvent":
-      return `Created ${event.payload?.ref_type || "repository"} in ${event.repo_name}`;
+      return `Created ${event.payload?.ref_type || "repository"} in ${repoName}`;
     case "PullRequestEvent":
-      return `${event.action || "opened"} a pull request in ${event.repo_name}`;
+      return `${event.payload?.action || "opened"} a pull request in ${repoName}`;
     case "WatchEvent":
-      return `Starred ${event.repo_name}`;
+      return `Starred ${repoName}`;
     case "IssueCommentEvent":
-      return `Commented on an issue in ${event.repo_name}`;
+      return `Commented on an issue in ${repoName}`;
     default:
-      return `Activity in ${event.repo_name}`;
+      return `Activity in ${repoName}`;
   }
 };
 
@@ -76,6 +81,15 @@ const GitHubActivityFeed = () => {
         const timeAgo = formatDistanceToNow(new Date(activity.created_at_github), {
           addSuffix: true,
         });
+        
+        const eventData: GitHubEvent = {
+          event_type: activity.event_type,
+          repo_name: activity.repo_name,
+          repo_url: activity.repo_url,
+          created_at_github: activity.created_at_github,
+          action: activity.action,
+          payload: activity.payload as GitHubEvent['payload'],
+        };
 
         return (
           <a
@@ -92,7 +106,7 @@ const GitHubActivityFeed = () => {
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-sm text-gray-200 font-medium mb-1 group-hover:text-white transition-colors">
-                {getEventDescription(activity)}
+                {getEventDescription(eventData)}
               </p>
               <p className="text-xs text-gray-400">{timeAgo}</p>
             </div>

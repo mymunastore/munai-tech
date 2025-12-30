@@ -36,7 +36,7 @@ export const useKeyboardShortcuts = (shortcuts: KeyboardShortcut[]) => {
   const showShortcutsHelp = () => {
     const helpText = shortcuts
       .map(s => {
-        const keys = [];
+        const keys: string[] = [];
         if (s.ctrl) keys.push("Ctrl");
         if (s.shift) keys.push("Shift");
         if (s.alt) keys.push("Alt");
