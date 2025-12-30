@@ -373,14 +373,14 @@ const Admin = () => {
                     { 
                       key: "message", 
                       label: "Message",
-                      render: (value) => (
-                        <div className="max-w-xs truncate">{value}</div>
+                      render: (value: unknown) => (
+                        <div className="max-w-xs truncate">{String(value || "")}</div>
                       )
                     },
                     { 
                       key: "created_at", 
                       label: "Date",
-                      render: (value) => formatDate(value)
+                      render: (value: unknown) => formatDate(String(value || ""))
                     },
                   ]}
                 />
@@ -426,12 +426,12 @@ const Admin = () => {
                     { 
                       key: "status", 
                       label: "Status",
-                      render: (value) => <StatusBadge status={value || "active"} />
+                      render: (value: unknown) => <StatusBadge status={String(value || "active")} />
                     },
                     { 
                       key: "subscribed_at", 
                       label: "Subscribed",
-                      render: (value) => formatDate(value)
+                      render: (value: unknown) => formatDate(String(value || ""))
                     },
                   ]}
                 />
@@ -531,14 +531,14 @@ const Admin = () => {
                     { 
                       key: "user_agent", 
                       label: "Device",
-                      render: (value) => (
-                        <div className="max-w-xs truncate text-xs">{value}</div>
+                      render: (value: unknown) => (
+                        <div className="max-w-xs truncate text-xs">{String(value || "")}</div>
                       )
                     },
                     { 
                       key: "created_at", 
                       label: "Timestamp",
-                      render: (value) => formatDate(value)
+                      render: (value: unknown) => formatDate(String(value || ""))
                     },
                   ]}
                 />

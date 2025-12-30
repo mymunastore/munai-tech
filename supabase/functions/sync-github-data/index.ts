@@ -100,8 +100,24 @@ serve(async (req) => {
     });
 
     const reposData = await reposResponse.json() as Array<{
+      id: number;
+      name: string;
+      full_name: string;
+      description: string | null;
+      html_url: string;
+      homepage: string | null;
+      language: string | null;
       stargazers_count: number;
       forks_count: number;
+      watchers_count: number;
+      open_issues_count: number;
+      size: number;
+      topics: string[];
+      created_at: string;
+      updated_at: string;
+      pushed_at: string;
+      fork: boolean;
+      private: boolean;
     }>;
 
     // Calculate total stars and forks
@@ -117,10 +133,16 @@ serve(async (req) => {
     });
 
     const eventsData = await eventsResponse.json() as Array<{
+      id: string;
       type: string;
+      repo?: {
+        name: string;
+      };
       payload?: {
         commits?: Array<unknown>;
+        action?: string;
       };
+      created_at: string;
     }>;
 
     // Count commits from push events

@@ -22,6 +22,7 @@ const BlogPost = () => {
   const { data: post, isLoading } = useQuery({
     queryKey: ["blog-post", slug],
     queryFn: async () => {
+      if (!slug) throw new Error("Slug is required");
       const { data, error } = await supabase
         .from("blog_posts")
         .select("*")
@@ -32,6 +33,7 @@ const BlogPost = () => {
       if (error) throw error;
       return data;
     },
+    enabled: !!slug,
     staleTime: 1000 * 60 * 15, // 15 minutes
     gcTime: 1000 * 60 * 30, // 30 minutes
   });

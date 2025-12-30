@@ -84,7 +84,7 @@ export const TestimonialsTable = () => {
                 </TableCell>
                 <TableCell>{testimonial.project_name || "-"}</TableCell>
                 <TableCell>{renderStars(testimonial.rating || 0)}</TableCell>
-                <TableCell>{getStatusBadge(testimonial.status)}</TableCell>
+                <TableCell>{getStatusBadge(testimonial.status || "pending")}</TableCell>
                 <TableCell>
                   {format(new Date(testimonial.created_at), "MMM dd, yyyy")}
                 </TableCell>

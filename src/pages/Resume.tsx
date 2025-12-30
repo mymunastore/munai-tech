@@ -55,7 +55,7 @@ const Resume = () => {
                 <div className="flex flex-wrap gap-4 text-sm">
                    <div className="flex items-center gap-2">
                      <Mail className="h-4 w-4" />
-                     <span>contact@munaitech.com</span>
+                     <span>info@mymuna.store</span>
                    </div>
                    <div className="flex items-center gap-2">
                      <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
