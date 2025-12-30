@@ -1,3 +1,6 @@
+# Robots.txt for munai.tech
+# Kingsley Munachi - Web Developer Portfolio
+
 User-agent: Googlebot
 Allow: /
 
@@ -10,5 +13,11 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
+User-agent: LinkedInBot
+Allow: /
+
 User-agent: *
 Allow: /
+
+# Sitemap location
+Sitemap: https://munai.tech/sitemap.xml

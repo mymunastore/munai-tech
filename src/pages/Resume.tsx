@@ -26,9 +26,9 @@ const Resume = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black">
       <SEO 
-        title="Resume - Kingsley Munachi | AI Full-Stack Developer"
-        description="Download the resume of Kingsley Munachi, Senior Web Designer & AI Full-Stack App Developer with 5+ years of experience in TypeScript, React, AI integration, and modern web technologies."
-        keywords="resume, CV, full-stack developer, AI developer, web designer, TypeScript, React, hire developer"
+        title="Resume | Kingsley Munachi | Web Developer"
+        description="Download the resume of Kingsley Munachi, Web Developer with 5+ years of experience in React, Next.js, Node.js, TypeScript, and modern web technologies. Open to remote and Canada-based opportunities."
+        keywords="resume, CV, web developer resume, full-stack developer, Kingsley Munachi resume, hire developer"
       />
       <Navbar />
       <div className="container mx-auto px-4 py-24">

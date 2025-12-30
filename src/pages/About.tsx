@@ -55,13 +55,25 @@ const About = () => {
   return (
     <>
       <SEO 
-        title="About Kingsley Munachi | Senior Web Designer & AI Full-Stack Developer"
-        description="Learn about Kingsley Munachi, a senior web designer and AI full-stack app developer with 5+ years of experience crafting intelligent, scalable solutions that blend design precision with cutting-edge technology."
-        keywords="Kingsley Munachi, web designer, ai developer, full-stack developer, web development expert, software engineer, ai integration specialist"
+        title="About Kingsley Munachi | Web Developer | Full-Stack & AI Developer"
+        description="Learn about Kingsley Munachi, a Web Developer with 5+ years of experience building scalable web applications. Specializing in React, Next.js, Node.js, TypeScript, and AI integration. Open to remote and Canada-based opportunities."
+        keywords="Kingsley Munachi, Web Developer, Full-Stack Developer, AI Developer, React Developer, Software Engineer, Remote Developer"
       />
 
       <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black text-white">
         <Navbar />
+        
+        {/* Hero Section */}
+        <section className="pt-32 pb-16 px-4">
+          <div className="container mx-auto max-w-4xl text-center">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+              About <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Kingsley Munachi</span>
+            </h1>
+            <p className="text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
+              Web Developer and Full-Stack AI Developer with over five years of professional experience building scalable, production-ready web applications.
+            </p>
+          </div>
+        </section>
         
         {/* Story Section */}
         <section className="py-16 px-4 bg-black/50">

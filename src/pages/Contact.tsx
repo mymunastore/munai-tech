@@ -92,9 +92,9 @@ const Contact = () => {
   return (
     <div className="min-h-screen">
       <SEO 
-        title="Get Quote | Project Cost Estimator | MunAiTech"
-        description="Get an instant estimate for your web development project and contact us for inquiries. Calculate costs for websites, web apps, e-commerce platforms, and mobile applications."
-        keywords="get quote, project calculator, cost estimate, web development pricing, contact, project inquiry, MunAiTech"
+        title="Contact | Kingsley Munachi | Web Developer"
+        description="Contact Kingsley Munachi for web development projects. Get a quote for websites, web applications, e-commerce platforms, and AI-powered solutions."
+        keywords="contact web developer, hire developer, project quote, Kingsley Munachi contact, web development services"
       />
       <Navbar />
       
