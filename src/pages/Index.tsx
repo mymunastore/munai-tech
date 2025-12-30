@@ -21,45 +21,48 @@ import LazySection from "@/components/LazySection";
 const Index = () => {
   usePageTracking();
   return <>
-      <SEO />
+      <SEO 
+        title="Kingsley Munachi | Web Developer | Full-Stack & AI Developer"
+        description="Kingsley Munachi is a Web Developer with 5+ years of experience building scalable web applications using React, Next.js, Node.js, and TypeScript. Open to remote and Canada-based opportunities."
+      />
       <Helmet>
-        <title>MunAiTech - AI Web App Designer & Full-Stack Development | 15071995 LLC</title>
-        <meta name="description" content="MunAiTech delivers cutting-edge AI-powered web solutions. Expert TypeScript, React & AI development for modern businesses. 30+ projects, 30+ satisfied clients." />
-        <meta name="keywords" content="MunAiTech, AI Development, Full-Stack Developer, TypeScript Expert, React Development, AI Integration, Web Applications, 15071995 LLC" />
         <link rel="canonical" href="https://munai.tech" />
         
         {/* Open Graph */}
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="MunAiTech - AI Web App Design & Full-Stack Development" />
-        <meta property="og:description" content="Transform your business with AI-powered solutions. 30+ projects delivered with proven results." />
+        <meta property="og:title" content="Kingsley Munachi | Web Developer | Full-Stack & AI Developer" />
+        <meta property="og:description" content="Web Developer with 5+ years experience. Specializing in React, Next.js, Node.js, TypeScript. Open to remote and Canada-based opportunities." />
         <meta property="og:url" content="https://munai.tech" />
         
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="MunAiTech - AI-Powered Web Development Solutions" />
-        <meta name="twitter:description" content="Expert AI integration, TypeScript & React development. Transform your business with innovative digital solutions." />
+        <meta name="twitter:title" content="Kingsley Munachi | Web Developer" />
+        <meta name="twitter:description" content="Web Developer with 5+ years experience in React, Next.js, Node.js. Open to remote opportunities." />
         
         {/* Structured Data */}
         <script type="application/ld+json">
           {JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "Organization",
-          "name": "MunAiTech",
-          "legalName": "15071995 LLC",
-          "description": "AI-powered web development and digital solutions",
+          "@type": "Person",
+          "name": "Kingsley Munachi",
+          "jobTitle": "Web Developer",
+          "description": "Full-Stack Web & AI Developer with 5+ years of experience",
           "url": "https://munai.tech",
-          "logo": "https://munai.tech/logo.png",
+          "email": "info@mymuna.store",
+          "sameAs": [
+            "https://github.com/mymunastore",
+            "https://www.linkedin.com/in/kingsley-munachi-843591244",
+            "https://twitter.com/mymunastore"
+          ],
           "address": {
             "@type": "PostalAddress",
             "addressLocality": "Lagos",
             "addressCountry": "Nigeria"
           },
-          "contactPoint": {
-            "@type": "ContactPoint",
-            "contactType": "Business",
-            "availableLanguage": ["English"]
-          },
-          "sameAs": ["https://github.com/mymunastore", "https://www.linkedin.com/in/kingsley-munachi-843591244", "https://twitter.com/mymunastore"]
+          "knowsAbout": [
+            "React", "Next.js", "Node.js", "TypeScript", "JavaScript",
+            "PostgreSQL", "MongoDB", "AWS", "REST APIs", "AI Integration"
+          ]
         })}
         </script>
       </Helmet>
