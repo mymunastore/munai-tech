@@ -1,9 +1,7 @@
 import { ArrowRight, Check } from "lucide-react";
 import { Button } from "./ui/button";
-
 const CTA = () => {
-  return (
-    <section className="py-20 md:py-32 bg-gradient-to-br from-black via-gray-900 to-black relative overflow-hidden border-y border-cyan-500/20">
+  return <section className="py-20 md:py-32 bg-gradient-to-br from-black via-gray-900 to-black relative overflow-hidden border-y border-cyan-500/20">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(34,211,238,0.1),transparent_50%)]" />
@@ -34,46 +32,19 @@ const CTA = () => {
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-            <a href="/contact">
-              <Button
-                size="lg"
-                className="bg-cyan-500 hover:bg-cyan-600 text-black shadow-lg shadow-cyan-500/50 hover:shadow-cyan-500/70 transition-all text-base sm:text-lg px-8 py-6 group font-semibold"
-              >
-                Start Your Project Today
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </a>
-            <a href="/calculator">
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-2 border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 hover:border-cyan-400 backdrop-blur-sm text-base sm:text-lg px-8 py-6"
-              >
-                Get Free Estimate
-              </Button>
-            </a>
-          </div>
+          
 
           {/* Trust Badges */}
           <div className="flex flex-col sm:flex-row justify-center items-center gap-6 text-gray-300">
-            {[
-              "100% Satisfaction Guarantee",
-              "24-48h Response Time",
-              "Premium Quality Assured",
-            ].map((badge, index) => (
-              <div key={index} className="flex items-center gap-2">
+            {["100% Satisfaction Guarantee", "24-48h Response Time", "Premium Quality Assured"].map((badge, index) => <div key={index} className="flex items-center gap-2">
                 <div className="w-5 h-5 rounded-full bg-cyan-500/20 flex items-center justify-center border border-cyan-400/30">
                   <Check className="w-3 h-3 text-cyan-400" />
                 </div>
                 <span className="text-sm font-medium">{badge}</span>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default CTA;
