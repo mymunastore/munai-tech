@@ -18,6 +18,10 @@ import Certifications from "@/components/Certifications";
 import AIRecommendations from "@/components/AIRecommendations";
 import GitHubRepositories from "@/components/GitHubRepositories";
 import LazySection from "@/components/LazySection";
+import StatsCounter from "@/components/StatsCounter";
+import TechMarquee from "@/components/TechMarquee";
+import ValueProposition from "@/components/ValueProposition";
+
 const Index = () => {
   usePageTracking();
   return <>
@@ -67,11 +71,22 @@ const Index = () => {
         </script>
       </Helmet>
       
-      <main id="main-content" className="min-h-screen bg-black">
+      <main id="main-content" className="min-h-screen bg-background">
         <Navbar />
         <Hero />
         
+        {/* Tech Marquee - Scrolling tech stack */}
+        <TechMarquee />
+        
+        {/* Stats Counter */}
+        <StatsCounter />
+        
         <Services />
+        
+        {/* Value Proposition */}
+        <LazySection>
+          <ValueProposition />
+        </LazySection>
         
         <LazySection>
           <ProjectsShowcase />
@@ -79,14 +94,17 @@ const Index = () => {
         
         <LazySection>
           {/* GitHub Repositories Section */}
-          <section className="py-20 bg-gradient-to-b from-black via-gray-900 to-black border-y border-cyan-500/20">
+          <section className="py-20 bg-gradient-to-b from-background via-muted/30 to-background border-y border-border">
             <div className="container px-4">
               <div className="max-w-6xl mx-auto">
                 <div className="text-center mb-12">
-                  <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                    Open Source <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Projects</span>
+                  <span className="inline-block px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-4">
+                    Open Source
+                  </span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                    GitHub <span className="bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">Projects</span>
                   </h2>
-                  <p className="text-gray-300 max-w-2xl mx-auto">
+                  <p className="text-muted-foreground max-w-2xl mx-auto">
                     Explore my latest repositories and contributions on GitHub
                   </p>
                 </div>
