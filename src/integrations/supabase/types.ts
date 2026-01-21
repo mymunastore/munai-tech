@@ -805,6 +805,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      anonymize_ip: { Args: { ip: string }; Returns: string }
       cleanup_rate_limits: { Args: never; Returns: undefined }
       has_role: {
         Args: {
