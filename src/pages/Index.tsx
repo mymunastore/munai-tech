@@ -37,11 +37,15 @@ const Index = () => {
         <meta property="og:title" content="Kingsley Munachi | Web Developer | Full-Stack & AI Developer" />
         <meta property="og:description" content="Web Developer with 5+ years experience. Specializing in React, Next.js, Node.js, TypeScript. Open to remote and Canada-based opportunities." />
         <meta property="og:url" content="https://munai.tech" />
+        <meta property="og:image" content="https://munai.tech/og-image.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
         
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Kingsley Munachi | Web Developer" />
         <meta name="twitter:description" content="Web Developer with 5+ years experience in React, Next.js, Node.js. Open to remote opportunities." />
+        <meta name="twitter:image" content="https://munai.tech/og-image.jpg" />
         
         {/* Structured Data */}
         <script type="application/ld+json">
