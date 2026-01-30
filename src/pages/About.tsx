@@ -1,8 +1,10 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
+import { StructuredData } from "@/components/StructuredData";
 import { Card, CardContent } from "@/components/ui/card";
 import { Award, Briefcase, Code2, GraduationCap, Heart, Lightbulb, Target, Users, Zap } from "lucide-react";
+import { Helmet } from "react-helmet";
 
 const About = () => {
   const values = [
@@ -58,6 +60,20 @@ const About = () => {
         title="About Kingsley Munachi | Web Developer | Full-Stack & AI Developer"
         description="Learn about Kingsley Munachi, a Web Developer with 5+ years of experience building scalable web applications. Specializing in React, Next.js, Node.js, TypeScript, and AI integration. Open to remote and Canada-based opportunities."
         keywords="Kingsley Munachi, Web Developer, Full-Stack Developer, AI Developer, React Developer, Software Engineer, Remote Developer"
+        image="https://munai.tech/og-about.jpg"
+      />
+      <Helmet>
+        <meta property="og:image" content="https://munai.tech/og-about.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:image" content="https://munai.tech/og-about.jpg" />
+      </Helmet>
+      <StructuredData 
+        type="person"
+        breadcrumbs={[
+          { name: "Home", url: "/" },
+          { name: "About", url: "/about" }
+        ]}
       />
 
       <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black text-white">

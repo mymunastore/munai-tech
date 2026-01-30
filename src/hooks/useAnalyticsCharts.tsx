@@ -80,9 +80,65 @@ export const useAnalyticsCharts = () => {
     },
   });
 
+  // Device categories (privacy-first)
+  const { data: deviceCategories } = useQuery({
+    queryKey: ["analytics-device-categories"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("page_views")
+        .select("device_category")
+        .not("device_category", "is", null)
+        .limit(1000);
+      
+      if (error) throw error;
+
+      const counts: Record<string, number> = {};
+      data.forEach(view => {
+        const category = view.device_category || "unknown";
+        counts[category] = (counts[category] || 0) + 1;
+      });
+
+      return Object.entries(counts)
+        .map(([name, value]) => ({ 
+          name: name.charAt(0).toUpperCase() + name.slice(1), 
+          value 
+        }))
+        .sort((a, b) => b.value - a.value);
+    },
+  });
+
+  // Browser categories (privacy-first)
+  const { data: browserCategories } = useQuery({
+    queryKey: ["analytics-browser-categories"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("page_views")
+        .select("browser_category")
+        .not("browser_category", "is", null)
+        .limit(1000);
+      
+      if (error) throw error;
+
+      const counts: Record<string, number> = {};
+      data.forEach(view => {
+        const category = view.browser_category || "unknown";
+        counts[category] = (counts[category] || 0) + 1;
+      });
+
+      return Object.entries(counts)
+        .map(([name, value]) => ({ 
+          name: name.charAt(0).toUpperCase() + name.slice(1), 
+          value 
+        }))
+        .sort((a, b) => b.value - a.value);
+    },
+  });
+
   return {
     pageViewsByDay,
     topPages,
     contactsByType,
+    deviceCategories,
+    browserCategories,
   };
 };

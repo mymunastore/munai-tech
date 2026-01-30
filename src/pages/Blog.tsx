@@ -11,6 +11,8 @@ import { useState } from "react";
 import { format } from "date-fns";
 import { Helmet } from "react-helmet";
 import { LazyImage } from "@/components/LazyImage";
+import { SEO } from "@/components/SEO";
+import { StructuredData } from "@/components/StructuredData";
 import aiInsightsImg from "@/assets/blog/ai-insights.jpg";
 import developmentImg from "@/assets/blog/development.jpg";
 import designImg from "@/assets/blog/design.jpg";
@@ -65,25 +67,25 @@ const Blog = () => {
 
   return (
     <>
+      <SEO
+        title="Blog & Insights - MunAiTech | AI Development Articles"
+        description="Expert insights on AI development, web technologies, and digital innovation. Learn from real-world projects by MunAiTech."
+        keywords="AI development, web development, TypeScript, React, AI integration, tech insights"
+        image="https://munai.tech/og-blog.jpg"
+      />
       <Helmet>
-        <title>Blog & Insights - MunAiTech | AI Development Articles</title>
-        <meta name="description" content="Expert insights on AI development, web technologies, and digital innovation. Learn from real-world projects by MunAiTech." />
-        <meta name="keywords" content="AI development, web development, TypeScript, React, AI integration, tech insights" />
+        <meta property="og:image" content="https://munai.tech/og-blog.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:image" content="https://munai.tech/og-blog.jpg" />
         <link rel="canonical" href="https://munai.tech/blog" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Blog",
-            "name": "MunAiTech Blog",
-            "description": "Insights on AI development and web technologies",
-            "publisher": {
-              "@type": "Organization",
-              "name": "MunAiTech",
-              "legalName": "15071995 LLC"
-            }
-          })}
-        </script>
       </Helmet>
+      <StructuredData 
+        breadcrumbs={[
+          { name: "Home", url: "/" },
+          { name: "Blog", url: "/blog" }
+        ]}
+      />
       
       <div className="min-h-screen">
         <Navbar />
