@@ -39,7 +39,7 @@ const Admin = () => {
   const { data: subscribers, isLoading: subscribersLoading } = useNewsletterSubscribers();
   const { data: pageViews, isLoading: pageViewsLoading } = usePageViews();
   const { data: stats } = useAnalyticsStats();
-  const { pageViewsByDay, topPages, contactsByType } = useAnalyticsCharts();
+  const { pageViewsByDay, topPages, contactsByType, deviceCategories, browserCategories } = useAnalyticsCharts();
   const { data: testimonials } = useTestimonials();
   const { data: receipts } = useReceipts();
   const { data: receiptsStats } = useReceiptsStats();
@@ -507,13 +507,31 @@ const Admin = () => {
             </Card>
           </TabsContent>
 
-          <TabsContent value="analytics">
+          <TabsContent value="analytics" className="space-y-4">
+            {/* Privacy-First Device & Browser Analytics */}
+            <div className="grid gap-4 md:grid-cols-2">
+              <AnalyticsChart 
+                data={deviceCategories || []}
+                type="pie"
+                title="Visitors by Device (Privacy-First)"
+                dataKey="value"
+                nameKey="name"
+              />
+              <AnalyticsChart 
+                data={browserCategories || []}
+                type="pie"
+                title="Visitors by Browser (Privacy-First)"
+                dataKey="value"
+                nameKey="name"
+              />
+            </div>
+
             <Card>
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <div>
                     <CardTitle>Recent Page Views</CardTitle>
-                    <CardDescription>Latest 100 page views across your site</CardDescription>
+                    <CardDescription>Latest 100 page views across your site (no fingerprinting)</CardDescription>
                   </div>
                   <ExportButton 
                     data={pageViews || []} 
@@ -529,10 +547,17 @@ const Admin = () => {
                     { key: "page_path", label: "Page" },
                     { key: "referrer", label: "Referrer" },
                     { 
-                      key: "user_agent", 
+                      key: "device_category", 
                       label: "Device",
                       render: (value: unknown) => (
-                        <div className="max-w-xs truncate text-xs">{String(value || "")}</div>
+                        <span className="capitalize">{String(value || "—")}</span>
+                      )
+                    },
+                    { 
+                      key: "browser_category", 
+                      label: "Browser",
+                      render: (value: unknown) => (
+                        <span className="capitalize">{String(value || "—")}</span>
                       )
                     },
                     { 

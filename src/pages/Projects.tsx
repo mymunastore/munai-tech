@@ -3,12 +3,14 @@ import { supabase } from "@/integrations/supabase/client";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
+import { StructuredData } from "@/components/StructuredData";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ExternalLink, Github, Filter } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { LazyImage } from "@/components/LazyImage";
+import { Helmet } from "react-helmet";
 
 const Projects = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
@@ -42,6 +44,19 @@ const Projects = () => {
         title="Projects | Kingsley Munachi | Web Developer Portfolio"
         description="Explore web development projects by Kingsley Munachi. AI-powered platforms, SaaS applications, and full-stack solutions built with React, Next.js, Node.js, and TypeScript."
         keywords="web development portfolio, React projects, Next.js applications, full-stack developer, Kingsley Munachi projects"
+        image="https://munai.tech/og-projects.jpg"
+      />
+      <Helmet>
+        <meta property="og:image" content="https://munai.tech/og-projects.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:image" content="https://munai.tech/og-projects.jpg" />
+      </Helmet>
+      <StructuredData 
+        breadcrumbs={[
+          { name: "Home", url: "/" },
+          { name: "Projects", url: "/projects" }
+        ]}
       />
       <Navbar />
       

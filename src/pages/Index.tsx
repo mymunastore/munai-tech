@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import { SEO } from "@/components/SEO";
+import { StructuredData } from "@/components/StructuredData";
 import { usePageTracking } from "@/hooks/usePageTracking";
 import Services from "@/components/Services";
 import TechStack from "@/components/TechStack";
@@ -29,6 +30,11 @@ const Index = () => {
         title="Kingsley Munachi | Web Developer | Full-Stack & AI Developer"
         description="Kingsley Munachi is a Web Developer with 5+ years of experience building scalable web applications using React, Next.js, Node.js, and TypeScript. Open to remote and Canada-based opportunities."
       />
+      <StructuredData 
+        breadcrumbs={[
+          { name: "Home", url: "/" }
+        ]}
+      />
       <Helmet>
         <link rel="canonical" href="https://munai.tech" />
         
@@ -47,7 +53,7 @@ const Index = () => {
         <meta name="twitter:description" content="Web Developer with 5+ years experience in React, Next.js, Node.js. Open to remote opportunities." />
         <meta name="twitter:image" content="https://munai.tech/og-image.jpg" />
         
-        {/* Structured Data */}
+        {/* Additional Person structured data for homepage */}
         <script type="application/ld+json">
           {JSON.stringify({
           "@context": "https://schema.org",

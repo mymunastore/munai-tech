@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
+import { parseDeviceCategory, parseBrowserCategory } from "@/utils/userAgentParser";
 
 export const usePageTracking = () => {
   const location = useLocation();
@@ -12,10 +13,14 @@ export const usePageTracking = () => {
     // Use setTimeout to defer tracking after render
     const timeoutId = setTimeout(async () => {
       try {
+        const userAgent = navigator.userAgent;
+        
         await supabase.from("page_views").insert({
           page_path: location.pathname,
           referrer: document.referrer || null,
-          user_agent: navigator.userAgent,
+          user_agent: null, // No longer storing full user agent for privacy
+          device_category: parseDeviceCategory(userAgent),
+          browser_category: parseBrowserCategory(userAgent),
         });
       } catch {
         // Silently fail - don't interrupt user experience

@@ -512,7 +512,9 @@ export type Database = {
       }
       page_views: {
         Row: {
+          browser_category: string | null
           created_at: string | null
+          device_category: string | null
           id: string
           ip_address: string | null
           page_path: string
@@ -521,7 +523,9 @@ export type Database = {
           user_agent: string | null
         }
         Insert: {
+          browser_category?: string | null
           created_at?: string | null
+          device_category?: string | null
           id?: string
           ip_address?: string | null
           page_path: string
@@ -530,7 +534,9 @@ export type Database = {
           user_agent?: string | null
         }
         Update: {
+          browser_category?: string | null
           created_at?: string | null
+          device_category?: string | null
           id?: string
           ip_address?: string | null
           page_path?: string
