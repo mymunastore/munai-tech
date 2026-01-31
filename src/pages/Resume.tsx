@@ -5,6 +5,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { supabase } from "@/integrations/supabase/client";
 import { SEO } from "@/components/SEO";
+import { StructuredData } from "@/components/StructuredData";
+import { Helmet } from "react-helmet";
 
 const Resume = () => {
   const handleDownload = async () => {
@@ -30,6 +32,27 @@ const Resume = () => {
         description="Download the resume of Kingsley Munachi, Web Developer with 5+ years of experience in React, Next.js, Node.js, TypeScript, and modern web technologies. Open to remote and Canada-based opportunities."
         keywords="resume, CV, web developer resume, full-stack developer, Kingsley Munachi resume, hire developer"
       />
+      <StructuredData 
+        breadcrumbs={[
+          { name: "Home", url: "/" },
+          { name: "Resume", url: "/resume" }
+        ]}
+        type="person"
+      />
+      <Helmet>
+        <link rel="canonical" href="https://munai.tech/resume" />
+        <meta property="og:type" content="profile" />
+        <meta property="og:title" content="Resume | Kingsley Munachi | Web Developer" />
+        <meta property="og:description" content="Web Developer with 5+ years experience. Download resume for React, Next.js, Node.js expertise." />
+        <meta property="og:url" content="https://munai.tech/resume" />
+        <meta property="og:image" content="https://munai.tech/og-resume.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Resume | Kingsley Munachi" />
+        <meta name="twitter:description" content="Web Developer resume - React, Next.js, Node.js, TypeScript expertise." />
+        <meta name="twitter:image" content="https://munai.tech/og-resume.jpg" />
+      </Helmet>
       <Navbar />
       <div className="container mx-auto px-4 py-24">
         <div className="max-w-4xl mx-auto">
