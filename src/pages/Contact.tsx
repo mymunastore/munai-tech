@@ -3,6 +3,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ContactForm } from "@/components/ContactForm";
 import { SEO } from "@/components/SEO";
+import { StructuredData } from "@/components/StructuredData";
+import { Helmet } from "react-helmet";
 import { Mail, MapPin, Phone, Calculator as CalcIcon, Sparkles } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -96,6 +98,26 @@ const Contact = () => {
         description="Contact Kingsley Munachi for web development projects. Get a quote for websites, web applications, e-commerce platforms, and AI-powered solutions."
         keywords="contact web developer, hire developer, project quote, Kingsley Munachi contact, web development services"
       />
+      <StructuredData 
+        breadcrumbs={[
+          { name: "Home", url: "/" },
+          { name: "Contact", url: "/contact" }
+        ]}
+      />
+      <Helmet>
+        <link rel="canonical" href="https://munai.tech/contact" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Contact | Kingsley Munachi | Web Developer" />
+        <meta property="og:description" content="Get a project quote. Contact Kingsley Munachi for web development, e-commerce, and AI-powered solutions." />
+        <meta property="og:url" content="https://munai.tech/contact" />
+        <meta property="og:image" content="https://munai.tech/og-contact.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Contact | Kingsley Munachi" />
+        <meta name="twitter:description" content="Get a project quote for web development and AI solutions." />
+        <meta name="twitter:image" content="https://munai.tech/og-contact.jpg" />
+      </Helmet>
       <Navbar />
       
       {/* Hero Section */}
