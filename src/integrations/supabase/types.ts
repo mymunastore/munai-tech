@@ -812,6 +812,7 @@ export type Database = {
     }
     Functions: {
       anonymize_ip: { Args: { ip: string }; Returns: string }
+      check_resume_download_rate_limit: { Args: never; Returns: boolean }
       cleanup_rate_limits: { Args: never; Returns: undefined }
       has_role: {
         Args: {
