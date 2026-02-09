@@ -104,8 +104,11 @@ const About = () => {
                 <p className="text-gray-300 leading-relaxed mb-6">
                   I specialize in creating intelligent, scalable solutions that combine the elegance of pixel-perfect design with the power of artificial intelligence and robust full-stack development. From AI-powered applications to complex web platforms, I've delivered 30+ successful projects for clients worldwide.
                 </p>
-                <p className="text-gray-300 leading-relaxed">
+                <p className="text-gray-300 leading-relaxed mb-6">
                   Based in Lagos, Nigeria, with remote availability globally, I work with clients across different time zones, delivering excellence regardless of location. My approach combines design thinking, technical expertise, and business acumen, ensuring that every solution is not just beautiful and functional, but drives measurable results.
+                </p>
+                <p className="text-gray-300 leading-relaxed">
+                  I'm also an official <a href="https://base44.com" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:text-cyan-300 underline underline-offset-2">Base44 Partner</a>, connecting with clients through the platform to deliver AI-powered app development and product solutions. This partnership enables me to take on diverse projects — from rapid prototyping to full product builds — with a streamlined workflow.
                 </p>
               </div>
             </div>
