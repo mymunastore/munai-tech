@@ -1,9 +1,9 @@
-import { memo, useMemo } from "react";
+import { memo, useMemo, useEffect } from "react";
 import { Card, CardContent } from "./ui/card";
 import { Quote, Star } from "lucide-react";
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 
 interface Testimonial {
@@ -17,6 +17,31 @@ interface Testimonial {
 }
 
 const Testimonials = memo(() => {
+  const queryClient = useQueryClient();
+
+  // Subscribe to realtime changes on approved testimonials
+  useEffect(() => {
+    const channel = supabase
+      .channel('testimonials-realtime')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'client_testimonials',
+          filter: 'status=eq.approved',
+        },
+        () => {
+          queryClient.invalidateQueries({ queryKey: ["approved-testimonials"] });
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [queryClient]);
+
   // Use React Query for optimized caching
   const { data: testimonials = [], isLoading } = useQuery({
     queryKey: ["approved-testimonials"],
