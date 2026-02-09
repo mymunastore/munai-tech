@@ -11,6 +11,7 @@ import ibomLogo from "@/assets/clients/ibom-air.png";
 import petalzLogo from "@/assets/clients/petalz-luxe.png";
 import foodieLogo from "@/assets/clients/foodie-connect.png";
 import mercuriaLogo from "@/assets/clients/mercuria-chops.png";
+import base44Logo from "@/assets/clients/base44.png";
 
 const ClientLogos = memo(() => {
   const [isVisible, setIsVisible] = useState(false);
@@ -61,6 +62,7 @@ const ClientLogos = memo(() => {
     "Petalz Luxe": petalzLogo,
     "FoodieConnect": foodieLogo,
     "Mercuria Chops": mercuriaLogo,
+    "Base44": base44Logo,
   };
 
   if (!clients || clients.length === 0) return null;
