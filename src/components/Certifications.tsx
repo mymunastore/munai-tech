@@ -1,4 +1,4 @@
-import { Award, CheckCircle2, ExternalLink, Cloud, Shield, Code, GitBranch, Network, Brain, Download } from "lucide-react";
+import { Award, CheckCircle2, ExternalLink, Cloud, Shield, Code, GitBranch, Network, Download } from "lucide-react";
 import { Button } from "./ui/button";
 import { motion } from "framer-motion";
 import { memo } from "react";
@@ -77,15 +77,6 @@ const Certifications = memo(() => {
       category: "Infrastructure",
       pdfLink: "/certificates/networking-foundations.pdf"
     },
-    {
-      title: "Effective Strategies for Managing Children with ADHD",
-      issuer: "Inspire Care 360",
-      year: "2025",
-      date: "November 29, 2025",
-      icon: Brain,
-      category: "Professional Development",
-      pdfLink: "/certificates/adhd-strategies.pdf"
-    }
   ];
 
   const achievements = [
@@ -102,8 +93,7 @@ const Certifications = memo(() => {
     "Security": "bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/20",
     "Programming": "bg-green-500/10 text-green-600 dark:text-green-400 border-green-500/20",
     "Version Control": "bg-purple-500/10 text-purple-600 dark:text-purple-400 border-purple-500/20",
-    "Infrastructure": "bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border-cyan-500/20",
-    "Professional Development": "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20"
+    "Infrastructure": "bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border-cyan-500/20"
   };
 
   return (
