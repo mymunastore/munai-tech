@@ -24,6 +24,7 @@ const Resume = lazy(() => import("./pages/Resume"));
 const About = lazy(() => import("./pages/About"));
 const Admin = lazy(() => import("./pages/Admin"));
 const Auth = lazy(() => import("./pages/Auth"));
+const Partnerships = lazy(() => import("./pages/Partnerships"));
 const ReceiptPreview = lazy(() => import("./pages/ReceiptPreview"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
@@ -80,6 +81,7 @@ const AppContent = () => {
           <Route path="/resume" element={<Resume />} />
           <Route path="/about" element={<About />} />
           <Route path="/auth" element={<Auth />} />
+          <Route path="/partnerships" element={<Partnerships />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/receipt-preview" element={<ReceiptPreview />} />
           <Route path="*" element={<NotFound />} />
