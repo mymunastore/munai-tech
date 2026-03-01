@@ -1,6 +1,6 @@
-import { memo, useMemo, useEffect } from "react";
+import { memo, useMemo, useEffect, useState } from "react";
 import { Card, CardContent } from "./ui/card";
-import { Quote, Star } from "lucide-react";
+import { Quote, Star, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
@@ -50,15 +50,22 @@ const Testimonials = memo(() => {
         .from("client_testimonials")
         .select("*")
         .eq("status", "approved")
-        .order("created_at", { ascending: false })
-        .limit(6);
+        .order("created_at", { ascending: false });
       
       if (error) throw error;
       return data as Testimonial[];
     },
-    staleTime: 1000 * 60 * 5, // 5 minutes - testimonials don't change often
-    gcTime: 1000 * 60 * 30, // 30 minutes
+    staleTime: 1000 * 60 * 5,
+    gcTime: 1000 * 60 * 30,
   });
+
+  const ITEMS_PER_PAGE = 3;
+  const [currentPage, setCurrentPage] = useState(0);
+  const totalPages = Math.ceil(testimonials.length / ITEMS_PER_PAGE);
+  const visibleTestimonials = useMemo(
+    () => testimonials.slice(currentPage * ITEMS_PER_PAGE, (currentPage + 1) * ITEMS_PER_PAGE),
+    [testimonials, currentPage]
+  );
 
   // Memoize skeleton array to prevent recreation
   const skeletonArray = useMemo(() => [1, 2, 3], []);
@@ -132,20 +139,18 @@ const Testimonials = memo(() => {
 
         {/* Testimonials Grid */}
         {testimonials.length > 0 ? (
+          <>
           <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
-            {testimonials.map((testimonial, index) => (
+            {visibleTestimonials.map((testimonial, index) => (
               <Card
                 key={testimonial.id}
                 className="group hover:shadow-xl transition-all duration-300 border-border bg-card hover:border-accent/50 relative"
                 style={{ animationDelay: `${index * 150}ms` }}
               >
                 <CardContent className="p-8">
-                  {/* Quote Icon */}
                   <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center mb-6">
                     <Quote className="w-5 h-5 text-accent" />
                   </div>
-
-                  {/* Rating */}
                   {testimonial.rating && (
                     <div className="flex gap-1 mb-4">
                       {Array.from({ length: testimonial.rating }).map((_, i) => (
@@ -153,13 +158,9 @@ const Testimonials = memo(() => {
                       ))}
                     </div>
                   )}
-
-                  {/* Testimonial Text */}
                   <p className="text-muted-foreground mb-6 leading-relaxed italic line-clamp-6">
                     "{testimonial.testimonial_text}"
                   </p>
-
-                  {/* Author Info */}
                   <div className="pt-4 border-t border-border">
                     <h3 className="font-bold text-foreground">{testimonial.client_name}</h3>
                     {testimonial.client_title && testimonial.client_company && (
@@ -172,6 +173,43 @@ const Testimonials = memo(() => {
               </Card>
             ))}
           </div>
+
+          {/* Pagination Controls */}
+          {totalPages > 1 && (
+            <div className="flex items-center justify-center gap-4 mt-10">
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={() => setCurrentPage((p) => Math.max(0, p - 1))}
+                disabled={currentPage === 0}
+                aria-label="Previous testimonials"
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </Button>
+              <div className="flex gap-2">
+                {Array.from({ length: totalPages }).map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setCurrentPage(i)}
+                    className={`w-2.5 h-2.5 rounded-full transition-colors ${
+                      i === currentPage ? "bg-accent" : "bg-muted-foreground/30"
+                    }`}
+                    aria-label={`Go to page ${i + 1}`}
+                  />
+                ))}
+              </div>
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={() => setCurrentPage((p) => Math.min(totalPages - 1, p + 1))}
+                disabled={currentPage === totalPages - 1}
+                aria-label="Next testimonials"
+              >
+                <ChevronRight className="h-4 w-4" />
+              </Button>
+            </div>
+          )}
+        </>
         ) : (
           <div className="text-center py-12">
             <p className="text-muted-foreground mb-6">No testimonials yet. Be the first to share your experience!</p>
