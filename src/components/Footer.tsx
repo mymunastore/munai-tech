@@ -1,4 +1,4 @@
-import { Mail, Github, Linkedin, Twitter, MessageCircle, Star } from "lucide-react";
+import { Mail, Github, Linkedin, Twitter, MessageCircle, Star, ShieldCheck, Award, BadgeCheck } from "lucide-react";
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
 
@@ -66,6 +66,22 @@ const Footer = () => {
                 </a>
               ))}
             </div>
+          </div>
+        </div>
+
+        {/* Verification Badges */}
+        <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/20">
+            <BadgeCheck className="h-4 w-4 text-cyan-400" />
+            <span className="text-xs font-semibold text-cyan-400">Lovable Certified</span>
+          </div>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+            <ShieldCheck className="h-4 w-4 text-emerald-400" />
+            <span className="text-xs font-semibold text-emerald-400">Licensed</span>
+          </div>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/20">
+            <Award className="h-4 w-4 text-amber-400" />
+            <span className="text-xs font-semibold text-amber-400">Platinum Verified</span>
           </div>
         </div>
 
