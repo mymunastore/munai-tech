@@ -33,22 +33,37 @@ const Hero = memo(() => {
         <div className="absolute inset-0 opacity-40" style={{ background: 'var(--gradient-mesh)' }} />
       </div>
 
+      {/* Animated background orbs */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <motion.div
+          animate={{ x: [0, 40, 0], y: [0, -30, 0] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/4 left-1/4 w-72 h-72 bg-accent/10 rounded-full blur-[100px]"
+        />
+        <motion.div
+          animate={{ x: [0, -30, 0], y: [0, 40, 0] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px]"
+        />
+      </div>
+
       {/* Content */}
       <div className="container relative z-10 px-4 sm:px-6 lg:px-8 py-20 md:py-32">
-        <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto items-center">
+        <div className="grid md:grid-cols-2 gap-8 lg:gap-16 max-w-6xl mx-auto items-center">
           {/* Left Column - Text Content */}
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-center md:text-left space-y-8"
+            className="text-center md:text-left space-y-6 lg:space-y-8"
           >
             {/* Availability Badge */}
             <motion.div 
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/15 border border-accent/30 backdrop-blur-sm"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/30 backdrop-blur-md"
+              style={{ background: 'var(--gradient-glass)' }}
             >
               <div className="relative">
                 <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
@@ -64,7 +79,7 @@ const Hero = memo(() => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-tight"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-[1.1] tracking-tight"
             >
               Welcome to my
               <br />
@@ -83,7 +98,7 @@ const Hero = memo(() => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-lg sm:text-xl text-muted-foreground font-light leading-relaxed max-w-lg"
+              className="text-base sm:text-lg md:text-xl text-muted-foreground font-light leading-relaxed max-w-lg mx-auto md:mx-0"
             >
               A senior web designer and AI full-stack app developer. I specialize in crafting intelligent, 
               scalable solutions that blend design precision with cutting-edge technology.
@@ -99,7 +114,7 @@ const Hero = memo(() => {
               <Link to="/contact" aria-label="Start your project with Kingsley Munachi">
                 <Button
                   size="lg"
-                  className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-lg shadow-accent/30 hover:shadow-accent/50 transition-all text-base px-8 py-6 group font-semibold focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-xl"
+                  className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-lg shadow-accent/30 hover:shadow-accent/50 hover:shadow-xl transition-all text-base px-8 py-6 group font-semibold focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-xl"
                 >
                   Start Your Project
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
@@ -161,21 +176,23 @@ const Hero = memo(() => {
                 />
               </picture>
               
-              {/* Availability badge */}
+              {/* Glassmorphism floating badge - bottom right */}
               <motion.div 
                 animate={{ y: [0, -5, 0] }}
                 transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -bottom-6 -right-6 bg-gradient-to-r from-accent to-primary text-accent-foreground px-6 py-3 rounded-2xl shadow-2xl shadow-accent/40"
+                className="absolute -bottom-6 -right-6 backdrop-blur-xl border border-accent/30 px-6 py-3 rounded-2xl shadow-2xl"
+                style={{ background: 'var(--gradient-glass)' }}
               >
-                <div className="text-sm font-semibold">Open to Opportunities</div>
+                <div className="text-sm font-semibold bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">Open to Opportunities</div>
               </motion.div>
               
-              {/* Tech stack floating badges */}
+              {/* Tech stack floating badges with glassmorphism */}
               <motion.div 
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.7 }}
-                className="absolute -top-4 -left-4 bg-card/95 backdrop-blur-sm border border-accent/30 px-4 py-2 rounded-xl shadow-lg"
+                className="absolute -top-4 -left-4 backdrop-blur-xl border border-accent/30 px-4 py-2 rounded-xl shadow-lg"
+                style={{ background: 'var(--gradient-glass)' }}
               >
                 <div className="text-xs font-semibold text-accent">Senior Web Designer</div>
               </motion.div>
@@ -183,7 +200,8 @@ const Hero = memo(() => {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.8 }}
-                className="absolute top-1/4 -right-4 bg-card/95 backdrop-blur-sm border border-accent/30 px-4 py-2 rounded-xl shadow-lg"
+                className="absolute top-1/4 -right-4 backdrop-blur-xl border border-accent/30 px-4 py-2 rounded-xl shadow-lg"
+                style={{ background: 'var(--gradient-glass)' }}
               >
                 <div className="text-xs font-semibold text-accent">AI Full-Stack Dev</div>
               </motion.div>
