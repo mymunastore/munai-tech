@@ -22,6 +22,7 @@ import LazySection from "@/components/LazySection";
 import StatsCounter from "@/components/StatsCounter";
 import TechMarquee from "@/components/TechMarquee";
 import ValueProposition from "@/components/ValueProposition";
+import GovernmentEngagements from "@/components/GovernmentEngagements";
 
 const Index = () => {
   usePageTracking();
@@ -90,6 +91,11 @@ const Index = () => {
         
         {/* Stats Counter */}
         <StatsCounter />
+        
+        {/* Government & Institutional Engagements - Leadership Showcase */}
+        <LazySection>
+          <GovernmentEngagements />
+        </LazySection>
         
         <Services />
         
