@@ -22,6 +22,7 @@ import LazySection from "@/components/LazySection";
 import StatsCounter from "@/components/StatsCounter";
 import TechMarquee from "@/components/TechMarquee";
 import ValueProposition from "@/components/ValueProposition";
+import GovernmentEngagements from "@/components/GovernmentEngagements";
 
 const Index = () => {
   usePageTracking();
