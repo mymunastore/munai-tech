@@ -92,6 +92,11 @@ const Index = () => {
         {/* Stats Counter */}
         <StatsCounter />
         
+        {/* Government & Institutional Engagements - Leadership Showcase */}
+        <LazySection>
+          <GovernmentEngagements />
+        </LazySection>
+        
         <Services />
         
         {/* Value Proposition */}
