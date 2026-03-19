@@ -100,8 +100,8 @@ const Hero = memo(() => {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-base sm:text-lg md:text-xl text-muted-foreground font-light leading-relaxed max-w-lg mx-auto md:mx-0"
             >
-              A senior web designer and AI full-stack app developer. I specialize in crafting intelligent, 
-              scalable solutions that blend design precision with cutting-edge technology.
+              Full-Stack Web & AI Developer with 5+ years delivering production-ready applications 
+              for startups, enterprises, and government institutions across multiple countries.
             </motion.p>
 
             {/* CTA Buttons */}
@@ -194,7 +194,7 @@ const Hero = memo(() => {
                 className="absolute -top-4 -left-4 backdrop-blur-xl border border-accent/30 px-4 py-2 rounded-xl shadow-lg"
                 style={{ background: 'var(--gradient-glass)' }}
               >
-                <div className="text-xs font-semibold text-accent">Senior Web Designer</div>
+                <div className="text-xs font-semibold text-accent">Full-Stack Developer</div>
               </motion.div>
               <motion.div 
                 initial={{ opacity: 0, scale: 0.8 }}
