@@ -16,7 +16,7 @@ import { Helmet } from "react-helmet";
 import Skills from "@/components/Skills";
 import Timeline from "@/components/Timeline";
 import Certifications from "@/components/Certifications";
-import AIRecommendations from "@/components/AIRecommendations";
+
 import GitHubRepositories from "@/components/GitHubRepositories";
 import LazySection from "@/components/LazySection";
 import StatsCounter from "@/components/StatsCounter";

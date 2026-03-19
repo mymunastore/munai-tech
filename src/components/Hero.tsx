@@ -194,7 +194,7 @@ const Hero = memo(() => {
                 className="absolute -top-4 -left-4 backdrop-blur-xl border border-accent/30 px-4 py-2 rounded-xl shadow-lg"
                 style={{ background: 'var(--gradient-glass)' }}
               >
-                <div className="text-xs font-semibold text-accent">Senior Web Designer</div>
+                <div className="text-xs font-semibold text-accent">Full-Stack Developer</div>
               </motion.div>
               <motion.div 
                 initial={{ opacity: 0, scale: 0.8 }}

@@ -26,7 +26,7 @@ const FAQ = memo(() => {
     },
     {
       question: "What is your pricing structure?",
-      answer: "I offer both project-based and hourly rates depending on the nature of the work. Use my Project Calculator to get an instant estimate, or contact me for a detailed quote based on your specific requirements."
+      answer: "I offer both project-based and hourly rates depending on the nature of the work. Contact me for a detailed quote based on your specific requirements, and we'll find a structure that works for your budget and timeline."
     },
     {
       question: "Can you work with my existing team or codebase?",
