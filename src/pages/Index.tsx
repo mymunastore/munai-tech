@@ -155,9 +155,6 @@ const Index = () => {
         </LazySection>
         
         
-        <LazySection>
-          <Newsletter />
-        </LazySection>
         
         <LazySection>
           <FAQ />
