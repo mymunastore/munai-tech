@@ -159,7 +159,9 @@ const Index = () => {
         </LazySection>
         
         <LazySection>
-          <Testimonials />
+          <div id="testimonials">
+            <Testimonials />
+          </div>
         </LazySection>
         
         
