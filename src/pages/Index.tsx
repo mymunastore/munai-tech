@@ -137,7 +137,9 @@ const Index = () => {
         </LazySection>
         
         <LazySection>
-          <TechStack />
+          <div id="techstack">
+            <TechStack />
+          </div>
         </LazySection>
         
         <LazySection>
