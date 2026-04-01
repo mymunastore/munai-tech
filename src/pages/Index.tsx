@@ -99,7 +99,9 @@ const Index = () => {
           <GovernmentEngagements />
         </LazySection>
         
-        <Services />
+        <div id="services">
+          <Services />
+        </div>
         
         {/* Value Proposition */}
         <LazySection>
