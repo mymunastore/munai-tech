@@ -84,7 +84,9 @@ const Index = () => {
       
       <main id="main-content" className="min-h-screen bg-background">
         <Navbar />
-        <Hero />
+        <div id="hero">
+          <Hero />
+        </div>
         
         {/* Tech Marquee - Scrolling tech stack */}
         <TechMarquee />
@@ -97,7 +99,9 @@ const Index = () => {
           <GovernmentEngagements />
         </LazySection>
         
-        <Services />
+        <div id="services">
+          <Services />
+        </div>
         
         {/* Value Proposition */}
         <LazySection>
@@ -105,7 +109,9 @@ const Index = () => {
         </LazySection>
         
         <LazySection>
-          <ProjectsShowcase />
+          <div id="projects">
+            <ProjectsShowcase />
+          </div>
         </LazySection>
         
         <LazySection>
@@ -131,7 +137,9 @@ const Index = () => {
         </LazySection>
         
         <LazySection>
-          <TechStack />
+          <div id="techstack">
+            <TechStack />
+          </div>
         </LazySection>
         
         <LazySection>
@@ -151,7 +159,9 @@ const Index = () => {
         </LazySection>
         
         <LazySection>
-          <Testimonials />
+          <div id="testimonials">
+            <Testimonials />
+          </div>
         </LazySection>
         
         

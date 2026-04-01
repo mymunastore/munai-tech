@@ -1,6 +1,4 @@
-import { Mail, Github, Linkedin, Twitter, MessageCircle, Star, ShieldCheck, Award, BadgeCheck } from "lucide-react";
-import { Button } from "./ui/button";
-import { Link } from "react-router-dom";
+import { Mail, Github, Linkedin, Twitter, MessageCircle, ShieldCheck, Award, BadgeCheck } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -30,14 +28,27 @@ const Footer = () => {
           <div>
             <h3 className="font-bold mb-4 text-cyan-400">Quick Links</h3>
             <ul className="space-y-2 text-sm">
-              {["Home", "Services", "Tech Stack", "Awards", "Testimonials"].map((link) => (
-                <li key={link}>
-                  <a
-                    href={`#${link.toLowerCase().replace(" ", "")}`}
+              {[
+                { label: "Home", id: "hero" },
+                { label: "Services", id: "services" },
+                { label: "Tech Stack", id: "techstack" },
+                { label: "Projects", id: "projects" },
+                { label: "Testimonials", id: "testimonials" },
+              ].map((link) => (
+                <li key={link.label}>
+                  <button
+                    onClick={() => {
+                      const el = document.getElementById(link.id);
+                      if (el) {
+                        el.scrollIntoView({ behavior: "smooth", block: "start" });
+                      } else {
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                      }
+                    }}
                     className="text-gray-400 hover:text-cyan-400 transition-colors"
                   >
-                    {link}
-                  </a>
+                    {link.label}
+                  </button>
                 </li>
               ))}
             </ul>
