@@ -84,7 +84,9 @@ const Index = () => {
       
       <main id="main-content" className="min-h-screen bg-background">
         <Navbar />
-        <Hero />
+        <div id="hero">
+          <Hero />
+        </div>
         
         {/* Tech Marquee - Scrolling tech stack */}
         <TechMarquee />
