@@ -1,6 +1,4 @@
-import { Mail, Github, Linkedin, Twitter, MessageCircle, Star, ShieldCheck, Award, BadgeCheck } from "lucide-react";
-import { Button } from "./ui/button";
-import { Link } from "react-router-dom";
+import { Mail, Github, Linkedin, Twitter, MessageCircle, ShieldCheck, Award, BadgeCheck } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
