@@ -10,7 +10,7 @@ import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 import ProjectsShowcase from "@/components/ProjectsShowcase";
 import ClientLogos from "@/components/ClientLogos";
-import { Newsletter } from "@/components/Newsletter";
+
 import FAQ from "@/components/FAQ";
 import { Helmet } from "react-helmet";
 import Skills from "@/components/Skills";
