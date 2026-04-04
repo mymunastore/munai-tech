@@ -80,6 +80,7 @@ const AppContent = () => {
           <Route path="/products" element={<Products />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
+          <Route path="/insights" element={<Insights />} />
           <Route path="/contact" element={<Contact />} />
           
           <Route path="/about" element={<About />} />

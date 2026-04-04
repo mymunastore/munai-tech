@@ -1,8 +1,6 @@
 import { memo, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { ExternalLink } from "lucide-react";
 import type { TechInsight } from "@/pages/Insights";
 import { formatDistanceToNow } from "date-fns";
 import InsightCategoryIcon from "./InsightCategoryIcon";
