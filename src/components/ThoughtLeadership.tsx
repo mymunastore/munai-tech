@@ -7,24 +7,24 @@ import { Button } from "./ui/button";
 const categories = [
   {
     icon: FileText,
-    title: "Articles",
-    description: "Technical deep-dives on AI architecture, cybersecurity patterns, and enterprise system design.",
+    title: "AI Security",
+    description: "Deep analysis of AI threat landscapes, adversarial attack patterns, and strategies for building resilient AI systems in production.",
     cta: "Read Articles",
     href: "/blog",
     gradient: "from-blue-500 to-cyan-500"
   },
   {
     icon: Lightbulb,
-    title: "Insights",
-    description: "Strategic perspectives on the convergence of AI and security in modern enterprise infrastructure.",
+    title: "Enterprise Systems",
+    description: "Strategic perspectives on designing, deploying, and scaling enterprise infrastructure for high-availability, mission-critical operations.",
     cta: "View Insights",
     href: "/blog",
     gradient: "from-purple-500 to-pink-500"
   },
   {
     icon: FlaskConical,
-    title: "Research",
-    description: "Ongoing research into agentic AI systems, simulation-based threat modeling, and sovereign data architectures.",
+    title: "Infrastructure Thinking",
+    description: "Research into distributed systems, quantum-ready architectures, edge computing, and the future of cloud-native infrastructure engineering.",
     cta: "Explore Research",
     href: "/blog",
     gradient: "from-green-500 to-emerald-500"
@@ -45,16 +45,16 @@ const ThoughtLeadership = memo(() => {
           className="text-center mb-16"
         >
           <span className="inline-block px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-4">
-            Thought Leadership
+            Insights & Research
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Ideas &{" "}
+            Knowledge &{" "}
             <span className="bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">
               Research
             </span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Sharing knowledge on AI systems architecture, cybersecurity engineering, and enterprise infrastructure
+            Advancing the discourse on AI systems architecture, cybersecurity engineering, and enterprise infrastructure
           </p>
         </motion.div>
 
