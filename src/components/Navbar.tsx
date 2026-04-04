@@ -1,4 +1,5 @@
 import { useState, useEffect, memo, useCallback, useMemo } from "react";
+import munaitechLogo from "@/assets/munaitech-logo.png";
 import { Menu, X, LogOut } from "lucide-react";
 import { Button } from "./ui/button";
 import { ThemeToggle } from "./ThemeToggle";
