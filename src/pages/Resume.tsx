@@ -73,8 +73,8 @@ const Resume = () => {
             <CardContent className="p-8 md:p-12">
               {/* Header */}
               <header className="mb-8 pb-8 border-b border-cyan-500/20">
-                <h1 className="text-4xl font-bold mb-2 text-white">Kingsley Munachi</h1>
-                <p className="text-xl text-cyan-400 mb-4">Senior Web Designer & AI Full-Stack App Developer</p>
+                <h1 className="text-4xl font-bold mb-2 text-white">MunAiTech</h1>
+                <p className="text-xl text-cyan-400 mb-4">AI Systems Architecture & Cybersecurity Engineering</p>
                 <div className="flex flex-wrap gap-4 text-sm">
                    <div className="flex items-center gap-2">
                      <Mail className="h-4 w-4" />
