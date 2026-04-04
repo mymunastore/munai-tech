@@ -26,13 +26,7 @@ const GlobalOperations = memo(() => {
       <div className="absolute inset-0 bg-gradient-to-b from-primary/[0.03] via-transparent to-primary/[0.03]" />
 
       <div className="container px-4 sm:px-6 lg:px-8 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="max-w-4xl mx-auto text-center mb-16"
-        >
+        <div className="max-w-4xl mx-auto text-center mb-16">
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-6">
             <Globe className="h-4 w-4" />
             Global Presence
@@ -49,7 +43,7 @@ const GlobalOperations = memo(() => {
             government bodies to develop scalable infrastructure aligned with global 
             standards and regulatory requirements.
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {regions.map((item, index) => (
