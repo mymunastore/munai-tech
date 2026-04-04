@@ -743,6 +743,66 @@ export type Database = {
         }
         Relationships: []
       }
+      tech_insights: {
+        Row: {
+          author_name: string | null
+          category: string
+          content: string | null
+          created_at: string
+          curated_at: string
+          id: string
+          image_url: string | null
+          is_featured: boolean | null
+          is_published: boolean | null
+          published_at: string | null
+          relevance_score: number | null
+          source_name: string | null
+          source_url: string | null
+          summary: string
+          tags: string[] | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          author_name?: string | null
+          category?: string
+          content?: string | null
+          created_at?: string
+          curated_at?: string
+          id?: string
+          image_url?: string | null
+          is_featured?: boolean | null
+          is_published?: boolean | null
+          published_at?: string | null
+          relevance_score?: number | null
+          source_name?: string | null
+          source_url?: string | null
+          summary: string
+          tags?: string[] | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          author_name?: string | null
+          category?: string
+          content?: string | null
+          created_at?: string
+          curated_at?: string
+          id?: string
+          image_url?: string | null
+          is_featured?: boolean | null
+          is_published?: boolean | null
+          published_at?: string | null
+          relevance_score?: number | null
+          source_name?: string | null
+          source_url?: string | null
+          summary?: string
+          tags?: string[] | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string | null
