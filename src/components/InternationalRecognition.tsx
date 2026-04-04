@@ -37,7 +37,7 @@ const recognitions = [
     type: "Platform Certification",
     country: "🌍 Global",
     status: "Platinum",
-    link: "https://lovable.dev/certifications?username=mymunastore",
+    link: "https://docs.lovable.dev/tips-tricks/linkedin-certification",
     external: true,
   },
 ];
