@@ -90,11 +90,6 @@ const Index = () => {
           <Hero />
         </div>
         
-        {/* Debug test */}
-        <div style={{ padding: '100px 0', background: 'red', color: 'white', textAlign: 'center', fontSize: '40px' }}>
-          DEBUG: This should be visible
-        </div>
-        
         {/* Company Positioning — AI + Security + Infrastructure */}
         <CompanyPositioning />
         
