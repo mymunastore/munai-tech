@@ -110,7 +110,7 @@ const ProjectDetail = () => {
   return (
     <>
       <Helmet>
-        <title>{project.title} - Kingsley Munachi Portfolio</title>
+        <title>{project.title} - MunAiTech</title>
         <meta name="description" content={project.description} />
         <meta property="og:title" content={project.title} />
         <meta property="og:description" content={project.description} />
