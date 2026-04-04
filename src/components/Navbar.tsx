@@ -49,6 +49,7 @@ const Navbar = memo(() => {
     { name: "Company", href: "/about" },
     { name: "Products", href: "/products" },
     { name: "Case Studies", href: "/projects" },
+    { name: "Insights", href: "/insights" },
     { name: "Contact", href: "/contact" },
   ], []);
 
