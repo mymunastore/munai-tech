@@ -15,6 +15,7 @@ import { Loader2 } from "lucide-react";
 
 // Lazy load pages for better performance
 const Index = lazy(() => import("./pages/Index"));
+const Products = lazy(() => import("./pages/Products"));
 const Projects = lazy(() => import("./pages/Projects"));
 const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
 const Blog = lazy(() => import("./pages/Blog"));
