@@ -49,7 +49,7 @@ const Resume = () => {
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Resume | Kingsley Munachi" />
+        <meta name="twitter:title" content="Resume | MunAiTech" />
         <meta name="twitter:description" content="Web Developer resume - React, Next.js, Node.js, TypeScript expertise." />
         <meta name="twitter:image" content="https://munai.tech/og-resume.jpg" />
       </Helmet>
