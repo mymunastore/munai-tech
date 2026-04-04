@@ -1,5 +1,5 @@
 import { useState, useEffect, memo, useCallback, useMemo } from "react";
-import munaitechLogo from "@/assets/munaitech-logo-light.png";
+
 import { Menu, X, LogOut } from "lucide-react";
 import { Button } from "./ui/button";
 import { ThemeToggle } from "./ThemeToggle";
@@ -64,7 +64,11 @@ const Navbar = memo(() => {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group">
-            <img src={munaitechLogo} alt="MunAiTech" className="h-9 md:h-10 w-auto" />
+            <span className="text-xl md:text-2xl font-bold tracking-tight">
+              <span className="text-foreground">Mun</span>
+              <span className="text-accent">Ai</span>
+              <span className="text-foreground">Tech</span>
+            </span>
           </Link>
 
           {/* Desktop Navigation */}

@@ -1,5 +1,5 @@
 import { Mail, Github, Linkedin, Twitter, MessageCircle, ShieldCheck, Award, BadgeCheck } from "lucide-react";
-import munaitechLogo from "@/assets/munaitech-logo-light.png";
+
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -12,7 +12,11 @@ const Footer = () => {
           {/* Brand */}
           <div>
             <div className="flex flex-col gap-2 mb-4">
-              <img src={munaitechLogo} alt="MunAiTech" className="h-12 w-auto rounded-lg object-contain max-w-[200px] brightness-110" />
+              <span className="text-2xl font-bold tracking-tight">
+                <span className="text-white">Mun</span>
+                <span className="text-cyan-400">Ai</span>
+                <span className="text-white">Tech</span>
+              </span>
               <span className="text-xs text-gray-300">A 15071995 LLC Company • Kentucky, USA</span>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed">
