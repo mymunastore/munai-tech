@@ -98,6 +98,9 @@ const Index = () => {
         {/* Stats Counter */}
         <StatsCounter />
         
+        {/* Quick Links Grid */}
+        <QuickLinks />
+        
         {/* Government & Institutional Engagements */}
         <LazySection>
           <GovernmentEngagements />
