@@ -1,5 +1,5 @@
 import { Mail, Github, Linkedin, Twitter, MessageCircle, ShieldCheck, Award, BadgeCheck } from "lucide-react";
-import munaitechLogo from "@/assets/munaitech-logo.png";
+import munaitechLogo from "@/assets/munaitech-logo-light.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
