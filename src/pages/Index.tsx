@@ -3,7 +3,6 @@ import Hero from "@/components/Hero";
 import { SEO } from "@/components/SEO";
 import { StructuredData } from "@/components/StructuredData";
 import { usePageTracking } from "@/hooks/usePageTracking";
-import Services from "@/components/Services";
 import TechStack from "@/components/TechStack";
 import Testimonials from "@/components/Testimonials";
 import CTA from "@/components/CTA";
@@ -12,24 +11,26 @@ import ProjectsShowcase from "@/components/ProjectsShowcase";
 import ClientLogos from "@/components/ClientLogos";
 import FAQ from "@/components/FAQ";
 import { Helmet } from "react-helmet";
-import GitHubRepositories from "@/components/GitHubRepositories";
 import LazySection from "@/components/LazySection";
 import StatsCounter from "@/components/StatsCounter";
 import TechMarquee from "@/components/TechMarquee";
-import ValueProposition from "@/components/ValueProposition";
 import GovernmentEngagements from "@/components/GovernmentEngagements";
 import CompanyPositioning from "@/components/CompanyPositioning";
 import CoreCapabilities from "@/components/CoreCapabilities";
 import Differentiation from "@/components/Differentiation";
 import ThoughtLeadership from "@/components/ThoughtLeadership";
-import QuickLinks from "@/components/QuickLinks";
+import GlobalOperations from "@/components/GlobalOperations";
+import InnovationResearch from "@/components/InnovationResearch";
+import ImpactResults from "@/components/ImpactResults";
+import InternationalRecognition from "@/components/InternationalRecognition";
+import FinalPositioning from "@/components/FinalPositioning";
 
 const Index = () => {
   usePageTracking();
   return <>
       <SEO 
-        title="MunAiTech | AI Infrastructure & Cybersecurity Engineering Company"
-        description="MunAiTech is an AI infrastructure and cybersecurity engineering company. We design and deploy production-grade intelligent systems with embedded security for enterprise environments."
+        title="MunAiTech | Global AI Infrastructure & Cybersecurity Engineering Company"
+        description="MunAiTech is a global AI infrastructure and cybersecurity engineering company. We design and deploy production-grade intelligent systems with embedded security for enterprise and government environments worldwide."
       />
       <StructuredData 
         breadcrumbs={[
@@ -41,8 +42,8 @@ const Index = () => {
         
         {/* Open Graph */}
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="MunAiTech | AI Infrastructure & Cybersecurity Engineering Company" />
-        <meta property="og:description" content="AI infrastructure and cybersecurity engineering company building production-grade intelligent systems for enterprise environments." />
+        <meta property="og:title" content="MunAiTech | Global AI Infrastructure & Cybersecurity Engineering" />
+        <meta property="og:description" content="Global AI infrastructure and cybersecurity engineering company building production-grade intelligent systems for enterprise and government environments." />
         <meta property="og:url" content="https://munai.tech" />
         <meta property="og:image" content="https://munai.tech/og-image.jpg" />
         <meta property="og:image:width" content="1200" />
@@ -50,8 +51,8 @@ const Index = () => {
         
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="MunAiTech | AI Infrastructure & Cybersecurity Engineering Company" />
-        <meta name="twitter:description" content="AI infrastructure and cybersecurity engineering. Production-grade intelligent systems for enterprise." />
+        <meta name="twitter:title" content="MunAiTech | Global AI Infrastructure & Cybersecurity Engineering" />
+        <meta name="twitter:description" content="Global AI infrastructure and cybersecurity engineering. Production-grade intelligent systems for enterprise and government." />
         <meta name="twitter:image" content="https://munai.tech/og-image.jpg" />
         
         {/* Organization structured data */}
@@ -61,7 +62,7 @@ const Index = () => {
           "@type": "Organization",
           "name": "MunAiTech",
           "legalName": "15071995 LLC",
-          "description": "AI Infrastructure & Cybersecurity Engineering Company",
+          "description": "Global AI Infrastructure & Cybersecurity Engineering Company",
           "url": "https://munai.tech",
           "email": "hello@munai.tech",
           "sameAs": [
@@ -75,9 +76,9 @@ const Index = () => {
             "addressCountry": "US"
           },
           "knowsAbout": [
-            "AI System Architecture", "Cybersecurity Engineering", "Enterprise SaaS",
-            "Cloud Infrastructure", "Agentic AI", "React", "Next.js", "Node.js", "TypeScript",
-            "PostgreSQL", "AWS", "Threat Modeling", "Zero-Trust Architecture"
+            "AI Infrastructure Engineering", "Cybersecurity Architecture", "Enterprise Systems",
+            "Government Technology", "Quantum-Ready Systems", "Sovereign AI", "Defence Communications",
+            "Cloud Infrastructure", "Agentic AI", "Zero-Trust Architecture"
           ]
         })}
         </script>
@@ -89,7 +90,7 @@ const Index = () => {
           <Hero />
         </div>
         
-        {/* Company Positioning */}
+        {/* Company Positioning — AI + Security + Infrastructure */}
         <CompanyPositioning />
         
         {/* Tech Marquee */}
@@ -98,26 +99,21 @@ const Index = () => {
         {/* Stats Counter */}
         <StatsCounter />
         
-        {/* Quick Links Grid */}
-        <QuickLinks />
+        {/* Global Operations */}
+        <LazySection>
+          <GlobalOperations />
+        </LazySection>
         
         {/* Government & Institutional Engagements */}
         <LazySection>
           <GovernmentEngagements />
         </LazySection>
         
-        {/* Core Capabilities */}
+        {/* Core Services / Capabilities */}
         <LazySection>
-          <CoreCapabilities />
-        </LazySection>
-        
-        <div id="services">
-          <Services />
-        </div>
-        
-        {/* Value Proposition */}
-        <LazySection>
-          <ValueProposition />
+          <div id="services">
+            <CoreCapabilities />
+          </div>
         </LazySection>
         
         {/* Differentiation */}
@@ -125,52 +121,55 @@ const Index = () => {
           <Differentiation />
         </LazySection>
         
+        {/* Innovation & Research */}
+        <LazySection>
+          <InnovationResearch />
+        </LazySection>
+        
+        {/* Systems & Deployments (Case Studies) */}
         <LazySection>
           <div id="projects">
             <ProjectsShowcase />
           </div>
         </LazySection>
         
+        {/* Impact & Results */}
         <LazySection>
-          <section className="py-20 bg-gradient-to-b from-background via-muted/30 to-background border-y border-border">
-            <div className="container px-4">
-              <div className="max-w-6xl mx-auto">
-                <div className="text-center mb-12">
-                  <span className="inline-block px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-4">
-                    Open Source
-                  </span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                    GitHub <span className="bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">Projects</span>
-                  </h2>
-                  <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Explore our latest repositories and open-source contributions
-                  </p>
-                </div>
-                <GitHubRepositories limit={6} showHeader={false} />
-              </div>
-            </div>
-          </section>
+          <ImpactResults />
         </LazySection>
         
+        {/* Infrastructure & Technology Stack */}
         <LazySection>
           <div id="techstack">
             <TechStack />
           </div>
         </LazySection>
         
+        {/* International Recognition */}
+        <LazySection>
+          <InternationalRecognition />
+        </LazySection>
+        
+        {/* Client Logos */}
         <LazySection>
           <ClientLogos />
         </LazySection>
         
+        {/* Testimonials */}
         <LazySection>
           <div id="testimonials">
             <Testimonials />
           </div>
         </LazySection>
         
-        {/* Thought Leadership */}
+        {/* Insights & Research */}
         <LazySection>
           <ThoughtLeadership />
+        </LazySection>
+        
+        {/* Final Positioning Statement */}
+        <LazySection>
+          <FinalPositioning />
         </LazySection>
         
         <LazySection>

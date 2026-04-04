@@ -1,6 +1,6 @@
 import { memo } from "react";
 import { motion } from "framer-motion";
-import { Award, CheckCircle2, ExternalLink, Shield, Star, Sparkles } from "lucide-react";
+import { Award, CheckCircle2, ExternalLink } from "lucide-react";
 import { Badge } from "./ui/badge";
 import { Link } from "react-router-dom";
 

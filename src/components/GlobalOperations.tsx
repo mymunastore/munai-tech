@@ -1,6 +1,6 @@
 import { memo } from "react";
 import { motion } from "framer-motion";
-import { Globe, MapPin, Building2, Landmark, Shield } from "lucide-react";
+import { Globe, Building2, Landmark, Shield } from "lucide-react";
 
 const regions = [
   {
