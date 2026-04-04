@@ -28,9 +28,9 @@ const Resume = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black">
       <SEO 
-        title="Resume | Kingsley Munachi | Web Developer"
-        description="Download the resume of Kingsley Munachi, Web Developer with 5+ years of experience in React, Next.js, Node.js, TypeScript, and modern web technologies. Open to remote and Canada-based opportunities."
-        keywords="resume, CV, web developer resume, full-stack developer, Kingsley Munachi resume, hire developer"
+        title="Resume | MunAiTech | AI Systems Architect"
+        description="MunAiTech — AI infrastructure and cybersecurity engineering company with 5+ years delivering production-grade intelligent systems."
+        keywords="resume, AI systems architect, cybersecurity engineer, MunAiTech"
       />
       <StructuredData 
         breadcrumbs={[
