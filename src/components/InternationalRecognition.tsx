@@ -46,13 +46,7 @@ const InternationalRecognition = memo(() => {
       <div className="absolute inset-0 opacity-15" style={{ background: 'var(--gradient-mesh)' }} />
 
       <div className="container px-4 sm:px-6 lg:px-8 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16">
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-4">
             <Award className="h-4 w-4" />
             Global Recognition
@@ -67,7 +61,7 @@ const InternationalRecognition = memo(() => {
             Recognized by governments, industry leaders, and global technology platforms 
             for innovation, engineering excellence, and real-world impact.
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
           {recognitions.map((item, index) => (
@@ -82,7 +76,7 @@ const InternationalRecognition = memo(() => {
               <div className="relative h-full p-8 rounded-2xl bg-card border border-border hover:border-accent/30 transition-all duration-300 hover:shadow-xl overflow-hidden">
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent to-primary opacity-0 group-hover:opacity-100 transition-opacity" />
                 
-                <div className="flex items-start justify-between mb-4">
+                <div className="flex items-start justify-between mb-4 flex-wrap gap-2">
                   <div className="flex items-center gap-2">
                     <span className="text-lg">{item.country}</span>
                     <Badge variant="outline" className="text-xs border-accent/30 text-accent">

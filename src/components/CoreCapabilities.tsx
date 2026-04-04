@@ -68,13 +68,7 @@ const CoreCapabilities = memo(() => {
       <div className="absolute inset-0 opacity-20" style={{ background: 'var(--gradient-mesh)' }} />
       
       <div className="container px-4 sm:px-6 lg:px-8 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16">
           <span className="inline-block px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-4">
             Core Services
           </span>
@@ -87,7 +81,7 @@ const CoreCapabilities = memo(() => {
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Enterprise-grade capabilities spanning AI infrastructure, cybersecurity architecture, and cloud systems engineering.
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {capabilities.map((cap, index) => (
