@@ -98,12 +98,10 @@ const Insights = () => {
 
       <div className="min-h-screen">
         <Navbar />
-        <InsightsHero />
+        <InsightsHero searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         <InsightsFilters
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
         />
 
         {isLoading ? (

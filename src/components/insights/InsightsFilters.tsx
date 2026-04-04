@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { Brain, Shield, Users, TrendingUp, LayoutGrid, Cloud, Briefcase, Cpu, Rocket } from "lucide-react";
+import { Brain, Shield, TrendingUp, LayoutGrid, Cloud, Cpu, Rocket } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const categories = [
