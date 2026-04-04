@@ -22,6 +22,7 @@ import CompanyPositioning from "@/components/CompanyPositioning";
 import CoreCapabilities from "@/components/CoreCapabilities";
 import Differentiation from "@/components/Differentiation";
 import ThoughtLeadership from "@/components/ThoughtLeadership";
+import QuickLinks from "@/components/QuickLinks";
 
 const Index = () => {
   usePageTracking();
@@ -96,6 +97,9 @@ const Index = () => {
         
         {/* Stats Counter */}
         <StatsCounter />
+        
+        {/* Quick Links Grid */}
+        <QuickLinks />
         
         {/* Government & Institutional Engagements */}
         <LazySection>
