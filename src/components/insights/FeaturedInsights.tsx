@@ -1,70 +1,123 @@
-import { memo } from "react";
-import { Star, ArrowRight } from "lucide-react";
+import { memo, useState } from "react";
+import { ArrowRight, Calendar, Clock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import type { TechInsight } from "@/pages/Insights";
-import { formatDistanceToNow } from "date-fns";
+import { format } from "date-fns";
 import InsightCategoryIcon from "./InsightCategoryIcon";
+import InsightDetailModal from "./InsightDetailModal";
 
 interface FeaturedInsightsProps {
   insights: TechInsight[];
 }
 
 const FeaturedInsights = memo(({ insights }: FeaturedInsightsProps) => {
+  const [selectedInsight, setSelectedInsight] = useState<TechInsight | null>(null);
+
   if (insights.length === 0) return null;
 
+  const mainFeatured = insights[0];
+  const secondaryFeatured = insights.slice(1, 3);
+
   return (
-    <section className="py-12 bg-gradient-to-b from-background to-muted/20">
-      <div className="container px-4">
-        <div className="flex items-center gap-2 mb-8">
-          <Star className="h-5 w-5 text-accent fill-accent" />
-          <h2 className="text-2xl font-bold text-foreground">Featured Stories</h2>
-        </div>
+    <>
+      <section className="py-8">
+        <div className="container px-4">
+          <h2 className="text-2xl font-bold text-foreground mb-6">Featured Articles</h2>
 
-        <div className="grid md:grid-cols-2 gap-6">
-          {insights.slice(0, 2).map((insight) => (
+          <div className="grid lg:grid-cols-2 gap-6">
+            {/* Main featured article with image overlay */}
             <article
-              key={insight.id}
-              className="group relative rounded-2xl border border-accent/20 bg-card p-8 hover:border-accent/40 hover:shadow-xl transition-all duration-300 overflow-hidden"
+              className="group relative rounded-2xl overflow-hidden cursor-pointer min-h-[320px] lg:min-h-[400px] flex flex-col justify-end"
+              onClick={() => setSelectedInsight(mainFeatured)}
             >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 rounded-bl-[100px]" />
+              {/* Background image */}
+              <div
+                className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                style={{
+                  backgroundImage: mainFeatured.image_url
+                    ? `url(${mainFeatured.image_url})`
+                    : `linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)))`,
+                }}
+              />
+              {/* Gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 
-              <div className="flex items-center gap-2 mb-4">
-                <InsightCategoryIcon category={insight.category} />
-                <Badge variant="secondary" className="text-xs">
-                  {insight.category.replace("_", " ")}
+              <div className="relative z-10 p-6 md:p-8">
+                <Badge className="bg-blue-500/90 text-white border-0 mb-3">
+                  <InsightCategoryIcon category={mainFeatured.category} size="sm" />
+                  <span className="ml-1.5 capitalize">
+                    {mainFeatured.category.replace("_", " ")}
+                  </span>
                 </Badge>
-                <Badge className="bg-accent/10 text-accent text-xs border-accent/20">
-                  Featured
-                </Badge>
-              </div>
 
-              <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-accent transition-colors leading-tight">
-                {insight.title}
-              </h3>
-              <p className="text-muted-foreground mb-4 line-clamp-3 leading-relaxed">
-                {insight.summary}
-              </p>
+                <h3 className="text-xl md:text-2xl font-bold text-white mb-2 leading-tight group-hover:text-blue-200 transition-colors">
+                  {mainFeatured.title}
+                </h3>
+                <p className="text-white/80 text-sm md:text-base mb-4 line-clamp-2">
+                  {mainFeatured.summary}
+                </p>
 
-              <div className="flex items-center justify-between text-sm text-muted-foreground">
-                <div className="flex items-center gap-3">
-                  {insight.source_name && (
-                    <span className="font-medium">{insight.source_name}</span>
-                  )}
-                  {insight.curated_at && (
-                    <span>
-                      {formatDistanceToNow(new Date(insight.curated_at), {
-                        addSuffix: true,
-                      })}
+                <div className="flex items-center gap-4 text-white/60 text-sm">
+                  {mainFeatured.published_at && (
+                    <span className="flex items-center gap-1.5">
+                      <Calendar className="h-3.5 w-3.5" />
+                      {format(new Date(mainFeatured.published_at), "MMMM d, yyyy")}
                     </span>
                   )}
+                  <span className="flex items-center gap-1.5">
+                    <Clock className="h-3.5 w-3.5" />
+                    8 min read
+                  </span>
+                  <ArrowRight className="h-4 w-4 ml-auto group-hover:translate-x-1 transition-transform" />
                 </div>
-                <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform text-accent" />
               </div>
             </article>
-          ))}
+
+            {/* Secondary featured articles */}
+            <div className="flex flex-col gap-6">
+              {secondaryFeatured.map((insight) => (
+                <article
+                  key={insight.id}
+                  className="group relative rounded-2xl overflow-hidden cursor-pointer min-h-[180px] flex flex-col justify-end"
+                  onClick={() => setSelectedInsight(insight)}
+                >
+                  <div
+                    className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                    style={{
+                      backgroundImage: insight.image_url
+                        ? `url(${insight.image_url})`
+                        : `linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)))`,
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+
+                  <div className="relative z-10 p-5">
+                    <Badge className="bg-blue-500/90 text-white border-0 mb-2 text-xs">
+                      <span className="capitalize">
+                        {insight.category.replace("_", " ")}
+                      </span>
+                    </Badge>
+                    <h3 className="text-lg font-bold text-white mb-1 leading-tight group-hover:text-blue-200 transition-colors line-clamp-2">
+                      {insight.title}
+                    </h3>
+                    <p className="text-white/70 text-sm line-clamp-1">
+                      {insight.summary}
+                    </p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {selectedInsight && (
+        <InsightDetailModal
+          insight={selectedInsight}
+          onClose={() => setSelectedInsight(null)}
+        />
+      )}
+    </>
   );
 });
 
