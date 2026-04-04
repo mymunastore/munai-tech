@@ -97,7 +97,7 @@ const Footer = () => {
             <span className="text-xs font-semibold text-emerald-400">Licensed</span>
           </div>
           <a
-            href="https://lovable.dev/certifications?username=mymunastore"
+            href="https://docs.lovable.dev/tips-tricks/linkedin-certification"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/20 hover:bg-amber-500/20 hover:border-amber-400/40 transition-colors cursor-pointer"
