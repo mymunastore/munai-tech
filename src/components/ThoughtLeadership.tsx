@@ -56,7 +56,7 @@ const ThoughtLeadership = memo(() => {
           {categories.map((cat, index) => (
             <motion.div
               key={cat.title}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 1, y: 0 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.15 }}

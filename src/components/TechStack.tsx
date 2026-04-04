@@ -38,7 +38,7 @@ const TechStack = memo(() => {
     <section id="tech" className="py-20 md:py-32 bg-secondary/30">
       <div className="container px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 1, y: 0 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
@@ -62,7 +62,7 @@ const TechStack = memo(() => {
           {categories.map((category, catIdx) => (
             <motion.div 
               key={category}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 1, y: 0 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: catIdx * 0.1 }}
