@@ -62,11 +62,7 @@ const Index = () => {
           "@context": "https://schema.org",
           "@type": "Organization",
           "name": "MunAiTech",
-          "founder": {
-            "@type": "Person",
-            "name": "Kingsley Munachi",
-            "jobTitle": "AI Systems Architect & Cybersecurity Engineer"
-          },
+          "legalName": "15071995 LLC",
           "description": "AI Infrastructure & Cybersecurity Engineering Company",
           "url": "https://munai.tech",
           "email": "hello@munai.tech",
