@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 
 const Hero = memo(() => {
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section id="home" className="relative z-0 min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <picture>
