@@ -42,8 +42,8 @@ const Resume = () => {
       <Helmet>
         <link rel="canonical" href="https://munai.tech/resume" />
         <meta property="og:type" content="profile" />
-        <meta property="og:title" content="Resume | Kingsley Munachi | Web Developer" />
-        <meta property="og:description" content="Web Developer with 5+ years experience. Download resume for React, Next.js, Node.js expertise." />
+        <meta property="og:title" content="Resume | MunAiTech" />
+        <meta property="og:description" content="AI infrastructure and cybersecurity engineering — 5+ years delivering production-grade systems." />
         <meta property="og:url" content="https://munai.tech/resume" />
         <meta property="og:image" content="https://munai.tech/og-resume.jpg" />
         <meta property="og:image:width" content="1200" />
