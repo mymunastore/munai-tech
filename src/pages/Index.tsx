@@ -68,7 +68,7 @@ const Index = () => {
           "email": "hello@munai.tech",
           "sameAs": [
             "https://github.com/mymunastore",
-            "https://www.linkedin.com/in/kingsley-munachi-843591244",
+            "https://www.linkedin.com/in/munaitech",
             "https://twitter.com/mymunastore"
           ],
           "address": {
