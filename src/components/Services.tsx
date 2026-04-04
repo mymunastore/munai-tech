@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { Code2, Palette, Bot, ArrowRight, Sparkles } from "lucide-react";
+import { Code2, Shield, Bot, ArrowRight, Sparkles } from "lucide-react";
 import { Card, CardContent } from "./ui/card";
 import { Button } from "./ui/button";
 import { motion } from "framer-motion";
@@ -8,27 +8,27 @@ import { Link } from "react-router-dom";
 const services = [
   {
     icon: Code2,
-    title: "Full-Stack Development",
-    metric: "18+ Projects",
-    description: "End-to-end web applications with modern architecture, TypeScript, React, and cloud deployment. Specialized in rapid MVP development and scalable SaaS solutions.",
-    skills: ["React/TypeScript", "Supabase", "Tailwind CSS", "API Development"],
+    title: "Enterprise Platform Engineering",
+    metric: "30+ Systems Built",
+    description: "End-to-end engineering of scalable SaaS platforms, enterprise applications, and production-grade systems using modern architecture, TypeScript, React, and cloud-native deployment.",
+    skills: ["React/TypeScript", "Cloud Architecture", "Microservices", "API Development"],
     gradient: "from-blue-500 to-cyan-500",
   },
   {
-    icon: Palette,
-    title: "AI Web App Design",
-    metric: "AI-Powered",
-    description: "Designing intelligent web applications that combine beautiful UX with AI capabilities. Creating interfaces that are both user-friendly and cutting-edge.",
-    skills: ["UI/UX Design", "Design Systems", "Responsive Design", "User Research"],
-    gradient: "from-purple-500 to-pink-500",
+    icon: Shield,
+    title: "Cybersecurity Engineering",
+    metric: "Zero-Trust Design",
+    description: "Designing security-first systems with embedded threat modeling, penetration testing workflows, identity verification, and DevSecOps integration across the full stack.",
+    skills: ["Threat Modeling", "Zero-Trust Architecture", "DevSecOps", "Compliance"],
+    gradient: "from-green-500 to-emerald-500",
   },
   {
     icon: Bot,
-    title: "AI Integration",
-    metric: "Smart Solutions",
-    description: "Custom AI solutions using OpenAI, Google Gemini, and advanced prompt engineering. From chatbots to automated note-taking and content generation.",
-    skills: ["OpenAI API", "Prompt Engineering", "AI Automation", "RAG Systems"],
-    gradient: "from-orange-500 to-red-500",
+    title: "AI Systems & Agent Architecture",
+    metric: "Production AI",
+    description: "Building intelligent systems powered by LLMs, agentic workflows, and custom AI pipelines — from automated document processing to autonomous decision engines.",
+    skills: ["LLM Integration", "Agentic AI", "RAG Systems", "AI Automation"],
+    gradient: "from-purple-500 to-pink-500",
   },
 ];
 
@@ -49,18 +49,18 @@ const Services = memo(() => {
         >
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-4">
             <Sparkles className="w-4 h-4" />
-            Premium Services
+            Engineering Services
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Transforming Ideas Into
+            Engineered for
             <br />
             <span className="bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">
-              Digital Excellence
+              Enterprise Performance
             </span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            From concept to deployment, I deliver end-to-end solutions that transform your digital
-            presence and drive measurable business growth.
+            From architecture to deployment, we deliver end-to-end systems engineering 
+            across AI, cybersecurity, and cloud infrastructure.
           </p>
         </motion.div>
 

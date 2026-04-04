@@ -11,55 +11,55 @@ const About = () => {
     {
       icon: <Lightbulb className="w-8 h-8" />,
       title: "Innovation First",
-      description: "Constantly exploring cutting-edge AI and web technologies to deliver future-ready solutions."
+      description: "Constantly exploring cutting-edge AI and cybersecurity technologies to deliver future-ready enterprise solutions."
     },
     {
       icon: <Target className="w-8 h-8" />,
       title: "Results Driven",
-      description: "Focused on delivering measurable outcomes that exceed client expectations and drive business growth."
+      description: "Focused on delivering measurable outcomes that exceed expectations and drive enterprise-level business growth."
     },
     {
       icon: <Heart className="w-8 h-8" />,
       title: "Client Success",
-      description: "Your success is my success. Building long-term partnerships through exceptional service and support."
+      description: "Your mission is our mission. Building long-term partnerships through exceptional engineering and support."
     },
     {
       icon: <Zap className="w-8 h-8" />,
       title: "Agile Excellence",
-      description: "Rapid iteration and deployment using modern development practices for faster time-to-market."
+      description: "Rapid iteration and deployment using modern engineering practices for faster time-to-production."
     }
   ];
 
   const achievements = [
-    { icon: <Award />, label: "5+ Years Experience", value: "Senior Level" },
-    { icon: <Briefcase />, label: "30+ Projects", value: "Delivered" },
+    { icon: <Award />, label: "5+ Years Engineering", value: "Senior Level" },
+    { icon: <Briefcase />, label: "30+ Systems", value: "Delivered" },
     { icon: <Users />, label: "30+ Clients", value: "Worldwide" },
     { icon: <Code2 />, label: "15+ Technologies", value: "Mastered" }
   ];
 
   const expertise = [
-    "Web Design & UI/UX",
-    "AI Integration & Machine Learning",
-    "Full-Stack Web Development",
+    "AI System Architecture",
+    "Cybersecurity Engineering",
+    "Enterprise SaaS Development",
     "React & Next.js Ecosystems",
-    "Responsive Design Systems",
-    "Cloud Architecture (AWS, Azure, GCP)",
+    "Agentic AI & LLM Integration",
+    "Cloud Infrastructure (AWS, Azure, GCP)",
     "Database Design & Optimization",
-    "API Development & Integration",
-    "Design Prototyping & Wireframing",
-    "Mobile-First Development",
-    "E-commerce Solutions",
-    "SaaS Platform Development",
+    "API Architecture & Integration",
+    "Zero-Trust Security Design",
+    "DevSecOps & CI/CD",
+    "Identity & Verification Systems",
+    "Simulation-Based Threat Modeling",
     "Performance Optimization",
-    "Brand Identity Design"
+    "Systems Integration"
   ];
 
   return (
     <>
       <SEO 
-        title="About Kingsley Munachi | Web Developer | Full-Stack & AI Developer"
-        description="Learn about Kingsley Munachi, a Web Developer with 5+ years of experience building scalable web applications. Specializing in React, Next.js, Node.js, TypeScript, and AI integration. Open to remote and Canada-based opportunities."
-        keywords="Kingsley Munachi, Web Developer, Full-Stack Developer, AI Developer, React Developer, Software Engineer, Remote Developer"
+        title="About Kingsley Munachi | AI Systems Architect & Cybersecurity Engineer"
+        description="Learn about Kingsley Munachi, founder of MunAiTech — an AI infrastructure and cybersecurity engineering company with 5+ years delivering production-grade systems for enterprises and government institutions."
+        keywords="Kingsley Munachi, AI Systems Architect, Cybersecurity Engineer, MunAiTech, Enterprise AI, Infrastructure Engineer"
         image="https://munai.tech/og-about.jpg"
       />
       <Helmet>
@@ -86,7 +86,8 @@ const About = () => {
               About <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Kingsley Munachi</span>
             </h1>
             <p className="text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
-              Web Developer and Full-Stack AI Developer with over five years of professional experience building scalable, production-ready web applications.
+              AI Systems Architect & Cybersecurity Engineer with over five years of professional experience 
+              engineering scalable, production-grade intelligent systems for enterprises and government institutions.
             </p>
           </div>
         </section>
@@ -94,21 +95,20 @@ const About = () => {
         {/* Story Section */}
         <section className="py-16 px-4 bg-black/50">
           <div className="container mx-auto max-w-6xl">
-            <h2 className="text-3xl font-bold mb-12 text-center text-cyan-400">My Journey</h2>
+            <h2 className="text-3xl font-bold mb-12 text-center text-cyan-400">The Journey</h2>
             <div className="max-w-4xl mx-auto">
-              {/* Story Content */}
               <div className="prose prose-lg prose-invert max-w-none">
                 <p className="text-gray-300 leading-relaxed mb-6">
-                  With over 5 years of professional experience in web design and AI full-stack development, I've had the privilege of working with startups, enterprises, and everything in between. My journey began with a fascination for how beautiful design and powerful technology could solve real-world problems together.
+                  With over 5 years of professional experience in AI systems architecture and full-stack engineering, I've had the privilege of working with startups, enterprises, and government institutions across multiple countries. My journey began with a fascination for how intelligent systems and robust security could solve real-world problems at scale.
                 </p>
                 <p className="text-gray-300 leading-relaxed mb-6">
-                  I specialize in creating intelligent, scalable solutions that combine the elegance of pixel-perfect design with the power of artificial intelligence and robust full-stack development. From AI-powered applications to complex web platforms, I've delivered 30+ successful projects for clients worldwide.
+                  I specialize in engineering scalable, secure systems that integrate artificial intelligence with embedded cybersecurity. From agentic AI platforms to enterprise SaaS systems, I've delivered 30+ production-grade systems for clients worldwide — spanning fintech, defence, government, and enterprise environments.
                 </p>
                 <p className="text-gray-300 leading-relaxed mb-6">
-                  Based in Lagos, Nigeria, with remote availability globally, I work with clients across different time zones, delivering excellence regardless of location. My approach combines design thinking, technical expertise, and business acumen, ensuring that every solution is not just beautiful and functional, but drives measurable results.
+                  As founder of MunAiTech (15071995 LLC), I lead a company focused on building production-grade intelligent systems at the intersection of AI, security, and infrastructure. We actively engage with Canada's most critical technology initiatives, including sovereign AI infrastructure and national defence communications.
                 </p>
                 <p className="text-gray-300 leading-relaxed">
-                  I'm also an official <a href="https://base44.com" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:text-cyan-300 underline underline-offset-2">Base44 Partner</a>, connecting with clients through the platform to deliver AI-powered app development and product solutions. This partnership enables me to take on diverse projects — from rapid prototyping to full product builds — with a streamlined workflow.
+                  I'm also an official <a href="https://base44.com" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:text-cyan-300 underline underline-offset-2">Base44 Partner</a>, connecting with clients through the platform to deliver AI-powered systems and enterprise solutions with a streamlined workflow.
                 </p>
               </div>
             </div>
@@ -157,9 +157,9 @@ const About = () => {
         <section className="py-16 px-4 bg-gradient-to-br from-black via-gray-900 to-black">
           <div className="container mx-auto max-w-6xl">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4 text-cyan-400">Technical Expertise</h2>
+              <h2 className="text-3xl font-bold mb-4 text-cyan-400">Engineering Expertise</h2>
               <p className="text-gray-400 max-w-2xl mx-auto">
-                A comprehensive skill set spanning modern web development, AI integration, and cloud technologies.
+                A comprehensive skill set spanning AI systems architecture, cybersecurity engineering, and cloud infrastructure.
               </p>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -237,16 +237,16 @@ const About = () => {
         {/* CTA */}
         <section className="py-20 px-4 bg-gradient-to-br from-black via-gray-900 to-black">
           <div className="container mx-auto max-w-4xl text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Let&apos;s Build Something Amazing Together</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Let&apos;s Engineer Something Extraordinary</h2>
             <p className="text-xl text-gray-400 mb-8">
-              Ready to transform your ideas into reality with cutting-edge AI and web solutions?
+              Work with MunAiTech to design and deploy secure, intelligent systems.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href="/contact" className="inline-flex items-center justify-center px-8 py-3 bg-gradient-to-r from-cyan-400 to-blue-600 text-black font-semibold rounded-lg hover:opacity-90 transition-opacity">
-                Get In Touch
+                Start an Engagement
               </a>
               <a href="/projects" className="inline-flex items-center justify-center px-8 py-3 border-2 border-cyan-500/30 hover:border-cyan-400 text-white font-semibold rounded-lg transition-colors">
-                View My Work
+                View Case Studies
               </a>
             </div>
           </div>

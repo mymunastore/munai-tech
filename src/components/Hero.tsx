@@ -1,4 +1,4 @@
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Shield } from "lucide-react";
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
 import heroBg from "@/assets/hero-bg.jpg";
@@ -20,7 +20,7 @@ const Hero = memo(() => {
           />
           <img
             src={heroBg}
-            alt="AI Technology Background showcasing modern development workspace"
+            alt="AI Infrastructure & Cybersecurity Engineering"
             className="w-full h-full object-cover opacity-15"
             loading="eager"
             fetchPriority="high"
@@ -29,7 +29,6 @@ const Hero = memo(() => {
           />
         </picture>
         <div className="absolute inset-0 bg-gradient-to-br from-background via-background/95 to-background" />
-        {/* Mesh gradient overlay */}
         <div className="absolute inset-0 opacity-40" style={{ background: 'var(--gradient-mesh)' }} />
       </div>
 
@@ -70,7 +69,7 @@ const Hero = memo(() => {
                 <div className="absolute inset-0 w-2 h-2 rounded-full bg-accent animate-ping" />
               </div>
               <span className="text-sm font-medium text-accent">
-                Available for New Projects
+                Accepting Enterprise Engagements
               </span>
             </motion.div>
 
@@ -81,15 +80,14 @@ const Hero = memo(() => {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-[1.1] tracking-tight"
             >
-              Welcome to my
+              AI Systems Architect
               <br />
-              digital workspace.
+              Building Secure,
               <br />
               <span className="relative inline-block">
                 <span className="bg-gradient-to-r from-accent via-primary to-accent bg-clip-text text-transparent animate-gradient-shift bg-[length:200%_auto]">
-                  I&apos;m Kingsley
+                  Scalable Infrastructure
                 </span>
-                <Sparkles className="absolute -top-2 -right-6 w-6 h-6 text-accent animate-pulse" />
               </span>
             </motion.h1>
 
@@ -100,8 +98,9 @@ const Hero = memo(() => {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-base sm:text-lg md:text-xl text-muted-foreground font-light leading-relaxed max-w-lg mx-auto md:mx-0"
             >
-              Full-Stack Web & AI Developer with 5+ years delivering production-ready applications 
-              for startups, enterprises, and government institutions across multiple countries.
+              Designing and deploying AI-driven systems with embedded cybersecurity 
+              for enterprise and high-performance environments. 5+ years engineering 
+              production-grade platforms for startups, enterprises, and government institutions.
             </motion.p>
 
             {/* CTA Buttons */}
@@ -111,22 +110,22 @@ const Hero = memo(() => {
               transition={{ duration: 0.8, delay: 0.5 }}
               className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start items-center"
             >
-              <Link to="/contact" aria-label="Start your project with Kingsley Munachi">
+              <Link to="/contact" aria-label="Start an engagement with MunAiTech">
                 <Button
                   size="lg"
                   className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-lg shadow-accent/30 hover:shadow-accent/50 hover:shadow-xl transition-all text-base px-8 py-6 group font-semibold focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-xl"
                 >
-                  Start Your Project
+                  Start an Engagement
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                 </Button>
               </Link>
-              <Link to="/projects" aria-label="View Portfolio">
+              <Link to="/projects" aria-label="View Systems & Case Studies">
                 <Button
                   size="lg"
                   variant="outline"
                   className="border-2 border-accent/40 text-accent hover:bg-accent/10 hover:border-accent backdrop-blur-sm text-base px-8 py-6 focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-xl"
                 >
-                  View Portfolio
+                  View Case Studies
                 </Button>
               </Link>
             </motion.div>
@@ -166,7 +165,7 @@ const Hero = memo(() => {
                 />
                 <img 
                   src={profileImage}
-                  alt="Kingsley Munachi - Senior Web Designer & AI Full-Stack Developer specializing in modern web applications"
+                  alt="Kingsley Munachi — AI Systems Architect & Cybersecurity Engineer"
                   className="relative rounded-3xl shadow-2xl shadow-accent/20 w-full h-auto object-cover border-4 border-accent/20 hover:border-accent/40 transition-all duration-500"
                   loading="eager"
                   fetchPriority="high"
@@ -194,7 +193,10 @@ const Hero = memo(() => {
                 className="absolute -top-4 -left-4 backdrop-blur-xl border border-accent/30 px-4 py-2 rounded-xl shadow-lg"
                 style={{ background: 'var(--gradient-glass)' }}
               >
-                <div className="text-xs font-semibold text-accent">Full-Stack Developer</div>
+                <div className="flex items-center gap-1.5 text-xs font-semibold text-accent">
+                  <Shield className="h-3 w-3" />
+                  AI Systems Architect
+                </div>
               </motion.div>
               <motion.div 
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -203,7 +205,7 @@ const Hero = memo(() => {
                 className="absolute top-1/4 -right-4 backdrop-blur-xl border border-accent/30 px-4 py-2 rounded-xl shadow-lg"
                 style={{ background: 'var(--gradient-glass)' }}
               >
-                <div className="text-xs font-semibold text-accent">AI Full-Stack Dev</div>
+                <div className="text-xs font-semibold text-accent">Cybersecurity Engineer</div>
               </motion.div>
             </div>
           </motion.div>

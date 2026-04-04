@@ -10,26 +10,28 @@ import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 import ProjectsShowcase from "@/components/ProjectsShowcase";
 import ClientLogos from "@/components/ClientLogos";
-
 import FAQ from "@/components/FAQ";
 import { Helmet } from "react-helmet";
 import Skills from "@/components/Skills";
 import Timeline from "@/components/Timeline";
 import Certifications from "@/components/Certifications";
-
 import GitHubRepositories from "@/components/GitHubRepositories";
 import LazySection from "@/components/LazySection";
 import StatsCounter from "@/components/StatsCounter";
 import TechMarquee from "@/components/TechMarquee";
 import ValueProposition from "@/components/ValueProposition";
 import GovernmentEngagements from "@/components/GovernmentEngagements";
+import CompanyPositioning from "@/components/CompanyPositioning";
+import CoreCapabilities from "@/components/CoreCapabilities";
+import Differentiation from "@/components/Differentiation";
+import ThoughtLeadership from "@/components/ThoughtLeadership";
 
 const Index = () => {
   usePageTracking();
   return <>
       <SEO 
-        title="Kingsley Munachi | Web Developer | Full-Stack & AI Developer"
-        description="Kingsley Munachi is a Web Developer with 5+ years of experience building scalable web applications using React, Next.js, Node.js, and TypeScript. Open to remote and Canada-based opportunities."
+        title="MunAiTech | AI Systems Architecture & Cybersecurity Engineering"
+        description="MunAiTech is an AI infrastructure and cybersecurity engineering company. We design and deploy production-grade intelligent systems with embedded security for enterprise environments."
       />
       <StructuredData 
         breadcrumbs={[
@@ -41,8 +43,8 @@ const Index = () => {
         
         {/* Open Graph */}
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Kingsley Munachi | Web Developer | Full-Stack & AI Developer" />
-        <meta property="og:description" content="Web Developer with 5+ years experience. Specializing in React, Next.js, Node.js, TypeScript. Open to remote and Canada-based opportunities." />
+        <meta property="og:title" content="MunAiTech | AI Systems Architecture & Cybersecurity Engineering" />
+        <meta property="og:description" content="AI infrastructure and cybersecurity engineering company building production-grade intelligent systems for enterprise environments." />
         <meta property="og:url" content="https://munai.tech" />
         <meta property="og:image" content="https://munai.tech/og-image.jpg" />
         <meta property="og:image:width" content="1200" />
@@ -50,20 +52,24 @@ const Index = () => {
         
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Kingsley Munachi | Web Developer" />
-        <meta name="twitter:description" content="Web Developer with 5+ years experience in React, Next.js, Node.js. Open to remote opportunities." />
+        <meta name="twitter:title" content="MunAiTech | AI Systems Architecture & Cybersecurity Engineering" />
+        <meta name="twitter:description" content="AI infrastructure and cybersecurity engineering. Production-grade intelligent systems for enterprise." />
         <meta name="twitter:image" content="https://munai.tech/og-image.jpg" />
         
-        {/* Additional Person structured data for homepage */}
+        {/* Organization structured data */}
         <script type="application/ld+json">
           {JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "Person",
-          "name": "Kingsley Munachi",
-          "jobTitle": "Web Developer",
-          "description": "Full-Stack Web & AI Developer with 5+ years of experience",
+          "@type": "Organization",
+          "name": "MunAiTech",
+          "founder": {
+            "@type": "Person",
+            "name": "Kingsley Munachi",
+            "jobTitle": "AI Systems Architect & Cybersecurity Engineer"
+          },
+          "description": "AI Infrastructure & Cybersecurity Engineering Company",
           "url": "https://munai.tech",
-          "email": "info@mymuna.store",
+          "email": "hello@munai.tech",
           "sameAs": [
             "https://github.com/mymunastore",
             "https://www.linkedin.com/in/kingsley-munachi-843591244",
@@ -71,12 +77,13 @@ const Index = () => {
           ],
           "address": {
             "@type": "PostalAddress",
-            "addressLocality": "Lagos",
-            "addressCountry": "Nigeria"
+            "addressRegion": "Kentucky",
+            "addressCountry": "US"
           },
           "knowsAbout": [
-            "React", "Next.js", "Node.js", "TypeScript", "JavaScript",
-            "PostgreSQL", "MongoDB", "AWS", "REST APIs", "AI Integration"
+            "AI System Architecture", "Cybersecurity Engineering", "Enterprise SaaS",
+            "Cloud Infrastructure", "Agentic AI", "React", "Next.js", "Node.js", "TypeScript",
+            "PostgreSQL", "AWS", "Threat Modeling", "Zero-Trust Architecture"
           ]
         })}
         </script>
@@ -88,15 +95,23 @@ const Index = () => {
           <Hero />
         </div>
         
-        {/* Tech Marquee - Scrolling tech stack */}
+        {/* Company Positioning */}
+        <CompanyPositioning />
+        
+        {/* Tech Marquee */}
         <TechMarquee />
         
         {/* Stats Counter */}
         <StatsCounter />
         
-        {/* Government & Institutional Engagements - Leadership Showcase */}
+        {/* Government & Institutional Engagements */}
         <LazySection>
           <GovernmentEngagements />
+        </LazySection>
+        
+        {/* Core Capabilities */}
+        <LazySection>
+          <CoreCapabilities />
         </LazySection>
         
         <div id="services">
@@ -108,6 +123,11 @@ const Index = () => {
           <ValueProposition />
         </LazySection>
         
+        {/* Differentiation */}
+        <LazySection>
+          <Differentiation />
+        </LazySection>
+        
         <LazySection>
           <div id="projects">
             <ProjectsShowcase />
@@ -115,7 +135,6 @@ const Index = () => {
         </LazySection>
         
         <LazySection>
-          {/* GitHub Repositories Section */}
           <section className="py-20 bg-gradient-to-b from-background via-muted/30 to-background border-y border-border">
             <div className="container px-4">
               <div className="max-w-6xl mx-auto">
@@ -127,7 +146,7 @@ const Index = () => {
                     GitHub <span className="bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">Projects</span>
                   </h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Explore my latest repositories and contributions on GitHub
+                    Explore our latest repositories and open-source contributions
                   </p>
                 </div>
                 <GitHubRepositories limit={6} showHeader={false} />
@@ -164,7 +183,10 @@ const Index = () => {
           </div>
         </LazySection>
         
-        
+        {/* Thought Leadership */}
+        <LazySection>
+          <ThoughtLeadership />
+        </LazySection>
         
         <LazySection>
           <FAQ />

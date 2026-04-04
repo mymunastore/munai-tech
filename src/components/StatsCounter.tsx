@@ -1,9 +1,9 @@
 import { memo, useEffect, useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Code2, Users, Briefcase, Award, Clock, Star } from "lucide-react";
+import { Briefcase, Users, Clock, Star } from "lucide-react";
 
 interface StatItem {
-  icon: typeof Code2;
+  icon: typeof Briefcase;
   value: number;
   suffix: string;
   label: string;
@@ -15,22 +15,22 @@ const stats: StatItem[] = [
     icon: Briefcase,
     value: 30,
     suffix: "+",
-    label: "Projects Delivered",
-    description: "Production-ready apps"
+    label: "Systems Delivered",
+    description: "Production-grade platforms"
   },
   {
     icon: Clock,
     value: 5,
     suffix: "+",
-    label: "Years Experience",
-    description: "Full-stack development"
+    label: "Years Engineering",
+    description: "Enterprise & AI systems"
   },
   {
     icon: Users,
     value: 25,
     suffix: "+",
-    label: "Happy Clients",
-    description: "Worldwide"
+    label: "Enterprise Clients",
+    description: "Across industries"
   },
   {
     icon: Star,
@@ -77,7 +77,6 @@ const CountUp = ({ target, suffix }: { target: number; suffix: string }) => {
 const StatsCounter = memo(() => {
   return (
     <section className="py-16 md:py-24 relative overflow-hidden">
-      {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
       
       <div className="container px-4 sm:px-6 lg:px-8 relative">
@@ -92,7 +91,7 @@ const StatsCounter = memo(() => {
             Track Record
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
-            Numbers That Speak
+            Proven Execution
           </h2>
         </motion.div>
 
@@ -107,21 +106,17 @@ const StatsCounter = memo(() => {
               className="group relative"
             >
               <div className="relative p-6 md:p-8 rounded-2xl bg-card border border-border hover:border-accent/50 transition-all duration-300 hover:shadow-xl hover:shadow-accent/10 text-center">
-                {/* Gradient overlay on hover */}
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-accent/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 
                 <div className="relative">
-                  {/* Icon */}
                   <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-accent/10 mb-4 group-hover:scale-110 group-hover:bg-accent/20 transition-all">
                     <stat.icon className="w-7 h-7 text-accent" />
                   </div>
                   
-                  {/* Number */}
-                  <div className="text-4xl md:text-5xl font-bold text-foreground mb-2 bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text">
+                  <div className="text-4xl md:text-5xl font-bold text-foreground mb-2">
                     <CountUp target={stat.value} suffix={stat.suffix} />
                   </div>
                   
-                  {/* Label */}
                   <h3 className="text-lg font-semibold text-foreground mb-1">
                     {stat.label}
                   </h3>

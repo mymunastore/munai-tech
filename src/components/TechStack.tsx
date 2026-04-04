@@ -1,14 +1,25 @@
 import { memo } from "react";
-import { Progress } from "./ui/progress";
 
 const technologies = [
-  { name: "React", icon: "⚛️", level: 95, color: "from-blue-400 to-cyan-400" },
-  { name: "Node.js", icon: "🟢", level: 92, color: "from-green-400 to-emerald-400" },
-  { name: "Python", icon: "🐍", level: 90, color: "from-yellow-400 to-orange-400" },
-  { name: "AI/ML", icon: "🤖", level: 88, color: "from-purple-400 to-pink-400" },
-  { name: "PostgreSQL", icon: "🐘", level: 90, color: "from-blue-500 to-indigo-500" },
-  { name: "AWS", icon: "☁️", level: 85, color: "from-orange-400 to-red-400" },
+  { name: "React", level: 95, category: "Frontend Systems" },
+  { name: "TypeScript", level: 93, category: "Frontend Systems" },
+  { name: "Next.js", level: 90, category: "Frontend Systems" },
+  { name: "Tailwind CSS", level: 92, category: "Frontend Systems" },
+  { name: "Node.js", level: 92, category: "Backend Systems" },
+  { name: "PostgreSQL", level: 90, category: "Backend Systems" },
+  { name: "REST APIs", level: 94, category: "Backend Systems" },
+  { name: "GraphQL", level: 85, category: "Backend Systems" },
+  { name: "AWS", level: 88, category: "Cloud & Infrastructure" },
+  { name: "Docker", level: 87, category: "Cloud & Infrastructure" },
+  { name: "CI/CD", level: 88, category: "Cloud & Infrastructure" },
+  { name: "Kubernetes", level: 82, category: "Cloud & Infrastructure" },
+  { name: "OpenAI / LLMs", level: 90, category: "AI & Intelligence Systems" },
+  { name: "LangChain", level: 85, category: "AI & Intelligence Systems" },
+  { name: "RAG Pipelines", level: 87, category: "AI & Intelligence Systems" },
+  { name: "Agentic AI", level: 88, category: "AI & Intelligence Systems" },
 ];
+
+const categories = ["Frontend Systems", "Backend Systems", "Cloud & Infrastructure", "AI & Intelligence Systems"];
 
 const TechStack = memo(() => {
   return (
@@ -17,39 +28,40 @@ const TechStack = memo(() => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Powered by Modern Technology
+            Technology & Infrastructure Stack
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Leveraging cutting-edge tools and frameworks to build scalable, performant solutions
+            Production-grade tools and frameworks powering secure, scalable, intelligent systems
           </p>
         </div>
 
-        {/* Tech Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
-          {technologies.map((tech, index) => (
-            <div
-              key={index}
-              className="bg-card border border-border rounded-xl p-6 hover:shadow-lg transition-all duration-300 hover:border-accent/50 group"
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              {/* Icon & Name */}
-              <div className="flex items-center gap-3 mb-4">
-                <span className="text-4xl">{tech.icon}</span>
-                <h3 className="text-xl font-bold text-foreground">{tech.name}</h3>
-              </div>
-
-              {/* Progress Bar */}
-              <div className="space-y-2">
-                <div className="flex justify-between text-sm">
-                  <span className="text-muted-foreground">Proficiency</span>
-                  <span className="font-semibold text-foreground">{tech.level}%</span>
-                </div>
-                <div className="relative h-2 bg-secondary rounded-full overflow-hidden">
-                  <div
-                    className={`absolute inset-y-0 left-0 bg-gradient-to-r ${tech.color} rounded-full transition-all duration-1000 ease-out`}
-                    style={{ width: `${tech.level}%` }}
-                  />
-                </div>
+        {/* Grouped Tech Stack */}
+        <div className="max-w-5xl mx-auto space-y-10">
+          {categories.map((category) => (
+            <div key={category}>
+              <h3 className="text-lg font-bold text-foreground mb-4 pl-1 border-l-4 border-accent ml-0 pl-4">
+                {category}
+              </h3>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {technologies
+                  .filter((t) => t.category === category)
+                  .map((tech) => (
+                    <div
+                      key={tech.name}
+                      className="bg-card border border-border rounded-xl p-4 hover:shadow-lg transition-all duration-300 hover:border-accent/50 group"
+                    >
+                      <div className="flex items-center justify-between mb-2">
+                        <h4 className="font-semibold text-foreground text-sm">{tech.name}</h4>
+                        <span className="text-xs font-bold text-accent">{tech.level}%</span>
+                      </div>
+                      <div className="relative h-1.5 bg-secondary rounded-full overflow-hidden">
+                        <div
+                          className="absolute inset-y-0 left-0 bg-gradient-to-r from-accent to-primary rounded-full transition-all duration-1000 ease-out"
+                          style={{ width: `${tech.level}%` }}
+                        />
+                      </div>
+                    </div>
+                  ))}
               </div>
             </div>
           ))}
