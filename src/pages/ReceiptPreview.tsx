@@ -12,7 +12,7 @@ const ReceiptPreview = () => {
     customerAddress: "Lagos, Nigeria",
     paymentMethod: "BANK TRANSFER",
     paymentDate: "January 14, 2025",
-    authorizedSignature: "Kingsley Adigwe",
+    authorizedSignature: "MunAiTech",
     lineItems: [
       { description: "Full-Stack Web Application Development", quantity: 1, unitPrice: 350000, total: 350000 },
       { description: "UI/UX Design & Prototyping", quantity: 1, unitPrice: 100000, total: 100000 },

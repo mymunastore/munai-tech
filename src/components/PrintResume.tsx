@@ -20,7 +20,7 @@ export const PrintResume = () => {
     setTimeout(() => {
       const link = document.createElement('a');
       link.href = '/path-to-resume.pdf'; // Update with actual resume path
-      link.download = 'Kingsley-Munachi-Resume.pdf';
+      link.download = 'MunAiTech-Resume.pdf';
       link.click();
     }, 500);
   };

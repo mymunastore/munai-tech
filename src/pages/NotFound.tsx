@@ -19,7 +19,7 @@ const NotFound = () => {
     <>
       <SEO 
         title="Page Not Found - MunAiTech"
-        description="The page you are looking for could not be found. Return to Kingsley Munachi's portfolio to explore AI-powered web solutions and full-stack development services."
+        description="The page you are looking for could not be found. Return to MunAiTech to explore AI infrastructure and cybersecurity engineering solutions."
       />
       <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black text-white">
         <Navbar />

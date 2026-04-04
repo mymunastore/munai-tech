@@ -24,14 +24,13 @@ export const StructuredData = ({ breadcrumbs, type = 'website', articleData }: S
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "Kingsley Munachi - Web Developer Portfolio",
-    "alternateName": "MunAiTech",
+    "name": "MunAiTech - AI Infrastructure & Cybersecurity Engineering",
     "url": baseUrl,
-    "description": "Web Developer with 5+ years experience specializing in React, Next.js, Node.js, TypeScript, and AI integration.",
+    "description": "AI infrastructure and cybersecurity engineering company building production-grade intelligent systems for enterprise environments.",
     "author": {
-      "@type": "Person",
-      "name": "Kingsley Munachi",
-      "jobTitle": "Full-Stack Web Developer",
+      "@type": "Organization",
+      "name": "MunAiTech",
+      "legalName": "15071995 LLC",
       "url": baseUrl
     },
     "potentialAction": {
@@ -59,19 +58,14 @@ export const StructuredData = ({ breadcrumbs, type = 'website', articleData }: S
   // Person schema for about page
   const personSchema = type === 'person' ? {
     "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Kingsley Munachi",
-    "alternateName": "MunAiTech",
+    "@type": "Organization",
+    "name": "MunAiTech",
+    "legalName": "15071995 LLC",
     "url": baseUrl,
     "image": `${baseUrl}/og-about.jpg`,
-    "jobTitle": "Full-Stack Web Developer & AI Developer",
-    "worksFor": {
-      "@type": "Organization",
-      "name": "15071995 LLC"
-    },
+    "description": "AI infrastructure and cybersecurity engineering company.",
     "sameAs": [
-      "https://github.com/munai-tech",
-      "https://linkedin.com/in/kingsley-munachi"
+      "https://github.com/mymunastore"
     ],
     "knowsAbout": [
       "React", "Next.js", "TypeScript", "Node.js", 

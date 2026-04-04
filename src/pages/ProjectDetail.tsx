@@ -110,7 +110,7 @@ const ProjectDetail = () => {
   return (
     <>
       <Helmet>
-        <title>{project.title} - Kingsley Munachi Portfolio</title>
+        <title>{project.title} - MunAiTech</title>
         <meta name="description" content={project.description} />
         <meta property="og:title" content={project.title} />
         <meta property="og:description" content={project.description} />
@@ -131,8 +131,8 @@ const ProjectDetail = () => {
             "name": project.title,
             "description": project.description,
             "author": {
-              "@type": "Person",
-              "name": "Kingsley Munachi"
+              "@type": "Organization",
+              "name": "MunAiTech"
             },
             "datePublished": project.created_at,
             "keywords": project.tech_stack?.join(", ")

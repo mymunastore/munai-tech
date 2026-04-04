@@ -9,9 +9,9 @@ interface SEOProps {
 }
 
 export const SEO = ({
-  title = "Kingsley Munachi - AI Full-Stack Developer & Web Designer",
-  description = "Senior Web Designer & AI Full-Stack App Developer with 5+ years of experience. Specializing in React, TypeScript, AI integration, and custom SaaS development.",
-  keywords = "web developer, AI developer, full-stack developer, React developer, TypeScript, web design, UI/UX, Kingsley Munachi",
+  title = "MunAiTech | AI Infrastructure & Cybersecurity Engineering",
+  description = "AI infrastructure and cybersecurity engineering company building production-grade intelligent systems for enterprise environments.",
+  keywords = "MunAiTech, AI infrastructure, cybersecurity engineering, enterprise AI, AI systems architect, cloud infrastructure",
   image = "https://munai.tech/og-image.jpg",
   url = typeof window !== "undefined" ? window.location.href : "https://munai.tech",
 }: SEOProps) => {
@@ -37,7 +37,7 @@ export const SEO = ({
       {/* Additional */}
       <link rel="canonical" href={url} />
       <meta name="robots" content="index, follow" />
-      <meta name="author" content="Kingsley Munachi" />
+      <meta name="author" content="MunAiTech" />
     </Helmet>
   );
 };

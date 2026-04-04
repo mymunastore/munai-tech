@@ -143,7 +143,7 @@ const handler = async (req: Request): Promise<Response> => {
         Authorization: `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: "Kingsley Munachi <onboarding@resend.dev>",
+        from: "MunAiTech <onboarding@resend.dev>",
         to: [data.email],
         subject: "Thanks for reaching out!",
         html: `
@@ -153,7 +153,7 @@ const handler = async (req: Request): Promise<Response> => {
           <p style="background: #f5f5f5; padding: 15px; border-radius: 5px;">
             ${escapeHtml(data.message).replace(/\n/g, "<br>")}
           </p>
-          <p>Best regards,<br>Kingsley Munachi</p>
+          <p>Best regards,<br>MunAiTech Team</p>
         `,
       }),
     });

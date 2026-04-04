@@ -28,9 +28,9 @@ const Resume = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black">
       <SEO 
-        title="Resume | Kingsley Munachi | Web Developer"
-        description="Download the resume of Kingsley Munachi, Web Developer with 5+ years of experience in React, Next.js, Node.js, TypeScript, and modern web technologies. Open to remote and Canada-based opportunities."
-        keywords="resume, CV, web developer resume, full-stack developer, Kingsley Munachi resume, hire developer"
+        title="Resume | MunAiTech | AI Systems Architect"
+        description="MunAiTech — AI infrastructure and cybersecurity engineering company with 5+ years delivering production-grade intelligent systems."
+        keywords="resume, AI systems architect, cybersecurity engineer, MunAiTech"
       />
       <StructuredData 
         breadcrumbs={[
@@ -42,14 +42,14 @@ const Resume = () => {
       <Helmet>
         <link rel="canonical" href="https://munai.tech/resume" />
         <meta property="og:type" content="profile" />
-        <meta property="og:title" content="Resume | Kingsley Munachi | Web Developer" />
-        <meta property="og:description" content="Web Developer with 5+ years experience. Download resume for React, Next.js, Node.js expertise." />
+        <meta property="og:title" content="Resume | MunAiTech" />
+        <meta property="og:description" content="AI infrastructure and cybersecurity engineering — 5+ years delivering production-grade systems." />
         <meta property="og:url" content="https://munai.tech/resume" />
         <meta property="og:image" content="https://munai.tech/og-resume.jpg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Resume | Kingsley Munachi" />
+        <meta name="twitter:title" content="Resume | MunAiTech" />
         <meta name="twitter:description" content="Web Developer resume - React, Next.js, Node.js, TypeScript expertise." />
         <meta name="twitter:image" content="https://munai.tech/og-resume.jpg" />
       </Helmet>
@@ -73,8 +73,8 @@ const Resume = () => {
             <CardContent className="p-8 md:p-12">
               {/* Header */}
               <header className="mb-8 pb-8 border-b border-cyan-500/20">
-                <h1 className="text-4xl font-bold mb-2 text-white">Kingsley Munachi</h1>
-                <p className="text-xl text-cyan-400 mb-4">Senior Web Designer & AI Full-Stack App Developer</p>
+                <h1 className="text-4xl font-bold mb-2 text-white">MunAiTech</h1>
+                <p className="text-xl text-cyan-400 mb-4">AI Systems Architecture & Cybersecurity Engineering</p>
                 <div className="flex flex-wrap gap-4 text-sm">
                    <div className="flex items-center gap-2">
                      <Mail className="h-4 w-4" />
@@ -100,7 +100,7 @@ const Resume = () => {
                     <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
                     </svg>
-                    <a href="https://www.linkedin.com/in/kingsley-munachi-843591244" target="_blank" rel="noopener noreferrer" className="hover:text-primary">LinkedIn Profile</a>
+                    <a href="https://www.linkedin.com/in/munaitech" target="_blank" rel="noopener noreferrer" className="hover:text-primary">LinkedIn Profile</a>
                   </div>
                 </div>
               </header>

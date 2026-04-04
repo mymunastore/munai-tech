@@ -63,7 +63,7 @@ const Footer = () => {
                 { icon: Mail, href: "mailto:hello@munai.tech", label: "Email" },
                 { icon: MessageCircle, href: "https://wa.me/2347062372521", label: "WhatsApp" },
                 { icon: Github, href: "https://github.com/mymunastore", label: "GitHub" },
-                { icon: Linkedin, href: "https://www.linkedin.com/in/kingsley-munachi-843591244", label: "LinkedIn" },
+                { icon: Linkedin, href: "https://www.linkedin.com/in/munaitech", label: "LinkedIn" },
                 { icon: Twitter, href: "https://twitter.com/mymunastore", label: "Twitter" },
               ].map((social) => (
                 <a
