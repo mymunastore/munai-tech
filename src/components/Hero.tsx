@@ -1,4 +1,4 @@
-import { ArrowRight, Shield, Cpu, Lock } from "lucide-react";
+import { ArrowRight, Globe, Shield, Cpu } from "lucide-react";
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
 import heroBg from "@/assets/hero-bg.jpg";
@@ -19,7 +19,7 @@ const Hero = memo(() => {
           <img
             src={heroBg}
             alt="AI Infrastructure & Cybersecurity Engineering"
-            className="w-full h-full object-cover opacity-10"
+            className="w-full h-full object-cover opacity-8"
             loading="eager"
             fetchPriority="high"
             width="1920"
@@ -27,7 +27,7 @@ const Hero = memo(() => {
           />
         </picture>
         <div className="absolute inset-0 bg-gradient-to-br from-background via-background/95 to-background" />
-        <div className="absolute inset-0 opacity-30" style={{ background: 'var(--gradient-mesh)' }} />
+        <div className="absolute inset-0 opacity-20" style={{ background: 'var(--gradient-mesh)' }} />
       </div>
 
       {/* Animated background orbs */}
@@ -41,6 +41,11 @@ const Hero = memo(() => {
           animate={{ x: [0, -30, 0], y: [0, 40, 0] }}
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
           className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px]"
+        />
+        <motion.div
+          animate={{ x: [0, 20, 0], y: [0, -20, 0] }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/2 right-1/3 w-64 h-64 bg-accent/5 rounded-full blur-[80px]"
         />
       </div>
 
@@ -60,7 +65,7 @@ const Hero = memo(() => {
               <div className="absolute inset-0 w-2 h-2 rounded-full bg-accent animate-ping" />
             </div>
             <span className="text-sm font-medium text-accent">
-              Accepting Enterprise & Government Engagements
+              Global AI Infrastructure & Cybersecurity Company
             </span>
           </motion.div>
 
@@ -71,16 +76,16 @@ const Hero = memo(() => {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-[1.1] tracking-tight"
           >
-            We Build Secure,
+            Building Secure
             <br />
             <span className="relative inline-block">
               <span className="bg-gradient-to-r from-accent via-primary to-accent bg-clip-text text-transparent animate-gradient-shift bg-[length:200%_auto]">
-                Intelligent Systems
+                AI Infrastructure
               </span>
             </span>
             <br />
             <span className="text-muted-foreground text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-semibold">
-              for Enterprise & Government
+              for Enterprise & Government Systems
             </span>
           </motion.h1>
 
@@ -91,9 +96,9 @@ const Hero = memo(() => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-base sm:text-lg md:text-xl text-muted-foreground font-light leading-relaxed max-w-3xl mx-auto"
           >
-            MunAiTech is an AI infrastructure and cybersecurity engineering company. 
-            We design and deploy production-grade intelligent systems with embedded security 
-            for startups, enterprises, and government institutions.
+            MunAiTech designs and deploys AI-driven platforms with embedded cybersecurity, 
+            enabling organizations worldwide to operate, scale, and make critical decisions 
+            with confidence.
           </motion.p>
 
           {/* Trust Indicators */}
@@ -104,16 +109,16 @@ const Hero = memo(() => {
             className="flex flex-wrap items-center justify-center gap-6 text-sm text-muted-foreground"
           >
             <div className="flex items-center gap-2">
-              <Cpu className="h-4 w-4 text-accent" />
-              <span>30+ Systems Delivered</span>
+              <Globe className="h-4 w-4 text-accent" />
+              <span>Global Operations</span>
             </div>
             <div className="flex items-center gap-2">
               <Shield className="h-4 w-4 text-accent" />
-              <span>Zero-Trust Architecture</span>
+              <span>Government-Grade Security</span>
             </div>
             <div className="flex items-center gap-2">
-              <Lock className="h-4 w-4 text-accent" />
-              <span>Enterprise-Grade Security</span>
+              <Cpu className="h-4 w-4 text-accent" />
+              <span>Quantum-Ready Systems</span>
             </div>
           </motion.div>
 
@@ -124,22 +129,22 @@ const Hero = memo(() => {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
-            <Link to="/contact" aria-label="Start an engagement with MunAiTech">
+            <Link to="/contact" aria-label="Request a consultation with MunAiTech">
               <Button
                 size="lg"
                 className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-lg shadow-accent/30 hover:shadow-accent/50 hover:shadow-xl transition-all text-base px-8 py-6 group font-semibold focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-xl"
               >
-                Start an Engagement
+                Request Consultation
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
               </Button>
             </Link>
-            <Link to="/projects" aria-label="View Systems & Case Studies">
+            <Link to="/projects" aria-label="View Systems & Deployments">
               <Button
                 size="lg"
                 variant="outline"
                 className="border-2 border-accent/40 text-accent hover:bg-accent/10 hover:border-accent backdrop-blur-sm text-base px-8 py-6 focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-xl"
               >
-                View Case Studies
+                View Systems
               </Button>
             </Link>
           </motion.div>

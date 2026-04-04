@@ -1,69 +1,90 @@
 import { memo } from "react";
+import { motion } from "framer-motion";
 
 const technologies = [
-  { name: "React", level: 95, category: "Frontend Systems" },
-  { name: "TypeScript", level: 93, category: "Frontend Systems" },
-  { name: "Next.js", level: 90, category: "Frontend Systems" },
-  { name: "Tailwind CSS", level: 92, category: "Frontend Systems" },
-  { name: "Node.js", level: 92, category: "Backend Systems" },
-  { name: "PostgreSQL", level: 90, category: "Backend Systems" },
-  { name: "REST APIs", level: 94, category: "Backend Systems" },
-  { name: "GraphQL", level: 85, category: "Backend Systems" },
-  { name: "AWS", level: 88, category: "Cloud & Infrastructure" },
-  { name: "Docker", level: 87, category: "Cloud & Infrastructure" },
-  { name: "CI/CD", level: 88, category: "Cloud & Infrastructure" },
-  { name: "Kubernetes", level: 82, category: "Cloud & Infrastructure" },
-  { name: "OpenAI / LLMs", level: 90, category: "AI & Intelligence Systems" },
-  { name: "LangChain", level: 85, category: "AI & Intelligence Systems" },
-  { name: "RAG Pipelines", level: 87, category: "AI & Intelligence Systems" },
-  { name: "Agentic AI", level: 88, category: "AI & Intelligence Systems" },
+  { name: "OpenAI / LLMs", category: "AI Systems" },
+  { name: "LangChain", category: "AI Systems" },
+  { name: "RAG Pipelines", category: "AI Systems" },
+  { name: "Agentic AI", category: "AI Systems" },
+  { name: "Computer Vision", category: "AI Systems" },
+  { name: "Node.js", category: "Backend Systems" },
+  { name: "PostgreSQL", category: "Backend Systems" },
+  { name: "REST / GraphQL APIs", category: "Backend Systems" },
+  { name: "React / TypeScript", category: "Backend Systems" },
+  { name: "Next.js", category: "Backend Systems" },
+  { name: "AWS", category: "Cloud Infrastructure" },
+  { name: "Docker / K8s", category: "Cloud Infrastructure" },
+  { name: "CI/CD Pipelines", category: "Cloud Infrastructure" },
+  { name: "Terraform / IaC", category: "Cloud Infrastructure" },
+  { name: "Edge Computing", category: "Cloud Infrastructure" },
+  { name: "Zero-Trust Architecture", category: "Security Systems" },
+  { name: "Threat Modeling", category: "Security Systems" },
+  { name: "DevSecOps", category: "Security Systems" },
+  { name: "Identity & Access Mgmt", category: "Security Systems" },
+  { name: "Post-Quantum Crypto", category: "Security Systems" },
 ];
 
-const categories = ["Frontend Systems", "Backend Systems", "Cloud & Infrastructure", "AI & Intelligence Systems"];
+const categories = ["AI Systems", "Backend Systems", "Cloud Infrastructure", "Security Systems"];
+
+const categoryColors: Record<string, string> = {
+  "AI Systems": "border-l-purple-500",
+  "Backend Systems": "border-l-blue-500",
+  "Cloud Infrastructure": "border-l-cyan-500",
+  "Security Systems": "border-l-green-500",
+};
 
 const TechStack = memo(() => {
   return (
     <section id="tech" className="py-20 md:py-32 bg-secondary/30">
       <div className="container px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <span className="inline-block px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-4">
+            Engineering Stack
+          </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Technology & Infrastructure Stack
+            Infrastructure &{" "}
+            <span className="bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">
+              Technology Stack
+            </span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Production-grade tools and frameworks powering secure, scalable, intelligent systems
           </p>
-        </div>
+        </motion.div>
 
-        {/* Grouped Tech Stack */}
         <div className="max-w-5xl mx-auto space-y-10">
-          {categories.map((category) => (
-            <div key={category}>
-              <h3 className="text-lg font-bold text-foreground mb-4 pl-1 border-l-4 border-accent ml-0 pl-4">
+          {categories.map((category, catIdx) => (
+            <motion.div 
+              key={category}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: catIdx * 0.1 }}
+            >
+              <h3 className={`text-lg font-bold text-foreground mb-4 pl-4 border-l-4 ${categoryColors[category]}`}>
                 {category}
               </h3>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
                 {technologies
                   .filter((t) => t.category === category)
                   .map((tech) => (
                     <div
                       key={tech.name}
-                      className="bg-card border border-border rounded-xl p-4 hover:shadow-lg transition-all duration-300 hover:border-accent/50 group"
+                      className="bg-card border border-border rounded-xl px-4 py-3 hover:shadow-lg transition-all duration-300 hover:border-accent/50 group text-center"
                     >
-                      <div className="flex items-center justify-between mb-2">
-                        <h4 className="font-semibold text-foreground text-sm">{tech.name}</h4>
-                        <span className="text-xs font-bold text-accent">{tech.level}%</span>
-                      </div>
-                      <div className="relative h-1.5 bg-secondary rounded-full overflow-hidden">
-                        <div
-                          className="absolute inset-y-0 left-0 bg-gradient-to-r from-accent to-primary rounded-full transition-all duration-1000 ease-out"
-                          style={{ width: `${tech.level}%` }}
-                        />
-                      </div>
+                      <span className="font-medium text-foreground text-sm group-hover:text-accent transition-colors">
+                        {tech.name}
+                      </span>
                     </div>
                   ))}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

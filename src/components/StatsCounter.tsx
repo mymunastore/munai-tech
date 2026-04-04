@@ -1,6 +1,6 @@
 import { memo, useEffect, useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Briefcase, Users, Clock, Globe } from "lucide-react";
+import { Briefcase, Users, Clock, Globe, Award, Shield } from "lucide-react";
 
 interface StatItem {
   icon: typeof Briefcase;
@@ -26,19 +26,19 @@ const stats: StatItem[] = [
     description: "Engineering excellence"
   },
   {
-    icon: Users,
-    value: 25,
-    suffix: "+",
-    label: "Enterprise Clients",
-    description: "Across industries"
-  },
-  {
     icon: Globe,
     value: 4,
-    suffix: "",
+    suffix: "+",
     label: "Countries Served",
     description: "Global delivery"
-  }
+  },
+  {
+    icon: Award,
+    value: 4,
+    suffix: "",
+    label: "Global Recognitions",
+    description: "International validation"
+  },
 ];
 
 const CountUp = ({ target, suffix }: { target: number; suffix: string }) => {
@@ -91,7 +91,7 @@ const StatsCounter = memo(() => {
             Track Record
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
-            Proven Execution
+            Proven Global Execution
           </h2>
         </motion.div>
 

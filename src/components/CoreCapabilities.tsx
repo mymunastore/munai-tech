@@ -2,26 +2,26 @@ import { memo } from "react";
 import { motion } from "framer-motion";
 import { 
   Brain, Bot, Shield, Crosshair, 
-  Building2, Fingerprint, Cloud, Cable 
+  Building2, Fingerprint, Cloud, Cable, Scale
 } from "lucide-react";
 
 const capabilities = [
   {
     icon: Brain,
-    title: "AI System Architecture",
-    description: "Designing end-to-end AI pipelines — from data ingestion to model deployment — for enterprise workloads.",
+    title: "AI Infrastructure Engineering",
+    description: "End-to-end AI pipelines — from data ingestion to model deployment — powering enterprise-scale intelligent operations.",
     gradient: "from-blue-500 to-cyan-500"
   },
   {
     icon: Bot,
     title: "Auto Agent Systems",
-    description: "Building autonomous agent workflows with structured decision governance and human-in-the-loop orchestration.",
+    description: "Autonomous agent workflows with structured decision governance, human-in-the-loop orchestration, and enterprise auditability.",
     gradient: "from-purple-500 to-violet-500"
   },
   {
     icon: Shield,
-    title: "Cybersecurity Engineering",
-    description: "Embedding security at every layer — from application code to infrastructure — with zero-trust architecture.",
+    title: "Cybersecurity Architecture & Defence",
+    description: "Zero-trust security embedded at every layer — application, infrastructure, and data — with continuous threat assessment.",
     gradient: "from-green-500 to-emerald-500"
   },
   {
@@ -33,25 +33,31 @@ const capabilities = [
   {
     icon: Building2,
     title: "Enterprise SaaS Platforms",
-    description: "Full-stack SaaS development with multi-tenancy, role-based access, billing integration, and scalable architecture.",
+    description: "Full-stack SaaS development with multi-tenancy, role-based access, billing integration, and horizontally scalable architecture.",
     gradient: "from-indigo-500 to-blue-500"
   },
   {
     icon: Fingerprint,
     title: "Identity & Verification Systems",
-    description: "AI-powered document verification, KYC/AML compliance, and biometric authentication pipelines.",
+    description: "AI-powered document verification, KYC/AML compliance, biometric authentication, and digital identity pipelines.",
     gradient: "from-amber-500 to-yellow-500"
   },
   {
+    icon: Scale,
+    title: "AI Governance & Compliance",
+    description: "Frameworks for responsible AI deployment — auditability, bias detection, regulatory compliance, and ethical AI governance.",
+    gradient: "from-teal-500 to-cyan-500"
+  },
+  {
     icon: Cloud,
-    title: "Cloud Infrastructure & DevOps",
-    description: "AWS, GCP, and Azure deployment with IaC, CI/CD pipelines, container orchestration, and observability.",
+    title: "Cloud & Distributed Infrastructure",
+    description: "AWS, GCP, and Azure deployments with IaC, CI/CD pipelines, container orchestration, and distributed systems engineering.",
     gradient: "from-cyan-500 to-teal-500"
   },
   {
     icon: Cable,
     title: "API & Systems Integration",
-    description: "Connecting complex ecosystems through RESTful APIs, webhooks, event-driven architecture, and middleware.",
+    description: "Connecting complex ecosystems through RESTful APIs, webhooks, event-driven architecture, and enterprise middleware.",
     gradient: "from-pink-500 to-rose-500"
   },
 ];
@@ -70,7 +76,7 @@ const CoreCapabilities = memo(() => {
           className="text-center mb-16"
         >
           <span className="inline-block px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-4">
-            Core Capabilities
+            Core Services
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
             What We{" "}
@@ -79,18 +85,18 @@ const CoreCapabilities = memo(() => {
             </span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Enterprise-grade capabilities spanning AI, cybersecurity, and cloud infrastructure
+            Enterprise-grade capabilities spanning AI infrastructure, cybersecurity architecture, and cloud systems engineering.
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {capabilities.map((cap, index) => (
             <motion.div
               key={cap.title}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.08 }}
+              transition={{ duration: 0.5, delay: index * 0.06 }}
               className="group"
             >
               <div className="relative h-full p-6 rounded-2xl bg-card border border-border hover:border-accent/30 transition-all duration-300 hover:shadow-xl overflow-hidden">
