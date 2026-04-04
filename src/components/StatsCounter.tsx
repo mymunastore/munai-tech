@@ -1,6 +1,6 @@
 import { memo, useEffect, useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Briefcase, Users, Clock, Star } from "lucide-react";
+import { Briefcase, Users, Clock, Globe } from "lucide-react";
 
 interface StatItem {
   icon: typeof Briefcase;
@@ -22,8 +22,8 @@ const stats: StatItem[] = [
     icon: Clock,
     value: 5,
     suffix: "+",
-    label: "Years Engineering",
-    description: "Enterprise & AI systems"
+    label: "Years in Operation",
+    description: "Engineering excellence"
   },
   {
     icon: Users,
@@ -33,11 +33,11 @@ const stats: StatItem[] = [
     description: "Across industries"
   },
   {
-    icon: Star,
-    value: 9,
+    icon: Globe,
+    value: 4,
     suffix: "",
-    label: "Certifications",
-    description: "Professional credentials"
+    label: "Countries Served",
+    description: "Global delivery"
   }
 ];
 

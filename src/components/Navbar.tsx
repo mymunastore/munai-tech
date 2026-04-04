@@ -45,9 +45,10 @@ const Navbar = memo(() => {
   // Memoize static nav links to prevent recreation
   const navLinks = useMemo(() => [
     { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
-    { name: "Projects", href: "/projects" },
+    { name: "Company", href: "/about" },
+    { name: "Case Studies", href: "/projects" },
     { name: "Partnerships", href: "/partnerships" },
+    { name: "Contact", href: "/contact" },
   ], []);
 
   return (

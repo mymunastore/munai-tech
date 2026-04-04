@@ -12,9 +12,6 @@ import ProjectsShowcase from "@/components/ProjectsShowcase";
 import ClientLogos from "@/components/ClientLogos";
 import FAQ from "@/components/FAQ";
 import { Helmet } from "react-helmet";
-import Skills from "@/components/Skills";
-import Timeline from "@/components/Timeline";
-import Certifications from "@/components/Certifications";
 import GitHubRepositories from "@/components/GitHubRepositories";
 import LazySection from "@/components/LazySection";
 import StatsCounter from "@/components/StatsCounter";
@@ -30,7 +27,7 @@ const Index = () => {
   usePageTracking();
   return <>
       <SEO 
-        title="MunAiTech | AI Systems Architecture & Cybersecurity Engineering"
+        title="MunAiTech | AI Infrastructure & Cybersecurity Engineering Company"
         description="MunAiTech is an AI infrastructure and cybersecurity engineering company. We design and deploy production-grade intelligent systems with embedded security for enterprise environments."
       />
       <StructuredData 
@@ -43,7 +40,7 @@ const Index = () => {
         
         {/* Open Graph */}
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="MunAiTech | AI Systems Architecture & Cybersecurity Engineering" />
+        <meta property="og:title" content="MunAiTech | AI Infrastructure & Cybersecurity Engineering Company" />
         <meta property="og:description" content="AI infrastructure and cybersecurity engineering company building production-grade intelligent systems for enterprise environments." />
         <meta property="og:url" content="https://munai.tech" />
         <meta property="og:image" content="https://munai.tech/og-image.jpg" />
@@ -52,7 +49,7 @@ const Index = () => {
         
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="MunAiTech | AI Systems Architecture & Cybersecurity Engineering" />
+        <meta name="twitter:title" content="MunAiTech | AI Infrastructure & Cybersecurity Engineering Company" />
         <meta name="twitter:description" content="AI infrastructure and cybersecurity engineering. Production-grade intelligent systems for enterprise." />
         <meta name="twitter:image" content="https://munai.tech/og-image.jpg" />
         
@@ -155,18 +152,6 @@ const Index = () => {
           <div id="techstack">
             <TechStack />
           </div>
-        </LazySection>
-        
-        <LazySection>
-          <Skills />
-        </LazySection>
-        
-        <LazySection>
-          <Timeline />
-        </LazySection>
-        
-        <LazySection>
-          <Certifications />
         </LazySection>
         
         <LazySection>
