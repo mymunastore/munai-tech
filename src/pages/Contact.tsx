@@ -94,9 +94,9 @@ const Contact = () => {
   return (
     <div className="min-h-screen">
       <SEO 
-        title="Contact | Kingsley Munachi | Web Developer"
-        description="Contact Kingsley Munachi for web development projects. Get a quote for websites, web applications, e-commerce platforms, and AI-powered solutions."
-        keywords="contact web developer, hire developer, project quote, Kingsley Munachi contact, web development services"
+        title="Contact | MunAiTech | AI Systems & Cybersecurity Engineering"
+        description="Work with MunAiTech to design and deploy secure, intelligent systems. Get a quote for enterprise platforms, AI integration, and cybersecurity engineering."
+        keywords="contact AI engineer, hire cybersecurity engineer, enterprise systems, MunAiTech contact, AI infrastructure"
       />
       <StructuredData 
         breadcrumbs={[
@@ -107,15 +107,15 @@ const Contact = () => {
       <Helmet>
         <link rel="canonical" href="https://munai.tech/contact" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Contact | Kingsley Munachi | Web Developer" />
-        <meta property="og:description" content="Get a project quote. Contact Kingsley Munachi for web development, e-commerce, and AI-powered solutions." />
+        <meta property="og:title" content="Contact | MunAiTech | AI & Cybersecurity Engineering" />
+        <meta property="og:description" content="Work with MunAiTech to design and deploy secure, intelligent systems for enterprise environments." />
         <meta property="og:url" content="https://munai.tech/contact" />
         <meta property="og:image" content="https://munai.tech/og-contact.jpg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Contact | Kingsley Munachi" />
-        <meta name="twitter:description" content="Get a project quote for web development and AI solutions." />
+        <meta name="twitter:title" content="Contact | MunAiTech" />
+        <meta name="twitter:description" content="Design and deploy secure, intelligent systems with MunAiTech." />
         <meta name="twitter:image" content="https://munai.tech/og-contact.jpg" />
       </Helmet>
       <Navbar />
@@ -126,14 +126,17 @@ const Contact = () => {
           <div className="max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 bg-cyan-500/10 text-cyan-400 px-4 py-2 rounded-full mb-4 border border-cyan-500/20">
               <CalcIcon className="h-5 w-5" />
-              <span className="text-sm font-medium">Get Your Project Quote</span>
+              <span className="text-sm font-medium">Enterprise Project Estimation</span>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Let&apos;s Work <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Together</span>
+              Let&apos;s <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Engineer Together</span>
             </h1>
             <p className="text-lg text-gray-300">
-              Get an instant project estimate and contact us to bring your vision to life.
+              Work with MunAiTech to design and deploy secure, intelligent systems.
             </p>
+          </div>
+        </div>
+      </section>
           </div>
         </div>
       </section>
