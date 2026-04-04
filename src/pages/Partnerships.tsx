@@ -95,19 +95,26 @@ const Partnerships = memo(() => {
                 </div>
 
                 <div className="space-y-4">
-                  <h3 className="text-lg font-semibold text-foreground">How It Works</h3>
+                  <h3 className="text-lg font-semibold text-foreground">Selection Process</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+                    MunAiTech was selected through a highly competitive global application process. 
+                    Developers from around the world submitted applications that were rigorously assessed 
+                    by top engineers and leadership at Base44 — only the strongest profiles were accepted 
+                    into the verified partner network.
+                  </p>
+                  <h4 className="text-sm font-semibold text-foreground mt-4">Partner Benefits</h4>
                   <ul className="space-y-3 text-sm text-muted-foreground">
                     <li className="flex gap-2">
                       <CheckCircle className="h-4 w-4 text-accent mt-0.5 shrink-0" />
-                      <span>Receive email notifications with project details when users request quotes</span>
+                      <span>Receive project leads and connect directly with clients seeking development expertise</span>
                     </li>
                     <li className="flex gap-2">
                       <CheckCircle className="h-4 w-4 text-accent mt-0.5 shrink-0" />
-                      <span>Connect directly with users to learn more about their requirements</span>
+                      <span>Collaborate on enterprise-grade projects built on the Base44 platform</span>
                     </li>
                     <li className="flex gap-2">
                       <CheckCircle className="h-4 w-4 text-accent mt-0.5 shrink-0" />
-                      <span>Share quotes and collaborate on project details together</span>
+                      <span>Access to partner resources, priority support, and co-marketing opportunities</span>
                     </li>
                   </ul>
                 </div>
