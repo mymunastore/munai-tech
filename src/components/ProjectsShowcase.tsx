@@ -51,13 +51,13 @@ const ProjectsShowcase = memo(() => {
       <div className="container px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <span className="inline-block px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-4">
-            Featured Work
+            Selected Systems
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Recent Projects
+            Systems & Case Studies
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Showcasing innovative solutions that drive real business results
+            Showcasing production-grade systems engineered for real business impact
           </p>
         </div>
 
