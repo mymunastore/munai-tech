@@ -137,9 +137,6 @@ const Contact = () => {
           </div>
         </div>
       </section>
-          </div>
-        </div>
-      </section>
 
       {/* Cost Estimator Section */}
       <section className="py-16 bg-black">
