@@ -3,57 +3,70 @@ import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
 import { StructuredData } from "@/components/StructuredData";
 import { Card, CardContent } from "@/components/ui/card";
-import { Briefcase, Code2, Heart, Lightbulb, Target, Users, Zap, Building2, Globe, Shield, Brain, Server } from "lucide-react";
+import { 
+  Briefcase, Code2, Heart, Lightbulb, Target, Users, Zap, 
+  Building2, Globe, Shield, Brain, Server, ArrowRight, 
+  Rocket, Eye, Award, MapPin, CheckCircle2
+} from "lucide-react";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
 
 const About = () => {
   const values = [
     {
-      icon: <Lightbulb className="w-8 h-8" />,
-      title: "Innovation First",
-      description: "Constantly exploring cutting-edge AI and cybersecurity technologies to deliver future-ready enterprise solutions."
+      icon: <Rocket className="w-8 h-8" />,
+      title: "Innovation-Driven",
+      description: "We push the boundaries of AI and cybersecurity, engineering systems that anticipate tomorrow's challenges and deliver lasting competitive advantage."
     },
     {
       icon: <Target className="w-8 h-8" />,
-      title: "Results Driven",
-      description: "Focused on delivering measurable outcomes that exceed expectations and drive enterprise-level business growth."
+      title: "Results-Focused",
+      description: "Every engagement is measured by outcomes — reduced risk, increased efficiency, and systems that perform at enterprise scale without compromise."
     },
     {
-      icon: <Heart className="w-8 h-8" />,
-      title: "Client Success",
-      description: "Your mission is our mission. Building long-term partnerships through exceptional engineering and support."
+      icon: <Globe className="w-8 h-8" />,
+      title: "Global-First",
+      description: "We build infrastructure that operates across borders, aligned with international standards, regulatory frameworks, and sovereign technology requirements."
     },
     {
-      icon: <Zap className="w-8 h-8" />,
-      title: "Agile Excellence",
-      description: "Rapid iteration and deployment using modern engineering practices for faster time-to-production."
+      icon: <Shield className="w-8 h-8" />,
+      title: "Security by Design",
+      description: "Security is not an afterthought — it's embedded into every layer of our architecture, from identity verification to threat modeling and zero-trust systems."
     }
   ];
 
   const companyStats = [
     { icon: <Briefcase />, label: "Systems Delivered", value: "30+" },
     { icon: <Users />, label: "Enterprise Clients", value: "25+" },
-    { icon: <Globe />, label: "Countries Served", value: "4" },
-    { icon: <Code2 />, label: "Years in Operation", value: "5+" }
+    { icon: <Globe />, label: "Countries Served", value: "4+" },
+    { icon: <Code2 />, label: "Years in Operation", value: "5+" },
+    { icon: <Award />, label: "Global Recognitions", value: "4" },
+    { icon: <Shield />, label: "Security Certifications", value: "3+" }
   ];
 
   const services = [
-    { icon: Brain, title: "AI System Architecture", description: "End-to-end design and deployment of intelligent systems, agentic workflows, and LLM-powered platforms." },
-    { icon: Shield, title: "Cybersecurity Engineering", description: "Zero-trust architecture, threat modeling, identity verification, and embedded security for enterprise systems." },
-    { icon: Server, title: "Enterprise Platform Development", description: "Scalable SaaS platforms, cloud infrastructure, API architecture, and full-stack engineering for high-performance environments." },
-    { icon: Building2, title: "Government & Institutional Systems", description: "Production-grade systems for defence, government technology initiatives, and critical infrastructure projects." },
+    { icon: Brain, title: "AI Infrastructure Engineering", description: "End-to-end design and deployment of intelligent systems, agentic workflows, LLM-powered platforms, and autonomous decision engines." },
+    { icon: Shield, title: "Cybersecurity Architecture", description: "Zero-trust architecture, simulation-based threat modeling, identity verification, and embedded security for critical enterprise systems." },
+    { icon: Server, title: "Enterprise Platform Development", description: "Scalable SaaS platforms, cloud-native infrastructure, distributed API architecture, and full-stack engineering for high-performance environments." },
+    { icon: Building2, title: "Government & Defence Systems", description: "Production-grade systems for national defence, government technology initiatives, sovereign AI infrastructure, and secure communications." },
+  ];
+
+  const milestones = [
+    { year: "2021", event: "Company Founded", description: "MunAiTech (15071995 LLC) established with a focus on AI systems and cybersecurity engineering." },
+    { year: "2022", event: "First Enterprise Deployments", description: "Delivered initial production-grade platforms for fintech and enterprise clients across multiple countries." },
+    { year: "2023", event: "Government Engagement", description: "Began engaging with government technology initiatives and institutional infrastructure projects." },
+    { year: "2024", event: "International Recognition", description: "Received official recognition from Canada (ISED & DND) for sovereign AI and defence technology capabilities." },
+    { year: "2025", event: "Global Expansion", description: "Expanded operations internationally with Base44 partnership, Lovable Platinum status, and 30+ systems delivered worldwide." },
   ];
 
   return (
     <>
       <SEO 
-        title="About MunAiTech | AI Infrastructure & Cybersecurity Engineering Company"
-        description="MunAiTech is an AI infrastructure and cybersecurity engineering company delivering production-grade intelligent systems for enterprises and government institutions worldwide."
-        keywords="MunAiTech, AI Infrastructure, Cybersecurity Engineering, Enterprise AI, Software Company"
+        title="Company | MunAiTech — Global AI Infrastructure & Cybersecurity Engineering"
+        description="MunAiTech is a global AI infrastructure and cybersecurity engineering company. We design and deploy production-grade intelligent systems for enterprise and government environments worldwide."
+        keywords="MunAiTech, AI Infrastructure, Cybersecurity Engineering, Enterprise AI, Government Technology, Global Operations"
         image="https://munai.tech/og-about.jpg"
       />
       <Helmet>
@@ -65,7 +78,7 @@ const About = () => {
       <StructuredData 
         breadcrumbs={[
           { name: "Home", url: "/" },
-          { name: "About", url: "/about" }
+          { name: "Company", url: "/about" }
         ]}
       />
 
@@ -73,76 +86,138 @@ const About = () => {
         <Navbar />
         
         {/* Hero Section */}
-        <section className="pt-32 pb-16 px-4 relative overflow-hidden">
+        <section className="pt-32 pb-20 px-4 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-accent/5 rounded-full blur-3xl opacity-30" />
           <div className="container mx-auto max-w-4xl text-center relative z-10">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 1, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <span className="inline-block px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-6">
-                About the Company
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-6">
+                <Building2 className="h-4 w-4" />
+                Global AI & Cybersecurity Company
               </span>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground">
                 About <span className="bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">MunAiTech</span>
               </h1>
               <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-                An AI infrastructure and cybersecurity engineering company building 
-                production-grade intelligent systems for enterprises and government institutions worldwide.
+                A global AI infrastructure and cybersecurity engineering company building 
+                production-grade intelligent systems for enterprise and government environments worldwide.
               </p>
             </motion.div>
           </div>
         </section>
-        
-        {/* Company Story */}
-        <section className="py-16 px-4">
+
+        {/* Mission & Vision */}
+        <section className="py-20 px-4">
           <div className="container mx-auto max-w-6xl">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="grid md:grid-cols-2 gap-12">
               <motion.div
-                initial={{ opacity: 0, x: -20 }}
+                initial={{ opacity: 1, x: 0 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
+                <Card className="h-full border border-border bg-card hover:border-accent/30 transition-all">
+                  <CardContent className="p-8 md:p-10">
+                    <div className="w-14 h-14 rounded-2xl bg-accent/10 flex items-center justify-center mb-6">
+                      <Target className="w-7 h-7 text-accent" />
+                    </div>
+                    <h2 className="text-2xl font-bold mb-4 text-foreground">
+                      Our <span className="text-accent">Mission</span>
+                    </h2>
+                    <p className="text-muted-foreground leading-relaxed">
+                      To design, build, and deploy production-grade intelligent systems with 
+                      embedded security that enable enterprises and government institutions to 
+                      operate, scale, and make critical decisions with confidence. We engineer 
+                      platforms that are secure by design, intelligent by default, and built 
+                      for enterprise-scale deployment across global environments.
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 1, x: 0 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.15 }}
+              >
+                <Card className="h-full border border-border bg-card hover:border-accent/30 transition-all">
+                  <CardContent className="p-8 md:p-10">
+                    <div className="w-14 h-14 rounded-2xl bg-accent/10 flex items-center justify-center mb-6">
+                      <Eye className="w-7 h-7 text-accent" />
+                    </div>
+                    <h2 className="text-2xl font-bold mb-4 text-foreground">
+                      Our <span className="text-accent">Vision</span>
+                    </h2>
+                    <p className="text-muted-foreground leading-relaxed">
+                      To become a globally recognized leader in AI infrastructure and cybersecurity 
+                      engineering — powering the intelligent systems that drive modern organizations, 
+                      national institutions, and critical infrastructure. We envision a world where 
+                      every enterprise operates on infrastructure that is both intelligent and 
+                      inherently secure.
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* Company Overview */}
+        <section className="py-20 px-4 bg-muted/30">
+          <div className="container mx-auto max-w-6xl">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <motion.div
+                initial={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <span className="inline-block px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-4">
+                  Who We Are
+                </span>
                 <h2 className="text-3xl font-bold mb-6 text-foreground">
-                  Our <span className="text-accent">Mission</span>
+                  Engineering <span className="text-accent">Global</span> Infrastructure
                 </h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed">
                   <p>
-                    MunAiTech (15071995 LLC) is a software development company specializing in 
-                    AI infrastructure and cybersecurity engineering. We design, build, and deploy 
-                    production-grade intelligent systems with embedded security for organizations 
-                    that demand reliability at scale.
+                    MunAiTech (15071995 LLC) is a for-profit technology company specializing in 
+                    AI infrastructure and cybersecurity engineering. We operate at the intersection 
+                    of artificial intelligence, security, and cloud infrastructure — engineering 
+                    platforms that power modern organizations and national systems.
                   </p>
                   <p>
-                    We operate at the intersection of artificial intelligence, security, and 
-                    infrastructure — engineering platforms that are secure by design, intelligent 
-                    by default, and built for enterprise-scale deployment.
+                    From sovereign AI data centre infrastructure to defence communications systems, 
+                    MunAiTech has delivered 30+ production-grade platforms for clients across fintech, 
+                    defence, government, and enterprise environments spanning multiple countries.
                   </p>
                   <p>
-                    From agentic AI platforms to enterprise SaaS systems, MunAiTech has delivered 
-                    30+ production-grade systems for clients across fintech, defence, government, 
-                    and enterprise environments spanning multiple countries.
+                    Our systems are built to handle the demands of mission-critical environments — 
+                    where failure is not an option and security cannot be an afterthought. We leverage 
+                    quantum-ready architecture and cutting-edge AI to build systems that operate at scale.
                   </p>
                 </div>
               </motion.div>
               
               <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="grid grid-cols-2 gap-4"
+                transition={{ duration: 0.6, delay: 0.15 }}
+                className="grid grid-cols-2 sm:grid-cols-3 gap-4"
               >
                 {companyStats.map((stat, index) => (
                   <Card key={index} className="border border-border hover:border-accent/30 transition-all bg-card">
-                    <CardContent className="p-6 text-center">
+                    <CardContent className="p-5 text-center">
                       <div className="w-10 h-10 mx-auto mb-3 text-accent">
                         {stat.icon}
                       </div>
                       <h3 className="font-bold text-2xl mb-1 text-foreground">{stat.value}</h3>
-                      <p className="text-sm text-muted-foreground">{stat.label}</p>
+                      <p className="text-xs text-muted-foreground">{stat.label}</p>
                     </CardContent>
                   </Card>
                 ))}
@@ -152,25 +227,28 @@ const About = () => {
         </section>
 
         {/* What We Do */}
-        <section className="py-16 px-4 bg-muted/30">
+        <section className="py-20 px-4">
           <div className="container mx-auto max-w-6xl">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 1, y: 0 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
               className="text-center mb-12"
             >
               <span className="inline-block px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-4">
-                What We Do
+                Capabilities
               </span>
-              <h2 className="text-3xl font-bold text-foreground">Our Core Services</h2>
+              <h2 className="text-3xl font-bold text-foreground">What We Engineer</h2>
+              <p className="text-muted-foreground mt-3 max-w-2xl mx-auto">
+                Enterprise-grade capabilities spanning AI, cybersecurity, and infrastructure engineering.
+              </p>
             </motion.div>
             <div className="grid md:grid-cols-2 gap-6">
               {services.map((service, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 1, y: 0 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -190,11 +268,76 @@ const About = () => {
           </div>
         </section>
 
-        {/* Founder's Bio */}
-        <section className="py-16 px-4">
+        {/* Company Timeline */}
+        <section className="py-20 px-4 bg-muted/30">
           <div className="container mx-auto max-w-4xl">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-12"
+            >
+              <span className="inline-block px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-4">
+                Our Journey
+              </span>
+              <h2 className="text-3xl font-bold text-foreground">Company Milestones</h2>
+            </motion.div>
+            
+            <div className="relative">
+              <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-border md:-translate-x-px" />
+              
+              {milestones.map((milestone, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 1, y: 0 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className={`relative flex items-start gap-6 mb-8 ${
+                    index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+                  }`}
+                >
+                  <div className={`flex-1 ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'} hidden md:block`}>
+                    {index % 2 === 0 && (
+                      <Card className="inline-block border border-border bg-card hover:border-accent/30 transition-all">
+                        <CardContent className="p-6">
+                          <span className="text-accent font-bold text-lg">{milestone.year}</span>
+                          <h3 className="text-lg font-bold text-foreground mt-1">{milestone.event}</h3>
+                          <p className="text-sm text-muted-foreground mt-2">{milestone.description}</p>
+                        </CardContent>
+                      </Card>
+                    )}
+                  </div>
+                  
+                  <div className="relative z-10 w-8 h-8 rounded-full bg-accent/20 border-2 border-accent flex items-center justify-center shrink-0 mt-1">
+                    <div className="w-3 h-3 rounded-full bg-accent" />
+                  </div>
+                  
+                  <div className={`flex-1 ${index % 2 === 1 ? 'md:text-left' : 'md:text-right md:hidden'}`}>
+                    <Card className="border border-border bg-card hover:border-accent/30 transition-all">
+                      <CardContent className="p-6">
+                        <span className="text-accent font-bold text-lg">{milestone.year}</span>
+                        <h3 className="text-lg font-bold text-foreground mt-1">{milestone.event}</h3>
+                        <p className="text-sm text-muted-foreground mt-2">{milestone.description}</p>
+                      </CardContent>
+                    </Card>
+                  </div>
+
+                  {index % 2 === 1 && (
+                    <div className="flex-1 hidden md:block" />
+                  )}
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Founder's Bio — Expanded */}
+        <section className="py-20 px-4">
+          <div className="container mx-auto max-w-5xl">
+            <motion.div
+              initial={{ opacity: 1, y: 0 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
@@ -204,50 +347,107 @@ const About = () => {
                 Leadership
               </span>
               <h2 className="text-3xl font-bold text-foreground">Founder & CEO</h2>
+              <p className="text-muted-foreground mt-3 max-w-2xl mx-auto">
+                The driving force behind MunAiTech's vision and technical execution.
+              </p>
             </motion.div>
             
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 1, y: 0 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
               <Card className="border border-border bg-card overflow-hidden">
-                <CardContent className="p-8 md:p-10">
-                  <div className="space-y-6">
-                    <div>
-                      <h3 className="text-2xl font-bold text-foreground mb-1">Founder & Technical Lead</h3>
-                      <p className="text-accent font-medium">MunAiTech (15071995 LLC)</p>
+                <CardContent className="p-8 md:p-12">
+                  <div className="grid md:grid-cols-3 gap-8">
+                    {/* Bio Content */}
+                    <div className="md:col-span-2 space-y-5">
+                      <div>
+                        <h3 className="text-2xl font-bold text-foreground mb-1">Founder & Technical Lead</h3>
+                        <p className="text-accent font-medium">MunAiTech (15071995 LLC)</p>
+                        <div className="flex items-center gap-2 mt-2 text-sm text-muted-foreground">
+                          <MapPin className="h-4 w-4" />
+                          <span>Kentucky, USA • Operating Globally</span>
+                        </div>
+                      </div>
+                      
+                      <div className="space-y-4 text-muted-foreground leading-relaxed">
+                        <p>
+                          With over 5 years of professional experience in AI systems architecture, 
+                          cybersecurity engineering, and enterprise platform development, the founder 
+                          of MunAiTech has built and deployed 30+ production-grade systems for clients 
+                          across fintech, defence, government, and enterprise environments spanning 
+                          multiple countries.
+                        </p>
+                        <p>
+                          A hands-on technical leader who operates at the intersection of AI, security, 
+                          and infrastructure — engineering platforms from concept to production deployment. 
+                          The founder actively engages with critical global technology initiatives including 
+                          sovereign AI infrastructure programs, defence communications systems, and 
+                          quantum-ready architecture development.
+                        </p>
+                        <p>
+                          Under the founder's leadership, MunAiTech has received international recognition 
+                          from Canada's Innovation, Science and Economic Development (ISED) department 
+                          and the Department of National Defence (DND) for contributions to sovereign AI 
+                          data centre infrastructure and LEO SATCOM defence communications — validating 
+                          the company's capabilities at the highest levels of government technology.
+                        </p>
+                        <p>
+                          The founder also established MunAiTech as an official{" "}
+                          <a href="https://base44.com" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline font-medium">
+                            Base44 Partner
+                          </a>{" "}
+                          and achieved{" "}
+                          <span className="text-accent font-medium">Lovable Platinum</span>{" "}
+                          certification — further validating the company's engineering excellence and 
+                          innovation capabilities on global platforms.
+                        </p>
+                      </div>
                     </div>
-                    
-                    <div className="space-y-4 text-muted-foreground leading-relaxed">
-                      <p>
-                        With over 5 years of professional experience in AI systems architecture and 
-                        full-stack engineering, the founder of MunAiTech has worked with startups, 
-                        enterprises, and government institutions across multiple countries — delivering 
-                        30+ production-grade platforms spanning fintech, defence, government, and 
-                        enterprise sectors.
-                      </p>
-                      <p>
-                        Specializing in engineering scalable, secure systems that integrate artificial 
-                        intelligence with embedded cybersecurity, the company actively engages with 
-                        critical technology initiatives including sovereign AI infrastructure and 
-                        national defence communications.
-                      </p>
-                      <p>
-                        MunAiTech is also an official{" "}
-                        <a href="https://base44.com" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">
-                          Base44 Partner
-                        </a>, delivering AI-powered systems and enterprise solutions through the platform.
-                      </p>
-                    </div>
-                    
-                    <div className="flex flex-wrap gap-3 pt-2">
-                      {["AI Architecture", "Cybersecurity", "Enterprise SaaS", "Cloud Infrastructure", "Agentic AI", "Zero-Trust Design"].map((skill) => (
-                        <span key={skill} className="px-3 py-1.5 text-sm rounded-lg bg-accent/10 text-accent border border-accent/20">
-                          {skill}
-                        </span>
-                      ))}
+
+                    {/* Credentials Sidebar */}
+                    <div className="space-y-6">
+                      <div>
+                        <h4 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-3">Core Expertise</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {["AI Architecture", "Cybersecurity", "Enterprise SaaS", "Cloud Infrastructure", "Agentic AI", "Zero-Trust Design", "Quantum Systems", "Defence Tech"].map((skill) => (
+                            <span key={skill} className="px-3 py-1.5 text-xs rounded-lg bg-accent/10 text-accent border border-accent/20">
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div>
+                        <h4 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-3">Recognitions</h4>
+                        <div className="space-y-3">
+                          {[
+                            { label: "ISED Canada — Sovereign AI", icon: <Award className="h-4 w-4" /> },
+                            { label: "DND Canada — LEO SATCOM", icon: <Shield className="h-4 w-4" /> },
+                            { label: "Base44 Official Partner", icon: <CheckCircle2 className="h-4 w-4" /> },
+                            { label: "Lovable Platinum Certified", icon: <CheckCircle2 className="h-4 w-4" /> },
+                          ].map((item) => (
+                            <div key={item.label} className="flex items-center gap-2 text-sm text-muted-foreground">
+                              <span className="text-accent">{item.icon}</span>
+                              {item.label}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div>
+                        <h4 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-3">Sectors Served</h4>
+                        <div className="space-y-2 text-sm text-muted-foreground">
+                          {["Enterprise & SaaS", "Government & Defence", "Fintech & Finance", "Healthcare & Public Sector", "Critical Infrastructure"].map((sector) => (
+                            <div key={sector} className="flex items-center gap-2">
+                              <div className="w-1.5 h-1.5 rounded-full bg-accent" />
+                              {sector}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </CardContent>
@@ -257,25 +457,28 @@ const About = () => {
         </section>
 
         {/* Core Values */}
-        <section className="py-16 px-4 bg-muted/30">
+        <section className="py-20 px-4 bg-muted/30">
           <div className="container mx-auto max-w-6xl">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 1, y: 0 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
               className="text-center mb-12"
             >
               <span className="inline-block px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-4">
-                Our DNA
+                Our Principles
               </span>
               <h2 className="text-3xl font-bold text-foreground">Core Values</h2>
+              <p className="text-muted-foreground mt-3 max-w-2xl mx-auto">
+                The principles that guide every system we engineer and every engagement we deliver.
+              </p>
             </motion.div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {values.map((value, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 1, y: 0 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -294,18 +497,20 @@ const About = () => {
         </section>
 
         {/* CTA */}
-        <section className="py-20 px-4 relative overflow-hidden">
+        <section className="py-24 px-4 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
           <div className="container mx-auto max-w-4xl text-center relative z-10">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 1, y: 0 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">Ready to Build Something Extraordinary?</h2>
-              <p className="text-xl text-muted-foreground mb-8">
-                Partner with MunAiTech to design and deploy secure, intelligent systems for your organization.
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
+                Ready to Build Secure, Intelligent Infrastructure?
+              </h2>
+              <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+                Partner with MunAiTech to design and deploy production-grade systems for your organization.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link to="/contact">
