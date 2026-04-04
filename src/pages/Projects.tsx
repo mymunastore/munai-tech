@@ -65,7 +65,7 @@ const Projects = () => {
         <div className="container px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              My Projects
+              Selected Systems & Case Studies
             </h1>
             <p className="text-lg text-gray-400">
               A showcase of innovative solutions that drive real business results
