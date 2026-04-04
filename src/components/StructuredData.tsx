@@ -24,14 +24,13 @@ export const StructuredData = ({ breadcrumbs, type = 'website', articleData }: S
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "Kingsley Munachi - Web Developer Portfolio",
-    "alternateName": "MunAiTech",
+    "name": "MunAiTech - AI Infrastructure & Cybersecurity Engineering",
     "url": baseUrl,
-    "description": "Web Developer with 5+ years experience specializing in React, Next.js, Node.js, TypeScript, and AI integration.",
+    "description": "AI infrastructure and cybersecurity engineering company building production-grade intelligent systems for enterprise environments.",
     "author": {
-      "@type": "Person",
-      "name": "Kingsley Munachi",
-      "jobTitle": "Full-Stack Web Developer",
+      "@type": "Organization",
+      "name": "MunAiTech",
+      "legalName": "15071995 LLC",
       "url": baseUrl
     },
     "potentialAction": {
