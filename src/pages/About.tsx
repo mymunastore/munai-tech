@@ -3,8 +3,12 @@ import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
 import { StructuredData } from "@/components/StructuredData";
 import { Card, CardContent } from "@/components/ui/card";
-import { Award, Briefcase, Code2, GraduationCap, Heart, Lightbulb, Target, Users, Zap } from "lucide-react";
+import { Briefcase, Code2, Heart, Lightbulb, Target, Users, Zap, Building2, Globe, Shield, Brain, Server } from "lucide-react";
 import { Helmet } from "react-helmet";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
 
 const About = () => {
   const values = [
@@ -30,36 +34,26 @@ const About = () => {
     }
   ];
 
-  const achievements = [
-    { icon: <Award />, label: "5+ Years Engineering", value: "Senior Level" },
-    { icon: <Briefcase />, label: "30+ Systems", value: "Delivered" },
-    { icon: <Users />, label: "30+ Clients", value: "Worldwide" },
-    { icon: <Code2 />, label: "15+ Technologies", value: "Mastered" }
+  const companyStats = [
+    { icon: <Briefcase />, label: "Systems Delivered", value: "30+" },
+    { icon: <Users />, label: "Enterprise Clients", value: "25+" },
+    { icon: <Globe />, label: "Countries Served", value: "4" },
+    { icon: <Code2 />, label: "Years in Operation", value: "5+" }
   ];
 
-  const expertise = [
-    "AI System Architecture",
-    "Cybersecurity Engineering",
-    "Enterprise SaaS Development",
-    "React & Next.js Ecosystems",
-    "Agentic AI & LLM Integration",
-    "Cloud Infrastructure (AWS, Azure, GCP)",
-    "Database Design & Optimization",
-    "API Architecture & Integration",
-    "Zero-Trust Security Design",
-    "DevSecOps & CI/CD",
-    "Identity & Verification Systems",
-    "Simulation-Based Threat Modeling",
-    "Performance Optimization",
-    "Systems Integration"
+  const services = [
+    { icon: Brain, title: "AI System Architecture", description: "End-to-end design and deployment of intelligent systems, agentic workflows, and LLM-powered platforms." },
+    { icon: Shield, title: "Cybersecurity Engineering", description: "Zero-trust architecture, threat modeling, identity verification, and embedded security for enterprise systems." },
+    { icon: Server, title: "Enterprise Platform Development", description: "Scalable SaaS platforms, cloud infrastructure, API architecture, and full-stack engineering for high-performance environments." },
+    { icon: Building2, title: "Government & Institutional Systems", description: "Production-grade systems for defence, government technology initiatives, and critical infrastructure projects." },
   ];
 
   return (
     <>
       <SEO 
-        title="About MunAiTech | AI Systems Architect & Cybersecurity Engineer"
-        description="MunAiTech is an AI infrastructure and cybersecurity engineering company with 5+ years delivering production-grade systems for enterprises and government institutions."
-        keywords="MunAiTech, AI Systems Architect, Cybersecurity Engineer, Enterprise AI, Infrastructure Engineer"
+        title="About MunAiTech | AI Infrastructure & Cybersecurity Engineering Company"
+        description="MunAiTech is an AI infrastructure and cybersecurity engineering company delivering production-grade intelligent systems for enterprises and government institutions worldwide."
+        keywords="MunAiTech, AI Infrastructure, Cybersecurity Engineering, Enterprise AI, Software Company"
         image="https://munai.tech/og-about.jpg"
       />
       <Helmet>
@@ -69,186 +63,264 @@ const About = () => {
         <meta name="twitter:image" content="https://munai.tech/og-about.jpg" />
       </Helmet>
       <StructuredData 
-        type="person"
         breadcrumbs={[
           { name: "Home", url: "/" },
           { name: "About", url: "/about" }
         ]}
       />
 
-      <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black text-white">
+      <div className="min-h-screen bg-background text-foreground">
         <Navbar />
         
         {/* Hero Section */}
-        <section className="pt-32 pb-16 px-4">
-          <div className="container mx-auto max-w-4xl text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-              About <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">MunAiTech</span>
-            </h1>
-            <p className="text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
-              AI Systems Architect & Cybersecurity Engineer with over five years of professional experience 
-              engineering scalable, production-grade intelligent systems for enterprises and government institutions.
-            </p>
+        <section className="pt-32 pb-16 px-4 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
+          <div className="container mx-auto max-w-4xl text-center relative z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <span className="inline-block px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-6">
+                About the Company
+              </span>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground">
+                About <span className="bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">MunAiTech</span>
+              </h1>
+              <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+                An AI infrastructure and cybersecurity engineering company building 
+                production-grade intelligent systems for enterprises and government institutions worldwide.
+              </p>
+            </motion.div>
           </div>
         </section>
         
-        {/* Story Section */}
-        <section className="py-16 px-4 bg-black/50">
+        {/* Company Story */}
+        <section className="py-16 px-4">
           <div className="container mx-auto max-w-6xl">
-            <h2 className="text-3xl font-bold mb-12 text-center text-cyan-400">The Journey</h2>
-            <div className="max-w-4xl mx-auto">
-              <div className="prose prose-lg prose-invert max-w-none">
-                <p className="text-gray-300 leading-relaxed mb-6">
-                  With over 5 years of professional experience in AI systems architecture and full-stack engineering, I've had the privilege of working with startups, enterprises, and government institutions across multiple countries. My journey began with a fascination for how intelligent systems and robust security could solve real-world problems at scale.
-                </p>
-                <p className="text-gray-300 leading-relaxed mb-6">
-                  I specialize in engineering scalable, secure systems that integrate artificial intelligence with embedded cybersecurity. From agentic AI platforms to enterprise SaaS systems, I've delivered 30+ production-grade systems for clients worldwide — spanning fintech, defence, government, and enterprise environments.
-                </p>
-                <p className="text-gray-300 leading-relaxed mb-6">
-                  As founder of MunAiTech (15071995 LLC), I lead a company focused on building production-grade intelligent systems at the intersection of AI, security, and infrastructure. We actively engage with Canada's most critical technology initiatives, including sovereign AI infrastructure and national defence communications.
-                </p>
-                <p className="text-gray-300 leading-relaxed">
-                  I'm also an official <a href="https://base44.com" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:text-cyan-300 underline underline-offset-2">Base44 Partner</a>, connecting with clients through the platform to deliver AI-powered systems and enterprise solutions with a streamlined workflow.
-                </p>
-              </div>
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <h2 className="text-3xl font-bold mb-6 text-foreground">
+                  Our <span className="text-accent">Mission</span>
+                </h2>
+                <div className="space-y-4 text-muted-foreground leading-relaxed">
+                  <p>
+                    MunAiTech (15071995 LLC) is a software development company specializing in 
+                    AI infrastructure and cybersecurity engineering. We design, build, and deploy 
+                    production-grade intelligent systems with embedded security for organizations 
+                    that demand reliability at scale.
+                  </p>
+                  <p>
+                    We operate at the intersection of artificial intelligence, security, and 
+                    infrastructure — engineering platforms that are secure by design, intelligent 
+                    by default, and built for enterprise-scale deployment.
+                  </p>
+                  <p>
+                    From agentic AI platforms to enterprise SaaS systems, MunAiTech has delivered 
+                    30+ production-grade systems for clients across fintech, defence, government, 
+                    and enterprise environments spanning multiple countries.
+                  </p>
+                </div>
+              </motion.div>
+              
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="grid grid-cols-2 gap-4"
+              >
+                {companyStats.map((stat, index) => (
+                  <Card key={index} className="border border-border hover:border-accent/30 transition-all bg-card">
+                    <CardContent className="p-6 text-center">
+                      <div className="w-10 h-10 mx-auto mb-3 text-accent">
+                        {stat.icon}
+                      </div>
+                      <h3 className="font-bold text-2xl mb-1 text-foreground">{stat.value}</h3>
+                      <p className="text-sm text-muted-foreground">{stat.label}</p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </motion.div>
             </div>
           </div>
         </section>
 
-        {/* Achievements */}
-        <section className="py-16 px-4 bg-gradient-to-br from-black via-gray-900 to-black">
+        {/* What We Do */}
+        <section className="py-16 px-4 bg-muted/30">
           <div className="container mx-auto max-w-6xl">
-            <h2 className="text-3xl font-bold mb-12 text-center text-cyan-400">Achievements</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {achievements.map((achievement, index) => (
-                <Card key={index} className="border-2 border-cyan-500/20 hover:border-cyan-400/40 transition-all hover:shadow-lg hover:shadow-cyan-500/20 bg-black/50">
-                  <CardContent className="p-6 text-center">
-                    <div className="w-12 h-12 mx-auto mb-4 text-cyan-400">
-                      {achievement.icon}
-                    </div>
-                    <h3 className="font-bold text-2xl mb-2 text-white">{achievement.value}</h3>
-                    <p className="text-gray-400">{achievement.label}</p>
-                  </CardContent>
-                </Card>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-12"
+            >
+              <span className="inline-block px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-4">
+                What We Do
+              </span>
+              <h2 className="text-3xl font-bold text-foreground">Our Core Services</h2>
+            </motion.div>
+            <div className="grid md:grid-cols-2 gap-6">
+              {services.map((service, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <Card className="h-full border border-border hover:border-accent/30 transition-all bg-card group">
+                    <CardContent className="p-8">
+                      <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <service.icon className="w-6 h-6 text-accent" />
+                      </div>
+                      <h3 className="text-xl font-bold mb-3 text-foreground group-hover:text-accent transition-colors">{service.title}</h3>
+                      <p className="text-muted-foreground leading-relaxed">{service.description}</p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* Founder's Bio */}
+        <section className="py-16 px-4">
+          <div className="container mx-auto max-w-4xl">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-12"
+            >
+              <span className="inline-block px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-4">
+                Leadership
+              </span>
+              <h2 className="text-3xl font-bold text-foreground">Founder & CEO</h2>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <Card className="border border-border bg-card overflow-hidden">
+                <CardContent className="p-8 md:p-10">
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-2xl font-bold text-foreground mb-1">Founder & Technical Lead</h3>
+                      <p className="text-accent font-medium">MunAiTech (15071995 LLC)</p>
+                    </div>
+                    
+                    <div className="space-y-4 text-muted-foreground leading-relaxed">
+                      <p>
+                        With over 5 years of professional experience in AI systems architecture and 
+                        full-stack engineering, the founder of MunAiTech has worked with startups, 
+                        enterprises, and government institutions across multiple countries — delivering 
+                        30+ production-grade platforms spanning fintech, defence, government, and 
+                        enterprise sectors.
+                      </p>
+                      <p>
+                        Specializing in engineering scalable, secure systems that integrate artificial 
+                        intelligence with embedded cybersecurity, the company actively engages with 
+                        critical technology initiatives including sovereign AI infrastructure and 
+                        national defence communications.
+                      </p>
+                      <p>
+                        MunAiTech is also an official{" "}
+                        <a href="https://base44.com" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">
+                          Base44 Partner
+                        </a>, delivering AI-powered systems and enterprise solutions through the platform.
+                      </p>
+                    </div>
+                    
+                    <div className="flex flex-wrap gap-3 pt-2">
+                      {["AI Architecture", "Cybersecurity", "Enterprise SaaS", "Cloud Infrastructure", "Agentic AI", "Zero-Trust Design"].map((skill) => (
+                        <span key={skill} className="px-3 py-1.5 text-sm rounded-lg bg-accent/10 text-accent border border-accent/20">
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
           </div>
         </section>
 
         {/* Core Values */}
-        <section className="py-16 px-4 bg-black/50">
+        <section className="py-16 px-4 bg-muted/30">
           <div className="container mx-auto max-w-6xl">
-            <h2 className="text-3xl font-bold mb-12 text-center text-cyan-400">Core Values</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-12"
+            >
+              <span className="inline-block px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-4">
+                Our DNA
+              </span>
+              <h2 className="text-3xl font-bold text-foreground">Core Values</h2>
+            </motion.div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {values.map((value, index) => (
-                <Card key={index} className="border-2 border-cyan-500/20 hover:border-blue-500/40 transition-all bg-black/50">
-                  <CardContent className="p-8">
-                    <div className="text-cyan-400 mb-4">{value.icon}</div>
-                    <h3 className="text-xl font-bold mb-3 text-white">{value.title}</h3>
-                    <p className="text-gray-300 leading-relaxed">{value.description}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Expertise */}
-        <section className="py-16 px-4 bg-gradient-to-br from-black via-gray-900 to-black">
-          <div className="container mx-auto max-w-6xl">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4 text-cyan-400">Engineering Expertise</h2>
-              <p className="text-gray-400 max-w-2xl mx-auto">
-                A comprehensive skill set spanning AI systems architecture, cybersecurity engineering, and cloud infrastructure.
-              </p>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {expertise.map((skill, index) => (
-                <div 
+                <motion.div
                   key={index}
-                  className="flex items-center gap-2 p-4 bg-black/50 rounded-lg hover:bg-cyan-500/10 transition-colors border border-cyan-500/20"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <GraduationCap className="w-5 h-5 text-cyan-400 flex-shrink-0" />
-                  <span className="text-sm font-medium text-white">{skill}</span>
-                </div>
+                  <Card className="h-full border border-border hover:border-accent/30 transition-all bg-card group">
+                    <CardContent className="p-8">
+                      <div className="text-accent mb-4 group-hover:scale-110 transition-transform inline-block">{value.icon}</div>
+                      <h3 className="text-xl font-bold mb-3 text-foreground group-hover:text-accent transition-colors">{value.title}</h3>
+                      <p className="text-muted-foreground leading-relaxed">{value.description}</p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
               ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Education & Certifications */}
-        <section className="py-16 px-4 bg-black/50">
-          <div className="container mx-auto max-w-4xl">
-            <h2 className="text-3xl font-bold mb-12 text-center text-cyan-400">Education & Certifications</h2>
-            <div className="space-y-6">
-              <Card className="bg-black/50 border-cyan-500/20">
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-cyan-500/10 flex items-center justify-center flex-shrink-0">
-                      <GraduationCap className="w-6 h-6 text-cyan-400" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="font-bold text-lg mb-1 text-white">Bachelor of Science (BSc)</h3>
-                      <p className="text-gray-300 mb-2">University of Calabar</p>
-                      <p className="text-sm text-gray-400">Calabar, Cross River State, Nigeria</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-black/50 border-cyan-500/20">
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-cyan-500/10 flex items-center justify-center flex-shrink-0">
-                      <GraduationCap className="w-6 h-6 text-cyan-400" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="font-bold text-lg mb-1 text-white">Diploma</h3>
-                      <p className="text-gray-300 mb-2">Temple Gate Polytechnic</p>
-                      <p className="text-sm text-gray-400">Aba, Abia State, Nigeria</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-black/50 border-cyan-500/20">
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-cyan-500/10 flex items-center justify-center flex-shrink-0">
-                      <Award className="w-6 h-6 text-cyan-400" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="font-bold text-lg mb-2 text-white">Professional Certifications</h3>
-                      <ul className="space-y-2 text-gray-300">
-                        <li>• AWS Certified Solutions Architect</li>
-                        <li>• Google Cloud Professional Developer</li>
-                        <li>• Microsoft Azure AI Engineer</li>
-                        <li>• Meta React Advanced Certification</li>
-                        <li>• Advanced UI/UX Design Specialization</li>
-                      </ul>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
             </div>
           </div>
         </section>
 
         {/* CTA */}
-        <section className="py-20 px-4 bg-gradient-to-br from-black via-gray-900 to-black">
-          <div className="container mx-auto max-w-4xl text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Let&apos;s Engineer Something Extraordinary</h2>
-            <p className="text-xl text-gray-400 mb-8">
-              Work with MunAiTech to design and deploy secure, intelligent systems.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="/contact" className="inline-flex items-center justify-center px-8 py-3 bg-gradient-to-r from-cyan-400 to-blue-600 text-black font-semibold rounded-lg hover:opacity-90 transition-opacity">
-                Start an Engagement
-              </a>
-              <a href="/projects" className="inline-flex items-center justify-center px-8 py-3 border-2 border-cyan-500/30 hover:border-cyan-400 text-white font-semibold rounded-lg transition-colors">
-                View Case Studies
-              </a>
-            </div>
+        <section className="py-20 px-4 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
+          <div className="container mx-auto max-w-4xl text-center relative z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">Ready to Build Something Extraordinary?</h2>
+              <p className="text-xl text-muted-foreground mb-8">
+                Partner with MunAiTech to design and deploy secure, intelligent systems for your organization.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link to="/contact">
+                  <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground px-8 py-6 text-base font-semibold rounded-xl group">
+                    Start an Engagement
+                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </Link>
+                <Link to="/projects">
+                  <Button size="lg" variant="outline" className="border-2 border-accent/40 text-accent hover:bg-accent/10 px-8 py-6 text-base rounded-xl">
+                    View Case Studies
+                  </Button>
+                </Link>
+              </div>
+            </motion.div>
           </div>
         </section>
 
