@@ -165,7 +165,7 @@ const Hero = memo(() => {
                 />
                 <img 
                   src={profileImage}
-                  alt="Kingsley Munachi — AI Systems Architect & Cybersecurity Engineer"
+                  alt="MunAiTech — AI Systems Architect & Cybersecurity Engineer"
                   className="relative rounded-3xl shadow-2xl shadow-accent/20 w-full h-auto object-cover border-4 border-accent/20 hover:border-accent/40 transition-all duration-500"
                   loading="eager"
                   fetchPriority="high"

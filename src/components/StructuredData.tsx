@@ -58,19 +58,14 @@ export const StructuredData = ({ breadcrumbs, type = 'website', articleData }: S
   // Person schema for about page
   const personSchema = type === 'person' ? {
     "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Kingsley Munachi",
-    "alternateName": "MunAiTech",
+    "@type": "Organization",
+    "name": "MunAiTech",
+    "legalName": "15071995 LLC",
     "url": baseUrl,
     "image": `${baseUrl}/og-about.jpg`,
-    "jobTitle": "Full-Stack Web Developer & AI Developer",
-    "worksFor": {
-      "@type": "Organization",
-      "name": "15071995 LLC"
-    },
+    "description": "AI infrastructure and cybersecurity engineering company.",
     "sameAs": [
-      "https://github.com/munai-tech",
-      "https://linkedin.com/in/kingsley-munachi"
+      "https://github.com/mymunastore"
     ],
     "knowsAbout": [
       "React", "Next.js", "TypeScript", "Node.js", 

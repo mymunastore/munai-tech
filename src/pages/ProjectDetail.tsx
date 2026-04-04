@@ -131,8 +131,8 @@ const ProjectDetail = () => {
             "name": project.title,
             "description": project.description,
             "author": {
-              "@type": "Person",
-              "name": "Kingsley Munachi"
+              "@type": "Organization",
+              "name": "MunAiTech"
             },
             "datePublished": project.created_at,
             "keywords": project.tech_stack?.join(", ")

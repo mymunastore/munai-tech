@@ -41,9 +41,9 @@ const Projects = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black">
       <SEO 
-        title="Projects | Kingsley Munachi | Web Developer Portfolio"
-        description="Explore web development projects by Kingsley Munachi. AI-powered platforms, SaaS applications, and full-stack solutions built with React, Next.js, Node.js, and TypeScript."
-        keywords="web development portfolio, React projects, Next.js applications, full-stack developer, Kingsley Munachi projects"
+        title="Selected Systems & Case Studies | MunAiTech"
+        description="Explore production-grade AI systems and enterprise platforms engineered by MunAiTech. Scalable infrastructure, cybersecurity solutions, and intelligent platforms."
+        keywords="AI systems, enterprise platforms, cybersecurity engineering, MunAiTech projects, case studies"
         image="https://munai.tech/og-projects.jpg"
       />
       <Helmet>

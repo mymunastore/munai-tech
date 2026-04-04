@@ -83,7 +83,7 @@ const About = () => {
         <section className="pt-32 pb-16 px-4">
           <div className="container mx-auto max-w-4xl text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-              About <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Kingsley Munachi</span>
+              About <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">MunAiTech</span>
             </h1>
             <p className="text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
               AI Systems Architect & Cybersecurity Engineer with over five years of professional experience 

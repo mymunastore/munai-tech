@@ -37,7 +37,7 @@ export const SEO = ({
       {/* Additional */}
       <link rel="canonical" href={url} />
       <meta name="robots" content="index, follow" />
-      <meta name="author" content="Kingsley Munachi" />
+      <meta name="author" content="MunAiTech" />
     </Helmet>
   );
 };
