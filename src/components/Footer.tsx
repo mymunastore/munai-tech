@@ -20,7 +20,8 @@ const Footer = () => {
               <span className="text-xs text-gray-300">A 15071995 LLC Company • Kentucky, USA</span>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed">
-              AI Web App Designer & Full-Stack Developer specializing in TypeScript, React, and AI-powered solutions.
+              AI Infrastructure & Cybersecurity Engineering company specializing in 
+              production-grade intelligent systems for enterprise environments.
             </p>
           </div>
 
@@ -31,8 +32,8 @@ const Footer = () => {
               {[
                 { label: "Home", id: "hero" },
                 { label: "Services", id: "services" },
-                { label: "Tech Stack", id: "techstack" },
-                { label: "Projects", id: "projects" },
+                { label: "Capabilities", id: "capabilities" },
+                { label: "Case Studies", id: "projects" },
                 { label: "Testimonials", id: "testimonials" },
               ].map((link) => (
                 <li key={link.label}>
@@ -59,7 +60,7 @@ const Footer = () => {
             <h3 className="font-bold mb-4 text-cyan-400">Connect</h3>
             <div className="flex gap-4">
               {[
-                { icon: Mail, href: "mailto:info@mymuna.store", label: "Email" },
+                { icon: Mail, href: "mailto:hello@munai.tech", label: "Email" },
                 { icon: MessageCircle, href: "https://wa.me/2347062372521", label: "WhatsApp" },
                 { icon: Github, href: "https://github.com/mymunastore", label: "GitHub" },
                 { icon: Linkedin, href: "https://www.linkedin.com/in/kingsley-munachi-843591244", label: "LinkedIn" },

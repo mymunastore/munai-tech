@@ -1,6 +1,6 @@
 import { memo } from "react";
 import { motion } from "framer-motion";
-import { ShieldAlert, Brain, Server, CheckCircle2 } from "lucide-react";
+import { ShieldAlert, Brain, Server } from "lucide-react";
 
 const differentiators = [
   {
