@@ -83,10 +83,15 @@ const Footer = () => {
 
         {/* Verification Badges */}
         <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/20">
+          <a
+            href="https://lovable.dev/certifications?username=mymunastore"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/20 hover:bg-cyan-500/20 hover:border-cyan-400/40 transition-colors cursor-pointer"
+          >
             <BadgeCheck className="h-4 w-4 text-cyan-400" />
             <span className="text-xs font-semibold text-cyan-400">Lovable Certified</span>
-          </div>
+          </a>
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20">
             <ShieldCheck className="h-4 w-4 text-emerald-400" />
             <span className="text-xs font-semibold text-emerald-400">Licensed</span>

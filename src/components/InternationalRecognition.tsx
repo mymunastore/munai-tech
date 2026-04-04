@@ -101,14 +101,23 @@ const InternationalRecognition = memo(() => {
                   {item.description}
                 </p>
 
-                {item.link && (
+                {item.link && item.external ? (
+                  <a 
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 mt-4 text-sm text-accent hover:underline font-medium"
+                  >
+                    Verify Certification <ExternalLink className="h-3 w-3" />
+                  </a>
+                ) : item.link ? (
                   <Link 
                     to={item.link}
                     className="inline-flex items-center gap-1 mt-4 text-sm text-accent hover:underline font-medium"
                   >
                     View Details <ExternalLink className="h-3 w-3" />
                   </Link>
-                )}
+                ) : null}
               </div>
             </motion.div>
           ))}
