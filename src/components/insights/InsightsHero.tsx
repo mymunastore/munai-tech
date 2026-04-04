@@ -12,14 +12,19 @@ const InsightsHero = memo(() => {
   const handleRefresh = async () => {
     setIsRefreshing(true);
     try {
-      const { data, error } = await supabase.functions.invoke(
-        "curate-tech-insights",
-        { body: {} }
-      );
-      if (error) throw error;
+      const cats = ["ai", "cybersecurity", "tech_leaders", "emerging_trends"];
+      let totalCount = 0;
+      for (const cat of cats) {
+        const { data, error } = await supabase.functions.invoke(
+          "curate-tech-insights",
+          { body: { category: cat } }
+        );
+        if (error) throw error;
+        totalCount += data.count || 0;
+      }
       toast({
         title: "Insights Updated",
-        description: `${data.count} new articles curated across ${data.categories?.length || 0} categories.`,
+        description: `${totalCount} new articles curated across all categories.`,
       });
     } catch (err) {
       console.error("Refresh error:", err);
