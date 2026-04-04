@@ -57,9 +57,9 @@ const About = () => {
   return (
     <>
       <SEO 
-        title="About Kingsley Munachi | AI Systems Architect & Cybersecurity Engineer"
-        description="Learn about Kingsley Munachi, founder of MunAiTech — an AI infrastructure and cybersecurity engineering company with 5+ years delivering production-grade systems for enterprises and government institutions."
-        keywords="Kingsley Munachi, AI Systems Architect, Cybersecurity Engineer, MunAiTech, Enterprise AI, Infrastructure Engineer"
+        title="About MunAiTech | AI Systems Architect & Cybersecurity Engineer"
+        description="MunAiTech is an AI infrastructure and cybersecurity engineering company with 5+ years delivering production-grade systems for enterprises and government institutions."
+        keywords="MunAiTech, AI Systems Architect, Cybersecurity Engineer, Enterprise AI, Infrastructure Engineer"
         image="https://munai.tech/og-about.jpg"
       />
       <Helmet>
