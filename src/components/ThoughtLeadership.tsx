@@ -37,13 +37,7 @@ const ThoughtLeadership = memo(() => {
       <div className="absolute inset-0 opacity-20" style={{ background: 'var(--gradient-mesh)' }} />
       
       <div className="container px-4 sm:px-6 lg:px-8 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16">
           <span className="inline-block px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-4">
             Insights & Research
           </span>
@@ -56,13 +50,13 @@ const ThoughtLeadership = memo(() => {
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Advancing the discourse on AI systems architecture, cybersecurity engineering, and enterprise infrastructure
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {categories.map((cat, index) => (
             <motion.div
               key={cat.title}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 1, y: 0 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.15 }}

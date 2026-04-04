@@ -1,6 +1,6 @@
 import { memo, useEffect, useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Briefcase, Users, Clock, Globe, Award, Shield } from "lucide-react";
+import { Briefcase, Globe, Clock, Award } from "lucide-react";
 
 interface StatItem {
   icon: typeof Briefcase;
@@ -80,26 +80,20 @@ const StatsCounter = memo(() => {
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
       
       <div className="container px-4 sm:px-6 lg:px-8 relative">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-12"
-        >
+        <div className="text-center mb-12">
           <span className="inline-block px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-4">
             Track Record
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
             Proven Global Execution
           </h2>
-        </motion.div>
+        </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {stats.map((stat, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 1, y: 0 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}

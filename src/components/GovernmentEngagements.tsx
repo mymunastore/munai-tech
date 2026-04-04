@@ -56,13 +56,7 @@ const GovernmentEngagements = memo(() => {
 
       <div className="container px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16">
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-4">
             <Shield className="h-4 w-4" />
             Government & Institutional Leadership
@@ -78,14 +72,14 @@ const GovernmentEngagements = memo(() => {
             initiatives — from sovereign AI infrastructure to national defence
             communications
           </p>
-        </motion.div>
+        </div>
 
         {/* Engagement Cards */}
         <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {engagements.map((engagement, index) => (
             <motion.div
               key={engagement.slug}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 1, y: 0 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.15 }}

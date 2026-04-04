@@ -28,19 +28,13 @@ const initiatives = [
   },
 ];
 
-const GlobalOperations = memo(() => {
+const InnovationResearch = memo(() => {
   return (
     <section className="py-20 md:py-32 bg-muted/30 relative overflow-hidden">
       <div className="absolute inset-0 opacity-20" style={{ background: 'var(--gradient-mesh)' }} />
 
       <div className="container px-4 sm:px-6 lg:px-8 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16">
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-4">
             <FlaskConical className="h-4 w-4" />
             Innovation & Research
@@ -56,13 +50,13 @@ const GlobalOperations = memo(() => {
             and innovation funding opportunities. We develop systems aligned with emerging global 
             priorities such as sovereign AI infrastructure, secure communications, and intelligent automation.
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {initiatives.map((item, index) => (
             <motion.div
               key={item.title}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 1, y: 0 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.15 }}
@@ -70,7 +64,7 @@ const GlobalOperations = memo(() => {
               <Card className="group h-full border-border hover:border-accent/30 transition-all duration-300 hover:shadow-xl overflow-hidden">
                 <div className="h-1.5 bg-gradient-to-r from-accent via-primary to-accent" />
                 <CardContent className="p-8">
-                  <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center justify-between mb-6 flex-wrap gap-2">
                     <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-accent/10 group-hover:bg-accent/20 group-hover:scale-110 transition-all">
                       <item.icon className="w-7 h-7 text-accent" />
                     </div>
@@ -97,13 +91,7 @@ const GlobalOperations = memo(() => {
         </div>
 
         {/* International Recognition Callout */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-16 max-w-4xl mx-auto"
-        >
+        <div className="mt-16 max-w-4xl mx-auto">
           <div className="p-8 rounded-2xl bg-card border border-accent/20 text-center">
             <div className="flex items-center justify-center gap-3 mb-4">
               <Award className="h-6 w-6 text-accent" />
@@ -116,12 +104,12 @@ const GlobalOperations = memo(() => {
               national-level funding programs underscore the global impact of our work.
             </p>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
 });
 
-GlobalOperations.displayName = "InnovationResearch";
+InnovationResearch.displayName = "InnovationResearch";
 
-export default GlobalOperations;
+export default InnovationResearch;
