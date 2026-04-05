@@ -17,7 +17,7 @@ const Footer = () => {
                 <span className="text-cyan-400">Ai</span>
                 <span className="text-white">Tech</span>
               </span>
-              <span className="text-xs text-gray-300">A 15071995 LLC Company • Kentucky, USA</span>
+              <span className="text-xs text-gray-300">A 15071995 LLC Company • Ashland, Kentucky, USA • Global</span>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed">
               AI Infrastructure & Cybersecurity Engineering company specializing in 

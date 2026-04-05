@@ -32,13 +32,14 @@ const CTA = () => {
             that drive operational excellence and lasting competitive advantage.
           </p>
 
-          {/* Contact Email */}
+          {/* Contact Button */}
           <div className="mb-10">
             <a 
-              href="mailto:info@mymuna.store" 
-              className="inline-flex items-center gap-2 text-lg font-semibold text-cyan-400 hover:text-cyan-300 transition-colors underline underline-offset-4"
+              href="mailto:info@mymuna.store?subject=Project%20Inquiry%20-%20MunAiTech" 
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-semibold text-lg transition-all shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/50"
             >
-              info@mymuna.store
+              <Mail className="h-5 w-5" />
+              Reach Out Now
             </a>
           </div>
 

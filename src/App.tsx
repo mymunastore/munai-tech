@@ -96,6 +96,7 @@ const AppContent = () => {
         </Routes>
       </Suspense>
       <AIChat />
+      <WhatsAppButton />
       <OfflineIndicator />
     </>
   );
