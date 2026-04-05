@@ -60,7 +60,7 @@ const Footer = () => {
             <h3 className="font-bold mb-4 text-cyan-400">Connect</h3>
             <div className="flex gap-4">
               {[
-                { icon: Mail, href: "mailto:hello@munai.tech", label: "Email" },
+                { icon: Mail, href: "mailto:info@mymona.store", label: "Email" },
                 { icon: MessageCircle, href: "https://wa.me/2347062372521", label: "WhatsApp" },
                 { icon: Github, href: "https://github.com/mymunastore", label: "GitHub" },
                 { icon: Linkedin, href: "https://www.linkedin.com/in/munaitech", label: "LinkedIn" },
