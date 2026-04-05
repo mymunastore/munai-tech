@@ -70,8 +70,9 @@ const Index = () => {
             "https://www.linkedin.com/in/munaitech",
             "https://twitter.com/mymunastore"
           ],
-          "address": {
+           "address": {
             "@type": "PostalAddress",
+            "addressLocality": "Ashland",
             "addressRegion": "Kentucky",
             "addressCountry": "US"
           },
