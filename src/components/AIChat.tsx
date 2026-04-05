@@ -207,11 +207,11 @@ export const AIChat = () => {
               </div>
               <div className="mt-2 text-center">
                 <a 
-                  href="mailto:info@mymuna.store" 
+                  href="/contact" 
                   className="text-xs text-muted-foreground hover:text-primary transition-colors inline-flex items-center gap-1"
                 >
                   <Mail className="h-3 w-3" />
-                  info@mymuna.store
+                  Contact Us
                 </a>
               </div>
             </div>
