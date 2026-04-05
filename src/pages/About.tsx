@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import founderPhoto from "@/assets/founder-photo.jpg";
 import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
 import { StructuredData } from "@/components/StructuredData";
