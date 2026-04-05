@@ -27,7 +27,7 @@ const FeaturedInsights = memo(({ insights }: FeaturedInsightsProps) => {
           <div className="grid lg:grid-cols-2 gap-6">
             {/* Main featured article with image overlay */}
             <article
-              className="group relative rounded-2xl overflow-hidden cursor-pointer min-h-[320px] lg:min-h-[400px] flex flex-col justify-end"
+              className="group relative rounded-2xl overflow-hidden cursor-pointer min-h-[320px] lg:min-h-[400px] flex flex-col justify-end border border-border"
               onClick={() => setSelectedInsight(mainFeatured)}
             >
               {/* Background image */}
@@ -43,14 +43,14 @@ const FeaturedInsights = memo(({ insights }: FeaturedInsightsProps) => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 
               <div className="relative z-10 p-6 md:p-8">
-                <Badge className="bg-blue-500/90 text-white border-0 mb-3">
+                <Badge className="bg-accent/90 text-accent-foreground border-0 mb-3">
                   <InsightCategoryIcon category={mainFeatured.category} size="sm" />
                   <span className="ml-1.5 capitalize">
                     {mainFeatured.category.replace("_", " ")}
                   </span>
                 </Badge>
 
-                <h3 className="text-xl md:text-2xl font-bold text-white mb-2 leading-tight group-hover:text-blue-200 transition-colors">
+                <h3 className="text-xl md:text-2xl font-bold text-white mb-2 leading-tight group-hover:text-accent transition-colors">
                   {mainFeatured.title}
                 </h3>
                 <p className="text-white/80 text-sm md:text-base mb-4 line-clamp-2">
@@ -78,7 +78,7 @@ const FeaturedInsights = memo(({ insights }: FeaturedInsightsProps) => {
               {secondaryFeatured.map((insight) => (
                 <article
                   key={insight.id}
-                  className="group relative rounded-2xl overflow-hidden cursor-pointer min-h-[180px] flex flex-col justify-end"
+                  className="group relative rounded-2xl overflow-hidden cursor-pointer min-h-[180px] flex flex-col justify-end border border-border"
                   onClick={() => setSelectedInsight(insight)}
                 >
                   <div
@@ -92,12 +92,12 @@ const FeaturedInsights = memo(({ insights }: FeaturedInsightsProps) => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 
                   <div className="relative z-10 p-5">
-                    <Badge className="bg-blue-500/90 text-white border-0 mb-2 text-xs">
+                    <Badge className="bg-accent/90 text-accent-foreground border-0 mb-2 text-xs">
                       <span className="capitalize">
                         {insight.category.replace("_", " ")}
                       </span>
                     </Badge>
-                    <h3 className="text-lg font-bold text-white mb-1 leading-tight group-hover:text-blue-200 transition-colors line-clamp-2">
+                    <h3 className="text-lg font-bold text-white mb-1 leading-tight group-hover:text-accent transition-colors line-clamp-2">
                       {insight.title}
                     </h3>
                     <p className="text-white/70 text-sm line-clamp-1">

@@ -44,10 +44,13 @@ const InsightsHero = memo(({ searchQuery, setSearchQuery }: InsightsHeroProps) =
   };
 
   return (
-    <section className="pt-24 pb-8 bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 relative overflow-hidden">
+    <section className="pt-24 pb-8 relative overflow-hidden" style={{ background: "var(--gradient-hero)" }}>
+      {/* Mesh overlay for depth */}
+      <div className="absolute inset-0 opacity-40" style={{ background: "var(--gradient-mesh)" }} />
+      
       <div className="container px-4 relative z-10">
         <div className="flex items-center justify-between mb-6">
-          <h1 className="text-2xl md:text-3xl font-bold text-white">
+          <h1 className="text-2xl md:text-3xl font-bold text-foreground">
             Tech Insights & Blog
           </h1>
           <Button
@@ -55,7 +58,7 @@ const InsightsHero = memo(({ searchQuery, setSearchQuery }: InsightsHeroProps) =
             disabled={isRefreshing}
             size="sm"
             variant="ghost"
-            className="text-white/80 hover:text-white hover:bg-white/10"
+            className="text-muted-foreground hover:text-foreground hover:bg-accent/10"
           >
             <RefreshCw
               className={`mr-2 h-4 w-4 ${isRefreshing ? "animate-spin" : ""}`}
@@ -71,7 +74,7 @@ const InsightsHero = memo(({ searchQuery, setSearchQuery }: InsightsHeroProps) =
             placeholder="Search articles, topics, or tags..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-12 h-12 text-base bg-background border-0 shadow-lg rounded-lg"
+            className="pl-12 h-12 text-base bg-card border-border shadow-lg rounded-lg"
           />
         </div>
       </div>

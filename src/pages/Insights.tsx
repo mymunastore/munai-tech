@@ -57,16 +57,17 @@ const Insights = () => {
       if (error) throw error;
       return data as TechInsight[];
     },
-    staleTime: 1000 * 60 * 5,
+    staleTime: 1000 * 60 * 2,
+    refetchInterval: 1000 * 60 * 5, // Auto-refresh every 5 minutes
   });
 
-  // Realtime subscription
+  // Realtime subscription for instant updates
   useEffect(() => {
     const channel = supabase
       .channel("tech-insights-realtime")
       .on(
         "postgres_changes",
-        { event: "INSERT", schema: "public", table: "tech_insights" },
+        { event: "*", schema: "public", table: "tech_insights" },
         () => {
           refetch();
         }
