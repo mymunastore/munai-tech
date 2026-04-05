@@ -362,17 +362,29 @@ const About = () => {
               <Card className="border border-border bg-card overflow-hidden">
                 <CardContent className="p-8 md:p-12">
                   <div className="grid md:grid-cols-3 gap-8">
-                    {/* Bio Content */}
-                    <div className="md:col-span-2 space-y-5">
-                      <div>
-                        <h3 className="text-2xl font-bold text-foreground mb-1">Founder & Technical Lead</h3>
-                        <p className="text-accent font-medium">MunAiTech (15071995 LLC)</p>
-                        <div className="flex items-center gap-2 mt-2 text-sm text-muted-foreground">
-                          <MapPin className="h-4 w-4" />
-                          <span>Kentucky, USA • Operating Globally</span>
+                    {/* Founder Photo */}
+                    <div className="flex flex-col items-center md:items-start gap-4">
+                      <div className="relative group">
+                        <div className="absolute -inset-1 bg-gradient-to-br from-accent/40 to-primary/40 rounded-2xl blur-md opacity-60 group-hover:opacity-100 transition-opacity" />
+                        <img
+                          src={founderPhoto}
+                          alt="Founder & CEO of MunAiTech"
+                          className="relative w-56 h-72 object-cover object-top rounded-2xl border-2 border-accent/30 shadow-2xl"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div className="text-center md:text-left">
+                        <h3 className="text-xl font-bold text-foreground">Founder & CEO</h3>
+                        <p className="text-accent font-medium text-sm">MunAiTech (15071995 LLC)</p>
+                        <div className="flex items-center gap-2 mt-1 text-xs text-muted-foreground">
+                          <MapPin className="h-3 w-3" />
+                          <span>Kentucky, USA • Global</span>
                         </div>
                       </div>
-                      
+                    </div>
+
+                    {/* Bio Content */}
+                    <div className="md:col-span-2 space-y-5">
                       <div className="space-y-4 text-muted-foreground leading-relaxed">
                         <p>
                           With over 5 years of professional experience in AI systems architecture, 
