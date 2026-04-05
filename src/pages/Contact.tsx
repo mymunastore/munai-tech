@@ -5,7 +5,7 @@ import { ContactForm } from "@/components/ContactForm";
 import { SEO } from "@/components/SEO";
 import { StructuredData } from "@/components/StructuredData";
 import { Helmet } from "react-helmet";
-import { Mail, MapPin, Phone, Calculator as CalcIcon, Sparkles } from "lucide-react";
+import { Mail, MapPin, Calculator as CalcIcon, Sparkles } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";

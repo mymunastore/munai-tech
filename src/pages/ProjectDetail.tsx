@@ -371,9 +371,9 @@ const ProjectDetail = () => {
       />
 
       <Footer />
+      </ProjectAccessGate>
       </div>
     </>
-  );
 };
 
 export default ProjectDetail;
