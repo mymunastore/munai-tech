@@ -28,6 +28,7 @@ const About = lazy(() => import("./pages/About"));
 const Admin = lazy(() => import("./pages/Admin"));
 const Auth = lazy(() => import("./pages/Auth"));
 const Partnerships = lazy(() => import("./pages/Partnerships"));
+const Services = lazy(() => import("./pages/Services"));
 const ReceiptPreview = lazy(() => import("./pages/ReceiptPreview"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
