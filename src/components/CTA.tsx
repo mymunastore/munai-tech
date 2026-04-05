@@ -35,10 +35,10 @@ const CTA = () => {
           {/* Contact Email */}
           <div className="mb-10">
             <a 
-              href="mailto:hello@munai.tech" 
+              href="mailto:info@mymona.store" 
               className="inline-flex items-center gap-2 text-lg font-semibold text-cyan-400 hover:text-cyan-300 transition-colors underline underline-offset-4"
             >
-              hello@munai.tech
+              info@mymona.store
             </a>
           </div>
 

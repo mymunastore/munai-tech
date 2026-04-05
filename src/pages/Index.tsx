@@ -64,7 +64,7 @@ const Index = () => {
           "legalName": "15071995 LLC",
           "description": "Global AI Infrastructure & Cybersecurity Engineering Company",
           "url": "https://munai.tech",
-          "email": "hello@munai.tech",
+          "email": "info@mymona.store",
           "sameAs": [
             "https://github.com/mymunastore",
             "https://www.linkedin.com/in/munaitech",

@@ -54,11 +54,11 @@ const About = () => {
   ];
 
   const milestones = [
-    { year: "2021", event: "Company Founded", description: "MunAiTech (15071995 LLC) established with a focus on AI systems and cybersecurity engineering." },
+    { year: "2020", event: "Company Founded", description: "MunAiTech began operations with a focus on AI systems and cybersecurity engineering, delivering early production-grade platforms." },
     { year: "2022", event: "First Enterprise Deployments", description: "Delivered initial production-grade platforms for fintech and enterprise clients across multiple countries." },
     { year: "2023", event: "Government Engagement", description: "Began engaging with government technology initiatives and institutional infrastructure projects." },
-    { year: "2024", event: "International Recognition", description: "Received official recognition from Canada (ISED & DND) for sovereign AI and defence technology capabilities." },
-    { year: "2025", event: "Global Expansion", description: "Expanded operations internationally with Base44 partnership, Lovable Platinum status, and 30+ systems delivered worldwide." },
+    { year: "2025", event: "Incorporation & Global Expansion", description: "Officially incorporated as 15071995 LLC. Expanded operations internationally with Base44 partnership, Lovable Platinum status, and 30+ systems delivered worldwide." },
+    { year: "2026", event: "International Recognition", description: "Received official recognition from Canada (ISED & DND) for sovereign AI and defence technology capabilities. Achieved global platform certifications." },
   ];
 
   return (
