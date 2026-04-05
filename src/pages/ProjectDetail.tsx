@@ -143,7 +143,7 @@ const ProjectDetail = () => {
       
       <div className="min-h-screen">
         <Navbar />
-      
+        <ProjectAccessGate>
       {/* Hero Section */}
       <section className="pt-32 pb-16 bg-gradient-to-br from-primary/5 to-accent/5">
         <div className="container px-4">
