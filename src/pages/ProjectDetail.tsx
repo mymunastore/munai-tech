@@ -374,6 +374,7 @@ const ProjectDetail = () => {
       </ProjectAccessGate>
       </div>
     </>
+  );
 };
 
 export default ProjectDetail;
