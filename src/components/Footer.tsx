@@ -1,4 +1,4 @@
-import { Mail, Github, Linkedin, Twitter, MessageCircle, ShieldCheck, Award, BadgeCheck } from "lucide-react";
+import { Mail, Github, Linkedin, Twitter, ShieldCheck, Award, BadgeCheck } from "lucide-react";
 
 
 const Footer = () => {
