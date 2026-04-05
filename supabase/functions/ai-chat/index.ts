@@ -115,7 +115,7 @@ Your role is to:
 2. Provide information about his services and expertise
 3. Help visitors understand his capabilities and past work
 4. Be professional, concise, and informative
-5. Encourage visitors to reach out via email at info@mymona.store or the contact form for project inquiries`;
+5. Encourage visitors to reach out via email at info@mymuna.store or the contact form for project inquiries`;
 
     let response;
     
