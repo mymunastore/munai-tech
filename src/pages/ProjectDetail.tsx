@@ -11,6 +11,7 @@ import SocialShare from "@/components/SocialShare";
 import RelatedProjects from "@/components/RelatedProjects";
 import { Helmet } from "react-helmet";
 import { LazyImage } from "@/components/LazyImage";
+import { ProjectAccessGate } from "@/components/ProjectAccessGate";
 
 // Lazy load syntax highlighter only when needed
 const SyntaxHighlighter = lazy(() =>
@@ -142,7 +143,7 @@ const ProjectDetail = () => {
       
       <div className="min-h-screen">
         <Navbar />
-      
+        <ProjectAccessGate>
       {/* Hero Section */}
       <section className="pt-32 pb-16 bg-gradient-to-br from-primary/5 to-accent/5">
         <div className="container px-4">
@@ -370,6 +371,7 @@ const ProjectDetail = () => {
       />
 
       <Footer />
+      </ProjectAccessGate>
       </div>
     </>
   );

@@ -1,11 +1,16 @@
 # Robots.txt for munai.tech
-# Kingsley Munachi - Web Developer Portfolio
+# MunAiTech — AI Infrastructure & Cybersecurity Engineering
 
 User-agent: Googlebot
 Allow: /
+Disallow: /admin
+Disallow: /auth
+Disallow: /receipt-preview
 
 User-agent: Bingbot
 Allow: /
+Disallow: /admin
+Disallow: /auth
 
 User-agent: Twitterbot
 Allow: /
@@ -16,8 +21,23 @@ Allow: /
 User-agent: LinkedInBot
 Allow: /
 
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /auth
+Disallow: /receipt-preview
 
 # Sitemap location
 Sitemap: https://munai.tech/sitemap.xml

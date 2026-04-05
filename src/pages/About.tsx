@@ -372,7 +372,7 @@ const About = () => {
               <p className="text-accent font-medium text-sm mt-2">MunAiTech (15071995 LLC)</p>
               <div className="flex items-center justify-center gap-2 mt-1 text-xs text-muted-foreground">
                 <MapPin className="h-3 w-3" />
-                <span>Kentucky, USA • Global</span>
+                <span>Ashland, Kentucky, USA • Global</span>
               </div>
               <p className="text-muted-foreground mt-3 max-w-2xl mx-auto">
                 The driving force behind MunAiTech's vision and technical execution.

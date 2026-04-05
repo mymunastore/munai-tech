@@ -64,14 +64,15 @@ const Index = () => {
           "legalName": "15071995 LLC",
           "description": "Global AI Infrastructure & Cybersecurity Engineering Company",
           "url": "https://munai.tech",
-          "email": "info@mymuna.store",
+           "email": "info@mymuna.store",  
           "sameAs": [
             "https://github.com/mymunastore",
             "https://www.linkedin.com/in/munaitech",
             "https://twitter.com/mymunastore"
           ],
-          "address": {
+           "address": {
             "@type": "PostalAddress",
+            "addressLocality": "Ashland",
             "addressRegion": "Kentucky",
             "addressCountry": "US"
           },

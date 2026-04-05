@@ -5,7 +5,7 @@ import { ContactForm } from "@/components/ContactForm";
 import { SEO } from "@/components/SEO";
 import { StructuredData } from "@/components/StructuredData";
 import { Helmet } from "react-helmet";
-import { Mail, MapPin, Phone, Calculator as CalcIcon, Sparkles } from "lucide-react";
+import { Mail, MapPin, Calculator as CalcIcon, Sparkles } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -347,18 +347,9 @@ const Contact = () => {
                     <Mail className="h-6 w-6 text-accent mt-1" />
                     <div>
                       <h4 className="font-semibold mb-1">Email</h4>
-                      <a href="mailto:info@mymuna.store" className="text-muted-foreground hover:text-accent transition-colors">
-                        info@mymuna.store
-                      </a>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4">
-                    <Phone className="h-6 w-6 text-accent mt-1" />
-                    <div>
-                      <h4 className="font-semibold mb-1">WhatsApp</h4>
-                      <a href="https://wa.me/2347062372521" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-accent transition-colors">
-                        +234 706 237 2521 (WhatsApp only)
+                      <a href="mailto:info@mymuna.store?subject=Project%20Inquiry%20-%20MunAiTech" className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-accent/10 text-accent hover:bg-accent/20 transition-colors text-sm font-medium border border-accent/20">
+                        <Mail className="h-4 w-4" />
+                        Send an Email
                       </a>
                     </div>
                   </div>
@@ -368,8 +359,8 @@ const Contact = () => {
                     <div>
                       <h4 className="font-semibold mb-1">Location</h4>
                       <p className="text-muted-foreground">
-                        Lagos, Nigeria<br />
-                        <span className="text-accent font-medium">Available for Remote Work</span>
+                        Ashland, Kentucky, USA<br />
+                        <span className="text-accent font-medium">Global Operations</span>
                       </p>
                     </div>
                   </div>

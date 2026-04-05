@@ -1,4 +1,4 @@
-import { Mail, Github, Linkedin, Twitter, MessageCircle, ShieldCheck, Award, BadgeCheck } from "lucide-react";
+import { Mail, Github, Linkedin, Twitter, ShieldCheck, Award, BadgeCheck } from "lucide-react";
 
 
 const Footer = () => {
@@ -17,7 +17,7 @@ const Footer = () => {
                 <span className="text-cyan-400">Ai</span>
                 <span className="text-white">Tech</span>
               </span>
-              <span className="text-xs text-gray-300">A 15071995 LLC Company • Kentucky, USA</span>
+              <span className="text-xs text-gray-300">A 15071995 LLC Company • Ashland, Kentucky, USA • Global</span>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed">
               AI Infrastructure & Cybersecurity Engineering company specializing in 
@@ -60,8 +60,7 @@ const Footer = () => {
             <h3 className="font-bold mb-4 text-cyan-400">Connect</h3>
             <div className="flex gap-4">
               {[
-                { icon: Mail, href: "mailto:info@mymuna.store", label: "Email" },
-                { icon: MessageCircle, href: "https://wa.me/2347062372521", label: "WhatsApp" },
+                { icon: Mail, href: "mailto:info@mymuna.store", label: "Reach Out" },
                 { icon: Github, href: "https://github.com/mymunastore", label: "GitHub" },
                 { icon: Linkedin, href: "https://www.linkedin.com/in/munaitech", label: "LinkedIn" },
                 { icon: Twitter, href: "https://twitter.com/mymunastore", label: "Twitter" },
