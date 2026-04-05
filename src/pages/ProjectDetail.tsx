@@ -11,6 +11,7 @@ import SocialShare from "@/components/SocialShare";
 import RelatedProjects from "@/components/RelatedProjects";
 import { Helmet } from "react-helmet";
 import { LazyImage } from "@/components/LazyImage";
+import { ProjectAccessGate } from "@/components/ProjectAccessGate";
 
 // Lazy load syntax highlighter only when needed
 const SyntaxHighlighter = lazy(() =>
