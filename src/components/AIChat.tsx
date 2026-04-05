@@ -16,7 +16,7 @@ interface Message {
 
 const INITIAL_MESSAGE: Message = {
   role: 'assistant',
-  content: "👋 Hi! I'm MunAiTech's AI assistant. Ask me anything about our **services**, **capabilities**, **projects**, or **expertise**.\n\nFor project inquiries, reach out at **info@mymuna.store**"
+  content: "👋 Hi! I'm MunAiTech's AI assistant. Ask me anything about our **services**, **capabilities**, **projects**, or **expertise**.\n\nFor project inquiries, use the **Contact** page on our website."
 };
 
 export const AIChat = () => {
