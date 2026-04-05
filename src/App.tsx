@@ -92,6 +92,7 @@ const AppContent = () => {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
+      <AIChat />
       <OfflineIndicator />
     </>
   );
