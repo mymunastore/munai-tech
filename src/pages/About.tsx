@@ -346,11 +346,12 @@ const About = () => {
               className="flex justify-center mb-8"
             >
               <div className="relative group">
-                <div className="absolute -inset-2 bg-gradient-to-br from-accent/30 to-primary/30 rounded-2xl blur-lg opacity-60 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute -inset-3 bg-gradient-to-br from-accent/40 via-primary/30 to-accent/40 rounded-2xl blur-xl opacity-50 group-hover:opacity-80 transition-opacity duration-500 animate-pulse" />
+                <div className="absolute -inset-1 bg-accent/20 rounded-2xl blur-md" />
                 <img
                   src={founderPhoto}
                   alt="Founder & CEO of MunAiTech"
-                  className="relative w-44 h-60 md:w-52 md:h-72 object-cover object-[center_15%] rounded-2xl border-4 border-accent/30 shadow-2xl"
+                  className="relative w-52 h-72 md:w-60 md:h-80 object-cover object-[center_15%] rounded-2xl border-4 border-accent/40 shadow-[0_0_30px_rgba(34,211,238,0.15)] group-hover:shadow-[0_0_40px_rgba(34,211,238,0.25)] transition-shadow duration-500"
                   loading="lazy"
                 />
               </div>
