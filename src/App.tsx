@@ -12,6 +12,7 @@ import { useServiceWorker } from "@/hooks/useServiceWorker";
 import { usePrefetch } from "@/hooks/usePrefetch";
 import { lazy, Suspense, useEffect } from "react";
 import { Loader2 } from "lucide-react";
+import { AIChat } from "@/components/AIChat";
 
 // Lazy load pages for better performance
 const Index = lazy(() => import("./pages/Index"));
