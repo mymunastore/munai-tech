@@ -1,4 +1,3 @@
-import "https://deno.land/x/xhr@0.1.0/mod.ts";
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.39.3";
 import { z } from "https://deno.land/x/zod@v3.22.4/mod.ts";
@@ -8,7 +7,6 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
-// Database-backed rate limiter (persists across function restarts)
 async function checkRateLimit(
   supabase: any,
   ip: string,
@@ -27,7 +25,7 @@ async function checkRateLimit(
     .single();
 
   if (fetchError && fetchError.code !== 'PGRST116') {
-    return true; // Fail open on error
+    return true;
   }
 
   if (!existing) {
@@ -58,8 +56,53 @@ const messageSchema = z.object({
 
 const aiChatRequestSchema = z.object({
   messages: z.array(messageSchema).min(1).max(50),
-  provider: z.enum(["gemini", "openai"]).default("openai"),
 });
+
+const SYSTEM_PROMPT = `You are the official AI assistant for MunAiTech (15071995 LLC), a Global AI Infrastructure & Cybersecurity Engineering Company headquartered at 212 N. 2nd St., STE 100, Richmond, KY, 40475, United States.
+
+COMPANY OVERVIEW:
+- Global AI Infrastructure & Cybersecurity Engineering Company
+- 30+ production-grade systems delivered across enterprise, fintech, defence, and government sectors
+- International recognition and government engagements across multiple countries
+- Founded 2021, incorporated 2025, international recognition 2026
+
+CORE CAPABILITIES:
+- AI-Powered Systems: Custom AI agents, intelligent automation, RAG pipelines, LLM integration
+- Cybersecurity Engineering: Threat detection, secure architecture, compliance frameworks, penetration testing
+- Enterprise Software: Full-stack web/mobile applications, SaaS platforms, API development
+- Cloud & DevOps: AWS, Azure, GCP deployment, CI/CD pipelines, infrastructure as code
+- Data Engineering: Real-time analytics, ETL pipelines, data visualization dashboards
+
+TECH STACK:
+- Frontend: React, TypeScript, Next.js, Tailwind CSS
+- Backend: Node.js, Python, PostgreSQL, Supabase, FastAPI
+- AI/ML: OpenAI, Google Gemini, LangChain, vector databases
+- DevOps: Docker, Kubernetes, GitHub Actions, Terraform
+
+SERVICES OFFERED:
+- Managed AI & Cybersecurity Services
+- Custom Software Development
+- Technical Consulting & Advisory
+- System Architecture & Design
+- AI Integration & Automation
+
+CONTACT INFORMATION:
+- Official Email: info@mymuna.store
+- WhatsApp: +234 706 237 2521
+- LinkedIn: linkedin.com/in/munaitech
+- GitHub: github.com/mymunastore
+
+YOUR GUIDELINES:
+1. Be professional, knowledgeable, and concise
+2. Answer questions about MunAiTech's services, capabilities, experience, and projects
+3. For project inquiries, pricing, or partnerships, direct users to email info@mymuna.store
+4. For urgent matters, suggest WhatsApp contact
+5. Never share internal pricing details - direct to email for custom quotes
+6. Be helpful with technical questions related to our expertise areas
+7. If asked about something outside our scope, acknowledge it and redirect to our core competencies
+8. Always maintain a professional but approachable tone
+9. When collecting feedback, thank the user and let them know it will be reviewed
+10. For any email communication needs, always route to info@mymuna.store`;
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -70,152 +113,76 @@ serve(async (req) => {
   const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
   const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
-  // Rate limiting: 20 requests per 1 minute per IP (database-backed)
   const ip = req.headers.get("x-forwarded-for") || req.headers.get("x-real-ip") || "unknown";
-  const canProceed = await checkRateLimit(supabase, ip, 'ai-chat', 20, 1);
+  const canProceed = await checkRateLimit(supabase, ip, 'ai-chat', 30, 1);
   if (!canProceed) {
     return new Response(
-      JSON.stringify({ error: "Too many requests. Please try again later." }),
+      JSON.stringify({ error: "Too many requests. Please try again in a moment." }),
       { status: 429, headers: { "Content-Type": "application/json", ...corsHeaders } }
     );
   }
 
-  // Cleanup old rate limit entries (1% chance)
   if (Math.random() < 0.01) {
     await supabase.rpc('cleanup_rate_limits');
   }
 
   try {
     const requestData = await req.json();
-    const { messages, provider } = aiChatRequestSchema.parse(requestData);
+    const { messages } = aiChatRequestSchema.parse(requestData);
 
-    const systemPrompt = `You are an AI assistant for MunAiTech, an AI infrastructure and cybersecurity engineering company. 
-    
-Key Information:
-- AI infrastructure and cybersecurity engineering company (15071995 LLC)
-- 30+ production-grade systems delivered across enterprise, fintech, defence, and government
-- Expert in React, Node.js, TypeScript, Python, PostgreSQL
-- Experience with OpenAI, Gemini AI, and various modern frameworks
-- Focus areas: AI-powered web applications, custom software solutions, technical consulting
-
-Notable Projects:
-- AI-powered note-taking app with intelligent suggestions
-- Consulting SaaS platform with client management
-- Real-time meeting scheduler with AI optimization
-- E-commerce platforms and inventory systems
-
-Skills:
-- Frontend: React, TypeScript, Tailwind CSS
-- Backend: Node.js, Python, PostgreSQL, Supabase
-- AI/ML: OpenAI API, Gemini AI, prompt engineering
-- DevOps: Git, CI/CD, cloud deployment
-
-Your role is to:
-1. Answer questions about MunAiTech's experience, capabilities, and delivered systems
-2. Provide information about his services and expertise
-3. Help visitors understand his capabilities and past work
-4. Be professional, concise, and informative
-5. Encourage visitors to reach out via email at info@mymuna.store or the contact form for project inquiries`;
-
-    let response;
-    
-    if (provider === 'gemini') {
-      const GEMINI_API_KEY = Deno.env.get('GEMINI_AI_API_KEY');
-      if (!GEMINI_API_KEY) {
-        throw new Error('AI service not configured');
-      }
-
-      const geminiMessages = messages.map(msg => ({
-        role: msg.role === 'assistant' ? 'model' : 'user',
-        parts: [{ text: msg.content }]
-      }));
-
-      response = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${GEMINI_API_KEY}`,
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            contents: [
-              { role: 'user', parts: [{ text: systemPrompt }] },
-              ...geminiMessages
-            ],
-            generationConfig: {
-              temperature: 0.7,
-              maxOutputTokens: 1024,
-            }
-          })
-        }
-      );
-
-      const data = await response.json();
-      
-      if (!response.ok) {
-        console.error('[Internal] Gemini API error:', response.status, data.error?.code);
-        throw new Error('AI service unavailable');
-      }
-
-      const aiResponse = data.candidates?.[0]?.content?.parts?.[0]?.text;
-      
-      return new Response(
-        JSON.stringify({ response: aiResponse, provider: 'gemini' }),
-        { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-      );
-    } else {
-      const OPENAI_API_KEY = Deno.env.get('OPENAI_API_KEY');
-      if (!OPENAI_API_KEY) {
-        throw new Error('AI service not configured');
-      }
-
-      response = await fetch('https://api.openai.com/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${OPENAI_API_KEY}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          model: 'gpt-5-mini-2025-08-07',
-          messages: [
-            { role: 'system', content: systemPrompt },
-            ...messages
-          ],
-          max_completion_tokens: 1024,
-        }),
-      });
-
-      const data = await response.json();
-      
-      if (!response.ok) {
-        console.error('[Internal] OpenAI API error:', response.status, data.error?.code);
-        throw new Error('AI service unavailable');
-      }
-
-      const aiResponse = data.choices?.[0]?.message?.content;
-      
-      return new Response(
-        JSON.stringify({ response: aiResponse, provider: 'openai' }),
-        { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-      );
+    // Use Lovable AI proxy - no API key needed
+    const LOVABLE_API_KEY = Deno.env.get('LOVABLE_API_KEY');
+    if (!LOVABLE_API_KEY) {
+      throw new Error('AI service not configured');
     }
+
+    const response = await fetch('https://ai.gateway.lovable.dev/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${LOVABLE_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        model: 'google/gemini-2.5-flash',
+        messages: [
+          { role: 'system', content: SYSTEM_PROMPT },
+          ...messages.map(m => ({ role: m.role, content: m.content }))
+        ],
+        max_tokens: 1024,
+        temperature: 0.7,
+      }),
+    });
+
+    if (!response.ok) {
+      const errText = await response.text();
+      console.error('[Internal] Lovable AI error:', response.status, errText);
+      throw new Error('AI service unavailable');
+    }
+
+    const data = await response.json();
+    const aiResponse = data.choices?.[0]?.message?.content;
+
+    if (!aiResponse) {
+      throw new Error('Empty AI response');
+    }
+
+    return new Response(
+      JSON.stringify({ response: aiResponse }),
+      { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+    );
   } catch (error) {
     console.error('[Internal] Error in ai-chat:', error);
-    
+
     if (error instanceof z.ZodError) {
       return new Response(
         JSON.stringify({ error: 'Invalid message format' }),
-        {
-          status: 400,
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        }
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
-    
+
     return new Response(
-      JSON.stringify({ error: 'Failed to process chat request' }),
-      {
-        status: 500,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      }
+      JSON.stringify({ error: 'Failed to process chat request. Please try again.' }),
+      { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
     );
   }
 });
