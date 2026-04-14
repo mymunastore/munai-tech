@@ -39,12 +39,12 @@ const About = () => {
   ];
 
   const companyStats = [
-    { icon: <Briefcase />, label: "Systems Delivered", value: "30+" },
-    { icon: <Users />, label: "Enterprise Clients", value: "25+" },
-    { icon: <Globe />, label: "Countries Served", value: "4+" },
-    { icon: <Code2 />, label: "Years in Operation", value: "5+" },
+    { icon: <Briefcase />, label: "Personal Experience", value: "5+ yrs" },
+    { icon: <Shield />, label: "Cybersecurity Spec.", value: "4 yrs" },
+    { icon: <Building2 />, label: "MunAiTech (2025)", value: "2 yrs" },
+    { icon: <Code2 />, label: "Systems Delivered", value: "30+" },
     { icon: <Award />, label: "Global Recognitions", value: "4" },
-    { icon: <Shield />, label: "Security Certifications", value: "3+" }
+    { icon: <Globe />, label: "Countries Served", value: "4+" },
   ];
 
   const services = [
@@ -55,11 +55,11 @@ const About = () => {
   ];
 
   const milestones = [
-    { year: "2020", event: "Company Founded", description: "MunAiTech began operations with a focus on AI systems and cybersecurity engineering, delivering early production-grade platforms." },
-    { year: "2022", event: "First Enterprise Deployments", description: "Delivered initial production-grade platforms for fintech and enterprise clients across multiple countries." },
-    { year: "2023", event: "Government Engagement", description: "Began engaging with government technology initiatives and institutional infrastructure projects." },
-    { year: "2025", event: "Incorporation & Global Expansion", description: "Officially incorporated as 15071995 LLC. Expanded operations internationally with Base44 partnership, Lovable Platinum status, and 30+ systems delivered worldwide." },
-    { year: "2026", event: "International Recognition", description: "Received official recognition from Canada (ISED & DND) for sovereign AI and defence technology capabilities. Achieved global platform certifications." },
+    { year: "2020", event: "Personal Journey Begins", description: "Started independent software development during COVID-19 pandemic. Began building production-grade applications and AI systems — the foundation of 5+ years personal experience." },
+    { year: "2022", event: "Cybersecurity Specialization", description: "Began dedicated focus on cybersecurity engineering and ethical hacking. Now 4 years of specialized security expertise in threat modeling and zero-trust architecture." },
+    { year: "2023", event: "Enterprise & Government Work", description: "Delivered systems for enterprise clients and began engaging with government technology initiatives and critical infrastructure projects." },
+    { year: "2025", event: "MunAiTech Incorporated", description: "Officially incorporated as 15071995 LLC in Kentucky, USA. MunAiTech now 2 years old as a formal company, building on 5+ years of founder's personal expertise." },
+    { year: "2026", event: "International Recognition", description: "Received official recognition from Canada (ISED & DND) for sovereign AI and defence technology. 4 years cybersecurity + 5 years AI experience validated at global level." },
   ];
 
   return (
