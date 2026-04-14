@@ -109,10 +109,12 @@ const Resume = () => {
               <section className="mb-8" itemScope itemType="https://schema.org/Person">
                 <h2 className="text-2xl font-bold mb-4 text-white">Professional Summary</h2>
                 <p className="text-gray-300 leading-relaxed">
-                  Innovative Senior Web Designer and AI Full-Stack App Developer specializing in building intelligent, scalable web applications 
-                  with cutting-edge technologies. Expert in TypeScript, React, modern design systems, and AI integration with proven success 
-                  in delivering 30+ production-grade applications across SaaS, fintech, e-commerce, and enterprise sectors. Passionate about 
-                  blending design precision with powerful technology to create transformative digital experiences that solve real-world problems.
+                  <strong>5+ years personal experience</strong> in AI systems architecture and full-stack development, 
+                  with <strong>4 years specialized expertise</strong> in cybersecurity engineering and ethical hacking (since 2022). 
+                  Founded MunAiTech (15071995 LLC) in Kentucky, USA in 2025 — now a <strong>2-year-old company</strong> built on 
+                  years of hands-on technical delivery. Successfully delivered 30+ production-grade applications 
+                  across SaaS, fintech, government, and enterprise sectors. Expert in TypeScript, React, modern design 
+                  systems, AI integration, and zero-trust security architecture.
                 </p>
               </section>
 
@@ -275,14 +277,13 @@ const Resume = () => {
                   Achievements & Highlights
                 </h2>
                 <ul className="space-y-2 text-muted-foreground">
+                  <li>• <strong>5+ years personal experience</strong> in software development (started 2020 during COVID-19)</li>
+                  <li>• <strong>4 years cybersecurity specialization</strong> in ethical hacking and secure architecture (since 2022)</li>
+                  <li>• <strong>2 years MunAiTech</strong> incorporated as 15071995 LLC in Kentucky, USA (2025)</li>
                   <li>• Successfully delivered 30+ production-ready applications across multiple industries</li>
-                  <li>• 30+ satisfied clients worldwide with successful project delivery</li>
-                  <li>• Expert in blending beautiful design with powerful AI and full-stack technology</li>
-                  <li>• All GitHub repositories demonstrate high code quality and practical utility</li>
-                  <li>• Specialized in rapid prototyping and MVP development (30-day launch cycles)</li>
-                  <li>• 5+ years of professional experience in web design and AI integration</li>
+                  <li>• Expert in blending beautiful design with powerful AI and security technology</li>
                   <li>• Strong focus on TypeScript, design systems, and type-safe development practices</li>
-                  <li>• Active contributor to open-source projects and design communities</li>
+                  <li>• All GitHub repositories demonstrate high code quality and practical utility</li>
                 </ul>
               </section>
             </CardContent>
