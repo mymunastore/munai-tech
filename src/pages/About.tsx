@@ -392,35 +392,36 @@ const About = () => {
                     <div className="md:col-span-2 space-y-5">
                       <div className="space-y-4 text-muted-foreground leading-relaxed">
                         <p>
-                          With over 5 years of professional experience in AI systems architecture, 
-                          cybersecurity engineering, and enterprise platform development, the founder 
-                          of MunAiTech has built and deployed 30+ production-grade systems for clients 
-                          across fintech, defence, government, and enterprise environments spanning 
-                          multiple countries.
+                          <strong className="text-foreground">5+ Years Personal Experience:</strong> Started software development 
+                          in 2020 during the COVID-19 pandemic, building a foundation in AI systems architecture, 
+                          full-stack development, and enterprise platform engineering. This personal journey evolved 
+                          into the technical expertise that now powers MunAiTech.
                         </p>
                         <p>
-                          A hands-on technical leader who operates at the intersection of AI, security, 
-                          and infrastructure — engineering platforms from concept to production deployment. 
-                          The founder actively engages with critical global technology initiatives including 
-                          sovereign AI infrastructure programs, defence communications systems, and 
-                          quantum-ready architecture development.
+                          <strong className="text-foreground">4 Years Cybersecurity Specialization:</strong> Since 2022, 
+                          dedicated focus on cybersecurity engineering, ethical hacking, and secure architecture. 
+                          Expert in threat modeling, zero-trust design, and building systems that are secure by default.
+                        </p>
+                        <p>
+                          <strong className="text-foreground">2 Years MunAiTech (2025-2027):</strong> Incorporated 15071995 LLC 
+                          in Kentucky, USA in 2025. MunAiTech is now a 2-year-old company, but built on 5+ years of 
+                          hands-on technical experience delivering 30+ production-grade systems for clients worldwide.
                         </p>
                         <p>
                           Under the founder's leadership, MunAiTech has received international recognition 
-                          from Canada's Innovation, Science and Economic Development (ISED) department 
-                          and the Department of National Defence (DND) for contributions to sovereign AI 
-                          data centre infrastructure and LEO SATCOM defence communications — validating 
-                          the company's capabilities at the highest levels of government technology.
+                          from Canada's ISED and DND for contributions to sovereign AI infrastructure and 
+                          defence communications — validating the company's capabilities at the highest 
+                          levels of government technology after just 2 years of formal operations.
                         </p>
                         <p>
-                          The founder also established MunAiTech as an official{" "}
+                          The founder established MunAiTech as an official{" "}
                           <a href="https://base44.com" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline font-medium">
                             Base44 Partner
                           </a>{" "}
                           and achieved{" "}
                           <span className="text-accent font-medium">Lovable Platinum</span>{" "}
-                          certification — further validating the company's engineering excellence and 
-                          innovation capabilities on global platforms.
+                          certification — further validating engineering excellence built on years of 
+                          personal expertise before company incorporation.
                         </p>
                       </div>
                     </div>
