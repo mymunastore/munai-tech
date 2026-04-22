@@ -5,7 +5,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gradient-to-br from-black via-gray-900 to-black text-white py-12 pb-24 md:pb-12 border-t border-cyan-500/20">
+    <footer className="bg-gradient-to-br from-background via-secondary to-background text-foreground py-12 pb-24 md:pb-12 border-t border-accent/20">
       <div className="container px-4 sm:px-6 lg:px-8">
         {/* CTA Banner */}
         <div className="grid md:grid-cols-3 gap-8 mb-8">
