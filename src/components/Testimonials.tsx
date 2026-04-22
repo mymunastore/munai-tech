@@ -72,7 +72,7 @@ const Testimonials = memo(() => {
 
   if (isLoading) {
     return (
-      <section id="testimonials" className="py-20 md:py-32 bg-secondary/30">
+      <section id="testimonials" className="py-16 md:py-24 bg-secondary/30">
         <div className="container px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="inline-block mb-4">
@@ -110,7 +110,7 @@ const Testimonials = memo(() => {
   }
 
   return (
-    <section id="testimonials" className="py-20 md:py-32 bg-secondary/30">
+    <section id="testimonials" className="py-16 md:py-24 bg-secondary/30">
       <div className="container px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">

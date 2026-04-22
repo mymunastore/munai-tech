@@ -109,16 +109,16 @@ export const AIChat = () => {
       {!isOpen && (
         <Button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 h-14 w-14 rounded-full shadow-lg bg-primary hover:bg-primary/90 z-50 animate-pulse hover:animate-none"
+          className="fixed bottom-20 sm:bottom-6 right-4 sm:right-6 h-12 w-12 sm:h-14 sm:w-14 rounded-full shadow-lg bg-primary hover:bg-primary/90 z-50 animate-pulse hover:animate-none"
           size="icon"
           aria-label="Open chat assistant"
         >
-          <MessageCircle className="h-6 w-6" />
+          <MessageCircle className="h-5 w-5 sm:h-6 sm:w-6" />
         </Button>
       )}
 
       {isOpen && (
-        <Card className="fixed bottom-6 right-6 w-[90vw] max-w-[400px] h-[70vh] max-h-[600px] shadow-2xl z-50 flex flex-col border-primary/20">
+        <Card className="fixed bottom-20 sm:bottom-6 right-4 sm:right-6 w-[90vw] max-w-[400px] h-[60vh] sm:h-[70vh] max-h-[600px] shadow-2xl z-50 flex flex-col border-primary/20">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3 border-b bg-primary/5">
             <CardTitle className="text-base font-semibold flex items-center gap-2">
               <Sparkles className="h-5 w-5 text-primary" />

@@ -49,7 +49,7 @@ const engagements = [
 
 const GovernmentEngagements = memo(() => {
   return (
-    <section className="py-20 md:py-32 relative overflow-hidden">
+    <section className="py-16 md:py-24 relative overflow-hidden">
       {/* Background accents */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/[0.03] to-background" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-3xl opacity-30" />
