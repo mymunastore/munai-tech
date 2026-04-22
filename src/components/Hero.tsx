@@ -21,7 +21,7 @@ const Hero = memo(() => {
             alt="AI Infrastructure & Cybersecurity Engineering"
             className="w-full h-full object-cover opacity-8"
             loading="eager"
-            fetchPriority="high"
+            fetchpriority="high"
             width="1920"
             height="1080"
           />

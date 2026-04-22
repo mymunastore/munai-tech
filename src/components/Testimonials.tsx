@@ -121,11 +121,11 @@ const Testimonials = memo(() => {
             What Clients Say About
             <br />
             <span className="bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">
-              Working With Me
+              Working With MunAiTech
             </span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
-            Real feedback from real clients who have transformed their businesses with my solutions
+            Real feedback from real clients who have transformed their businesses with our solutions
           </p>
           
           {/* Call to Action */}
