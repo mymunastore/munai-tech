@@ -10,10 +10,10 @@ export const WhatsAppButton = () => {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat with us on WhatsApp"
-      className="fixed bottom-6 left-6 h-14 w-14 rounded-full shadow-lg bg-[#25D366] hover:bg-[#20BD5A] z-50 flex items-center justify-center transition-all hover:scale-110 group"
+      className="fixed bottom-20 sm:bottom-6 left-4 sm:left-6 h-12 w-12 sm:h-14 sm:w-14 rounded-full shadow-lg bg-[#25D366] hover:bg-[#20BD5A] z-50 flex items-center justify-center transition-all hover:scale-110 group"
     >
-      <MessageCircle className="h-7 w-7 text-white" />
-      <span className="absolute left-full ml-3 px-3 py-1.5 rounded-lg bg-background border border-border text-foreground text-sm font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-lg">
+      <MessageCircle className="h-6 w-6 sm:h-7 sm:w-7 text-white" />
+      <span className="absolute left-full ml-3 px-3 py-1.5 rounded-lg bg-background border border-border text-foreground text-sm font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-lg hidden sm:block">
         Chat on WhatsApp
       </span>
     </a>

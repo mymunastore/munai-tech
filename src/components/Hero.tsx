@@ -21,8 +21,6 @@ const Hero = memo(() => {
             alt="AI Infrastructure & Cybersecurity Engineering"
             className="w-full h-full object-cover opacity-8"
             loading="eager"
-            // @ts-ignore - fetchPriority is valid HTML but not yet in React 18 types
-            fetchPriority="high"
             width="1920"
             height="1080"
           />
