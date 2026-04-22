@@ -35,7 +35,7 @@ const categoryColors: Record<string, string> = {
 
 const TechStack = memo(() => {
   return (
-    <section id="tech" className="py-20 md:py-32 bg-secondary/30">
+    <section id="tech" className="py-16 md:py-24 bg-secondary/30">
       <div className="container px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 1, y: 0 }}

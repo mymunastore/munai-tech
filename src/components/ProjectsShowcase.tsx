@@ -47,7 +47,7 @@ const ProjectsShowcase = memo(() => {
   }
 
   return (
-    <section id="projects" className="py-20 md:py-32 bg-muted/30">
+    <section id="projects" className="py-16 md:py-24 bg-muted/30">
       <div className="container px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <span className="inline-block px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-4">
