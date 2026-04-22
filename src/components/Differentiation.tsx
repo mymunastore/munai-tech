@@ -22,7 +22,7 @@ const differentiators = [
 
 const Differentiation = memo(() => {
   return (
-    <section className="py-20 md:py-32 relative overflow-hidden">
+    <section className="py-16 md:py-24 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.05] via-transparent to-accent/[0.05]" />
       
       <div className="container px-4 sm:px-6 lg:px-8 relative z-10">

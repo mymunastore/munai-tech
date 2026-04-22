@@ -44,7 +44,7 @@ const recognitions = [
 
 const InternationalRecognition = memo(() => {
   return (
-    <section className="py-20 md:py-32 bg-muted/30 relative overflow-hidden">
+    <section className="py-16 md:py-24 bg-muted/30 relative overflow-hidden">
       <div className="absolute inset-0 opacity-15" style={{ background: 'var(--gradient-mesh)' }} />
 
       <div className="container px-4 sm:px-6 lg:px-8 relative z-10">
