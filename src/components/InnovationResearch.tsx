@@ -1,6 +1,6 @@
 import { memo } from "react";
 import { motion } from "framer-motion";
-import { FlaskConical, Atom, Satellite, BrainCircuit, Award, CheckCircle2 } from "lucide-react";
+import { FlaskConical, Atom, Satellite, BrainCircuit, CheckCircle2 } from "lucide-react";
 import { Card, CardContent } from "./ui/card";
 import { Badge } from "./ui/badge";
 
@@ -89,7 +89,7 @@ const InnovationResearch = memo(() => {
             </motion.div>
           ))}
         </div>
-
+      </div>
     </section>
   );
 });
