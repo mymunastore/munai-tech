@@ -59,7 +59,7 @@ const About = () => {
     { year: "2022", event: "Cybersecurity Specialization", description: "Began dedicated focus on cybersecurity engineering and ethical hacking. Now 4 years of specialized security expertise in threat modeling and zero-trust architecture." },
     { year: "2023", event: "Enterprise & Government Work", description: "Delivered systems for enterprise clients and began engaging with government technology initiatives and critical infrastructure projects." },
     { year: "2025", event: "MunAiTech Incorporated", description: "Officially incorporated as 15071995 LLC in Kentucky, USA. MunAiTech now 2 years old as a formal company, building on 5+ years of founder's personal expertise." },
-    { year: "2026", event: "International Recognition", description: "Received official recognition from Canada (ISED & DND) for sovereign AI and defence technology. 4 years cybersecurity + 5 years AI experience validated at global level." },
+    { year: "2026", event: "Commercial Software Expansion", description: "Scaling MunAiTech's commercial AI software portfolio. 4 years cybersecurity + 5 years AI experience powering production-grade products for global clients." },
   ];
 
   return (
@@ -408,10 +408,9 @@ const About = () => {
                           hands-on technical experience delivering 30+ production-grade systems for clients worldwide.
                         </p>
                         <p>
-                          Under the founder's leadership, MunAiTech has received international recognition 
-                          from Canada's ISED and DND for contributions to sovereign AI infrastructure and 
-                          defence communications — validating the company's capabilities at the highest 
-                          levels of government technology after just 2 years of formal operations.
+                          Under the founder's leadership, MunAiTech now focuses on commercializing 
+                          its AI software portfolio — packaging proven engineering work into licensed 
+                          products and SaaS platforms for enterprise clients worldwide.
                         </p>
                         <p>
                           The founder established MunAiTech as an official{" "}
@@ -443,8 +442,8 @@ const About = () => {
                         <h4 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-3">Recognitions</h4>
                         <div className="space-y-3">
                           {[
-                            { label: "ISED Canada — Sovereign AI", icon: <Award className="h-4 w-4" /> },
-                            { label: "DND Canada — LEO SATCOM", icon: <Shield className="h-4 w-4" /> },
+                            { label: "Base44 Official Partner", icon: <CheckCircle2 className="h-4 w-4" /> },
+                            { label: "Lovable Platinum Certified", icon: <CheckCircle2 className="h-4 w-4" /> },
                             { label: "Base44 Official Partner", icon: <CheckCircle2 className="h-4 w-4" /> },
                             { label: "Lovable Platinum Certified", icon: <CheckCircle2 className="h-4 w-4" /> },
                           ].map((item) => (
