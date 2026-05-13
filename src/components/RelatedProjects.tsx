@@ -2,10 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Card } from "./ui/card";
 import { Button } from "./ui/button";
-import { ExternalLink, Github } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Skeleton } from "./ui/skeleton";
-import { LazyImage } from "./LazyImage";
 
 interface RelatedProjectsProps {
   currentProjectId: string;
