@@ -444,8 +444,6 @@ const About = () => {
                           {[
                             { label: "Base44 Official Partner", icon: <CheckCircle2 className="h-4 w-4" /> },
                             { label: "Lovable Platinum Certified", icon: <CheckCircle2 className="h-4 w-4" /> },
-                            { label: "Base44 Official Partner", icon: <CheckCircle2 className="h-4 w-4" /> },
-                            { label: "Lovable Platinum Certified", icon: <CheckCircle2 className="h-4 w-4" /> },
                           ].map((item) => (
                             <div key={item.label} className="flex items-center gap-2 text-sm text-muted-foreground">
                               <span className="text-accent">{item.icon}</span>
