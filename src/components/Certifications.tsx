@@ -97,7 +97,7 @@ const Certifications = memo(() => {
   };
 
   return (
-    <section id="certifications" className="py-20 md:py-28 bg-background">
+    <section id="certifications" className="py-16 md:py-24 bg-muted/20">
       <div className="container px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div 
