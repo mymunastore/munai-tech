@@ -10,6 +10,7 @@ import Footer from "@/components/Footer";
 import ProjectsShowcase from "@/components/ProjectsShowcase";
 import ClientLogos from "@/components/ClientLogos";
 import FAQ from "@/components/FAQ";
+import Certifications from "@/components/Certifications";
 import { Helmet } from "react-helmet";
 import LazySection from "@/components/LazySection";
 import StatsCounter from "@/components/StatsCounter";
@@ -151,6 +152,11 @@ const Index = () => {
           <div id="testimonials">
             <Testimonials />
           </div>
+        </LazySection>
+
+        {/* Certifications — replaces removed International Recognition for balance */}
+        <LazySection>
+          <Certifications />
         </LazySection>
         
         {/* Insights & Research */}
