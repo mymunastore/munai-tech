@@ -22,7 +22,7 @@ import ThoughtLeadership from "@/components/ThoughtLeadership";
 import GlobalOperations from "@/components/GlobalOperations";
 import InnovationResearch from "@/components/InnovationResearch";
 import ImpactResults from "@/components/ImpactResults";
-import InternationalRecognition from "@/components/InternationalRecognition";
+
 import FinalPositioning from "@/components/FinalPositioning";
 
 const Index = () => {
@@ -139,11 +139,6 @@ const Index = () => {
           <div id="techstack">
             <TechStack />
           </div>
-        </LazySection>
-        
-        {/* International Recognition */}
-        <LazySection>
-          <InternationalRecognition />
         </LazySection>
         
         {/* Client Logos */}
