@@ -6,25 +6,25 @@ import { Badge } from "./ui/badge";
 
 const initiatives = [
   {
-    icon: Satellite,
-    title: "Sovereign AI Infrastructure",
-    description: "Engaged with Innovation, Science and Economic Development Canada (ISED) on sovereign AI data centre infrastructure — officially acknowledged for technical capability and innovation.",
-    badge: "ISED Canada",
-    status: "Acknowledged"
-  },
-  {
-    icon: BrainCircuit,
-    title: "LEO SATCOM Defence Systems",
-    description: "Selected to participate in the Department of National Defence (DND) Innovative Solutions Canada program for Low Earth Orbit satellite communications in contested environments.",
-    badge: "DND Canada",
-    status: "Active Engagement"
-  },
-  {
     icon: Atom,
     title: "Quantum-Ready Architecture",
     description: "Developing systems with quantum-resistant cryptography and post-quantum security protocols to future-proof critical infrastructure against emerging computational threats.",
     badge: "R&D",
     status: "In Development"
+  },
+  {
+    icon: BrainCircuit,
+    title: "Commercial AI Software Platforms",
+    description: "Building and commercializing production-grade AI software products for enterprises — packaged platforms, licensed tools, and SaaS offerings engineered by MunAiTech.",
+    badge: "Product",
+    status: "Active"
+  },
+  {
+    icon: Satellite,
+    title: "Secure Infrastructure Engineering",
+    description: "Designing zero-trust, cloud-native infrastructure with auditable governance — ready for regulated industries and high-security environments.",
+    badge: "Platform",
+    status: "Active"
   },
 ];
 
@@ -90,22 +90,6 @@ const InnovationResearch = memo(() => {
           ))}
         </div>
 
-        {/* International Recognition Callout */}
-        <div className="mt-16 max-w-4xl mx-auto">
-          <div className="p-8 rounded-2xl bg-card border border-accent/20 text-center">
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <Award className="h-6 w-6 text-accent" />
-              <h3 className="text-xl font-bold text-foreground">International Recognition</h3>
-            </div>
-            <p className="text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-              MunAiTech has received <span className="text-accent font-semibold">two official recognitions from Canada</span> — 
-              one of the world's leading technology nations — validating our innovation, talent, and capability 
-              in sovereign AI infrastructure and defence communications. These invitations to participate in 
-              national-level funding programs underscore the global impact of our work.
-            </p>
-          </div>
-        </div>
-      </div>
     </section>
   );
 });

@@ -6,22 +6,6 @@ import { Link } from "react-router-dom";
 
 const recognitions = [
   {
-    title: "ISED Canada — Sovereign AI Infrastructure",
-    institution: "Innovation, Science and Economic Development Canada",
-    description: "Received a formal invitation from the Government of Canada to apply for the national Sovereign AI Data Centre program — the first international recognition of MunAiTech's capability. Successfully submitted application and received official acknowledgement of participation in Canada's AI leadership initiative.",
-    type: "Government Invitation",
-    country: "🇨🇦 Canada",
-    status: "Acknowledged",
-  },
-  {
-    title: "DND Canada — LEO SATCOM Defence Challenge",
-    institution: "Department of National Defence, Innovative Solutions Canada",
-    description: "Following the Sovereign AI recognition, received a second invitation from Canada's Department of National Defence to apply for the LEO SATCOM Defence Communications Challenge — a competitive program for satellite communications in contested environments with up to $2M CAD funding scope.",
-    type: "Defence Innovation",
-    country: "🇨🇦 Canada",
-    status: "Invited & Applied",
-  },
-  {
     title: "Base44 — Official Verified Partner",
     institution: "Base44, Inc. (San Francisco, USA & Israel)",
     description: "Selected as an official Base44 partner through a highly competitive global application process. Applications from developers worldwide were rigorously assessed by top engineers and leadership — only the strongest profiles were accepted into the verified partner network.",
