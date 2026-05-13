@@ -14,7 +14,7 @@ import { Helmet } from "react-helmet";
 import LazySection from "@/components/LazySection";
 import StatsCounter from "@/components/StatsCounter";
 import TechMarquee from "@/components/TechMarquee";
-import GovernmentEngagements from "@/components/GovernmentEngagements";
+
 import CompanyPositioning from "@/components/CompanyPositioning";
 import CoreCapabilities from "@/components/CoreCapabilities";
 import Differentiation from "@/components/Differentiation";
@@ -78,7 +78,7 @@ const Index = () => {
           },
           "knowsAbout": [
             "AI Infrastructure Engineering", "Cybersecurity Architecture", "Enterprise Systems",
-            "Government Technology", "Quantum-Ready Systems", "Sovereign AI", "Defence Communications",
+            "Quantum-Ready Systems",
             "Cloud Infrastructure", "Agentic AI", "Zero-Trust Architecture"
           ]
         })}
@@ -103,11 +103,6 @@ const Index = () => {
         {/* Global Operations */}
         <LazySection>
           <GlobalOperations />
-        </LazySection>
-        
-        {/* Government & Institutional Engagements */}
-        <LazySection>
-          <GovernmentEngagements />
         </LazySection>
         
         {/* Core Services / Capabilities */}
