@@ -2,15 +2,17 @@ import { useState } from "react";
 import { Shield, Lock, Mail } from "lucide-react";
 import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
+import { useAdminCheck } from "@/hooks/useAdminCheck";
 
 interface ProjectAccessGateProps {
   children: React.ReactNode;
 }
 
 export const ProjectAccessGate = ({ children }: ProjectAccessGateProps) => {
-  const [hasAccess, setHasAccess] = useState(false);
+  const { isAdmin } = useAdminCheck();
+  const [hasAccess] = useState(false);
 
-  if (hasAccess) {
+  if (isAdmin || hasAccess) {
     return <>{children}</>;
   }
 
