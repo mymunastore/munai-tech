@@ -6,13 +6,14 @@ import { SEO } from "@/components/SEO";
 import { StructuredData } from "@/components/StructuredData";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ExternalLink, Github, Filter } from "lucide-react";
+import { ArrowRight, Filter, Lock } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { LazyImage } from "@/components/LazyImage";
+import { useAdminCheck } from "@/hooks/useAdminCheck";
 import { Helmet } from "react-helmet";
 
 const Projects = () => {
+  const { isAdmin } = useAdminCheck();
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
 
   const { data: projects, isLoading } = useQuery({
@@ -117,15 +118,10 @@ const Projects = () => {
                   className="group hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-300 overflow-hidden border-cyan-500/20 hover:border-cyan-400/50 bg-black/50"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  <div className="relative overflow-hidden">
-                    <LazyImage
-                      src={project.featured_image || "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop"}
-                      alt={project.title}
-                      className="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-cyan-500/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="relative h-32 overflow-hidden bg-gradient-to-br from-cyan-500/20 via-blue-600/10 to-cyan-400/5 flex items-center justify-center">
+                    <Lock className="h-10 w-10 text-cyan-400/70" />
                   </div>
-                  
+
                   <CardContent className="p-6">
                     <div className="flex items-center gap-2 mb-3">
                       <span className="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-semibold">
@@ -135,49 +131,22 @@ const Projects = () => {
                         <span className="text-xs text-gray-400">{project.year}</span>
                       )}
                     </div>
-                    
+
                     <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">
                       {project.title}
                     </h3>
-                    
-                    <p className="text-gray-400 mb-4 line-clamp-2">
-                      {project.description}
-                    </p>
 
-                    {project.tech_stack && (
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {project.tech_stack.slice(0, 3).map((tech, idx) => (
-                          <span
-                            key={idx}
-                            className="px-2 py-1 rounded-md bg-cyan-500/10 text-cyan-400 text-xs border border-cyan-500/20"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    )}
+                    <p className="text-gray-400 text-sm mb-4 italic">
+                      Project details are confidential. Access restricted to authorized parties only.
+                    </p>
 
                     <div className="flex items-center gap-3">
                       <Link to={`/projects/${project.slug}`}>
                         <Button variant="outline" size="sm" className="group/btn border-cyan-500/30 text-white hover:bg-cyan-500/10">
-                          View Details
+                          {isAdmin ? "View Details" : "Request Access"}
                           <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
                         </Button>
                       </Link>
-                      {project.live_url && (
-                        <a href={project.live_url} target="_blank" rel="noopener noreferrer">
-                          <Button variant="ghost" size="icon" className="hover:bg-cyan-500/10 text-cyan-400">
-                            <ExternalLink className="h-4 w-4" />
-                          </Button>
-                        </a>
-                      )}
-                      {project.github_url && (
-                        <a href={project.github_url} target="_blank" rel="noopener noreferrer">
-                          <Button variant="ghost" size="icon" className="hover:bg-cyan-500/10 text-cyan-400">
-                            <Github className="h-4 w-4" />
-                          </Button>
-                        </a>
-                      )}
                     </div>
                   </CardContent>
                 </Card>
