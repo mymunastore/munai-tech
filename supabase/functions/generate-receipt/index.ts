@@ -671,7 +671,7 @@ const generateReceiptHTML = (data: ReceiptData): string => {
                 <div class="signature-line">
                   <div class="signature-label">Authorized By</div>
                   ${data.authorized_signature ? `
-                  <div class="signature-name">${data.authorized_signature}</div>
+                  <div class="signature-name">${escapeHtml(data.authorized_signature)}</div>
                   ` : `
                   <div class="signature-name">15071995 LLC</div>
                   `}
