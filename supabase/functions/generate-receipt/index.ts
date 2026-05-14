@@ -661,7 +661,7 @@ const generateReceiptHTML = (data: ReceiptData): string => {
             ${data.payment_terms ? `
             <div class="service-details">
               <h3>Payment Terms</h3>
-              <p>${data.payment_terms}</p>
+              <p>${escapeHtml(data.payment_terms)}</p>
             </div>
             ` : ''}
 
