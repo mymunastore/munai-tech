@@ -533,14 +533,14 @@ const generateReceiptHTML = (data: ReceiptData): string => {
             <div class="receipt-title">
               <h1>PAYMENT RECEIPT</h1>
               <div class="barcode-section">
-                <img src="${barcodeUrl}" alt="Barcode">
+                <img src="${escapeHtml(barcodeUrl)}" alt="Barcode">
               </div>
-              <div class="receipt-number">#${data.receipt_number}</div>
+              <div class="receipt-number">#${escapeHtml(data.receipt_number)}</div>
               ${data.verification_hash ? `
-              <div class="verification-code">Verification: ${data.verification_hash}</div>
+              <div class="verification-code">Verification: ${escapeHtml(data.verification_hash)}</div>
               ` : ''}
               ${data.invoice_reference ? `
-              <div class="verification-code">Invoice Ref: ${data.invoice_reference}</div>
+              <div class="verification-code">Invoice Ref: ${escapeHtml(data.invoice_reference)}</div>
               ` : ''}
             </div>
 
