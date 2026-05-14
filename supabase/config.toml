@@ -5,3 +5,9 @@ verify_jwt = true
 
 [functions.generate-project-images]
 verify_jwt = true
+
+[functions.generate-receipt]
+verify_jwt = true
+
+[functions.curate-tech-insights]
+verify_jwt = true
