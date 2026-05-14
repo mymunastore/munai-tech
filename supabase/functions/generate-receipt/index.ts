@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { z } from "https://deno.land/x/zod@v3.22.4/mod.ts";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.7.1";
 
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY") as string;
 
@@ -7,6 +8,17 @@ const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
+
+function escapeHtml(text: unknown): string {
+  if (text === null || text === undefined) return "";
+  return String(text).replace(/[&<>"']/g, (m) => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#039;",
+  }[m]!));
+}
 
 // Validation schemas
 const lineItemSchema = z.object({
@@ -521,14 +533,14 @@ const generateReceiptHTML = (data: ReceiptData): string => {
             <div class="receipt-title">
               <h1>PAYMENT RECEIPT</h1>
               <div class="barcode-section">
-                <img src="${barcodeUrl}" alt="Barcode">
+                <img src="${escapeHtml(barcodeUrl)}" alt="Barcode">
               </div>
-              <div class="receipt-number">#${data.receipt_number}</div>
+              <div class="receipt-number">#${escapeHtml(data.receipt_number)}</div>
               ${data.verification_hash ? `
-              <div class="verification-code">Verification: ${data.verification_hash}</div>
+              <div class="verification-code">Verification: ${escapeHtml(data.verification_hash)}</div>
               ` : ''}
               ${data.invoice_reference ? `
-              <div class="verification-code">Invoice Ref: ${data.invoice_reference}</div>
+              <div class="verification-code">Invoice Ref: ${escapeHtml(data.invoice_reference)}</div>
               ` : ''}
             </div>
 
@@ -541,7 +553,7 @@ const generateReceiptHTML = (data: ReceiptData): string => {
                 </div>
                 <div class="info-item">
                   <span class="info-label">Payment Method</span>
-                  <span class="info-value">${data.payment_method.replace('_', ' ').toUpperCase()}</span>
+                  <span class="info-value">${escapeHtml(data.payment_method.replace('_', ' ').toUpperCase())}</span>
                 </div>
                 <div class="info-item">
                   <span class="info-label">Status</span>
@@ -550,7 +562,7 @@ const generateReceiptHTML = (data: ReceiptData): string => {
                 ${data.tax_id ? `
                 <div class="info-item">
                   <span class="info-label">Tax ID</span>
-                  <span class="info-value">${data.tax_id}</span>
+                  <span class="info-value">${escapeHtml(data.tax_id)}</span>
                 </div>
                 ` : ''}
               </div>
@@ -559,16 +571,16 @@ const generateReceiptHTML = (data: ReceiptData): string => {
                 <h3>Customer Information</h3>
                 <div class="info-item">
                   <span class="info-label">Name</span>
-                  <span class="info-value">${data.customer_name}</span>
+                  <span class="info-value">${escapeHtml(data.customer_name)}</span>
                 </div>
                 <div class="info-item">
                   <span class="info-label">Email</span>
-                  <span class="info-value">${data.customer_email}</span>
+                  <span class="info-value">${escapeHtml(data.customer_email)}</span>
                 </div>
                 ${data.customer_address ? `
                 <div class="info-item">
                   <span class="info-label">Address</span>
-                  <span class="info-value">${data.customer_address}</span>
+                  <span class="info-value">${escapeHtml(data.customer_address)}</span>
                 </div>
                 ` : ''}
               </div>
@@ -587,7 +599,7 @@ const generateReceiptHTML = (data: ReceiptData): string => {
               <tbody>
                 ${data.line_items.map(item => `
                 <tr>
-                  <td>${item.description}</td>
+                  <td>${escapeHtml(item.description)}</td>
                   <td style="text-align: center;">${item.quantity}</td>
                   <td style="text-align: right;">${formatCurrency(item.unit_price)}</td>
                   <td style="text-align: right; font-weight: 600;">${formatCurrency(item.total)}</td>
@@ -624,13 +636,13 @@ const generateReceiptHTML = (data: ReceiptData): string => {
 
             <div class="service-details">
               <h3>Service Description</h3>
-              <p>${data.project_description}</p>
+              <p>${escapeHtml(data.project_description)}</p>
             </div>
 
             ${data.notes ? `
             <div class="service-details">
               <h3>Additional Notes</h3>
-              <p>${data.notes}</p>
+              <p>${escapeHtml(data.notes)}</p>
             </div>
             ` : ''}
 
@@ -649,7 +661,7 @@ const generateReceiptHTML = (data: ReceiptData): string => {
             ${data.payment_terms ? `
             <div class="service-details">
               <h3>Payment Terms</h3>
-              <p>${data.payment_terms}</p>
+              <p>${escapeHtml(data.payment_terms)}</p>
             </div>
             ` : ''}
 
@@ -659,7 +671,7 @@ const generateReceiptHTML = (data: ReceiptData): string => {
                 <div class="signature-line">
                   <div class="signature-label">Authorized By</div>
                   ${data.authorized_signature ? `
-                  <div class="signature-name">${data.authorized_signature}</div>
+                  <div class="signature-name">${escapeHtml(data.authorized_signature)}</div>
                   ` : `
                   <div class="signature-name">15071995 LLC</div>
                   `}
@@ -669,7 +681,7 @@ const generateReceiptHTML = (data: ReceiptData): string => {
               <div class="signature-box">
                 <div class="qr-code-section">
                   <h4>Verify Receipt</h4>
-                  <img src="${qrCodeUrl}" alt="QR Code" width="120" height="120">
+                  <img src="${escapeHtml(qrCodeUrl)}" alt="QR Code" width="120" height="120">
                   <p style="font-size: 10px; color: #64748b; margin-top: 8px;">Scan to verify authenticity</p>
                 </div>
               </div>
@@ -713,6 +725,37 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
+    // Require authenticated admin caller
+    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
+    const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+    const supabase = createClient(supabaseUrl, supabaseServiceKey);
+
+    const authHeader = req.headers.get("Authorization") ?? "";
+    const token = authHeader.replace(/^Bearer\s+/i, "");
+    if (!token) {
+      return new Response(JSON.stringify({ error: "Unauthorized" }), {
+        status: 401,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    const { data: userData, error: userErr } = await supabase.auth.getUser(token);
+    if (userErr || !userData?.user) {
+      return new Response(JSON.stringify({ error: "Unauthorized" }), {
+        status: 401,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    const { data: isAdmin, error: roleErr } = await supabase.rpc("has_role", {
+      _user_id: userData.user.id,
+      _role: "admin",
+    });
+    if (roleErr || !isAdmin) {
+      return new Response(JSON.stringify({ error: "Forbidden" }), {
+        status: 403,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
     const requestData = await req.json();
     
     // Validate incoming receipt data
