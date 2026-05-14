@@ -599,7 +599,7 @@ const generateReceiptHTML = (data: ReceiptData): string => {
               <tbody>
                 ${data.line_items.map(item => `
                 <tr>
-                  <td>${item.description}</td>
+                  <td>${escapeHtml(item.description)}</td>
                   <td style="text-align: center;">${item.quantity}</td>
                   <td style="text-align: right;">${formatCurrency(item.unit_price)}</td>
                   <td style="text-align: right; font-weight: 600;">${formatCurrency(item.total)}</td>
