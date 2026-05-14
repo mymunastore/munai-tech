@@ -681,7 +681,7 @@ const generateReceiptHTML = (data: ReceiptData): string => {
               <div class="signature-box">
                 <div class="qr-code-section">
                   <h4>Verify Receipt</h4>
-                  <img src="${qrCodeUrl}" alt="QR Code" width="120" height="120">
+                  <img src="${escapeHtml(qrCodeUrl)}" alt="QR Code" width="120" height="120">
                   <p style="font-size: 10px; color: #64748b; margin-top: 8px;">Scan to verify authenticity</p>
                 </div>
               </div>
