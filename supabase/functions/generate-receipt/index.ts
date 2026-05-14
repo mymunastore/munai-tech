@@ -642,7 +642,7 @@ const generateReceiptHTML = (data: ReceiptData): string => {
             ${data.notes ? `
             <div class="service-details">
               <h3>Additional Notes</h3>
-              <p>${data.notes}</p>
+              <p>${escapeHtml(data.notes)}</p>
             </div>
             ` : ''}
 
