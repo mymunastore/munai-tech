@@ -553,7 +553,7 @@ const generateReceiptHTML = (data: ReceiptData): string => {
                 </div>
                 <div class="info-item">
                   <span class="info-label">Payment Method</span>
-                  <span class="info-value">${data.payment_method.replace('_', ' ').toUpperCase()}</span>
+                  <span class="info-value">${escapeHtml(data.payment_method.replace('_', ' ').toUpperCase())}</span>
                 </div>
                 <div class="info-item">
                   <span class="info-label">Status</span>
@@ -562,7 +562,7 @@ const generateReceiptHTML = (data: ReceiptData): string => {
                 ${data.tax_id ? `
                 <div class="info-item">
                   <span class="info-label">Tax ID</span>
-                  <span class="info-value">${data.tax_id}</span>
+                  <span class="info-value">${escapeHtml(data.tax_id)}</span>
                 </div>
                 ` : ''}
               </div>
@@ -571,16 +571,16 @@ const generateReceiptHTML = (data: ReceiptData): string => {
                 <h3>Customer Information</h3>
                 <div class="info-item">
                   <span class="info-label">Name</span>
-                  <span class="info-value">${data.customer_name}</span>
+                  <span class="info-value">${escapeHtml(data.customer_name)}</span>
                 </div>
                 <div class="info-item">
                   <span class="info-label">Email</span>
-                  <span class="info-value">${data.customer_email}</span>
+                  <span class="info-value">${escapeHtml(data.customer_email)}</span>
                 </div>
                 ${data.customer_address ? `
                 <div class="info-item">
                   <span class="info-label">Address</span>
-                  <span class="info-value">${data.customer_address}</span>
+                  <span class="info-value">${escapeHtml(data.customer_address)}</span>
                 </div>
                 ` : ''}
               </div>
