@@ -1,4 +1,5 @@
 import { memo } from "react";
+import { Helmet } from "react-helmet";
 import {
   Accordion,
   AccordionContent,
@@ -42,8 +43,21 @@ const FAQ = memo(() => {
     }
   ];
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((f) => ({
+      "@type": "Question",
+      name: f.question,
+      acceptedAnswer: { "@type": "Answer", text: f.answer },
+    })),
+  };
+
   return (
     <section className="py-16 md:py-24 bg-accent/30">
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+      </Helmet>
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-12">

@@ -65,8 +65,8 @@ const About = () => {
   return (
     <>
       <SEO 
-        title="Company | MunAiTech — Global AI Infrastructure & Cybersecurity Engineering"
-        description="MunAiTech is a global AI infrastructure and cybersecurity engineering company. We design and deploy production-grade intelligent systems for enterprise and government environments worldwide."
+        title="Company | MunAiTech AI & Cybersecurity Engineering"
+        description="MunAiTech is a global AI infrastructure and cybersecurity engineering company serving enterprise and government environments worldwide."
         keywords="MunAiTech, AI Infrastructure, Cybersecurity Engineering, Enterprise AI, Government Technology, Global Operations"
         image="https://munai.tech/og-about.jpg"
       />

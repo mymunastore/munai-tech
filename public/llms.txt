@@ -1,0 +1,20 @@
+# MunAiTech
+
+> Global AI infrastructure and cybersecurity engineering company building production-grade intelligent systems with embedded security for enterprise and government environments.
+
+## Pages
+
+- [Home](/): Company overview, capabilities, and selected work.
+- [Company](/about): Who MunAiTech is, mission, values, and history.
+- [Services](/services): AI infrastructure, cybersecurity, and platform engineering offerings.
+- [Products](/products): Commercial AI software portfolio.
+- [Projects](/projects): Production-grade systems and case studies.
+- [Insights](/insights): Curated AI and cybersecurity industry insights.
+- [Blog](/blog): Articles on AI, security, and engineering.
+- [Partnerships](/partnerships): Strategic partnership and collaboration model.
+- [Contact](/contact): Get in touch with MunAiTech.
+
+## Optional
+
+- [Project Case Studies](/projects): Detailed engineering case studies for representative systems.
+- [Blog Index](/blog): Latest engineering and AI articles.

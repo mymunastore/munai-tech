@@ -43,7 +43,7 @@ const Projects = () => {
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black">
       <SEO 
         title="Selected Systems & Case Studies | MunAiTech"
-        description="Explore production-grade AI systems and enterprise platforms engineered by MunAiTech. Scalable infrastructure, cybersecurity solutions, and intelligent platforms."
+        description="Production-grade AI systems and enterprise platforms engineered by MunAiTech — scalable infrastructure and cybersecurity solutions."
         keywords="AI systems, enterprise platforms, cybersecurity engineering, MunAiTech projects, case studies"
         image="https://munai.tech/og-projects.jpg"
       />
