@@ -30,8 +30,8 @@ const Index = () => {
   usePageTracking();
   return <>
       <SEO 
-        title="MunAiTech | Global AI Infrastructure & Cybersecurity Engineering Company"
-        description="MunAiTech is a global AI infrastructure and cybersecurity engineering company. We design and deploy production-grade intelligent systems with embedded security for enterprise and government environments worldwide."
+        title="MunAiTech | AI Infrastructure & Cybersecurity"
+        description="MunAiTech designs and deploys production-grade AI infrastructure with embedded cybersecurity for enterprise and government environments worldwide."
       />
       <StructuredData 
         breadcrumbs={[
@@ -43,8 +43,8 @@ const Index = () => {
         
         {/* Open Graph */}
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="MunAiTech | Global AI Infrastructure & Cybersecurity Engineering" />
-        <meta property="og:description" content="Global AI infrastructure and cybersecurity engineering company building production-grade intelligent systems for enterprise and government environments." />
+        <meta property="og:title" content="MunAiTech | AI Infrastructure & Cybersecurity" />
+        <meta property="og:description" content="Production-grade AI infrastructure with embedded cybersecurity for enterprise and government environments worldwide." />
         <meta property="og:url" content="https://munai.tech" />
         <meta property="og:image" content="https://munai.tech/og-image.jpg" />
         <meta property="og:image:width" content="1200" />
@@ -52,8 +52,8 @@ const Index = () => {
         
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="MunAiTech | Global AI Infrastructure & Cybersecurity Engineering" />
-        <meta name="twitter:description" content="Global AI infrastructure and cybersecurity engineering. Production-grade intelligent systems for enterprise and government." />
+        <meta name="twitter:title" content="MunAiTech | AI Infrastructure & Cybersecurity" />
+        <meta name="twitter:description" content="Production-grade AI infrastructure with embedded cybersecurity for enterprise and government." />
         <meta name="twitter:image" content="https://munai.tech/og-image.jpg" />
         
         {/* Organization structured data */}
